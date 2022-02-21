@@ -1,8 +1,6 @@
 package string;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class StringSolution {
@@ -36,7 +34,6 @@ public class StringSolution {
 
         return maxLength;
     }
-
 
     // Leetcode problem: 5
     /*
