@@ -977,42 +977,6 @@ public class Solution {
         return minus ? -number : number;
     }
 
-    public String longestPalindrome(String s) {
-        if (s.length() == 0)
-            return s;
-
-        int maxLength = 1;
-        int start = 0, len = s.length(), high, low;
-        for (int i = 0; i < s.length(); i++) {
-            // even length substring
-            high = i;
-            low = i - 1;
-            while (low >= 0 && high < len && s.charAt(low) == s.charAt(high)) {
-                if (high - low + 1 > maxLength) {
-                    maxLength = high - low + 1;
-                    start = low;
-                }
-                high++;
-                low--;
-            }
-
-            // odd length substring
-            high = i + 1;
-            low = i - 1;
-            while (low >= 0 && high < len && s.charAt(low) == s.charAt(high)) {
-                if (high - low + 1 > maxLength) {
-                    maxLength = high - low + 1;
-                    start = low;
-                }
-                high++;
-                low--;
-            }
-        }
-
-        return s.substring(start, start + maxLength);
-    }
-
-
     public ListNode swapPairs(ListNode head) {
         if (head == null)
             return null;
