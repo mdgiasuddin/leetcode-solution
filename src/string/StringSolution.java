@@ -2,9 +2,7 @@ package string;
 
 import indefinite.UtilClass;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Stack;
+import java.util.*;
 
 public class StringSolution {
 
@@ -12,7 +10,9 @@ public class StringSolution {
         StringSolution stringSolution = new StringSolution();
 //        System.out.println(stringSolution.lengthOfLongestSubstring("abcdab"));
 //        System.out.println(stringSolution.convert("PAYPALISHIRING", 3));
-        stringSolution.isMatchMemoryOptimized("", "******");
+//        stringSolution.isMatchMemoryOptimized("", "******");
+        stringSolution.partition("aab");
+
     }
 
     // Leetcode problem: 3
@@ -265,6 +265,86 @@ public class StringSolution {
             }
         }
         return matrix[m][n];
+    }
+
+    // Leetcode problem: 127
+    /*
+     * Word ladder
+     * Breadth first search to find minimum distance
+     * Find next node by changing one single character of each index of the word
+     */
+    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+        Set<String> wordSet = new HashSet<>(wordList);
+
+        if (!wordSet.contains(endWord))
+            return 0;
+
+        Queue<String> queue = new LinkedList<>();
+        queue.add(beginWord);
+        int maxLength = 0;
+
+        while (!queue.isEmpty()) {
+            maxLength++;
+            int qSize = queue.size();
+
+            while (qSize-- > 0) {
+                String top = queue.poll();
+                for (int i = 0; i < top.length(); i++) {
+
+                    for (char ch = 'a'; ch <= 'z'; ch++) {
+                        String temp = top.substring(0, i) + ch + top.substring(i + 1);
+                        if (temp.equals(top))
+                            continue;
+                        if (temp.equals(endWord))
+                            return maxLength + 1;
+                        if (wordSet.contains(temp)) {
+                            queue.add(temp);
+                            wordSet.remove(temp);
+                        }
+                    }
+                }
+            }
+        }
+
+        return maxLength;
+    }
+
+
+    // Leetcode problem: 131
+    /*
+     * Palindrome partitioning
+     * Find all the combination by backtracking
+     */
+    public List<List<String>> partition(String s) {
+        List<List<String>> finalResult = new ArrayList<>();
+        partition(s, finalResult, new ArrayList<>(), 0, s.length());
+
+        return finalResult;
+    }
+
+    public void partition(String s, List<List<String>> finalResult, List<String> currentList, int left, int right) {
+        if (left >= right) {
+            finalResult.add(new ArrayList<>(currentList));
+            return;
+        }
+
+        for (int i = left + 1; i <= right; i++) {
+            System.out.println("left: i: " + left + " " + i);
+            if (isPalindrome(s, left, i - 1)) {
+                currentList.add(s.substring(left, i));
+                partition(s, finalResult, currentList, i, right);
+                currentList.remove(currentList.size() - 1);
+            }
+        }
+    }
+
+    public boolean isPalindrome(String str, int start, int end) {
+        while (start < end) {
+            if (str.charAt(start++) != str.charAt(end--))
+                return false;
+        }
+
+        return true;
     }
 
 
