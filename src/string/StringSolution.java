@@ -2,6 +2,7 @@ package string;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
 
 public class StringSolution {
 
@@ -102,5 +103,93 @@ public class StringSolution {
         }
         return ans.toString();
     }
+
+    // Leetcode problem: 20
+    /*
+     * Valid Parenthesis
+     * Use stack to solve the problem
+     */
+    public boolean isValid(String s) {
+
+        Stack<Character> stack = new Stack<>();
+        for (char ch : s.toCharArray()) {
+            if (ch == '(' || ch == '{' || ch == '[') {
+                stack.push(ch);
+            } else {
+                if (stack.isEmpty())
+                    return false;
+                char top = stack.pop();
+                if ((top == '(' && ch != ')') || (top == '{' && ch != '}') || (top == '[' && ch != ']'))
+                    return false;
+            }
+        }
+
+        return stack.isEmpty();
+    }
+
+    // Leetcode problem: 43
+    /*
+     * Multiply two number by string
+     */
+    public String multiply(String num1, String num2) {
+        int m = num1.length();
+        int n = num2.length();
+        char[] sum = new char[m + n];
+        int i, j;
+        for (i = 0; i < m + n; i++)
+            sum[i] = '0';
+
+        for (i = m - 1; i >= 0; i--) {
+            int carry = 0;
+            for (j = n - 1; j >= 0; j--) {
+                int temp = (num1.charAt(i) - '0') * (num2.charAt(j) - '0') + sum[i + j + 1] - '0' + carry;
+                sum[i + j + 1] = (char) (temp % 10 + '0');
+                carry = temp / 10;
+            }
+            sum[i] = (char) (sum[i] + carry);
+        }
+
+        i = 0;
+        while (sum[i] == '0')
+            i++;
+
+        return String.copyValueOf(sum, i, m + n - i);
+    }
+
+    // Leetcode problem: 44
+    /*
+     * Wildcard matching
+     * Dynamic programming
+     * M[i][j] = M[i-1][j-1] if s[i] = p[j] || p[j] = ?
+     * M[i][j] = M[i-1][j] || M[i][j-1] if p[j] = * , else false
+     */
+    public boolean isMatch(String s, String p) {
+        int m = s.length(), n = p.length();
+        boolean[][] matrix = new boolean[m + 1][n + 1];
+        matrix[0][0] = true;
+        for (int i = 1; i <= m; i++) {
+            matrix[i][0] = false;
+        }
+        for (int j = 1; j <= n; j++) {
+            if (p.charAt(j - 1) == '*')
+                matrix[0][j] = matrix[0][j - 1];
+            else
+                matrix[0][j] = false;
+        }
+
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                if (s.charAt(i - 1) == p.charAt(j - 1) || p.charAt(j - 1) == '?')
+                    matrix[i][j] = matrix[i - 1][j - 1];
+                else if (p.charAt(j - 1) == '*')
+                    matrix[i][j] = matrix[i][j - 1] || matrix[i - 1][j];
+                else
+                    matrix[i][j] = false;
+            }
+        }
+
+        return matrix[m][n];
+    }
+
 
 }

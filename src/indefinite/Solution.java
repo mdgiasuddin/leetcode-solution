@@ -51,19 +51,19 @@ public class Solution {
         if (strs.length == 0)
             return "";
 
-        String result = "";
+        StringBuilder result = new StringBuilder();
 
         String str = strs[0];
         for (int j = 0; j < str.length(); j++) {
             int i;
             for (i = 1; i < strs.length; i++) {
                 if (j == strs[i].length() || strs[i].charAt(j) != str.charAt(j))
-                    return result;
+                    return result.toString();
             }
-            result = result + str.charAt(j);
+            result.append(str.charAt(j));
         }
 
-        return result;
+        return result.toString();
 
     }
 
@@ -498,9 +498,7 @@ public class Solution {
             mid = start + (end - start) / 2;
 
             if (num / mid == mid) {
-                if (mid * mid == num)
-                    return true;
-                return false;
+                return mid * mid == num;
             } else if (num / mid < mid)
                 end = mid - 1;
             else
@@ -1232,31 +1230,6 @@ public class Solution {
 
     public boolean isValidBST(TreeNode root) {
         return isValidBST(root, true);
-    }
-
-    public String multiply(String num1, String num2) {
-        int m = num1.length();
-        int n = num2.length();
-        char[] sum = new char[m + n];
-        int i, j;
-        for (i = 0; i < m + n; i++)
-            sum[i] = '0';
-
-        for (i = m - 1; i >= 0; i--) {
-            int carry = 0;
-            for (j = n - 1; j >= 0; j--) {
-                int temp = (num1.charAt(i) - '0') * (num2.charAt(j) - '0') + sum[i + j + 1] - '0' + carry;
-                sum[i + j + 1] = (char) (temp % 10 + '0');
-                carry = temp / 10;
-            }
-            sum[i] = (char) (sum[i] + carry);
-        }
-
-        i = 0;
-        while (sum[i] == '0')
-            i++;
-
-        return String.copyValueOf(sum, i, m + n - i);
     }
 
     public void rotate(int[] nums, int k) {
