@@ -1,5 +1,7 @@
 package string;
 
+import indefinite.UtilClass;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
@@ -9,7 +11,8 @@ public class StringSolution {
     public static void main(String[] args) {
         StringSolution stringSolution = new StringSolution();
 //        System.out.println(stringSolution.lengthOfLongestSubstring("abcdab"));
-        System.out.println(stringSolution.convert("PAYPALISHIRING", 3));
+//        System.out.println(stringSolution.convert("PAYPALISHIRING", 3));
+        stringSolution.isMatchMemoryOptimized("", "******");
     }
 
     // Leetcode problem: 3
@@ -188,6 +191,79 @@ public class StringSolution {
             }
         }
 
+        return matrix[m][n];
+    }
+
+    /*
+     * This is memory optimized version of wildcard matching
+     * We need last 2 rows only. Continuously build up last rows by previous and copy it to previous
+     */
+    public boolean isMatchMemoryOptimized(String s, String p) {
+        int m = s.length(), n = p.length();
+        boolean[][] matrix = new boolean[2][n + 1];
+        matrix[0][0] = true;
+        matrix[1][0] = false;
+
+        for (int j = 1; j <= n; j++) {
+            if (p.charAt(j - 1) == '*')
+                matrix[0][j] = matrix[0][j - 1];
+            else
+                matrix[0][j] = false;
+        }
+
+        if (s.length() == 0)
+            return matrix[0][n];
+
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                if (s.charAt(i - 1) == p.charAt(j - 1) || p.charAt(j - 1) == '?')
+                    matrix[1][j] = matrix[0][j - 1];
+                else if (p.charAt(j - 1) == '*')
+                    matrix[1][j] = matrix[1][j - 1] || matrix[0][j];
+                else
+                    matrix[1][j] = false;
+            }
+
+            System.arraycopy(matrix[1], 0, matrix[0], 0, n + 1);
+        }
+
+        UtilClass.print2DArrayBoolean(matrix);
+        return matrix[1][n];
+    }
+
+    // Leetcode problem: 10
+    /*
+     * Regular expression matching
+     * Dynamic programming
+     * M[i][j] = M[i-1][j-1] if s[i] = p[j] or p[j] = .
+     * M[i][j] = M[i][j-2] or (M[i-1][j] if s[i] = p[j-1]) if p[j] = * else false
+     */
+    public boolean isMatchRegularExpression(String s, String p) {
+        int m = s.length(), n = p.length();
+        boolean[][] matrix = new boolean[m + 1][n + 1];
+        matrix[0][0] = true;
+        for (int i = 1; i <= m; i++) {
+            matrix[i][0] = false;
+        }
+        for (int j = 1; j <= n; j++) {
+            if (p.charAt(j - 1) == '*') {
+                matrix[0][j] = matrix[0][j - 2];
+            } else {
+                matrix[0][j] = false;
+            }
+        }
+
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                if (s.charAt(i - 1) == p.charAt(j - 1) || p.charAt(j - 1) == '.') {
+                    matrix[i][j] = matrix[i - 1][j - 1];
+                } else if (p.charAt(j - 1) == '*') {
+                    matrix[i][j] = matrix[i][j - 2] || (matrix[i - 1][j] && (s.charAt(i - 1) == p.charAt(j - 2) || p.charAt(j - 2) == '.'));
+                } else {
+                    matrix[i][j] = false;
+                }
+            }
+        }
         return matrix[m][n];
     }
 
