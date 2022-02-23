@@ -1,5 +1,6 @@
 package string;
 
+import indefinite.TreeNode;
 import indefinite.UtilClass;
 
 import java.util.*;
@@ -395,5 +396,55 @@ public class StringSolution {
         return cuts[lenString - 1];
     }
 
+    // Leetcode problem: 139
+    /*
+     * Word break
+     * */
+    public boolean wordBreak(String s, List<String> wordDict) {
+        Set<String> wordSet = new HashSet<>(wordDict);
+
+        int strLen = s.length();
+
+        boolean[] breakPossibles = new boolean[strLen];
+
+        for (int i = 0; i < strLen; i++) {
+            if (wordSet.contains(s.substring(0, i + 1))) {
+                breakPossibles[i] = true;
+            } else {
+                boolean temp = false;
+                for (int j = 0; j < i; j++) {
+                    if (breakPossibles[j] && wordSet.contains(s.substring(j + 1, i + 1)))
+                        temp = true;
+                }
+                breakPossibles[i] = temp;
+            }
+        }
+
+        return breakPossibles[strLen - 1];
+    }
+
+    // Leetcode problem: 257
+    /*
+     * Binary Tree Paths
+     * Run dfs from root to leaf
+     * */
+    public List<String> binaryTreePaths(TreeNode root) {
+        List<String> pathList = new ArrayList<>();
+        String path = "";
+        dfsBinaryTree(root, pathList, path);
+        return pathList;
+    }
+
+    public void dfsBinaryTree(TreeNode root, List<String> pathList, String path) {
+        if (root == null)
+            return;
+        if (root.left == null && root.right == null) {
+            path += root.val;
+            pathList.add(path);
+            return;
+        }
+        dfsBinaryTree(root.left, pathList, path + root.val + "->");
+        dfsBinaryTree(root.right, pathList, path + root.val + "->");
+    }
 
 }

@@ -351,25 +351,6 @@ public class Solution {
         return lowestCommonAncestor(root.right, p, q);
     }
 
-    public void dfsBinaryTree(TreeNode root, List<String> pathList, String path) {
-        if (root == null)
-            return;
-        if (root.left == null && root.right == null) {
-            path += root.val;
-            pathList.add(path);
-            return;
-        }
-        dfsBinaryTree(root.left, pathList, path + root.val + "->");
-        dfsBinaryTree(root.right, pathList, path + root.val + "->");
-    }
-
-    public List<String> binaryTreePaths(TreeNode root) {
-        List<String> pathList = new ArrayList<>();
-        String path = "";
-        dfsBinaryTree(root, pathList, path);
-        return pathList;
-    }
-
     public int addDigits(int num) {
         int sum;
         while (num > 9) {
