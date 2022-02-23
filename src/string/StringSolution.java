@@ -447,4 +447,32 @@ public class StringSolution {
         dfsBinaryTree(root.right, pathList, path + root.val + "->");
     }
 
+    // Leetcode problem: 140
+    /*
+     * Word break II
+     * Backtracking solution
+     */
+    public List<String> wordBreakII(String s, List<String> wordDict) {
+        List<String> resultList = new ArrayList<>();
+        wordBreakII(s, new HashSet<>(wordDict), resultList, 0, new ArrayList<>());
+
+        return resultList;
+    }
+
+    public void wordBreakII(String s, Set<String> wordDict, List<String> resultList, int indexSoFar, List<String> stringSoFar) {
+
+        if (indexSoFar >= s.length()) {
+            resultList.add(String.join(" ", stringSoFar));
+            return;
+        }
+        for (int i = indexSoFar; i < s.length(); i++) {
+            if (wordDict.contains(s.substring(indexSoFar, i + 1))) {
+                stringSoFar.add(s.substring(indexSoFar, i + 1));
+                wordBreakII(s, wordDict, resultList, i + 1, stringSoFar);
+                stringSoFar.remove(stringSoFar.size() - 1);
+            }
+        }
+    }
+
+
 }
