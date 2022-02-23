@@ -12,7 +12,8 @@ public class StringSolution {
         StringSolution stringSolution = new StringSolution();
 //        System.out.println(stringSolution.lengthOfLongestSubstring("abcdab"));
 //        System.out.println(stringSolution.convert("PAYPALISHIRING", 3));
-        stringSolution.isMatchMemoryOptimized("", "******");
+//        stringSolution.isMatchMemoryOptimized("", "******");
+        System.out.println(stringSolution.minCut("banana"));
     }
 
     // Leetcode problem: 3
@@ -265,6 +266,55 @@ public class StringSolution {
             }
         }
         return matrix[m][n];
+    }
+
+    // Leetcode problem: 132
+    /*
+     * Palindrome partitioning II
+     * Build up a table of which substrings are palindrome O(n^2)
+     * Then find the minimum cut
+     */
+    public int minCut(String s) {
+
+        int lenString = s.length();
+        boolean[][] palindromeArray = new boolean[lenString][lenString];
+
+        // All substring of length 1 is a palindrome
+        for (int i = 0; i < lenString; i++) {
+            palindromeArray[i][i] = true;
+        }
+
+        // All substring of length 2 will be palindrome if 2 character matches each other
+        for (int i = 0; i < lenString - 1; i++) {
+            palindromeArray[i][i + 1] = (s.charAt(i) == s.charAt(i + 1));
+        }
+
+        // Find palindrome of length 3 to n
+        for (int currLength = 3; currLength <= lenString; currLength++) {
+            // currLength - 1 already calculated
+            for (int i = 0; i < lenString - (currLength - 1); i++) {
+                int j = i + (currLength - 1);
+                palindromeArray[i][j] = s.charAt(i) == s.charAt(j) && palindromeArray[i + 1][j - 1];
+            }
+        }
+
+        // Find the minimum cut value
+        int[] cuts = new int[lenString];
+        for (int i = 0; i < lenString; i++) {
+            if (palindromeArray[0][i]) {
+                cuts[i] = 0;
+            } else {
+                int temp = Integer.MAX_VALUE;
+                for (int j = 0; j < i; j++) {
+                    if (palindromeArray[j + 1][i] && cuts[j] + 1 < temp) {
+                        temp = cuts[j] + 1;
+                    }
+                }
+                cuts[i] = temp;
+            }
+        }
+
+        return cuts[lenString - 1];
     }
 
 
