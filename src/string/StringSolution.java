@@ -12,7 +12,9 @@ public class StringSolution {
 //        System.out.println(stringSolution.lengthOfLongestSubstring("abcdab"));
 //        System.out.println(stringSolution.convert("PAYPALISHIRING", 3));
 //        stringSolution.isMatchMemoryOptimized("", "******");
-        System.out.println(stringSolution.minCut("banana"));
+//        System.out.println(stringSolution.minCut("banana"));
+
+        System.out.println(stringSolution.calculate("3-5/3*3+2"));
     }
 
     // Leetcode problem: 3
@@ -474,5 +476,59 @@ public class StringSolution {
         }
     }
 
+    // Leetcode problem: 227
+    /*
+     * Basic calculator II
+     * For every new operator calculate the previous operator
+     * Operation of '*' and '/' are little bit tricky
+     */
+    public int calculate(String s) {
+        if (s == null) {
+            return 0;
+        }
+        s = s.trim();
+        int sum = 0;
+        int last = 0;
+        char op = '+';
+        int num = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (!Character.isWhitespace(c)) {
+                //number
+                if (Character.isDigit(c)) {
+                    num = num * 10 + c - '0';
+                }
+
+                //operation or last number
+                if (!Character.isDigit(c) || i == s.length() - 1) {
+                    switch (op) {
+                        case '+' -> {
+                            sum += num;
+                            last = num;
+                        }
+                        case '-' -> {
+                            sum -= num;
+                            last = -num;
+                        }
+                        case '*' -> {
+                            sum = (sum - last) + (last * num);
+                            last = last * num;
+                        }
+                        case '/' -> {
+                            sum = (sum - last) + (last / num);
+                            last = last / num;
+                        }
+                    }
+
+                    op = c;
+                    num = 0;
+                }
+            }
+        }
+
+        System.out.println("Sum: " + sum);
+        return sum;
+    }
 
 }
