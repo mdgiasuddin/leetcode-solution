@@ -14,7 +14,7 @@ public class StringSolution {
 //        stringSolution.isMatchMemoryOptimized("", "******");
 //        System.out.println(stringSolution.minCut("banana"));
 
-        System.out.println(stringSolution.calculate("3-5/3*3+2"));
+        System.out.println(stringSolution.calculateII("3-5/3*3+2"));
     }
 
     // Leetcode problem: 3
@@ -22,7 +22,7 @@ public class StringSolution {
      * Build a map to store index of every character
      * If a character repeats then update the index and start index of substring
      * Else update the maximum length so far
-     */
+     * */
     public int lengthOfLongestSubstring(String s) {
         int maxLength = 0, start = 0;
         Map<Character, Integer> indexMap = new HashMap<>();
@@ -46,7 +46,7 @@ public class StringSolution {
      * for every index traverse left and right simultaneously if palindrome found
      * palindrome can be odd length or even length
      * check both even and odd length
-     */
+     * */
     public String longestPalindrome(String s) {
         if (s.length() == 0)
             return s;
@@ -88,7 +88,7 @@ public class StringSolution {
      * Efficient solution without space
      * Find the next character every time to insert
      * Traverse the number of row incremental stage
-     */
+     * */
     public String convert(String s, int numRows) {
         if (numRows == 1)
             return s;
@@ -113,7 +113,7 @@ public class StringSolution {
     /*
      * Valid Parenthesis
      * Use stack to solve the problem
-     */
+     * */
     public boolean isValid(String s) {
 
         Stack<Character> stack = new Stack<>();
@@ -135,7 +135,7 @@ public class StringSolution {
     // Leetcode problem: 43
     /*
      * Multiply two number by string
-     */
+     * */
     public String multiply(String num1, String num2) {
         int m = num1.length();
         int n = num2.length();
@@ -167,7 +167,7 @@ public class StringSolution {
      * Dynamic programming
      * M[i][j] = M[i-1][j-1] if s[i] = p[j] || p[j] = ?
      * M[i][j] = M[i-1][j] || M[i][j-1] if p[j] = * , else false
-     */
+     * */
     public boolean isMatch(String s, String p) {
         int m = s.length(), n = p.length();
         boolean[][] matrix = new boolean[m + 1][n + 1];
@@ -199,7 +199,7 @@ public class StringSolution {
     /*
      * This is memory optimized version of wildcard matching
      * We need last 2 rows only. Continuously build up last rows by previous and copy it to previous
-     */
+     * */
     public boolean isMatchMemoryOptimized(String s, String p) {
         int m = s.length(), n = p.length();
         boolean[][] matrix = new boolean[2][n + 1];
@@ -239,7 +239,7 @@ public class StringSolution {
      * Dynamic programming
      * M[i][j] = M[i-1][j-1] if s[i] = p[j] or p[j] = .
      * M[i][j] = M[i][j-2] or (M[i-1][j] if s[i] = p[j-1]) if p[j] = * else false
-     */
+     * */
     public boolean isMatchRegularExpression(String s, String p) {
         int m = s.length(), n = p.length();
         boolean[][] matrix = new boolean[m + 1][n + 1];
@@ -274,7 +274,7 @@ public class StringSolution {
      * Word ladder
      * Breadth first search to find minimum distance
      * Find next node by changing one single character of each index of the word
-     */
+     * */
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
         Set<String> wordSet = new HashSet<>(wordList);
 
@@ -316,7 +316,7 @@ public class StringSolution {
     /*
      * Palindrome partitioning
      * Find all the combination by backtracking
-     */
+     * */
     public List<List<String>> partition(String s) {
         List<List<String>> finalResult = new ArrayList<>();
         partition(s, finalResult, new ArrayList<>(), 0, s.length());
@@ -354,7 +354,7 @@ public class StringSolution {
      * Palindrome partitioning II
      * Build up a table of which substrings are palindrome O(n^2)
      * Then find the minimum cut
-     */
+     * */
     public int minCut(String s) {
 
         int lenString = s.length();
@@ -453,7 +453,7 @@ public class StringSolution {
     /*
      * Word break II
      * Backtracking solution
-     */
+     * */
     public List<String> wordBreakII(String s, List<String> wordDict) {
         List<String> resultList = new ArrayList<>();
         wordBreakII(s, new HashSet<>(wordDict), resultList, 0, new ArrayList<>());
@@ -481,34 +481,27 @@ public class StringSolution {
      * Basic calculator II
      * For every new operator calculate the previous operator
      * Operation of '*' and '/' are little bit tricky
-     */
-    public int calculate(String s) {
-        if (s == null) {
-            return 0;
-        }
+     * */
+    public int calculateII(String s) {
         s = s.trim();
-        int sum = 0;
-        int last = 0;
-        char op = '+';
-        int num = 0;
+        int sum = 0, num = 0, last = 0;
+        char operator = '+';
 
         for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            if (!Character.isWhitespace(c)) {
-                //number
-                if (Character.isDigit(c)) {
-                    num = num * 10 + c - '0';
-                }
+            char ch = s.charAt(i);
 
-                //operation or last number
-                if (!Character.isDigit(c) || i == s.length() - 1) {
-                    switch (op) {
+            if (!Character.isWhitespace(ch)) {
+                if (Character.isDigit(ch)) {
+                    num = num * 10 + ch - '0';
+                }
+                if (!Character.isDigit(ch) || i == s.length() - 1) {
+                    switch (operator) {
                         case '+' -> {
-                            sum += num;
+                            sum = sum + num;
                             last = num;
                         }
                         case '-' -> {
-                            sum -= num;
+                            sum = sum - num;
                             last = -num;
                         }
                         case '*' -> {
@@ -520,15 +513,13 @@ public class StringSolution {
                             last = last / num;
                         }
                     }
-
-                    op = c;
                     num = 0;
+                    operator = ch;
                 }
             }
         }
-
-        System.out.println("Sum: " + sum);
         return sum;
     }
+
 
 }
