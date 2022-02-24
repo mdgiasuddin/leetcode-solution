@@ -1,6 +1,13 @@
 package indefinite;
 
 public class UtilClass {
+    public static void printIntArray(int[] array) {
+        for (Object ob : array) {
+            System.out.print(ob + " ");
+        }
+        System.out.println();
+    }
+
     public static void printBooleanArray(boolean[] array) {
         for (Object ob : array) {
             System.out.print(ob + " ");
