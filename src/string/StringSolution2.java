@@ -1,7 +1,5 @@
 package string;
 
-import indefinite.UtilClass;
-
 import java.util.*;
 
 public class StringSolution2 {
@@ -13,7 +11,8 @@ public class StringSolution2 {
 
         int[] numbers = {34323, 3432};
 //        System.out.println(stringSolution2.largestNumber(numbers));
-        System.out.println(stringSolution2.shortestPalindrome("abacd"));
+//        System.out.println(stringSolution2.shortestPalindrome("abacd"));
+        System.out.println(stringSolution2.removeDuplicateLetters("cbacdcbc"));
     }
 
     // Leetcode problem: 224
@@ -114,8 +113,6 @@ public class StringSolution2 {
         int[] kmpTable = buildKMPTable(modifiedString);
         int modifiedLength = modifiedString.length();
 
-        System.out.println(kmpTable[modifiedLength - 1]);
-
         return modifiedString.substring(s.length() + 1, modifiedLength - kmpTable[modifiedLength - 1]) + s;
     }
 
@@ -137,8 +134,41 @@ public class StringSolution2 {
             }
         }
 
-        UtilClass.printIntArray(kmpTable);
         return kmpTable;
+    }
+
+    // Leetcode problem: 316
+    // Leetcode problem: 1081
+    /*
+     * Build up a counter array of number of occurrences of character
+     * */
+    public String removeDuplicateLetters(String s) {
+        int[] counter = new int[26];
+        boolean[] taken = new boolean[26];
+        LinkedList<Character> result = new LinkedList<>();
+
+        for (int i = 0; i < s.length(); i++) {
+            counter[s.charAt(i) - 'a']++;
+        }
+
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            counter[ch - 'a']--;
+            if (taken[ch - 'a'])
+                continue;
+
+            while (!result.isEmpty() && result.getLast() > ch && counter[result.getLast() - 'a'] > 0) {
+                taken[result.removeLast() - 'a'] = false;
+            }
+            result.add(ch);
+            taken[ch - 'a'] = true;
+        }
+
+        StringBuilder stringBuilder = new StringBuilder();
+        while (!result.isEmpty()) {
+            stringBuilder.append(result.removeFirst());
+        }
+        return stringBuilder.toString();
     }
 
 }
