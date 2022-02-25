@@ -13,7 +13,9 @@ public class StringSolution2 {
 //        System.out.println(stringSolution2.largestNumber(numbers));
 //        System.out.println(stringSolution2.shortestPalindrome("abacd"));
 //        System.out.println(stringSolution2.removeDuplicateLetters("cbacdcbc"));
-        System.out.println(stringSolution2.frequencySort("treemap"));
+//        System.out.println(stringSolution2.frequencySort("treemap"));
+//        System.out.println(stringSolution2.repeatedSubstringPattern("abab"));
+        System.out.println(stringSolution2.reverseStr("abcdefg", 2));
     }
 
     // Leetcode problem: 224
@@ -230,5 +232,74 @@ public class StringSolution2 {
         }
 
         return stringBuilder.toString();
+    }
+
+    // Leetcode problem: 387
+    /*
+     * Build up counter of character
+     * Then traverse the string and find the first character of count 1
+     * */
+    public int firstUniqChar(String s) {
+        int[] array = new int[26];
+        for (char ch : s.toCharArray()) {
+            array[ch - 'a']++;
+        }
+        for (int i = 0; i < s.length(); i++) {
+            if (array[s.charAt(i) - 'a'] == 1)
+                return i;
+        }
+        return -1;
+    }
+
+    // Leetcode problem: 459
+    /*
+     * Check every substring of length 1 to len/2 which are divisor of len
+     * */
+    public boolean repeatedSubstringPattern(String s) {
+        int len = s.length();
+
+        for (int i = len / 2; i >= 1; i--) {
+            if (len % i == 0) {
+                int repeat = len / i;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append(s.substring(0, i).repeat(repeat));
+                if (stringBuilder.toString().equals(s))
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
+    // Leetcode problem: 541
+    /*
+     * Partition and process the substrings
+     * */
+    public String reverseStr(String s, int k) {
+        int strLen = s.length();
+        int part = strLen / (k * 2);
+
+        for (int i = 0; i < part; i++) {
+            String first = s.substring(0, i * 2 * k);
+            String toReverse = s.substring(i * 2 * k, (i + 1) * 2 * k);
+            StringBuilder stringBuilder = new StringBuilder(toReverse.substring(0, k));
+            stringBuilder.reverse().append(toReverse.substring(k));
+            String rest = s.substring((i + 1) * 2 * k);
+
+            s = first + stringBuilder + rest;
+        }
+
+        String processed = s.substring(0, part * 2 * k);
+        String rest = s.substring(part * 2 * k);
+
+        if (rest.length() < k) {
+            StringBuilder stringBuilder = new StringBuilder(rest);
+            stringBuilder.reverse();
+
+            return processed + stringBuilder;
+        }
+
+        StringBuilder stringBuilder = new StringBuilder(rest.substring(0, k));
+        return processed + stringBuilder.reverse() + rest.substring(k);
     }
 }
