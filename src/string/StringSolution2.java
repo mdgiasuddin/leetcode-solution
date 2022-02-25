@@ -12,7 +12,8 @@ public class StringSolution2 {
         int[] numbers = {34323, 3432};
 //        System.out.println(stringSolution2.largestNumber(numbers));
 //        System.out.println(stringSolution2.shortestPalindrome("abacd"));
-        System.out.println(stringSolution2.removeDuplicateLetters("cbacdcbc"));
+//        System.out.println(stringSolution2.removeDuplicateLetters("cbacdcbc"));
+        System.out.println(stringSolution2.frequencySort("treemap"));
     }
 
     // Leetcode problem: 224
@@ -141,6 +142,8 @@ public class StringSolution2 {
     // Leetcode problem: 1081
     /*
      * Build up a counter array of number of occurrences of character
+     * Compare every character with the last taken character
+     * Remove if the character is greater and there is another character later
      * */
     public String removeDuplicateLetters(String s) {
         int[] counter = new int[26];
@@ -171,4 +174,61 @@ public class StringSolution2 {
         return stringBuilder.toString();
     }
 
+    // Leetcode problem: 451
+    /*
+     * Build up a list of vowel index of the string
+     * Then reverse the vowels of that string
+     * */
+    public String reverseVowels(String s) {
+        char[] chars = s.toCharArray();
+        List<Integer> vowelIndices = new ArrayList<>();
+
+        for (int i = 0; i < chars.length; i++) {
+            if (chars[i] == 'a' || chars[i] == 'A' || chars[i] == 'e' || chars[i] == 'E' || chars[i] == 'i' || chars[i] == 'I'
+                    || chars[i] == 'o' || chars[i] == 'O' || chars[i] == 'u' || chars[i] == 'U')
+                vowelIndices.add(i);
+        }
+
+        int left = 0, right = vowelIndices.size() - 1;
+        while (left < right) {
+            char temp = chars[vowelIndices.get(left)];
+            chars[vowelIndices.get(left)] = chars[vowelIndices.get(right)];
+            chars[vowelIndices.get(right)] = temp;
+            left++;
+            right--;
+        }
+
+        return String.copyValueOf(chars);
+    }
+
+    // Leetcode problem: 336
+    /*
+     * Build up a counter map of characters
+     * Sorts the map according to value
+     * Then build up the result string
+     * */
+    public String frequencySort(String s) {
+        Map<Character, Integer> frequencyMap = new HashMap<>();
+
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            if (frequencyMap.containsKey(ch)) {
+                int frequency = frequencyMap.get(ch);
+                frequencyMap.replace(ch, frequency + 1);
+            } else {
+                frequencyMap.put(ch, 1);
+            }
+        }
+
+        List<Map.Entry<Character, Integer>> frequencyList = new ArrayList<>(frequencyMap.entrySet());
+        frequencyList.sort((freq1, freq2) -> freq2.getValue().compareTo(freq1.getValue()));
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (Map.Entry<Character, Integer> entry : frequencyList) {
+            stringBuilder.append(String.valueOf(entry.getKey()).repeat(Math.max(0, entry.getValue())));
+        }
+
+        return stringBuilder.toString();
+    }
 }
