@@ -302,4 +302,12 @@ public class StringSolution2 {
         StringBuilder stringBuilder = new StringBuilder(rest.substring(0, k));
         return processed + stringBuilder.reverse() + rest.substring(k);
     }
+
+    // Leetcode problem 796
+    /*
+     * If two strings are rotation of each other doubling one string have the other string
+     * */
+    public boolean rotateString(String s, String goal) {
+        return s.length() == goal.length() && (s + s).contains(goal);
+    }
 }
