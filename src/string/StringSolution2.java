@@ -15,7 +15,8 @@ public class StringSolution2 {
 //        System.out.println(stringSolution2.removeDuplicateLetters("cbacdcbc"));
 //        System.out.println(stringSolution2.frequencySort("treemap"));
 //        System.out.println(stringSolution2.repeatedSubstringPattern("abab"));
-        System.out.println(stringSolution2.reverseStr("abcdefg", 2));
+//        System.out.println(stringSolution2.reverseStr("abcdefg", 2));
+        System.out.println(stringSolution2.solveEquation("2x+3x-6x=x+2"));
     }
 
     // Leetcode problem: 224
@@ -309,5 +310,83 @@ public class StringSolution2 {
      * */
     public boolean rotateString(String s, String goal) {
         return s.length() == goal.length() && (s + s).contains(goal);
+    }
+
+
+    // Leetcode problem: 640
+    /*
+     * Calculate left x coefficient and constants
+     * Subtract right x coefficient and constants from left side
+     * Then find the final result
+     * */
+    public String solveEquation(String equation) {
+        int constant = 0, xCoefficient = 0, sign = 1;
+
+        int i = 0;
+
+        // Traverse the left side
+        while (equation.charAt(i) != '=') {
+            char ch = equation.charAt(i);
+            if (ch == 'x') {
+                xCoefficient += sign;
+            } else if (ch == '+') {
+                sign = 1;
+            } else if (ch == '-') {
+                sign = -1;
+            } else if (ch >= '0' && ch <= '9') {
+                int j = i, num = 0;
+                while (equation.charAt(j) >= '0' && equation.charAt(j) <= '9') {
+                    num = num * 10 + equation.charAt(j) - '0';
+                    j++;
+                }
+
+                if (equation.charAt(j) == 'x') {
+                    xCoefficient += sign * num;
+                    i = j;
+                } else {
+                    constant += sign * num;
+                    i = j - 1;
+                }
+            }
+            i++;
+        }
+
+        i++; // equation[i] = '=' now so go to next character
+        sign = 1; // reset the sign
+        while (i < equation.length()) {
+            char ch = equation.charAt(i);
+            if (ch == 'x') {
+                xCoefficient -= sign;
+            } else if (ch == '+') {
+                sign = 1;
+            } else if (ch == '-') {
+                sign = -1;
+            } else if (ch >= '0' && ch <= '9') {
+                int j = i, num = 0;
+                while (j < equation.length() && equation.charAt(j) >= '0' && equation.charAt(j) <= '9') {
+                    num = num * 10 + equation.charAt(j) - '0';
+                    j++;
+                }
+
+                if (j < equation.length() && equation.charAt(j) == 'x') {
+                    xCoefficient -= sign * num;
+                    i = j;
+                } else {
+                    constant -= sign * num;
+                    i = j - 1;
+                }
+            }
+            i++;
+        }
+
+        constant *= -1; // Equation is now ax + b = 0
+        if (xCoefficient == 0) {
+            if (constant == 0) {
+                return "Infinite solutions";
+            } else {
+                return "No solution";
+            }
+        }
+        return "x=" + (constant / xCoefficient);
     }
 }
