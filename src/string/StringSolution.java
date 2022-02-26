@@ -340,15 +340,6 @@ public class StringSolution {
         }
     }
 
-    public boolean isPalindrome(String str, int start, int end) {
-        while (start < end) {
-            if (str.charAt(start++) != str.charAt(end--))
-                return false;
-        }
-
-        return true;
-    }
-
     // Leetcode problem: 132
     /*
      * Palindrome partitioning II
@@ -519,6 +510,36 @@ public class StringSolution {
             }
         }
         return sum;
+    }
+
+    // Leetcode problem: 680
+    /*
+     * Check character from left and right until mismatch
+     * If mismatch found then skip left and check if palindrome and skip right and check if palindrome
+     * If anyone is palindrome then return true
+     * */
+    public boolean validPalindrome(String s) {
+        int left = 0, right = s.length() - 1;
+
+        while (left < right) {
+            if (s.charAt(left) != s.charAt(right)) {
+                break;
+            }
+            left++;
+            right--;
+        }
+
+        if (left >= right) return true;
+        return isPalindrome(s, left + 1, right) || isPalindrome(s, left, right - 1);
+    }
+
+    public boolean isPalindrome(String str, int left, int right) {
+        while (left < right) {
+            if (str.charAt(left++) != str.charAt(right--))
+                return false;
+        }
+
+        return true;
     }
 
 
