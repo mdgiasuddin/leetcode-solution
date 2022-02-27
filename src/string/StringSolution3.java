@@ -83,4 +83,31 @@ public class StringSolution3 {
         return true;
     }
 
+    // Leetcode problem: 696
+    public int countBinarySubstrings(String s) {
+        int strLen = s.length();
+        int count = 0;
+        boolean[][] matchTable = new boolean[strLen][strLen];
+
+        // Found length 2 match
+        for (int i = 0; i < strLen - 1; i++) {
+            if (s.charAt(i) != s.charAt(i + 1)) {
+                matchTable[i][i + 1] = true;
+                count++;
+            }
+        }
+
+        for (int currentLength = 4; currentLength <= strLen; currentLength = currentLength + 2) {
+            for (int i = 0; i < strLen - currentLength + 1; i++) {
+                int j = i + currentLength - 1;
+                if (matchTable[i + 1][j - 1] && s.charAt(i) == s.charAt(i + 1) && s.charAt(j) == s.charAt(j - 1)) {
+                    matchTable[i][j] = true;
+                    count++;
+                }
+            }
+        }
+
+        return count;
+    }
+
 }
