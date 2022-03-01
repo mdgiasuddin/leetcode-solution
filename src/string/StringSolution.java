@@ -542,5 +542,29 @@ public class StringSolution {
         return true;
     }
 
+    // Leetcode problem: 1653
+    public int minimumDeletions(String s) {
+        int extraB = 0, deletion = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == 'b') {
+                extraB++;
+            } else {
+                /*
+                 * If 'a' appears after some 'b' then delete 'a'
+                 * But if number of 'a' is more than 'b' then delete 'b' and extra 'b' count will be reset
+                 * */
+                if (extraB > 0) {
+                    extraB--;
+                    deletion++;
+                }
+            }
+        }
+
+        return deletion;
+    }
+
+    // Leetcode problem: 1616
+
 
 }

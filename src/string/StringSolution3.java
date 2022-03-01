@@ -6,8 +6,9 @@ public class StringSolution3 {
     public static void main(String[] args) {
         StringSolution3 stringSolution3 = new StringSolution3();
 
-        int[] array = {1, 2, 3};
-        System.out.println(stringSolution3.shiftingLetters("aaa", array));
+        int[] array = {1, 2, 3, 5, 6};
+        System.out.println(Arrays.binarySearch(array, 4));
+//        System.out.println(stringSolution3.shiftingLetters("aaa", array));
     }
 
     // Leetcode problem: 556
@@ -176,6 +177,34 @@ public class StringSolution3 {
         }
 
         return String.copyValueOf(chars);
+    }
+
+    // Leetcode problem: 784
+    /*
+     * Letter case combination
+     * Go to every character and change its case then add to the next
+     * */
+    public List<String> letterCasePermutation(String s) {
+        List<String> resultList = new ArrayList<>();
+
+        letterCasePermutation(resultList, s, 0);
+
+        return resultList;
+    }
+
+    public void letterCasePermutation(List<String> resultList, String s, int index) {
+        resultList.add(s);
+
+        for (int i = index; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            if (Character.isLetter(ch)) {
+                if (Character.isUpperCase(ch)) {
+                    letterCasePermutation(resultList, s.substring(0, i) + Character.toLowerCase(ch) + s.substring(i + 1), i + 1);
+                } else {
+                    letterCasePermutation(resultList, s.substring(0, i) + Character.toUpperCase(ch) + s.substring(i + 1), i + 1);
+                }
+            }
+        }
     }
 
 }
