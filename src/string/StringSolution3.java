@@ -1,12 +1,13 @@
 package string;
 
-import java.util.Arrays;
-import java.util.Stack;
+import java.util.*;
 
 public class StringSolution3 {
     public static void main(String[] args) {
         StringSolution3 stringSolution3 = new StringSolution3();
-        System.out.println(stringSolution3.nextGreaterElement(12443322));
+
+        int[] array = {1, 2, 3};
+        System.out.println(stringSolution3.shiftingLetters("aaa", array));
     }
 
     // Leetcode problem: 556
@@ -84,30 +85,97 @@ public class StringSolution3 {
     }
 
     // Leetcode problem: 696
+    /*
+     * Sliding window solution
+     * Previous and current store consecutive number of digits
+     * When a different digit found update result previous and current window
+     * */
     public int countBinarySubstrings(String s) {
-        int strLen = s.length();
-        int count = 0;
-        boolean[][] matchTable = new boolean[strLen][strLen];
+        int prev = 0, current = 1, result = 0;
 
-        // Found length 2 match
-        for (int i = 0; i < strLen - 1; i++) {
-            if (s.charAt(i) != s.charAt(i + 1)) {
-                matchTable[i][i + 1] = true;
-                count++;
+        for (int i = 1; i < s.length(); i++) {
+            if (s.charAt(i) == s.charAt(i - 1)) {
+                current++;
+            } else {
+                result += Math.min(prev, current);
+                prev = current;
+                current = 1;
             }
         }
+        return result + Math.min(prev, current);
 
-        for (int currentLength = 4; currentLength <= strLen; currentLength = currentLength + 2) {
-            for (int i = 0; i < strLen - currentLength + 1; i++) {
-                int j = i + currentLength - 1;
-                if (matchTable[i + 1][j - 1] && s.charAt(i) == s.charAt(i + 1) && s.charAt(j) == s.charAt(j - 1)) {
-                    matchTable[i][j] = true;
-                    count++;
+    }
+
+    // Leetcode problem: 752
+    /*
+     * Run BFS to reach target
+     * */
+    public int openLock(String[] deadends, String target) {
+        Set<String> deadEndsSet = new HashSet<>();
+        Collections.addAll(deadEndsSet, deadends);
+
+        if (deadEndsSet.contains("0000"))
+            return -1;
+
+        if (target.equals("0000"))
+            return 0;
+
+        Queue<Map.Entry<String, Integer>> queue = new LinkedList<>();
+        queue.add(Map.entry("0000", 0));
+
+        Set<String> visited = new HashSet<>();
+        visited.add("0000");
+
+        while (!queue.isEmpty()) {
+            Map.Entry<String, Integer> parent = queue.poll();
+
+            for (String child : getLockChildren(parent.getKey())) {
+                if (child.equals(target))
+                    return parent.getValue() + 1;
+                if (!visited.contains(child) && !deadEndsSet.contains(child)) {
+                    queue.add(Map.entry(child, parent.getValue() + 1));
+                    visited.add(child);
                 }
             }
         }
 
-        return count;
+        return -1;
+    }
+
+    public List<String> getLockChildren(String parent) {
+        List<String> children = new ArrayList<>();
+
+        for (int i = 0; i < 4; i++) {
+            String next = parent.substring(0, i) + (char) ((parent.charAt(i) - '0' + 1) % 10 + '0') + parent.substring(i + 1);
+            String prev = parent.substring(0, i) + (char) ((parent.charAt(i) - '0' + 9) % 10 + '0') + parent.substring(i + 1);
+
+            children.add(next);
+            children.add(prev);
+        }
+
+        return children;
+    }
+
+
+    // Leetcode problem: 848
+    /*
+     * Shifting Letters
+     * First calculate the shift count of each character, then shift
+     * */
+    public String shiftingLetters(String s, int[] shifts) {
+        int strLen = s.length();
+
+        shifts[strLen - 1] = shifts[strLen - 1] % 26;
+        for (int i = strLen - 2; i >= 0; i--) {
+            shifts[i] = (shifts[i] % 26 + shifts[i + 1]) % 26;
+        }
+
+        char[] chars = s.toCharArray();
+        for (int i = 0; i < chars.length; i++) {
+            chars[i] = (char) ((chars[i] - 'a' + shifts[i]) % 26 + 'a');
+        }
+
+        return String.copyValueOf(chars);
     }
 
 }
