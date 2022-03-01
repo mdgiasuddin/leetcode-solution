@@ -207,4 +207,31 @@ public class StringSolution3 {
         }
     }
 
+    // Leetcode problem: 1400
+    /*
+     * If every character remains even number, palindrome can be formed
+     * For odd count, each character can be placed only in middle position
+     * So check if k >= odd count character
+     * */
+    public boolean canConstruct(String s, int k) {
+
+        if (s.length() == k)
+            return true;
+        if (s.length() < k)
+            return false;
+
+        int[] charCounter = new int[26];
+
+        for (int i = 0; i < s.length(); i++) {
+            charCounter[s.charAt(i) - 'a']++;
+        }
+
+        for (int count : charCounter) {
+            if (count % 2 == 1)
+                k--;
+        }
+
+        return k >= 0;
+    }
+
 }
