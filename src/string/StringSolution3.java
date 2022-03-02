@@ -234,4 +234,72 @@ public class StringSolution3 {
         return k >= 0;
     }
 
+    // Leetcode problem: 1616
+    /*
+     * Check left of A with Right of until mismatch, Then check the middle part of A or B is palindrome
+     * Done work for left of B with Right of A
+     * */
+    public boolean checkPalindromeFormation(String a, String b) {
+        return check(a, b) || check(b, a);
+    }
+
+    public boolean check(String a, String b) {
+        int i = 0, j = a.length() - 1;
+        while (i < j && a.charAt(i) == b.charAt(j)) {
+            i++;
+            j--;
+        }
+
+        if (i >= j) return true;
+
+        return checkPalindrome(a, i, j) || checkPalindrome(b, i, j);
+    }
+
+    public boolean checkPalindrome(String str, int left, int right) {
+        while (left < right) {
+            if (str.charAt(left++) != str.charAt(right--))
+                return false;
+        }
+
+        return true;
+    }
+
+    // Leetcode problem: 1573
+    /*
+     * Count total number of 1's. If
+     * If number of 1's is not product of 3, then return 0;
+     * If all digits are 0's then the result will be (n-1)C2
+     * Else found where two partition can be set
+     * */
+    public int numWays(String s) {
+
+        long strLen = s.length();
+        long ones = 0;
+        long MOD = 1_000_000_007;
+
+        for (char ch : s.toCharArray()) {
+            ones += ch - '0';
+        }
+
+        if (ones % 3 != 0) {
+            return 0;
+        }
+        if (ones == 0) {
+            return (int) (((strLen - 1) * (strLen - 2) / 2) % MOD);
+        }
+
+        long oneThird = ones / 3, ways1 = 0, ways2 = 0;
+        ones = 0;
+
+        for (char ch : s.toCharArray()) {
+            ones += ch - '0';
+            if (ones == oneThird)
+                ways1++;
+            else if (ones == 2 * oneThird)
+                ways2++;
+        }
+
+        return (int) ((ways1 * ways2) % MOD);
+    }
+
 }
