@@ -257,15 +257,6 @@ public class StringSolution3 {
         return checkPalindrome(a, i, j) || checkPalindrome(b, i, j);
     }
 
-    public boolean checkPalindrome(String str, int left, int right) {
-        while (left < right) {
-            if (str.charAt(left++) != str.charAt(right--))
-                return false;
-        }
-
-        return true;
-    }
-
     // Leetcode problem: 1573
     /*
      * Count total number of 1's. If
@@ -389,6 +380,54 @@ public class StringSolution3 {
         }
 
         return (int) sum;
+    }
+
+    public List<List<Integer>> palindromePairs(String[] words) {
+        List<List<Integer>> result = new ArrayList<>();
+
+        Map<String, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < words.length; i++) {
+            map.put(new StringBuilder(words[i]).reverse().toString(), i);
+        }
+
+        for (int i = 0; i < words.length; i++) {
+            if (!words[i].isEmpty() && map.containsKey("") && checkPalindrome(words[i], 0, words[i].length() - 1)) {
+
+                // Add only word + "", "" + word will be handled in the for loop
+                result.add(Arrays.asList(i, map.get("")));
+            }
+        }
+
+        for (int i = 0; i < words.length; i++) {
+            for (int j = 0; j < words[i].length(); j++) {
+                String left = words[i].substring(0, j + 1);
+                String right = words[i].substring(j + 1);
+                if (map.containsKey(left) && map.get(left) != i) {
+                    if (checkPalindrome(right, 0, right.length() - 1)) {
+                        result.add(Arrays.asList(i, map.get(left)));
+                    }
+                }
+
+                // "" + word will be handled here
+                if (map.containsKey(right) && map.get(right) != i) {
+                    if (checkPalindrome(left, 0, left.length() - 1)) {
+                        result.add(Arrays.asList(map.get(right), i));
+                    }
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public boolean checkPalindrome(String str, int left, int right) {
+        while (left < right) {
+            if (str.charAt(left++) != str.charAt(right--))
+                return false;
+        }
+
+        return true;
     }
 
 }
