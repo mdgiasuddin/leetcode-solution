@@ -327,4 +327,40 @@ public class StringSolution3 {
         return findKthBit(n - 1, len + 1 - k) == '0' ? '1' : '0';
     }
 
+    // Leetcode problem: 1540
+    /*
+     * Build up a list of available moves of available times
+     * Build up a list of moves required to convert S to T for each character
+     * Find each moves required in moves available list
+     * */
+    public boolean canConvertString(String s, String t, int k) {
+
+        if (s.length() != t.length())
+            return false;
+
+        int[] movesAvailable = new int[26];
+        int[] movesRequired = new int[s.length()];
+
+        int quotient = k / 26, remainder = k % 26;
+        for (int i = 0; i < 26; i++) {
+            if (i <= remainder)
+                movesAvailable[i] = quotient + 1;
+            else
+                movesAvailable[i] = quotient;
+        }
+
+        for (int i = 0; i < s.length(); i++) {
+            movesRequired[i] = (t.charAt(i) - s.charAt(i) + 26) % 26;
+        }
+
+        for (int move : movesRequired) {
+            if (move > 0) {
+                if (movesAvailable[move]-- == 0)
+                    return false;
+            }
+        }
+
+        return true;
+    }
+
 }
