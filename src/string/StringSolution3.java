@@ -7,8 +7,9 @@ public class StringSolution3 {
         StringSolution3 stringSolution3 = new StringSolution3();
 
         int[] array = {1, 2, 3, 5, 6};
-        System.out.println(Arrays.binarySearch(array, 4));
+//        System.out.println(Arrays.binarySearch(array, 4));
 //        System.out.println(stringSolution3.shiftingLetters("aaa", array));
+        System.out.println(stringSolution3.findKthBit(4, 11));
     }
 
     // Leetcode problem: 556
@@ -300,6 +301,30 @@ public class StringSolution3 {
         }
 
         return (int) ((ways1 * ways2) % MOD);
+    }
+
+    // Leetcode problem: 1545
+    /*
+     * Recursive solution. O(n)
+     * */
+    public char findKthBit(int n, int k) {
+        if (n == 1 && k == 1)
+            return '0';
+
+        // length of s_i = 1, 3, 7, 15, 31... 2^n-1
+        int len = (1 << n) - 1;
+        int mid = len >> 1;
+
+        // middle bit is always 1
+        // mid is 0-based index & k is 1-based so compare k with mid + 1
+        if (k == mid + 1)
+            return '1';
+        // if k <= mid then it lies in left side which is s_i-1
+        if (k <= mid)
+            return findKthBit(n - 1, k);
+
+        // Lies in right side which is reversed and inverted or left side
+        return findKthBit(n - 1, len + 1 - k) == '0' ? '1' : '0';
     }
 
 }
