@@ -9,7 +9,8 @@ public class StringSolution3 {
         int[] array = {1, 2, 3, 5, 6};
 //        System.out.println(Arrays.binarySearch(array, 4));
 //        System.out.println(stringSolution3.shiftingLetters("aaa", array));
-        System.out.println(stringSolution3.findKthBit(4, 11));
+//        System.out.println(stringSolution3.findKthBit(4, 11));
+        System.out.println(stringSolution3.numSub("0110111"));
     }
 
     // Leetcode problem: 556
@@ -361,6 +362,33 @@ public class StringSolution3 {
         }
 
         return true;
+    }
+
+    // Leetcode problem: 1513
+    /*
+     * Count number of consecutive 1's and add the substring possible
+     * 11111 -> (1s) 5 + (2s) 4 + (3s) 3 + (4s) 2 + (5s) 1 -> n * (n + 1) / 2
+     * */
+    public int numSub(String s) {
+        long currentCount = 0;
+
+        long sum = 0, MOD = 1_000_000_007;
+
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '0') {
+                if (currentCount > 0) {
+                    sum = (sum + ((currentCount * (currentCount + 1)) / 2)) % MOD;
+                    currentCount = 0;
+                }
+            } else {
+                currentCount++;
+            }
+        }
+        if (currentCount > 0) {
+            sum = (sum + ((currentCount * (currentCount + 1)) / 2)) % MOD;
+        }
+
+        return (int) sum;
     }
 
 }
