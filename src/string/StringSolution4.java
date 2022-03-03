@@ -1,16 +1,14 @@
 package string;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.Stack;
+import java.util.*;
 
 public class StringSolution4 {
 
     public static void main(String[] args) {
         StringSolution4 stringSolution4 = new StringSolution4();
 
-        System.out.println(stringSolution4.isNumber("3."));
+//        System.out.println(stringSolution4.isNumber("3."));
+        System.out.println(stringSolution4.numDistinct("rabbbit", "rabbit"));
     }
 
     // Leetcode problem: 301
@@ -194,5 +192,29 @@ public class StringSolution4 {
         }
 
         return !signExists || s.length() > 1;
+    }
+
+    // Leetcode problem: 115
+    /*
+     * If character match either take the character or not take the character
+     * dp(i, j) = dp(i-1, j-1) + dp(i, j-1) if match
+     * dp(i, j) = dp(i, j-1) if not match
+     * */
+    public int numDistinct(String s, String t) {
+        int[][] dp = new int[t.length() + 1][s.length() + 1];
+        Arrays.fill(dp[0], 1);
+
+        for (int i = 1; i <= t.length(); i++) {
+            for (int j = 1; j <= s.length(); j++) {
+                if (t.charAt(i - 1) == s.charAt(j - 1)) {
+                    dp[i][j] = dp[i - 1][j - 1] + dp[i][j - 1];
+                } else {
+                    dp[i][j] = dp[i][j - 1];
+                }
+            }
+            System.out.println(Arrays.toString(dp[i]));
+        }
+
+        return dp[t.length()][s.length()];
     }
 }
