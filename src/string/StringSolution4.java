@@ -10,7 +10,7 @@ public class StringSolution4 {
     public static void main(String[] args) {
         StringSolution4 stringSolution4 = new StringSolution4();
 
-        System.out.println(stringSolution4.removeInvalidParentheses("()())()"));
+        System.out.println(stringSolution4.isNumber("3."));
     }
 
     // Leetcode problem: 301
@@ -102,5 +102,97 @@ public class StringSolution4 {
                 removeInvalidParentheses(left + right, resultSet, visited, openingInvalid, closingInvalid - 1);
             }
         }
+    }
+
+    // Leetcode problem: 65
+    /*
+     * Is valid number
+     * Check condition for each possible case exponential, decimal & integer
+     * */
+    public boolean isNumber(String s) {
+        int dotCount = 0, expCount = 0, dotIndex = -1, expIndex = -1;
+
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '.') {
+                dotIndex = i;
+                dotCount++;
+            } else if (s.charAt(i) == 'e' || s.charAt(i) == 'E') {
+                expIndex = i;
+                expCount++;
+            }
+        }
+
+        if (dotCount > 1 || expCount > 1) {
+            return false;
+        }
+
+        if (dotCount == 0 && expCount == 0) {
+            return isInteger(s);
+        }
+
+        if (expCount == 1) {
+            return isExponential(s, expIndex, dotIndex);
+        }
+        return isDecimal(s, dotIndex);
+    }
+
+    public boolean isExponential(String s, int expIndex, int dotIndex) {
+        if (dotIndex > expIndex) {
+            return false;
+        }
+
+        if (dotIndex != -1) {
+            return isDecimal(s.substring(0, expIndex), dotIndex) && isInteger(s.substring(expIndex + 1));
+        }
+
+        return isInteger(s.substring(0, expIndex)) && isInteger(s.substring(expIndex + 1));
+    }
+
+    public boolean isDecimal(String s, int dotIndex) {
+        if (s.length() < 2)
+            return false;
+
+        int i = 0;
+        boolean signExists = false;
+        if (s.charAt(0) == '+' || s.charAt(0) == '-') {
+            i++;
+            signExists = true;
+        }
+
+        while (i < dotIndex) {
+            if (s.charAt(i) < '0' || s.charAt(i) > '9')
+                return false;
+            i++;
+        }
+
+        i++; // i = dot index now. Move forward after dot index
+
+        while (i < s.length()) {
+            if (s.charAt(i) < '0' || s.charAt(i) > '9')
+                return false;
+            i++;
+        }
+
+        return !signExists || s.length() > 2;
+    }
+
+    public boolean isInteger(String s) {
+        if (s.isEmpty())
+            return false;
+
+        int i = 0;
+        boolean signExists = false;
+        if (s.charAt(0) == '+' || s.charAt(0) == '-') {
+            i++;
+            signExists = true;
+        }
+
+        while (i < s.length()) {
+            if (s.charAt(i) < '0' || s.charAt(i) > '9')
+                return false;
+            i++;
+        }
+
+        return !signExists || s.length() > 1;
     }
 }
