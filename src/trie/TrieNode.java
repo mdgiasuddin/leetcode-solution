@@ -17,10 +17,10 @@ class Trie {
         this.root = new TrieNode();
     }
 
-    public void insert(String string) {
+    public void insert(String word) {
         TrieNode node = root;
-        for (int level = 0; level < string.length(); level++) {
-            int index = string.charAt(level) - 'a';
+        for (int level = 0; level < word.length(); level++) {
+            int index = word.charAt(level) - 'a';
 
             if (node.children[index] == null) {
                 node.children[index] = new TrieNode();
@@ -30,11 +30,11 @@ class Trie {
         node.endNode = true;
     }
 
-    public boolean search(String str) {
+    public boolean search(String word) {
         TrieNode node = root;
 
-        for (int level = 0; level < str.length(); level++) {
-            int index = str.charAt(level) - 'a';
+        for (int level = 0; level < word.length(); level++) {
+            int index = word.charAt(level) - 'a';
             if (node.children[index] == null) {
                 return false;
             }
@@ -42,6 +42,20 @@ class Trie {
         }
 
         return node.endNode;
+    }
+
+    public boolean startsWith(String prefix) {
+        TrieNode node = root;
+
+        for (int level = 0; level < prefix.length(); level++) {
+            int index = prefix.charAt(level) - 'a';
+            if (node.children[index] == null) {
+                return false;
+            }
+            node = node.children[index];
+        }
+
+        return true;
     }
 }
 
