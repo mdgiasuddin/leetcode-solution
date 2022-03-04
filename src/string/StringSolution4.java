@@ -7,8 +7,7 @@ public class StringSolution4 {
     public static void main(String[] args) {
         StringSolution4 stringSolution4 = new StringSolution4();
 
-//        System.out.println(stringSolution4.isNumber("3."));
-        System.out.println(stringSolution4.numDistinct("rabbbit", "rabbit"));
+        System.out.println(stringSolution4.isValidSerialization("9,3,4,#,#,1,#,#,2,#,6,#,#"));
     }
 
     // Leetcode problem: 301
@@ -280,5 +279,38 @@ public class StringSolution4 {
             }
         }
     }
+
     // Leetcode problem: 331
+    /*
+     * Use stack
+     * When '#' comes then pop last two and push #
+     * */
+    public boolean isValidSerialization(String preorder) {
+        Stack<String> stack = new Stack<>();
+
+        int i = 0;
+        while (i < preorder.length()) {
+            // If digit found traverse until digit
+            char ch = preorder.charAt(i);
+            if (ch >= '0' && ch <= '9') {
+                int j = i;
+                while (j < preorder.length() && preorder.charAt(j) >= '0' && preorder.charAt(j) <= '9') {
+                    j++;
+                }
+                stack.push(preorder.substring(i, j));
+                i = j - 1;
+            } else if (ch == '#') {
+                while (!stack.isEmpty() && stack.peek().equals("#")) {
+                    stack.pop();
+                    if (stack.isEmpty() || stack.peek().equals("#"))
+                        return false;
+                    stack.pop();
+                }
+                stack.push("#");
+            }
+            i++;
+        }
+
+        return stack.size() == 1 && stack.peek().equals("#");
+    }
 }
