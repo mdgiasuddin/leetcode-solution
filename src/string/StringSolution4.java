@@ -217,4 +217,68 @@ public class StringSolution4 {
 
         return dp[t.length()][s.length()];
     }
+
+    // Leetcode problem: 424
+    /*
+     * Build up a counter of each character
+     * Update the maximum character count
+     * In every window check if the replacement required is less than or equal to k
+     * If condition fulfilled update result value
+     * Otherwise move left pointer and decrement the counter of left character
+     * During decrement maximum character need not update because only when counter of any character crosses current maximum
+     * - the result will be updated, otherwise it has no effect
+     * */
+    public int characterReplacement(String s, int k) {
+        int[] charCount = new int[26];
+
+        int left = 0, maxLength = 0, result = 0;
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            charCount[ch - 'A']++;
+            maxLength = Math.max(maxLength, charCount[ch - 'A']);
+
+            while ((i - left + 1) - maxLength > k) {
+                charCount[s.charAt(left++) - 'A']--;
+            }
+
+            result = Math.max(result, i - left + 1);
+        }
+
+        return result;
+    }
+
+    // Leetcode problem: 93
+    /*
+     * Restore Ip
+     * Backtracking solution
+     * */
+    public List<String> restoreIpAddresses(String s) {
+        List<String> result = new ArrayList<>();
+        if (s.length() > 12)
+            return result;
+
+        ipBacktrack(s, result, "", 0, 0);
+
+        return result;
+    }
+
+    public void ipBacktrack(String s, List<String> result, String currentIp, int leftIndex, int dots) {
+        if (dots == 4 && leftIndex == s.length()) {
+            result.add(currentIp.substring(0, currentIp.length() - 1));
+            return;
+        }
+
+        // If all digit not visited
+        if (dots > 4) {
+            return;
+        }
+
+        // Check all possible 3 cases
+        for (int i = leftIndex; i <= Math.min(leftIndex + 2, s.length() - 1); i++) {
+            if (Integer.parseInt(s.substring(leftIndex, i + 1)) <= 255 && (i == leftIndex || s.charAt(leftIndex) != '0')) {
+                ipBacktrack(s, result, currentIp + s.substring(leftIndex, i + 1) + ".", i + 1, dots + 1);
+            }
+        }
+    }
+    // Leetcode problem: 331
 }
