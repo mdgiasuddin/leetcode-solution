@@ -7,7 +7,8 @@ public class StringSolution4 {
     public static void main(String[] args) {
         StringSolution4 stringSolution4 = new StringSolution4();
 
-        System.out.println(stringSolution4.isValidSerialization("9,3,4,#,#,1,#,#,2,#,6,#,#"));
+//        System.out.println(stringSolution4.isValidSerialization("9,3,4,#,#,1,#,#,2,#,6,#,#"));
+        System.out.println(stringSolution4.decodeString("2[abc]3[cd]ef"));
     }
 
     // Leetcode problem: 301
@@ -313,4 +314,80 @@ public class StringSolution4 {
 
         return stack.size() == 1 && stack.peek().equals("#");
     }
+
+    // Leetcode problem: 394
+    /*
+     * Maintain a stack
+     * Push character until ']' appears
+     * When ']' appears then pop all the characters after '[' and push after processing
+     * */
+    public String decodeString(String s) {
+        Stack<String> stack = new Stack<>();
+
+        int i = 0;
+        while (i < s.length()) {
+            char ch = s.charAt(i);
+            if (ch != ']') {
+                stack.push(String.valueOf(ch));
+            } else {
+                StringBuilder substr = new StringBuilder();
+                while (!stack.peek().equals("[")) {
+                    substr.insert(0, stack.pop());
+                }
+                stack.pop(); // pop '['
+
+                // Calculate the number before '['
+                StringBuilder numString = new StringBuilder();
+                while (!stack.isEmpty() && stack.peek().length() == 1 && Character.isDigit(stack.peek().charAt(0))) {
+                    numString.insert(0, stack.pop());
+                }
+                stack.push(substr.toString().repeat(Integer.parseInt(numString.toString())));
+
+            }
+
+            i++;
+        }
+
+        StringBuilder str = new StringBuilder();
+        while (!stack.isEmpty()) {
+            str.insert(0, stack.pop());
+        }
+
+        return str.toString();
+    }
+
+    // Leetcode problem: 395
+    /*
+     * Count the occurrences of all characters
+     * If there exists no character whose count is < k then return entire string
+     * If any character exists recursively call left side and right of that character and take the max
+     * */
+    public int longestSubstring(String s, int k) {
+        return longestSubstring(s.toCharArray(), 0, s.length(), k);
+    }
+
+    public int longestSubstring(char[] charArray, int start, int end, int k) {
+        if (end - start < k) {
+            return 0;
+        }
+        int[] counter = new int[26];
+        for (int i = start; i < end; i++) {
+            counter[charArray[i] - 'a']++;
+        }
+
+        for (int i = start; i < end; i++) {
+            if (counter[charArray[i] - 'a'] < k) {
+                int j = i;
+
+                // Skip all characters whose count < k
+                while (j < end && counter[charArray[j] - 'a'] < k) j++;
+
+                return Math.max(longestSubstring(charArray, start, i, k), longestSubstring(charArray, j, end, k));
+            }
+        }
+
+        // If no such character found whose counter < k, return entire string
+        return end - start;
+    }
+
 }
