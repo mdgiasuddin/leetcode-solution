@@ -429,4 +429,36 @@ public class StringSolution4 {
         return i == resultString.length() ? "0" : resultString.substring(i);
     }
 
+    // Leetcode problem: 306
+    public boolean isAdditiveNumber(String num) {
+        for (int i = 1; i < num.length() - 1; i++) {
+            long first = Long.parseLong(num.substring(0, i));
+            if (String.valueOf(first).length() < i)
+                break;
+
+            for (int j = i + 1; j < num.length(); j++) {
+                long second = Long.parseLong(num.substring(i, j));
+                if (String.valueOf(second).length() < j - i)
+                    break;
+
+                if (isAdditiveNumber(num.substring(j), first, second, false))
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
+    private boolean isAdditiveNumber(String num, long first, long second, boolean notFirst) {
+        if (num.isEmpty() && notFirst)
+            return true;
+
+        long third = first + second;
+        String thirdString = String.valueOf(third);
+        if (thirdString.length() > num.length() || !thirdString.equals(num.substring(0, thirdString.length())))
+            return false;
+
+        return isAdditiveNumber(num.substring(thirdString.length()), second, third, true);
+    }
+
 }

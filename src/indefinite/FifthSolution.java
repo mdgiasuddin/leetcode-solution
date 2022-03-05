@@ -212,10 +212,7 @@ public class FifthSolution {
     }
 
     private boolean isValidNightMove(int[][] board, int n, int row, int col) {
-        if (row >= 0 && row < n && col >= 0 && col < n && board[row][col] == -1)
-            return true;
-
-        return false;
+        return row >= 0 && row < n && col >= 0 && col < n && board[row][col] == -1;
     }
 
     public void nightsTour(int n) {
@@ -377,37 +374,6 @@ public class FifthSolution {
         subsetsWithDup(nums, result, new ArrayList<>(), 0, -20);
 
         return result;
-    }
-
-    private boolean isAdditiveNumber(String num, long first, long second, boolean notFirst) {
-        if (num.isEmpty() && notFirst)
-            return true;
-
-        long third = first + second;
-        String thirdString = String.valueOf(third);
-        if (thirdString.length() > num.length() || !thirdString.equals(num.substring(0, thirdString.length())))
-            return false;
-
-        return isAdditiveNumber(num.substring(thirdString.length()), second, third, true);
-    }
-
-    public boolean isAdditiveNumber(String num) {
-        for (int i = 1; i < num.length() - 1; i++) {
-            long first = Long.parseLong(num.substring(0, i));
-            if (String.valueOf(first).length() < i)
-                break;
-
-            for (int j = i + 1; j < num.length(); j++) {
-                long second = Long.parseLong(num.substring(i, j));
-                if (String.valueOf(second).length() < j - i)
-                    break;
-
-                if (isAdditiveNumber(num.substring(j), first, second, false))
-                    return true;
-            }
-        }
-
-        return false;
     }
 
     public int lengthOfLIS(int[] nums) {
