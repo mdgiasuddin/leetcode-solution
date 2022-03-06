@@ -50,4 +50,37 @@ public class StringSolution5 {
     }
 
     // Leetcode problem: 516
+    /*
+     * Dynamic programming
+     * See Leetcode problem: 132 & 647
+     * */
+    public int longestPalindromeSubseq(String s) {
+        int strLen = s.length();
+        int[][] palindromeTable = new int[strLen][strLen];
+
+        for (int i = 0; i < strLen; i++) {
+            palindromeTable[i][i] = 1;
+        }
+        for (int i = 0; i < strLen - 1; i++) {
+            if (s.charAt(i) == s.charAt(i + 1)) {
+                palindromeTable[i][i + 1] = 2;
+            } else {
+                palindromeTable[i][i + 1] = 1;
+            }
+        }
+
+        for (int currentLen = 3; currentLen <= strLen; currentLen++) {
+            for (int i = 0; i < strLen - (currentLen - 1); i++) {
+                int j = i + currentLen - 1;
+
+                if (s.charAt(i) == s.charAt(j)) {
+                    palindromeTable[i][j] = 2 + palindromeTable[i + 1][j - 1];
+                } else {
+                    palindromeTable[i][j] = Math.max(palindromeTable[i][j - 1], palindromeTable[i + 1][j]);
+                }
+            }
+        }
+
+        return palindromeTable[0][strLen - 1];
+    }
 }

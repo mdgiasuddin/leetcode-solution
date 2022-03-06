@@ -432,6 +432,7 @@ public class StringSolution2 {
     // Leetcode problem: 647
     /*
      * Build up a palindrome table increment count if palindrome found
+     * See Leetcode problem: 132
      * */
     public int countSubstrings(String s) {
         int palindromicSubstring = 0;
