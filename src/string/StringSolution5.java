@@ -123,4 +123,12 @@ public class StringSolution5 {
 
         return palindromeTable[0][strLen - 1];
     }
+
+    // Leetcode problem: 639
+    // Leetcode problem: 686
+    /*
+     * Math.ceil(b.length() / a.length()) or Math.ceil(b.length() / a.length()) + 1
+     * */
+
+    // Leetcode problem: 1028
 }
