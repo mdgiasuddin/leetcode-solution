@@ -1,7 +1,6 @@
 package string;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class StringSolution5 {
     public static void main(String[] args) {
@@ -9,6 +8,47 @@ public class StringSolution5 {
     }
 
     // Leetcode problem: 433
+    /*
+     * BFS Search
+     * See Leetcode problem: 127
+     * */
+    public int minMutation(String start, String end, String[] bank) {
+        Set<String> bankSet = new HashSet<>(List.of(bank));
+
+        if (!bankSet.contains(end)) {
+            return -1;
+        }
+
+        Queue<String> queue = new LinkedList<>();
+        int maxLength = 0;
+        queue.add(start);
+        char[] dnaChars = {'A', 'C', 'G', 'T'};
+
+        while (!queue.isEmpty()) {
+            int currentSize = queue.size();
+            maxLength++;
+            while (currentSize-- > 0) {
+                String top = queue.poll();
+                for (int i = 0; i < top.length(); i++) {
+                    for (char dnaChar : dnaChars) {
+                        String temp = top.substring(0, i) + dnaChar + top.substring(i + 1);
+                        if (temp.equals(top))
+                            continue;
+
+                        if (temp.equals(end)) {
+                            return maxLength;
+                        }
+                        if (bankSet.contains(temp)) {
+                            queue.add(temp);
+                            bankSet.remove(temp);
+                        }
+                    }
+                }
+            }
+        }
+
+        return -1;
+    }
 
     // Leetcode problem: 438
     /*
