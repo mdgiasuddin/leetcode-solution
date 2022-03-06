@@ -430,17 +430,26 @@ public class StringSolution4 {
     }
 
     // Leetcode problem: 306
+    /*
+     * Build up first 2 numbers and check whether any third number exist so that fist + second = third
+     * If exists then recursively call for next where second and third will be first and second respectively
+     * */
     public boolean isAdditiveNumber(String num) {
         for (int i = 1; i < num.length() - 1; i++) {
             long first = Long.parseLong(num.substring(0, i));
+
+            // Leading 0 is not allowed
             if (String.valueOf(first).length() < i)
                 break;
 
             for (int j = i + 1; j < num.length(); j++) {
                 long second = Long.parseLong(num.substring(i, j));
+
+                // Leading 0 is not allowed
                 if (String.valueOf(second).length() < j - i)
                     break;
 
+                // Not first = false means third number has not been formatted yet
                 if (isAdditiveNumber(num.substring(j), first, second, false))
                     return true;
             }
@@ -458,6 +467,7 @@ public class StringSolution4 {
         if (thirdString.length() > num.length() || !thirdString.equals(num.substring(0, thirdString.length())))
             return false;
 
+        // Third number has been formatted, so not first is true now
         return isAdditiveNumber(num.substring(thirdString.length()), second, third, true);
     }
 
