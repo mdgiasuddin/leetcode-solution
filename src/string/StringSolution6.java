@@ -43,5 +43,45 @@ public class StringSolution6 {
     }
 
     // Leetcode problem: 820
+
     // Leetcode problem: 842
+    public List<Integer> splitIntoFibonacci(String num) {
+        List<Integer> res = new ArrayList<>();
+        return dfs(0, num, res);
+    }
+
+    public List<Integer> dfs(int start, String num, List<Integer> path) {
+        if (path.size() > 2) {
+            if (path.get(path.size() - 1) != path.get(path.size() - 2) + path.get(path.size() - 3)) {
+                return new ArrayList<>();
+            }
+        }
+        if (start >= num.length()) {
+            if (path.size() > 2) {
+                return path;
+            } else {
+                return new ArrayList<>();
+            }
+        }
+        int cur = 0;
+        List<Integer> ans = new ArrayList<>();
+        for (int i = start; i < num.length(); i++) {
+            //cut
+            if (i > start && num.charAt(start) == '0') {
+                return new ArrayList<>();
+            }
+            cur = cur * 10 + num.charAt(i) - '0';
+            if (cur < 0) {
+                return new ArrayList<>();
+            }
+            path.add(cur);
+            ans = dfs(i + 1, num, path);
+            if (ans.size() > 2) {
+                return ans;
+            }
+            path.remove(path.size() - 1);
+        }
+        return ans;
+    }
+
 }
