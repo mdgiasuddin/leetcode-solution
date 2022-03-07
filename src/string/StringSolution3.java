@@ -1,5 +1,7 @@
 package string;
 
+import indefinite.TreeNode;
+
 import java.util.*;
 
 public class StringSolution3 {
@@ -477,6 +479,36 @@ public class StringSolution3 {
         }
 
         return resultList;
+    }
+
+    // Leetcode problem: 606
+    public String tree2str(TreeNode root) {
+        StringBuilder result = new StringBuilder();
+
+        preOrderTree(root, result);
+
+        return result.toString();
+    }
+
+    public void preOrderTree(TreeNode root, StringBuilder stringBuilder) {
+        if (root == null)
+            return;
+
+        stringBuilder.append(root.val);
+
+        if (root.left == null && root.right == null)
+            return;
+
+        stringBuilder.append("(");
+        preOrderTree(root.left, stringBuilder);
+        stringBuilder.append(")");
+
+        if (root.right != null) {
+            stringBuilder.append("(");
+            preOrderTree(root.right, stringBuilder);
+            stringBuilder.append(")");
+        }
+
     }
 
 }
