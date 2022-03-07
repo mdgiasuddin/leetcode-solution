@@ -8,7 +8,7 @@ public class StringSolution5 {
     public static void main(String[] args) {
         StringSolution5 stringSolution5 = new StringSolution5();
 
-        stringSolution5.recoverFromPreorder("1-2--3--4-5--6--7");
+        System.out.println(stringSolution5.reorganizeString("aacccjjjjbbek"));
     }
 
     // Leetcode problem: 433
@@ -315,5 +315,81 @@ public class StringSolution5 {
         }
 
         return stack.pop();
+    }
+
+    // Leetcode problem: 467
+    /*
+     * Build up a table for every character with the maximum count which maintain serial with previous character
+     * Sum up all the counts
+     * */
+    public int findSubstringInWraproundString(String p) {
+        int[] dp = new int[26];
+
+        int len = 0, sum = 0;
+
+        for (int i = 0; i < p.length(); i++) {
+            // If current character is the alphabetic next character of previous character then increment the length
+            if (i >= 1 && (p.charAt(i) - p.charAt(i - 1) + 26) % 26 == 1) {
+                len++;
+            } else {
+                len = 1;
+            }
+
+            // Update maximum length for this character
+            dp[p.charAt(i) - 'a'] = Math.max(dp[p.charAt(i) - 'a'], len);
+        }
+
+        for (int count : dp) {
+            sum += count;
+        }
+
+        return sum;
+    }
+
+    // Leetcode problem: 767
+    /*
+     * Build up a max-priority queue the count of characters
+     * Every time append the character with maximum count then second maximum count
+     * Update count and reorder the queue
+     * */
+    public String reorganizeString(String s) {
+        PriorityQueue<CharCounter> queue = new PriorityQueue<>((c1, c2) -> c2.count - c1.count);
+
+        int[] counts = new int[26];
+
+        for (int i = 0; i < s.length(); i++) {
+            counts[s.charAt(i) - 'a']++;
+        }
+
+        for (int i = 0; i < counts.length; i++) {
+            if (counts[i] > 0) {
+                queue.add(new CharCounter((char) ('a' + i), counts[i]));
+            }
+        }
+
+        StringBuilder result = new StringBuilder();
+        while (!queue.isEmpty()) {
+            CharCounter max = queue.poll();
+            result.append(max.ch);
+
+            if (max.count > 1) {
+
+                // If there is no other character left
+                if (queue.isEmpty())
+                    return "";
+
+                CharCounter secondMax = queue.poll();
+                result.append(secondMax.ch);
+
+                max.count--;
+                queue.add(max);
+
+                if (--secondMax.count > 0) {
+                    queue.add(secondMax);
+                }
+            }
+        }
+
+        return result.toString();
     }
 }
