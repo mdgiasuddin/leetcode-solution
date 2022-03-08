@@ -7,12 +7,7 @@ public class StringSolution6 {
     public static void main(String[] args) {
         StringSolution6 stringSolution6 = new StringSolution6();
 
-//        System.out.println(stringSolution6.decodeAtIndex("a2345678999999999999999", 1));
-        String str1 = "abcd";
-        String str2 = "acbd";
-        System.out.println(str1.compareTo(str2));
-        System.out.println(str2.compareTo(str1));
-        System.out.println(str1.compareTo(str1));
+        System.out.println(stringSolution6.minFlipsMonoIncr("010110"));
     }
 
     // Leetcode problem: 816
@@ -360,5 +355,26 @@ public class StringSolution6 {
 
         return opening + closing;
 
+    }
+
+    // Leetcode problem: 926
+    /*
+     * See Leetcode problem: 1653
+     * */
+    public int minFlipsMonoIncr(String s) {
+
+        int extraOne = 0, flip = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '0') {
+                if (extraOne > 0) {
+                    extraOne--;
+                    flip++;
+                }
+            } else {
+                extraOne++;
+            }
+        }
+
+        return flip;
     }
 }
