@@ -253,7 +253,7 @@ public class StringSolution6 {
 
     // Leetcode problem: 921
     public int minAddToMakeValid(String s) {
-        Stack<Character> stack = new Stack<>();
+        /*Stack<Character> stack = new Stack<>();
 
         for (int i = 0; i < s.length(); i++) {
             char ch = s.charAt(i);
@@ -269,6 +269,25 @@ public class StringSolution6 {
             }
         }
 
-        return stack.size();
+        return stack.size();*/
+
+        // Without extra memory
+        int opening, closing;
+        opening = closing = 0;
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            if (ch == '(') {
+                opening++;
+            } else {
+                if (opening > 0) {
+                    opening--;
+                } else {
+                    closing++;
+                }
+            }
+        }
+
+        return opening + closing;
+
     }
 }
