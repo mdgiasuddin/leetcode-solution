@@ -377,4 +377,7 @@ public class StringSolution6 {
 
         return flip;
     }
+
+    // Leetcode problem: 940
+    // Leetcode problem: 943
 }
