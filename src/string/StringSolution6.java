@@ -7,7 +7,7 @@ public class StringSolution6 {
     public static void main(String[] args) {
         StringSolution6 stringSolution6 = new StringSolution6();
 
-        System.out.println(stringSolution6.kSimilarity("abccaacceecdeea", "bcaacceeccdeaae"));
+        System.out.println(stringSolution6.decodeAtIndex("a2345678999999999999999", 1));
     }
 
     // Leetcode problem: 816
@@ -75,6 +75,7 @@ public class StringSolution6 {
             }
 
             cur = cur * 10 + num.charAt(i) - '0';
+            // If the number overflows integer range, then discard
             if (cur < 0) {
                 return new ArrayList<>();
             }
@@ -166,5 +167,84 @@ public class StringSolution6 {
         return result;
     }
 
+    // Leetcode problem: 859
+    /*
+     * Buddy string
+     * */
+    public boolean buddyStrings(String s, String goal) {
 
+        // If length are different or length is 1 then there is no option to match by swap
+        if (s.length() != goal.length() || s.length() == 1) {
+            return false;
+        }
+
+        // If they are equal then at least 1 duplicate character two swap with one another
+        if (s.equals(goal)) {
+            // If length > 26 then at least one duplicate character
+            if (s.length() > 26) {
+                return true;
+            }
+
+            Set<Character> characterSet = new HashSet<>();
+            for (int i = 0; i < s.length(); i++) {
+                char ch = s.charAt(i);
+                if (characterSet.contains(ch)) {
+                    return true;
+                }
+                characterSet.add(ch);
+            }
+            return false;
+        } else {
+            // There must be 2 different characters which can be swapped with one another to match with the goal
+            int[] different = new int[2];
+
+            int j = 0;
+            for (int i = 0; i < s.length(); i++) {
+                if (s.charAt(i) != goal.charAt(i)) {
+                    if (j < 2) {
+                        different[j++] = i;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+
+            return j == 2 && s.charAt(different[0]) == goal.charAt(different[1]) && s.charAt(different[1]) == goal.charAt(different[0]);
+        }
+    }
+
+    // Leetcode problem: 880
+    /*
+     * First find out the total length of decoded string by scanning from left to right
+     * Then remove character from the last one by one from the right to left and match with k
+     * */
+    public String decodeAtIndex(String s, int k) {
+        long totalLength = 0;
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+
+            if (Character.isDigit(ch)) {
+                totalLength *= (ch - '0');
+            } else {
+                totalLength++;
+            }
+        }
+
+        for (int i = s.length() - 1; i >= 0; i--) {
+            char ch = s.charAt(i);
+            k %= totalLength;
+
+            if (k == 0 && Character.isLetter(ch)) {
+                return String.valueOf(ch);
+            }
+            if (Character.isDigit(ch)) {
+                totalLength /= (ch - '0');
+            } else {
+                totalLength--;
+            }
+            System.out.println(ch + " : " + totalLength);
+        }
+
+        return "";
+    }
 }
