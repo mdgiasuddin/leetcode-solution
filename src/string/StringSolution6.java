@@ -7,7 +7,7 @@ public class StringSolution6 {
     public static void main(String[] args) {
         StringSolution6 stringSolution6 = new StringSolution6();
 
-        System.out.println(stringSolution6.decodeAtIndex("a2345678999999999999999", 1));
+        System.out.println(stringSolution6.minFlipsMonoIncr("010110"));
     }
 
     // Leetcode problem: 816
@@ -248,8 +248,74 @@ public class StringSolution6 {
         return "";
     }
 
-    // Leetcode problem: 889
+    // Leetcode problem: 899
+    /*
+     * If k = 1, just find the minimum of all rotations
+     * Else sort the characters
+     * It will work in the logic of bubble sort
+     * If k > 1 then any 2 characters can be swapped. So sorting the characters will work.
+     * */
+    public String orderlyQueue(String s, int k) {
+
+        if (k == 1) {
+            String ans = s;
+
+            for (int i = 1; i < s.length(); i++) {
+                String temp = s.substring(i) + s.substring(0, i);
+                if (temp.compareTo(ans) < 0) {
+                    ans = temp;
+                }
+            }
+
+            return ans;
+        } else {
+            char[] ans = s.toCharArray();
+            Arrays.sort(ans);
+
+            return String.copyValueOf(ans);
+        }
+    }
+
     // Leetcode problem: 916
+    /*
+     * Calculate maximum character count of each character of words2
+     * Check which word of words1 contains all characters
+     * */
+    public List<String> wordSubsets(String[] words1, String[] words2) {
+        List<String> result = new ArrayList<>();
+
+        int[] maxChar = new int[26];
+
+        for (String word : words2) {
+            int[] charWord2 = new int[26];
+
+            for (int i = 0; i < word.length(); i++) {
+                charWord2[word.charAt(i) - 'a']++;
+            }
+
+            for (int i = 0; i < 26; i++) {
+                maxChar[i] = Math.max(maxChar[i], charWord2[i]);
+            }
+        }
+
+        for (String word : words1) {
+            int[] charWord1 = new int[26];
+
+            for (int i = 0; i < word.length(); i++) {
+                charWord1[word.charAt(i) - 'a']++;
+            }
+
+            int i;
+            for (i = 0; i < 26; i++) {
+                if (charWord1[i] < maxChar[i]) break;
+            }
+            if (i == 26) {
+                result.add(word);
+            }
+        }
+
+        return result;
+    }
 
     // Leetcode problem: 921
     public int minAddToMakeValid(String s) {
@@ -290,4 +356,28 @@ public class StringSolution6 {
         return opening + closing;
 
     }
+
+    // Leetcode problem: 926
+    /*
+     * See Leetcode problem: 1653
+     * */
+    public int minFlipsMonoIncr(String s) {
+
+        int extraOne = 0, flip = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '0') {
+                if (extraOne > 0) {
+                    extraOne--;
+                    flip++;
+                }
+            } else {
+                extraOne++;
+            }
+        }
+
+        return flip;
+    }
+
+    // Leetcode problem: 940
+    // Leetcode problem: 943
 }
