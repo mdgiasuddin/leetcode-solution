@@ -18,6 +18,12 @@ public class StringSolution7 {
                 char and = 't', or = 'f', not = 'f';
                 while (stack.peek() != '(') {
                     char ch = stack.pop();
+
+                    /*
+                     * 1 True value will return True for '|' operation
+                     * 1 False value will return False for '&' operation]
+                     * '!' will be opposite for True or False
+                     * */
                     if (ch == 't') {
                         or = 't';
                         not = 'f';
@@ -26,14 +32,18 @@ public class StringSolution7 {
                         not = 't';
                     }
                 }
-                stack.pop();
-                char op = stack.pop();
+                stack.pop(); // pop '('
+
+                char op = stack.pop(); // After '(' there will be operator
+
+                // Push the value according to operator
                 if (op == '|')
                     stack.push(or);
                 else if (op == '&')
                     stack.push(and);
                 else if (op == '!')
                     stack.push(not);
+
             } else if (expression.charAt(i) != ',') {
                 stack.push(expression.charAt(i));
             }
