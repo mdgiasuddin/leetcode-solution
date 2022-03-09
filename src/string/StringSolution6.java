@@ -417,4 +417,34 @@ public class StringSolution6 {
     }
 
     // Leetcode problem: 943
+
+    // Leetcode problem: 1041
+    public boolean isRobotBounded(String instructions) {
+        List<Map.Entry<Integer, Integer>> directions = Arrays.asList(
+                Map.entry(0, 1), // North
+                Map.entry(1, 0), // East
+                Map.entry(0, -1), // South
+                Map.entry(-1, 0) // West
+        );
+
+        int currentDir = 0, currentX = 0, currentY = 0;
+
+        for (int i = 0; i < instructions.length(); i++) {
+            char ch = instructions.charAt(i);
+
+            if (ch == 'G') {
+                Map.Entry<Integer, Integer> direction = directions.get(currentDir);
+                currentX += direction.getKey();
+                currentY += direction.getValue();
+            } else if (ch == 'L') {
+                currentDir = (currentDir + 3) % 4;
+            } else {
+                currentDir = (currentDir + 1) % 4;
+            }
+        }
+
+        // If Current direction is not north then after some completion of instructions it will make a circle
+        // Else it will continue to move on a specific directions
+        return (currentX == 0 && currentY == 0) || currentDir != 0;
+    }
 }
