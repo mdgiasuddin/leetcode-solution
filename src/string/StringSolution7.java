@@ -52,6 +52,95 @@ public class StringSolution7 {
         return stack.peek() == 't';
     }
 
+    // Leetcode problem: 2063
+    /*
+     * Count vowels of all substrings
+     * */
+    public long countVowels(String word) {
+        /*
+                        bcdefgh
+                          ''
+                          d
+                         cd
+                        bcd
+                           e
+                           ef
+                           efg
+                           efgh
+                       (i+1)*(len-i)
+        * */
+
+        long count = 0;
+        long len = word.length();
+
+        for (int i = 0; i < len; i++) {
+            char ch = word.charAt(i);
+            if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
+                count += (i + 1) * (len - i);
+            }
+        }
+
+        return count;
+    }
+
+    // Leetcode problem: 193
+
+
+    // Leetcode problem: 2116
+    /*
+     * Check if the parenthesis can be balanced after flipping certain position
+     * We have to traverse from both left to right and right to left
+     * While traversing left to right, check whether there is enough opening bracket to balance closing bracket. Flip + Open >= Close must be satisfied.
+     * While traversing right to left, check whether there is enough closing bracket to balance opening bracket. Flip + Close >= Open must be satisfied.
+     * If the condition is always satisfied then parenthesis can be balanced
+     * Otherwise, return false
+     * */
+    public boolean canBeValid(String s, String locked) {
+        int len = s.length();
+
+        // If length is odd, then it never can be balanced
+        if (len % 2 == 1) {
+            return false;
+        }
+
+        int opening = 0, closing = 0, flipPossible = 0;
+
+        // Traverse from left to right
+        for (int i = 0; i < len; i++) {
+            if (locked.charAt(i) == '0') {
+                flipPossible++;
+            } else if (s.charAt(i) == '(') {
+                opening++;
+            } else {
+                closing++;
+            }
+
+            if (flipPossible + opening < closing) {
+                return false;
+            }
+        }
+
+        // Reset opening, closing and flip possible
+        opening = closing = flipPossible = 0;
+
+        // Traverse from right to left
+        for (int i = len - 1; i >= 0; i--) {
+            if (locked.charAt(i) == '0') {
+                flipPossible++;
+            } else if (s.charAt(i) == '(') {
+                opening++;
+            } else {
+                closing++;
+            }
+
+            if (flipPossible + closing < opening) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     // Leetcode problem: 1044
     // Leetcode problem: 1048
     // Leetcode problem: 1063
