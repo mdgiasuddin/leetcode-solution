@@ -1,5 +1,7 @@
 package string;
 
+import java.util.Arrays;
+import java.util.PriorityQueue;
 import java.util.Stack;
 
 public class StringSolution7 {
@@ -83,8 +85,30 @@ public class StringSolution7 {
         return count;
     }
 
-    // Leetcode problem: 193
+    // Leetcode problem: 1963
+    /*
+     * Problem is tricky
+     * Find out the maximum closing bracket with is unbalanced.
+     * If closing brackets are balanced, opening brackets will be automatically balanced
+     * 1 swap will balance 2 unbalanced closing bracket
+     * If closing bracket found increment unbalanced and when opening bracket found decrement it
+     * Update the maximum point of unbalanced closing bracket
+     * */
+    public int minSwaps(String s) {
+        int unbalancedClosing = 0, maxUnbalanced = 0;
 
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '[') {
+                unbalancedClosing--;
+            } else {
+                unbalancedClosing++;
+                maxUnbalanced = Math.max(maxUnbalanced, unbalancedClosing);
+            }
+        }
+
+        // Return the ceiling value after divide
+        return (maxUnbalanced + 1) / 2;
+    }
 
     // Leetcode problem: 2116
     /*
@@ -139,6 +163,24 @@ public class StringSolution7 {
         }
 
         return true;
+    }
+
+    // Leetcode problem: 1985
+    /*
+     * Build up a priority queue.
+     * Pop from the queue k times
+     * */
+    public String kthLargestNumber(String[] nums, int k) {
+        PriorityQueue<String> queue = new PriorityQueue<>((a, b) -> b.length() == a.length()
+                ? b.compareTo(a) : b.length() - a.length());
+
+        queue.addAll(Arrays.asList(nums));
+
+        for (int i = 1; i < k; i++) {
+            queue.poll();
+        }
+
+        return queue.poll();
     }
 
     // Leetcode problem: 1044
