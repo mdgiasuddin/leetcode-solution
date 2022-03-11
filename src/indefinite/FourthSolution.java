@@ -264,56 +264,6 @@ public class FourthSolution {
         return result.toArray(new int[result.size()][]);
     }
 
-    public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        List<List<Integer>> result = new ArrayList<>();
-        Arrays.sort(candidates);
-
-        combinationSum(candidates, target, 0, result, new ArrayList<>());
-        return result;
-    }
-
-    public void combinationSum(int[] candidates, int target, int start, List<List<Integer>> result, List<Integer> combination) {
-        if (target == 0) {
-            result.add(new ArrayList<>(combination));
-            return;
-        }
-
-        for (int i = start; i < candidates.length; i++) {
-            if (candidates[i] > target)
-                return;
-
-            combination.add(candidates[i]);
-            combinationSum(candidates, target - candidates[i], i, result, combination);
-            combination.remove(combination.size() - 1);
-        }
-    }
-
-    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
-        Arrays.sort(candidates);
-
-        List<List<Integer>> result = new ArrayList<>();
-        combinationSum2(candidates, target, 0, result, new ArrayList<>());
-        return result;
-    }
-
-    public void combinationSum2(int[] candidates, int target, int start, List<List<Integer>> result, List<Integer> combination) {
-        if (target == 0) {
-            result.add(new ArrayList<>(combination));
-            return;
-        }
-
-        for (int i = start; i < candidates.length; i++) {
-            if (candidates[i] > target)
-                return;
-            if (i != start && candidates[i] == candidates[i - 1])
-                continue;
-
-            combination.add(candidates[i]);
-            combinationSum2(candidates, target - candidates[i], i + 1, result, combination);
-            combination.remove(combination.size() - 1);
-        }
-    }
-
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
 
