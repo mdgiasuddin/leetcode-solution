@@ -545,40 +545,4 @@ public class ThirdSolution {
         findTarget(root.left, k, set);
         findTarget(root.right, k, set);
     }
-
-    public int[] searchRange(int[] nums, int target) {
-        int[] result = new int[]{-1, -1};
-
-        result[0] = binarySearchFirst(nums, target, 0, nums.length - 1);
-        result[1] = binarySearchLast(nums, target, 0, nums.length - 1);
-        return result;
-    }
-
-    public int binarySearchFirst(int[] nums, int target, int left, int right) {
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
-            if ((mid == 0 || nums[mid - 1] < target) && nums[mid] == target) {
-                return mid;
-            } else if (target > nums[mid]) {
-                left = mid + 1;
-            } else {
-                right = mid - 1;
-            }
-        }
-        return -1;
-    }
-
-    public int binarySearchLast(int[] nums, int target, int left, int right) {
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
-            if ((mid == nums.length - 1 || nums[mid + 1] > target) && nums[mid] == target) {
-                return mid;
-            } else if (target < nums[mid]) {
-                right = mid - 1;
-            } else {
-                left = mid + 1;
-            }
-        }
-        return -1;
-    }
 }

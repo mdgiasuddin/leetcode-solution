@@ -259,4 +259,93 @@ public class ArraySolution {
         }
         return firstIndex + 1;
     }
+
+    // Leetcode problem: 27
+    /*
+     * This problem similar to previous problem (Leetcode problem: 26)
+     * */
+    public int removeElement(int[] nums, int val) {
+        int firstIndex = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == val) {
+                nums[i] = '_';
+            } else {
+                if (firstIndex != i) {
+                    nums[firstIndex] = nums[i];
+                    nums[i] = '_';
+                }
+                firstIndex++;
+            }
+        }
+        return firstIndex;
+
+    }
+
+    // Leetcode problem: 33
+    /*
+     * Search in rotated sorted array
+     * Binary search
+     * */
+    public int search(int[] nums, int target) {
+        int left = 0, right = nums.length - 1, mid;
+
+        while (left <= right) {
+            mid = left + (right - left) / 2;
+            if (nums[mid] == target) {
+                return mid;
+            }
+            if (nums[left] <= nums[mid]) {
+                if (target >= nums[left] && target < nums[mid])
+                    right = mid - 1;
+                else
+                    left = mid + 1;
+            } else {
+                if (target > nums[mid] && target <= nums[right])
+                    left = mid + 1;
+                else
+                    right = mid - 1;
+            }
+        }
+        return -1;
+    }
+
+    // Leetcode problem: 34
+    /*
+     * Find first & last position by binary search
+     * */
+    public int[] searchRange(int[] nums, int target) {
+        int[] result = new int[]{-1, -1};
+
+        result[0] = binarySearchFirst(nums, target, 0, nums.length - 1);
+        result[1] = binarySearchLast(nums, target, 0, nums.length - 1);
+        return result;
+    }
+
+    public int binarySearchFirst(int[] nums, int target, int left, int right) {
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if ((mid == 0 || nums[mid - 1] < target) && nums[mid] == target) {
+                return mid;
+            } else if (target > nums[mid]) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return -1;
+    }
+
+    public int binarySearchLast(int[] nums, int target, int left, int right) {
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if ((mid == nums.length - 1 || nums[mid + 1] > target) && nums[mid] == target) {
+                return mid;
+            } else if (target < nums[mid]) {
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        }
+        return -1;
+    }
 }
