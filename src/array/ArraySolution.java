@@ -232,4 +232,31 @@ public class ArraySolution {
 
         return result;
     }
+
+    // Leetcode problem: 26
+    /*
+     * Save the first index where the element first shown
+     * Then for the same value come erase the position by '_'
+     * Whenever a different value come store it next to the first index
+     * */
+    public int removeDuplicates(int[] nums) {
+        int firstIndex = 0;
+
+        for (int i = 1; i < nums.length; i++) {
+
+            // Different element comes. Store it next to the first index
+            if (nums[firstIndex] != nums[i]) {
+                firstIndex++;
+
+                nums[firstIndex] = nums[i];
+
+                // If first index is less than current position then erase ith position
+                if (firstIndex != i)
+                    nums[i] = '_';
+            } else { // If same value comes erase it
+                nums[i] = '_';
+            }
+        }
+        return firstIndex + 1;
+    }
 }
