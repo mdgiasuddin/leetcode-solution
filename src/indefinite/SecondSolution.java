@@ -180,23 +180,6 @@ public class SecondSolution {
         if (root.right != null) sumNumbers(root.right, sum);
     }
 
-    public int[] twoSum(int[] numbers, int target) {
-        int[] result = new int[2];
-        int left = 0, right = numbers.length - 1;
-        while (left < right) {
-            if (numbers[left] + numbers[right] == target) {
-                result[0] = left;
-                result[1] = right;
-                break;
-            } else if (numbers[left] + numbers[right] < target) {
-                left++;
-            } else {
-                right--;
-            }
-        }
-        return result;
-    }
-
     public int hammingWeight(int n) {
         int count = 0;
         while (n != 0) {

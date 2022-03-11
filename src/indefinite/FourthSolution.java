@@ -204,23 +204,6 @@ public class FourthSolution {
         findMode(root.right, result);
     }
 
-    public int maxArea(int[] height) {
-        int left = 0, right = height.length - 1, area = Integer.MIN_VALUE;
-
-        while (left < right) {
-            int h = Math.min(height[left], height[right]);
-            int a = h * (right - left);
-            area = Math.max(area, a);
-            if (height[left] < height[right]) {
-                left++;
-            } else {
-                right--;
-            }
-        }
-
-        return area;
-    }
-
     public int trap(int[] height) {
         int max = 0, n = height.length;
         for (int i = 1; i < n; i++) {
@@ -437,10 +420,7 @@ public class FourthSolution {
     }
 
     public boolean isBalanced(TreeNode root) {
-        if (findHeight(root) == -1) {
-            return false;
-        }
-        return true;
+        return findHeight(root) != -1;
     }
 
     public int findHeight(TreeNode node) {
