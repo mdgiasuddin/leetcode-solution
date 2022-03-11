@@ -154,4 +154,36 @@ public class ArraySolution {
 
         return result;
     }
+
+    // Leetcode problem: 16
+    /*
+     * The problem is similar to 3 sum. Just find the sum of minimum difference to the target
+     * */
+    public int threeSumClosest(int[] nums, int target) {
+        Arrays.sort(nums);
+
+        int minDifference = Integer.MAX_VALUE, result = target;
+
+        for (int i = 0; i < nums.length - 2; i++) {
+            int j = i + 1, k = nums.length - 1;
+
+            while (j < k) {
+                int sum = nums[i] + nums[j] + nums[k];
+                if (Math.abs(sum - target) < minDifference) {
+                    minDifference = Math.abs(sum - target);
+                    result = sum;
+                }
+                if (sum < target) {
+                    j++;
+                } else if (sum > target) {
+                    k--;
+                } else {
+                    // Sum is equal to target then no need to continue
+                    return target;
+                }
+            }
+        }
+
+        return result;
+    }
 }
