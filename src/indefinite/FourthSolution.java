@@ -483,39 +483,6 @@ public class FourthSolution {
         return reverse;
     }
 
-//    public boolean canJump(int[] nums) {
-//        if (nums.length < 2) {
-//            return true;
-//        }
-//
-//        boolean[] jump = new boolean[nums.length];
-//        jump[0] = true;
-//
-//        for (int i = 0; i < nums.length - 1; i++) {
-//            if (jump[i] == false)
-//                return false;
-//            for (int j = 1; i + j < nums.length && j <= nums[i]; j++)
-//                jump[i + j] = true;
-//        }
-//
-//        return jump[jump.length - 1];
-//    }
-
-    public boolean canJump(int[] nums) {
-
-        if (nums.length == 1)
-            return true;
-        if (nums[0] == 0)
-            return false;
-        int last = nums.length - 1;
-        for (int i = nums.length - 2; i >= 0; i--) {
-            if (nums[i] >= last - i) {
-                last = i;
-            }
-        }
-        return last == 0;
-    }
-
     public void removeDuplicateFromList(List<Integer> list) {
         for (int i = 0; i < list.size() - 1; i++) {
             for (int j = i + 1; j < list.size(); j++) {
