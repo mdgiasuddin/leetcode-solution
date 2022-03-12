@@ -8,7 +8,9 @@ import java.util.List;
 public class ArraySolution2 {
 
     public static void main(String[] args) {
+        int[] arr = {1, 2, 3, 4, 5, 6};
 
+        System.out.println(Arrays.toString(Arrays.copyOfRange(arr, 2, 4)));
     }
 
     // Leetcode problem: 45
@@ -196,6 +198,36 @@ public class ArraySolution2 {
                 result.add(current);
             }
         }
+
+        return result.toArray(new int[result.size()][]);
+    }
+
+    // Leetcode problem: 57
+    /*
+     * Compare new interval with each interval
+     * If new interval's end value is less than interval then return new interval + rest of the intervals
+     * If new interval's start value is greater than interval then add the current interval and compare with next
+     * Else modify new interval by merging
+     * Finally add merged interval to the result
+     * */
+    public int[][] insert(int[][] intervals, int[] newInterval) {
+        List<int[]> result = new ArrayList<>();
+
+        for (int i = 0; i < intervals.length; i++) {
+            if (newInterval[1] < intervals[i][0]) {
+                result.add(newInterval);
+                result.addAll(Arrays.asList(Arrays.copyOfRange(intervals, i, intervals.length)));
+
+                return result.toArray(new int[result.size()][]);
+            } else if (newInterval[0] > intervals[i][1]) {
+                result.add(intervals[i]);
+            } else {
+                newInterval[0] = Math.min(newInterval[0], intervals[i][0]);
+                newInterval[1] = Math.max(newInterval[1], intervals[i][1]);
+            }
+        }
+
+        result.add(newInterval);
 
         return result.toArray(new int[result.size()][]);
     }
