@@ -2,7 +2,6 @@ package indefinite;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 
 public class FourthSolution {
@@ -242,26 +241,6 @@ public class FourthSolution {
         }
 
         return dp.get(0);
-    }
-
-    public int[][] merge(int[][] intervals) {
-        Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
-
-        List<int[]> result = new ArrayList<>();
-        int[] current = intervals[0];
-        result.add(current);
-
-        for (int[] interval : intervals) {
-
-            if (current[1] >= interval[0]) {
-                current[1] = Math.max(current[1], interval[1]);
-            } else {
-                current = interval;
-                result.add(current);
-            }
-        }
-
-        return result.toArray(new int[result.size()][]);
     }
 
     public List<List<Integer>> permute(int[] nums) {

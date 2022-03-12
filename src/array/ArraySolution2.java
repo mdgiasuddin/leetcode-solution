@@ -2,6 +2,7 @@ package array;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 public class ArraySolution2 {
@@ -118,30 +119,84 @@ public class ArraySolution2 {
     public List<Integer> spiralOrder(int[][] matrix) {
         List<Integer> list = new ArrayList<>();
         int left = 0, right = matrix[0].length - 1, up = 0, down = matrix.length - 1;
-
+        int dir = 1, i;
         while (left <= right && up <= down) {
-            for (int i = left; i <= right; i++) {
-                list.add(matrix[up][i]);
+            if (dir == 1) {
+                i = left;
+                while (i <= right) {
+                    list.add(matrix[up][i]);
+                    if (i == right) {
+                        dir = 2;
+                        up++;
+                    }
+                    i++;
+                }
             }
-            up++;
-
-            for (int i = up; i <= down; i++) {
-                list.add(matrix[i][right]);
+            if (dir == 2) {
+                i = up;
+                while (i <= down) {
+                    list.add(matrix[i][right]);
+                    if (i == down) {
+                        dir = 3;
+                        right--;
+                    }
+                    i++;
+                }
             }
-            right--;
-
-            for (int i = right; i >= left; i--) {
-                list.add(matrix[down][i]);
+            if (dir == 3) {
+                i = right;
+                while (i >= left) {
+                    list.add(matrix[down][i]);
+                    if (i == left) {
+                        dir = 4;
+                        down--;
+                    }
+                    i--;
+                }
             }
-            down--;
-
-            for (int i = down; i >= up; i--) {
-                list.add(matrix[left][i]);
+            if (dir == 4) {
+                i = down;
+                while (i >= up) {
+                    list.add(matrix[i][left]);
+                    if (i == up) {
+                        dir = 1;
+                        left++;
+                    }
+                    i--;
+                }
             }
-            left++;
-
         }
 
         return list;
+    }
+
+    // Leetcode problem: 56
+    /*
+     * Merge intervals
+     * Sort the intervals according to start value
+     * Take first interval as current value and add it to result
+     * Try to merge current with other intervals
+     * If merge is not possible add it to result make new current to it
+     * */
+    public int[][] merge(int[][] intervals) {
+        Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
+
+        List<int[]> result = new ArrayList<>();
+        int[] current = intervals[0];
+        result.add(current);
+
+        for (int[] interval : intervals) {
+
+            if (current[1] >= interval[0]) {
+                // Merge possible merge intervals by updating the end value
+                current[1] = Math.max(current[1], interval[1]);
+            } else {
+                // Merge not possible. So add it to result and update current
+                current = interval;
+                result.add(current);
+            }
+        }
+
+        return result.toArray(new int[result.size()][]);
     }
 }
