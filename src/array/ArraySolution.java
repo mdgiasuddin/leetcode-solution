@@ -7,10 +7,10 @@ public class ArraySolution {
     public static void main(String[] args) {
         ArraySolution arraySolution = new ArraySolution();
 
-        int[] nums1 = {2, 3, 4, 5};
+        int[] nums1 = {1, 2, 3};
         int[] nums2 = {1};
 
-        System.out.println(arraySolution.findMedianSortedArrays(nums1, nums2));
+        System.out.println(arraySolution.permute(nums1));
     }
 
     // Leetcode problem: 1
@@ -404,6 +404,77 @@ public class ArraySolution {
             combination.add(candidates[i]);
             combinationSum2(candidates, target - candidates[i], i + 1, result, combination);
             combination.remove(combination.size() - 1);
+        }
+    }
+
+    // Leetcode problem: 46
+    /*
+     * Permutation
+     * Backtracking solution
+     * */
+    public List<List<Integer>> permute(int[] nums) {
+        Arrays.sort(nums);
+        List<List<Integer>> result = new ArrayList<>();
+        boolean[] taken = new boolean[nums.length];
+
+        permute(nums, result, new ArrayList<>(), taken);
+
+        return result;
+    }
+
+    private void permute(int[] nums, List<List<Integer>> result, List<Integer> permuteSoFar, boolean[] taken) {
+
+        if (permuteSoFar.size() == nums.length) {
+            result.add(new ArrayList<>(permuteSoFar));
+        }
+
+        for (int i = 0; i < nums.length; i++) {
+            if (!taken[i]) {
+                permuteSoFar.add(nums[i]);
+                taken[i] = true;
+                permute(nums, result, permuteSoFar, taken);
+                taken[i] = false;
+                permuteSoFar.remove(permuteSoFar.size() - 1);
+            }
+        }
+    }
+
+    // Leetcode problem: 47
+    /*
+     * Backtracking solution
+     * */
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        Map<Integer, Integer> countMap = new HashMap<>();
+
+        for (int num : nums) {
+            if (countMap.containsKey(num)) {
+                countMap.replace(num, countMap.get(num) + 1);
+            } else {
+                countMap.put(num, 1);
+            }
+        }
+
+        List<List<Integer>> result = new ArrayList<>();
+        permuteUnique(countMap, result, new ArrayList<>(), nums.length);
+
+        return result;
+    }
+
+    private void permuteUnique(Map<Integer, Integer> countMap, List<List<Integer>> result, List<Integer> permuteSoFar, int requiredLength) {
+        if (permuteSoFar.size() == requiredLength) {
+            result.add(new ArrayList<>(permuteSoFar));
+        }
+
+        for (Map.Entry<Integer, Integer> entry : countMap.entrySet()) {
+            if (entry.getValue() > 0) {
+                permuteSoFar.add(entry.getKey());
+                countMap.replace(entry.getKey(), entry.getValue() - 1);
+
+                permuteUnique(countMap, result, permuteSoFar, requiredLength);
+
+                permuteSoFar.remove(permuteSoFar.size() - 1);
+                countMap.replace(entry.getKey(), entry.getValue() + 1);
+            }
         }
     }
 }
