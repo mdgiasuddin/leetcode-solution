@@ -1,9 +1,8 @@
 package array;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import indefinite.TreeNode;
+
+import java.util.*;
 
 public class ArraySolution2 {
 
@@ -230,5 +229,32 @@ public class ArraySolution2 {
         result.add(newInterval);
 
         return result.toArray(new int[result.size()][]);
+    }
+
+    // Leetcode problem: 105
+    /*
+     * Build tree from preorder and inorder traversal
+     * */
+    int index;
+
+    private TreeNode buildTree(int[] preorder, int[] inorder, int left, int right, Map<Integer, Integer> map) {
+        if (left > right)
+            return null;
+        TreeNode root = new TreeNode(preorder[index]);
+        int inorderPos = map.get(preorder[index]);
+        index++;
+        root.left = buildTree(preorder, inorder, left, inorderPos - 1, map);
+        root.right = buildTree(preorder, inorder, inorderPos + 1, right, map);
+
+        return root;
+    }
+
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        Map<Integer, Integer> map = new HashMap<>();
+        index = 0;
+        for (int i = 0; i < inorder.length; i++)
+            map.put(inorder[i], i);
+
+        return buildTree(preorder, inorder, 0, preorder.length - 1, map);
     }
 }
