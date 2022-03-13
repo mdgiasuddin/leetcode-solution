@@ -386,4 +386,35 @@ public class ArraySolution2 {
 
         return maxSquareArea;
     }
+
+    // Leetcode problem: 42
+    /*
+     * Trapping Rain water
+     * Find the maximum value
+     * Then find water in both left and right side
+     * */
+    public int trap(int[] height) {
+        int max = 0, n = height.length;
+        for (int i = 1; i < n; i++) {
+            if (height[i] > height[max])
+                max = i;
+        }
+        int leftMax = 0;
+        int totalWater = 0;
+
+        for (int i = 1; i < max; i++) {
+            if (height[i] > height[leftMax])
+                leftMax = i;
+
+            totalWater += Math.min(height[max], height[leftMax]) - height[i];
+        }
+
+        int rightMax = n - 1;
+        for (int i = n - 2; i > max; i--) {
+            if (height[i] > height[rightMax])
+                rightMax = i;
+            totalWater += Math.min(height[max], height[rightMax]) - height[i];
+        }
+        return totalWater;
+    }
 }

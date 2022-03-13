@@ -203,31 +203,6 @@ public class FourthSolution {
         findMode(root.right, result);
     }
 
-    public int trap(int[] height) {
-        int max = 0, n = height.length;
-        for (int i = 1; i < n; i++) {
-            if (height[i] > height[max])
-                max = i;
-        }
-        int leftMax = 0;
-        int totalWater = 0;
-
-        for (int i = 1; i < max; i++) {
-            if (height[i] > height[leftMax])
-                leftMax = i;
-
-            totalWater += Math.min(height[max], height[leftMax]) - height[i];
-        }
-
-        int rightMax = n - 1;
-        for (int i = n - 2; i > max; i--) {
-            if (height[i] > height[rightMax])
-                rightMax = i;
-            totalWater += Math.min(height[max], height[rightMax]) - height[i];
-        }
-        return totalWater;
-    }
-
     public int minimumTotal(List<List<Integer>> triangle) {
         int n = triangle.size();
         List<Integer> dp = new ArrayList<>();
