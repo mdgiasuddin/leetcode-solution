@@ -348,4 +348,42 @@ public class ArraySolution2 {
 
         return result;
     }
+
+    // Leetcode problem: 221
+    /*
+     * Dynamic programming
+     * Dp[i][j] = if matrix[i][j] == 1 then 1 + min(dp[i-1][j-1], dp[i-1][j], dp[i][j-1]), otherwise 0
+     * Memory can be optimized.
+     * We can save only last 2 rows
+     * */
+    public int maximalSquare(char[][] matrix) {
+        int maxSquareArea = matrix[0][0] - '0';
+
+        int[][] dp = new int[matrix.length][matrix[0].length];
+
+        for (int col = 0; col < matrix[0].length; col++) {
+            if (matrix[0][col] == '1') {
+                dp[0][col] = 1;
+                maxSquareArea = 1;
+            }
+        }
+
+        for (int row = 0; row < matrix.length; row++) {
+            if (matrix[row][0] == '1') {
+                dp[row][0] = 1;
+                maxSquareArea = 1;
+            }
+        }
+
+        for (int row = 1; row < matrix.length; row++) {
+            for (int col = 1; col < matrix[0].length; col++) {
+                if (matrix[row][col] == '1') {
+                    dp[row][col] = 1 + Math.min(dp[row - 1][col - 1], Math.min(dp[row][col - 1], dp[row - 1][col]));
+                    maxSquareArea = Math.max(maxSquareArea, dp[row][col] * dp[row][col]);
+                }
+            }
+        }
+
+        return maxSquareArea;
+    }
 }
