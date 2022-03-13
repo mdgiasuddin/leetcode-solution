@@ -125,26 +125,6 @@ public class FifthSolution {
         return dp[n];
     }
 
-    public int[] singleNumber(int[] nums) {
-        int xor = 0;
-        int[] result = new int[2];
-
-        for (int num : nums) {
-            xor ^= num;
-        }
-
-        xor &= -xor;
-
-        for (int num : nums) {
-            if ((xor & num) == 0)
-                result[0] ^= num;
-            else
-                result[1] ^= num;
-        }
-
-        return result;
-    }
-
     private boolean solveNQueen(int[][] board, int n, int row) {
         if (row >= n)
             return true;

@@ -321,4 +321,31 @@ public class ArraySolution2 {
 
         return maxArea;
     }
+
+    // Leetcode problem: 260
+    /*
+     * Find XOR of all numbers
+     * Since exactly two numbers are unique, any set bit from XOR will come from either 1 unique number
+     * So, we can differentiate all the number with respect to any of the set bit of XOR
+     * The rightmost set bit can be found by '&' operation with its negative number
+     * */
+    public int[] singleNumber(int[] nums) {
+        int xor = 0;
+        int[] result = new int[2];
+
+        for (int num : nums) {
+            xor ^= num;
+        }
+
+        xor &= -xor;
+
+        for (int num : nums) {
+            if ((xor & num) == 0)
+                result[0] ^= num;
+            else
+                result[1] ^= num;
+        }
+
+        return result;
+    }
 }
