@@ -257,4 +257,36 @@ public class ArraySolution2 {
 
         return buildTree(preorder, inorder, 0, preorder.length - 1, map);
     }
+
+    // Leetcode problem: 84
+    /*
+     * Use stack to maintain last height
+     * If new height is in increasing order then simply push it to the stack
+     * Else pop all the height greater than to new height & update the maximum area
+     * Then push new height
+     * Finally pop all the height and check it forms maximum area or not
+     * */
+    public int largestRectangleArea(int[] heights) {
+        int maxArea = 0;
+        Stack<Map.Entry<Integer, Integer>> stack = new Stack<>();
+
+        for (int i = 0; i < heights.length; i++) {
+            int start = i;
+
+            while (!stack.isEmpty() && stack.peek().getValue() > heights[i]) {
+                Map.Entry<Integer, Integer> rectangle = stack.pop();
+                maxArea = Math.max(maxArea, rectangle.getValue() * (i - rectangle.getKey()));
+                start = rectangle.getKey();
+            }
+
+            stack.push(Map.entry(start, heights[i]));
+        }
+
+        while (!stack.isEmpty()) {
+            Map.Entry<Integer, Integer> rectangle = stack.pop();
+            maxArea = Math.max(maxArea, rectangle.getValue() * (heights.length - rectangle.getKey()));
+        }
+
+        return maxArea;
+    }
 }
