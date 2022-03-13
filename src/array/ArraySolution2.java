@@ -402,7 +402,10 @@ public class ArraySolution2 {
         int leftMax = 0;
         int totalWater = 0;
 
+        // Leftmost pilar cannot trap water, so start from index 1
         for (int i = 1; i < max; i++) {
+
+            // Update the left boundary
             if (height[i] > height[leftMax])
                 leftMax = i;
 
@@ -410,6 +413,7 @@ public class ArraySolution2 {
         }
 
         int rightMax = n - 1;
+        // Rightmost pilar cannot trap water, so start with index n-2
         for (int i = n - 2; i > max; i--) {
             if (height[i] > height[rightMax])
                 rightMax = i;
