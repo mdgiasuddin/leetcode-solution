@@ -1,5 +1,7 @@
 package indefinite;
 
+import pair.Pair;
+
 import java.util.*;
 
 public class FifthSolution {
@@ -408,21 +410,6 @@ public class FifthSolution {
         }
         System.out.println();
         return dp[max];
-    }
-
-    class Pair {
-        public int first;
-        public int second;
-
-        public Pair() {
-            this.first = 0;
-            this.second = 0;
-        }
-
-        public Pair(int first, int second) {
-            this.first = first;
-            this.second = second;
-        }
     }
 
     public boolean PredictTheWinner(int[] nums) {

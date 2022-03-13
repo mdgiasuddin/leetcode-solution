@@ -1,6 +1,7 @@
 package array;
 
 import indefinite.TreeNode;
+import pair.Pair;
 
 import java.util.*;
 
@@ -268,23 +269,54 @@ public class ArraySolution2 {
      * */
     public int largestRectangleArea(int[] heights) {
         int maxArea = 0;
-        Stack<Map.Entry<Integer, Integer>> stack = new Stack<>();
+        Stack<Pair> stack = new Stack<>();
 
         for (int i = 0; i < heights.length; i++) {
             int start = i;
 
-            while (!stack.isEmpty() && stack.peek().getValue() > heights[i]) {
-                Map.Entry<Integer, Integer> rectangle = stack.pop();
-                maxArea = Math.max(maxArea, rectangle.getValue() * (i - rectangle.getKey()));
-                start = rectangle.getKey();
+            while (!stack.isEmpty() && stack.peek().second > heights[i]) {
+                Pair indexHeight = stack.pop();
+                maxArea = Math.max(maxArea, indexHeight.second * (i - indexHeight.first));
+                start = indexHeight.first;
             }
 
-            stack.push(Map.entry(start, heights[i]));
+            stack.push(new Pair(start, heights[i]));
         }
 
         while (!stack.isEmpty()) {
-            Map.Entry<Integer, Integer> rectangle = stack.pop();
-            maxArea = Math.max(maxArea, rectangle.getValue() * (heights.length - rectangle.getKey()));
+            Pair indexHeight = stack.pop();
+            maxArea = Math.max(maxArea, indexHeight.second * (heights.length - indexHeight.first));
+        }
+
+        return maxArea;
+    }
+
+    // Leetcode problem: 85
+    /*
+     * This problem is similar to the largest rectangle in histogram (Leetcode problem: 85)
+     * Build up histogram for every row
+     * Then use the rectangle in histogram
+     * */
+    public int maximalRectangle(char[][] matrix) {
+        int[][] histograms = new int[matrix.length][matrix[0].length];
+
+        for (int i = 0; i < matrix[0].length; i++) {
+            histograms[0][i] = matrix[0][i] - '0';
+        }
+
+        for (int i = 1; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                if (matrix[i][j] == '1') {
+                    histograms[i][j] = 1 + histograms[i - 1][j];
+                } else {
+                    histograms[i][j] = 0;
+                }
+            }
+        }
+
+        int maxArea = 0;
+        for (int i = 0; i < histograms.length; i++) {
+            maxArea = Math.max(maxArea, largestRectangleArea(histograms[i]));
         }
 
         return maxArea;
