@@ -421,4 +421,5 @@ public class ArraySolution2 {
         }
         return totalWater;
     }
+
 }

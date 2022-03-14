@@ -41,4 +41,31 @@ public class ArraySolution3 {
 
         return buildTree(inorder, postorder, 0, postorder.length - 1, map);
     }
+
+    // Leetcode problem: 64
+    /*
+     * Since move directions are only right and down, sum distance of every index will be gid[i][j] + Min(left, up)
+     * */
+    public int minPathSum(int[][] grid) {
+        int m = grid.length, n = grid[0].length;
+        int[][] dp = new int[m][n];
+
+        dp[0][0] = grid[0][0];
+
+        for (int col = 1; col < n; col++) {
+            dp[0][col] += (grid[0][col] + dp[0][col - 1]);
+        }
+
+        for (int row = 1; row < m; row++) {
+            dp[row][0] += (grid[row][0] + dp[row - 1][0]);
+        }
+
+        for (int row = 1; row < m; row++) {
+            for (int col = 1; col < n; col++) {
+                dp[row][col] = grid[row][col] + Math.min(dp[row - 1][col], dp[row][col - 1]);
+            }
+        }
+
+        return dp[m - 1][n - 1];
+    }
 }
