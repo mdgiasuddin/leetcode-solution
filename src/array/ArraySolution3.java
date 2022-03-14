@@ -171,4 +171,76 @@ public class ArraySolution3 {
 
         return false;
     }
+
+    // Leetcode problem: 75
+    /*
+     * Count the number of 0, 1, 2
+     * Then fill the array with the count of 0, 1, 2 respectively
+     * There is an advanced solution called 3 pointer solution
+     * */
+    public void sortColors(int[] nums) {
+        /*int zeros = 0, ones = 0, twos = 0;
+
+        for (int num : nums) {
+            if (num == 0) {
+                zeros++;
+            } else if (num == 1) {
+                ones++;
+            } else {
+                twos++;
+            }
+        }
+
+        int i = 0;
+        while (i < nums.length) {
+            if (i >= zeros + ones) {
+                nums[i] = 2;
+            } else if (i >= zeros) {
+                nums[i] = 1;
+            } else {
+                nums[i] = 0;
+            }
+            i++;
+        }*/
+
+        // Advanced solution
+        int low = 0, mid = 0, high = nums.length - 1;
+
+        while (mid <= high) {
+            if (nums[mid] == 0) {
+                swap(nums, low, mid);
+                low++;
+                mid++;
+            } else if (nums[mid] == 1) {
+                mid++;
+            } else {
+                swap(nums, mid, high);
+                high--;
+            }
+        }
+    }
+
+    void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+
+    // Leetcode problem: 137
+    /*
+     * The problem is tricky.
+     * Maintain 2 variables. one and two
+     * one contain the number which occurs just once. and two contain the number which occurs just twice. The number which occurs thrice
+     * are discarded by both one and two
+     * */
+    public int singleNumber(int[] nums) {
+        int one = 0, two = 0;
+
+        for (int num : nums) {
+            one = (one ^ num) & ~two;
+            two = (two ^ num) & ~one;
+        }
+
+        return one;
+    }
 }
