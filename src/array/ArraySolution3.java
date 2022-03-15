@@ -1,9 +1,12 @@
 package array;
 
 import indefinite.TreeNode;
+import pair.Pair;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
+import java.util.Queue;
 
 public class ArraySolution3 {
 
@@ -282,6 +285,54 @@ public class ArraySolution3 {
             nums[right] = temp;
             left++;
             right--;
+        }
+    }
+
+    public int numIslands(char[][] grid) {
+        int m = grid.length, n = grid[0].length;
+
+        if (m == 0 && n == 0)
+            return 0;
+
+        boolean[][] visited = new boolean[m][n];
+        int[][] directions = {
+                {0, 1},
+                {0, -1},
+                {1, 0},
+                {-1, 0}
+        };
+
+        int island = 0;
+        for (int row = 0; row < m; row++) {
+            for (int col = 0; col < n; col++) {
+                if (grid[row][col] == '1' && !visited[row][col]) {
+                    bfsGrid(grid, visited, directions, row, col);
+                    island++;
+                }
+            }
+        }
+
+        return island;
+    }
+
+    public void bfsGrid(char[][] grid, boolean[][] visited, int[][] directions, int row, int col) {
+        Queue<Pair> queue = new LinkedList<>();
+
+        queue.add(new Pair(row, col));
+        visited[row][col] = true;
+
+        while (!queue.isEmpty()) {
+            Pair temp = queue.poll();
+
+            for (int[] direction : directions) {
+                int r = temp.first + direction[0];
+                int c = temp.second + direction[1];
+
+                if (r >= 0 && r < grid.length && c >= 0 && c < grid[0].length && grid[r][c] == '1' && !visited[r][c]) {
+                    queue.add(new Pair(r, c));
+                    visited[r][c] = true;
+                }
+            }
         }
     }
 }
