@@ -261,4 +261,27 @@ public class ArraySolution3 {
     }
 
     // Leetcode problem: 189
+    /*
+     * [1, 2, 3, 4, 5, 6, 7] k = 2
+     * Reverse full array => [7, 6 | 5, 4, 3, 2, 1]
+     * Reverse first k and last n-k element => [6, 7 | 1, 2, 3, 4, 5]
+     * */
+    public void rotate(int[] nums, int k) {
+        int n = nums.length;
+        k %= n;
+
+        reverseArray(nums, 0, n - 1);
+        reverseArray(nums, 0, k - 1);
+        reverseArray(nums, k, n - 1);
+    }
+
+    public void reverseArray(int[] nums, int left, int right) {
+        while (left < right) {
+            int temp = nums[left];
+            nums[left] = nums[right];
+            nums[right] = temp;
+            left++;
+            right--;
+        }
+    }
 }
