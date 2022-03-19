@@ -507,5 +507,4 @@ public class ArraySolution3 {
         return start;
     }
 
-    // Leetcode problem: 240
 }
