@@ -13,6 +13,8 @@ public class ArraySolution3 {
     public static void main(String[] args) {
         ArraySolution3 arraySolution3 = new ArraySolution3();
 
+        int[] nums = {3, 2, 1, 5, 6, 4};
+        System.out.println(arraySolution3.findKthLargest(nums, 2));
     }
 
     // Leetcode problem: 106
@@ -223,12 +225,6 @@ public class ArraySolution3 {
         }
     }
 
-    void swap(int[] nums, int i, int j) {
-        int temp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = temp;
-    }
-
     // Leetcode problem: 137
     /*
      * The problem is tricky.
@@ -390,19 +386,93 @@ public class ArraySolution3 {
      * Dynamic programming
      * dp[i] = Max(nums[i] + dp[i-2], dp[i-1]
      * */
-    public int rob(int[] nums) {
+    public int robI(int[] nums) {
 
-        int[] dp = new int[nums.length];
+        if (nums.length == 1)
+            return nums[0];
 
-        dp[0] = nums[0];
-        dp[1] = Math.max(nums[0], nums[1]);
+        int first = nums[0], second = Math.max(nums[0], nums[1]);
 
         for (int i = 2; i < nums.length; i++) {
-            dp[i] = Math.max(nums[i] + dp[i - 2], dp[i - 1]);
+            int third = Math.max(nums[i] + first, second);
+            first = second;
+            second = third;
         }
 
-        return dp[nums.length - 1];
+        return second;
     }
 
     // Leetcode problem: 213
+    /*
+     * This problem is similar to House Robber I (Leetcode problem: 198)
+     * The only difference is, the houses are in circle. The first index and last index are adjacent
+     * Calculate rob omitting the last and omitting the first.
+     * Then return the maximum of this two
+     * */
+    public int rob(int[] nums) {
+        if (nums.length == 1)
+            return nums[0];
+
+        return Math.max(rob(nums, 0, nums.length - 2), rob(nums, 1, nums.length - 1));
+    }
+
+    public int rob(int[] nums, int left, int right) {
+        if (right - left + 1 == 1)
+            return nums[left];
+
+        if (right - left + 1 == 2)
+            return Math.max(nums[left], nums[right]);
+
+        int first = nums[left], second = Math.max(nums[left], nums[left + 1]);
+
+        for (int i = left + 2; i <= right; i++) {
+            int third = Math.max(nums[i] + first, second);
+            first = second;
+            second = third;
+        }
+
+        return second;
+    }
+
+    // Leetcode problem: 215
+    /*
+     * Quick select algorithm
+     * Find partition and check if the partition index is kth largest index
+     * If kth largest lies left side then partition in left otherwise right
+     * */
+    public int findKthLargest(int[] nums, int k) {
+        return findKthLargest(nums, 0, nums.length - 1, k);
+    }
+
+    public int findKthLargest(int[] nums, int left, int right, int k) {
+        int partitionIndex = partition(nums, left, right);
+        if (nums.length - k == partitionIndex) {
+            return nums[partitionIndex];
+        }
+        if (nums.length - k < partitionIndex) {
+            return findKthLargest(nums, left, partitionIndex - 1, k);
+        }
+        return findKthLargest(nums, partitionIndex + 1, right, k);
+    }
+
+    public int partition(int[] nums, int left, int right) {
+        int pivot = nums[right];
+
+        int j = left - 1;
+        for (int i = left; i <= right; i++) {
+            if (nums[i] < pivot) {
+                j++;
+                swap(nums, i, j);
+            }
+        }
+        swap(nums, j + 1, right);
+
+        return j + 1;
+    }
+
+    void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
 }
