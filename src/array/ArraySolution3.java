@@ -475,4 +475,37 @@ public class ArraySolution3 {
         nums[i] = nums[j];
         nums[j] = temp;
     }
+
+    // Leetcode problem: 134
+    public int canCompleteCircuit(int[] gas, int[] cost) {
+        int gasAvailable = 0;
+        for (int i = 0; i < gas.length; i++) {
+            gasAvailable += gas[i] - cost[i];
+        }
+
+        // If gas value is negative then it is not possible to visit all station
+        if (gasAvailable < 0) {
+            return -1;
+        }
+
+        // Else there must be one station from where all station can be visited
+        int start = 0;
+        gasAvailable = 0;
+        for (int i = 0; i < gas.length; i++) {
+            gasAvailable += gas[i] - cost[i];
+
+            // If gas available becomes negative it is not possible to start from any station up to i'th station
+            // From start station to i'th, all station have contribution to gas available. So, if from start it is not possible
+            // Then it is impossible from any other middle station
+            if (gasAvailable < 0) {
+                gasAvailable = 0;
+                start = i + 1;
+            }
+
+        }
+
+        return start;
+    }
+
+    // Leetcode problem: 240
 }
