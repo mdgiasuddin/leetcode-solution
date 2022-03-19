@@ -81,22 +81,6 @@ public class FifthSolution {
         return dp[nums.length - 1];
     }
 
-    public int hIndex(int[] citations) {
-        Arrays.sort(citations);
-        int left = 0, n = citations.length, right = n - 1, ans = 0;
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
-            if (citations[mid] < n - mid) {
-                left = mid + 1;
-            } else {
-                ans = n - mid;
-                right = mid - 1;
-            }
-        }
-
-        return ans;
-    }
-
     public int hIndex2(int[] citations) {
         int left = 0, n = citations.length, right = n - 1, ans = 0;
         while (left <= right) {
