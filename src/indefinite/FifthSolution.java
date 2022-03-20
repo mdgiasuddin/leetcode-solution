@@ -342,40 +342,6 @@ public class FifthSolution {
         return result;
     }
 
-    public int lengthOfLIS(int[] nums) {
-        int[] dp = new int[nums.length];
-        Arrays.fill(dp, 1);
-        int[] seqIdx = new int[nums.length];
-        Arrays.fill(seqIdx, -1);
-
-        for (int i = 1; i < nums.length; i++) {
-            for (int j = i - 1; j >= 0; j--) {
-                if (nums[i] > nums[j]) {
-                    if (1 + dp[j] > dp[i]) {
-                        dp[i] = 1 + dp[j];
-                        seqIdx[i] = j;
-                    }
-                }
-            }
-
-        }
-
-        int max = 0;
-        for (int i = 0; i < dp.length; i++) {
-            if (dp[i] > dp[max])
-                max = i;
-        }
-
-        System.out.print("increasing sequence: ");
-        int idx = max;
-        while (idx >= 0) {
-            System.out.print(nums[idx] + " ");
-            idx = seqIdx[idx];
-        }
-        System.out.println();
-        return dp[max];
-    }
-
     public boolean PredictTheWinner(int[] nums) {
         Pair[][] dp = new Pair[nums.length][nums.length];
         for (int i = 0; i < nums.length; i++) {
