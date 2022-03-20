@@ -130,5 +130,37 @@ public class ArraySolution4 {
     }
 
     // Leetcode problem: 304
+    /*
+    [
+        [3, 0, 1, 4, 2],
+        [5, 6, 3, 2, 1],
+        [1, 2, 0, 1, 5],
+        [4, 1, 0, 1, 7],
+        [1, 0, 3, 0, 5]
+    ],
+    * Build up sum from (0, 0) to every index
+    * */
+
+
     // Leetcode problem: 322
+    /*
+     * Dynamic programming
+     * */
+    public int coinChange(int[] coins, int amount) {
+        int[] dp = new int[amount + 1];
+        Arrays.fill(dp, amount + 1);
+        dp[0] = 0;
+
+        // Calculate the possible minimum coin number for every number 1 to amount
+        for (int i = 1; i <= amount; i++) {
+            for (int coin : coins) {
+                // If coin can be taken then update the dp[i]
+                if (coin <= i) {
+                    dp[i] = Math.min(dp[i], 1 + dp[i - coin]);
+                }
+            }
+        }
+
+        return dp[amount] == amount + 1 ? -1 : dp[amount];
+    }
 }
