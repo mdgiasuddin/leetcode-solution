@@ -67,6 +67,68 @@ public class ArraySolution4 {
     }
 
     // Leetcode problem: 289
+    /*
+     * Traverse each index and update it according to the living cell of the surrounding neighbours
+     * Since we don't want to use extra memory use (0->0 = 0, 0->1 = 2, 1->0 = 1, 1->1 = 3)
+     * In second time traversing we change the 1, 2, 3 value
+     * */
+    public void gameOfLife(int[][] board) {
+        int[][] neighbours = {
+                {0, -1}, // left
+                {0, 1}, // right
+                {-1, 0}, // up
+                {1, 0}, // down
+                {-1, -1}, // up-left
+                {-1, 1}, // up-right
+                {1, 1}, // down-right
+                {1, -1} // down-left
+        };
+
+        for (int row = 0; row < board.length; row++) {
+            for (int col = 0; col < board[0].length; col++) {
+                int livingCell = numberOfLivingCells(board, neighbours, row, col);
+                if (board[row][col] == 0) {
+                    if (livingCell == 3) {
+                        board[row][col] = 2;
+                    } else {
+                        board[row][col] = 0;
+                    }
+                } else {
+                    if (livingCell == 2 || livingCell == 3) {
+                        board[row][col] = 3;
+                    } else {
+                        board[row][col] = 1;
+                    }
+                }
+            }
+        }
+
+        for (int row = 0; row < board.length; row++) {
+            for (int col = 0; col < board[0].length; col++) {
+                if (board[row][col] == 1) {
+                    board[row][col] = 0;
+                } else if (board[row][col] == 2 || board[row][col] == 3) {
+                    board[row][col] = 1;
+                }
+            }
+        }
+    }
+
+    public int numberOfLivingCells(int[][] board, int[][] neighbours, int row, int col) {
+
+        int livingCell = 0;
+        for (int[] neighbour : neighbours) {
+            int neighbourRow = row + neighbour[0];
+            int neighbourCol = col + neighbour[1];
+
+            if (neighbourRow >= 0 && neighbourRow < board.length && neighbourCol >= 0 && neighbourCol < board[0].length) {
+                livingCell += board[neighbourRow][neighbourCol] % 2;
+            }
+        }
+
+        return livingCell;
+    }
+
     // Leetcode problem: 304
     // Leetcode problem: 322
 }
