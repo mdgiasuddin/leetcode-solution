@@ -19,22 +19,42 @@ public class ArraySolution2 {
      * BFS
      * */
     public int jump(int[] nums) {
-        if (nums.length < 2) {
-            return 0;
-        }
-        int[] array = new int[nums.length];
-        Arrays.fill(array, Integer.MAX_VALUE);
+//        if (nums.length < 2) {
+//            return 0;
+//        }
+//        int[] array = new int[nums.length];
+//        Arrays.fill(array, Integer.MAX_VALUE);
+//
+//        array[0] = 0;
+//        for (int i = 0; i < nums.length - 1; i++) {
+//            for (int j = i + 1; j <= i + nums[i] && j < array.length; j++) {
+//                array[j] = Math.min(array[j], array[i] + 1);
+//                if (j == array.length - 1)
+//                    return array[j];
+//            }
+//        }
+//
+//        return array[array.length - 1];
 
-        array[0] = 0;
+        // This problem can be solved by O(n) time
+
+        int currentReach, maxReach, jump;
+        currentReach = maxReach = jump = 0;
+
         for (int i = 0; i < nums.length - 1; i++) {
-            for (int j = i + 1; j <= i + nums[i] && j < array.length; j++) {
-                array[j] = Math.min(array[j], array[i] + 1);
-                if (j == array.length - 1)
-                    return array[j];
+            // If jump from there can reach more than previous calculated position
+            if (i + nums[i] > maxReach) {
+                maxReach = i + nums[i];
+            }
+
+            // If i reaches to the currently possible then 1 more jump needed to go further position
+            if (i == currentReach) {
+                jump++;
+                currentReach = maxReach;
             }
         }
 
-        return array[array.length - 1];
+        return jump;
     }
 
     // Leetcode problem: 55

@@ -332,19 +332,6 @@ public class FourthSolution {
         return result;
     }
 
-    public int uniquePaths(int m, int n) {
-        int N = m + n - 2, r = Math.min(m, n) - 1;
-        if (N <= 1)
-            return 1;
-
-        Long result = 1L;
-        for (int i = 1; i <= r; i++) {
-            result = (result * (N - i + 1)) / i;
-        }
-
-        return result.intValue();
-    }
-
     public void combine(List<List<Integer>> result, List<Integer> currentList, int cur, int n, int k) {
         if (currentList.size() == k) {
             result.add(new ArrayList<>(currentList));
