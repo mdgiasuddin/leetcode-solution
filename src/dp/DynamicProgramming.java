@@ -1,7 +1,6 @@
 package dp;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class DynamicProgramming {
 
@@ -145,5 +144,61 @@ public class DynamicProgramming {
             }
         }
         return dp[n];
+    }
+
+    // Leetcode problem: 377
+    public int combinationSum4(int[] nums, int target) {
+        int[] dp = new int[target + 1];
+        dp[0] = 1;
+
+        for (int i = 1; i <= target; i++) {
+            dp[i] = 0;
+            for (int num : nums) {
+                // dp[i-num] already built and add num with it
+                if (num <= i && dp[i - num] > 0) {
+                    dp[i] += dp[i - num];
+                }
+            }
+        }
+
+        return dp[target];
+    }
+
+
+    // Leetcode problem: 403
+    /*
+     * Build up a set for every stone how many jumps are possible
+     * */
+    public boolean canCross(int[] stones) {
+        Map<Integer, HashSet<Integer>> map = new HashMap<>();
+
+        for (int stone : stones) {
+            map.put(stone, new HashSet<>());
+        }
+
+        map.get(0).add(1);
+
+        for (int stone : stones) {
+            HashSet<Integer> jumps = map.get(stone);
+
+            for (int jump : jumps) {
+                int reach = stone + jump;
+
+                if (reach == stones[stones.length - 1])
+                    return true;
+
+                // If a stone is reached, update the jump option for it
+                if (map.containsKey(reach)) {
+                    if (jump - 1 > 0) {
+                        // Ignore 0 as jump option
+                        map.get(reach).add(jump - 1);
+                    }
+                    map.get(reach).add(jump);
+                    map.get(reach).add(jump + 1);
+                }
+            }
+        }
+
+        return false;
     }
 }
