@@ -203,20 +203,6 @@ public class FourthSolution {
         findMode(root.right, result);
     }
 
-    public int minimumTotal(List<List<Integer>> triangle) {
-        int n = triangle.size();
-        List<Integer> dp = new ArrayList<>();
-        for (int i = 0; i < n; i++)
-            dp.add(triangle.get(n - 1).get(i));
-
-        for (int i = triangle.size() - 2; i >= 0; i--) {
-            for (int j = 0; j < triangle.get(i).size(); j++) {
-                dp.set(j, Math.min(dp.get(j), dp.get(j + 1)) + triangle.get(i).get(j));
-            }
-        }
-
-        return dp.get(0);
-    }
 
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();

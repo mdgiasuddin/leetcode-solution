@@ -1,5 +1,8 @@
 package dp;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class DynamicProgramming {
 
     public static void main(String[] args) {
@@ -98,5 +101,49 @@ public class DynamicProgramming {
         }
 
         return fibN;
+    }
+
+    // Leetcode problem: 120
+    /*
+     *           [[2],[3,4],[6,5,7],[4,1,8,3]]
+     *                       2
+     *                     3   4
+     *                    6  5  7
+     *                   4  1  8 3
+     * In the last level sum is equal to the element
+     * Then calculate the sum for middle element
+     * */
+    public int minimumTotal(List<List<Integer>> triangle) {
+        int n = triangle.size();
+        int[] dp = new int[triangle.size()];
+        for (int i = 0; i < n; i++)
+            dp[i] = triangle.get(n - 1).get(i);
+
+        for (int i = triangle.size() - 2; i >= 0; i--) {
+            for (int j = 0; j < triangle.get(i).size(); j++) {
+                dp[j] = Math.min(dp[j], dp[j + 1]) + triangle.get(i).get(j);
+            }
+        }
+
+        return dp[0];
+    }
+
+    // Leetcode problem: 279
+    /*
+     * Build up a dp table
+     * dp[i] = minimum of 1 + dp[i-j*j] for any i-j*j >= 0
+     * 1 for 1 square j*j and others for dp[i-j*j]
+     * */
+    public int numSquares(int n) {
+        int[] dp = new int[n + 1];
+        Arrays.fill(dp, Integer.MAX_VALUE);
+        dp[0] = 0;
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; i - j * j >= 0; j++) {
+                dp[i] = Math.min(dp[i], 1 + dp[i - j * j]);
+            }
+        }
+        return dp[n];
     }
 }
