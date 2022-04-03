@@ -5,7 +5,10 @@ import java.util.*;
 public class DynamicProgramming {
 
     public static void main(String[] args) {
+        DynamicProgramming dynamicProgramming = new DynamicProgramming();
 
+        int[] array = {1, 2, 5};
+        System.out.println(dynamicProgramming.change(5, array));
     }
 
     // Leetcode problem: 62
@@ -201,4 +204,63 @@ public class DynamicProgramming {
 
         return false;
     }
+
+    // Leetcode problem: 518
+    public int change(int amount, int[] coins) {
+        /*int[][] dp = new int[coins.length][amount + 1];
+
+        // For amount 0 the option is always 1 (Omit all the coins)
+        for (int row = 0; row < coins.length; row++) {
+            dp[row][0] = 1;
+        }
+
+        for (int row = 0; row < coins.length; row++) {
+            for (int col = 1; col <= amount; col++) {
+                // For first row try to take the first coin, else 0
+                if (row == 0 && col - coins[row] >= 0) {
+                    dp[row][col] = dp[row][col - coins[row]];
+                } else if (row > 0) {
+                    // For other rows, if coin can be taken, take it or omit it
+                    if (col - coins[row] >= 0) {
+                        dp[row][col] = dp[row][col - coins[row]] + dp[row - 1][col];
+                    }
+                    // If coin cannot be taken just omit it
+                    else {
+                        dp[row][col] = dp[row - 1][col];
+                    }
+                }
+            }
+        }
+
+        return dp[coins.length - 1][amount];*/
+
+        // Memory can be optimized by storing only last 2 rows
+        int[][] dp = new int[2][amount + 1];
+        dp[0][0] = dp[1][0] = 1;
+
+        for (int row = 0; row < coins.length; row++) {
+            for (int col = 1; col <= amount; col++) {
+                // For first row try to take the first coin, else 0
+                if (row == 0 && col - coins[row] >= 0) {
+                    dp[0][col] = dp[0][col - coins[row]];
+                } else if (row > 0) {
+                    // For other rows, if coin can be taken, take it or omit it
+                    if (col - coins[row] >= 0) {
+                        dp[1][col] = dp[1][col - coins[row]] + dp[0][col];
+                    }
+                    // If coin cannot be taken just omit it
+                    else {
+                        dp[1][col] = dp[0][col];
+                    }
+                }
+            }
+            // Store the last calculated row to the first
+            if (row > 0)
+                dp[0] = dp[1];
+        }
+
+        return dp[0][amount];
+    }
+
+    // Leetcode problem: 435 greedy
 }
