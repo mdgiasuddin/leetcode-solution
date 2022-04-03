@@ -300,30 +300,35 @@ public class DynamicProgramming {
 
     // Leetcode problem: 673
     public int findNumberOfLIS(int[] nums) {
-        int[] dp = new int[nums.length];
+        int[] lenLIS = new int[nums.length];
+        int[] countLIS = new int[nums.length];
 
-        Arrays.fill(dp, 1);
-        int numberOfLIS = 1, maxLIS = 1;
+        Arrays.fill(lenLIS, 1);
+        Arrays.fill(countLIS, 1);
+
+        int maxLIS = 1;
         for (int i = 1; i < nums.length; i++) {
             for (int j = i - 1; j >= 0; j--) {
                 if (nums[j] < nums[i]) {
-                    if (1 + dp[j] >= dp[i]) {
-                        dp[i] = 1 + dp[j];
-
-                        if (dp[i] > maxLIS) {
-                            maxLIS = dp[i];
-                            numberOfLIS = 1;
-                        } else if (dp[i] == maxLIS) {
-                            numberOfLIS++;
-                        }
+                    if (1 + lenLIS[j] > lenLIS[i]) {
+                        lenLIS[i] = 1 + lenLIS[j];
+                        countLIS[i] = countLIS[j];
+                    } else if (1 + lenLIS[j] == lenLIS[i]) {
+                        countLIS[i] += countLIS[j];
                     }
-                } else if (dp[i] == maxLIS) {
-                    numberOfLIS++;
                 }
+            }
+            maxLIS = Math.max(maxLIS, lenLIS[i]);
+        }
+
+        int result = 0;
+        for (int i = 0; i < lenLIS.length; i++) {
+            if (lenLIS[i] == maxLIS) {
+                result += countLIS[i];
             }
         }
 
-        return numberOfLIS;
+        return result;
     }
 
 }
