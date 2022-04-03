@@ -7,8 +7,8 @@ public class DynamicProgramming {
     public static void main(String[] args) {
         DynamicProgramming dynamicProgramming = new DynamicProgramming();
 
-        int[] array = {1, 2, 5};
-        System.out.println(dynamicProgramming.change(5, array));
+        int[] array = {1, 3, 5, 4, 7};
+        System.out.println(dynamicProgramming.findNumberOfLIS(array));
     }
 
     // Leetcode problem: 62
@@ -262,5 +262,68 @@ public class DynamicProgramming {
         return dp[0][amount];
     }
 
-    // Leetcode problem: 435 greedy
+    // Leetcode problem: 413
+    /*
+     * [1, 2, 3, 4, 5, 7, 9, 11] => [1, 2, 3, 4, 5] & [5, 7, 9, 11] can be used to build slices
+     * With [1, 2, 3, 4, 5] 1 + 2 + 3 slices can be build with 5, 4, 3 elements respectively
+     * When an element's difference is matched with previous one then the slice number for this element
+     * will be 1 more than the previous index
+     * */
+    public int numberOfArithmeticSlices(int[] nums) {
+        /*int[] dp = new int[nums.length];
+        int result = 0;
+
+        for (int i = 2; i < nums.length; i++) {
+            if (nums[i] - nums[i - 1] == nums[i - 1] - nums[i - 2]) {
+                dp[i] = 1 + dp[i - 1];
+                result += dp[i];
+            }
+        }
+
+        return result;*/
+
+        // Here memory can be optimized because dp[i] depends only on dp[i-1], store dp[i-1] only
+
+        int dp = 0, result = 0;
+        for (int i = 2; i < nums.length; i++) {
+            if (nums[i] - nums[i - 1] == nums[i - 1] - nums[i - 2]) {
+                result += ++dp;
+            } else {
+                // Restore dp
+                dp = 0;
+            }
+        }
+
+        return result;
+
+    }
+
+    // Leetcode problem: 673
+    public int findNumberOfLIS(int[] nums) {
+        int[] dp = new int[nums.length];
+
+        Arrays.fill(dp, 1);
+        int numberOfLIS = 1, maxLIS = 1;
+        for (int i = 1; i < nums.length; i++) {
+            for (int j = i - 1; j >= 0; j--) {
+                if (nums[j] < nums[i]) {
+                    if (1 + dp[j] >= dp[i]) {
+                        dp[i] = 1 + dp[j];
+
+                        if (dp[i] > maxLIS) {
+                            maxLIS = dp[i];
+                            numberOfLIS = 1;
+                        } else if (dp[i] == maxLIS) {
+                            numberOfLIS++;
+                        }
+                    }
+                } else if (dp[i] == maxLIS) {
+                    numberOfLIS++;
+                }
+            }
+        }
+
+        return numberOfLIS;
+    }
+
 }
