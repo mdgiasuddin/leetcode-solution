@@ -299,6 +299,10 @@ public class DynamicProgramming {
     }
 
     // Leetcode problem: 673
+    /*
+     * Build up 2 array. 1 for length of LIS, another for the count of path to build the LIS
+     * Sum up the count of path for maximum LIS
+     * */
     public int findNumberOfLIS(int[] nums) {
         int[] lenLIS = new int[nums.length];
         int[] countLIS = new int[nums.length];
@@ -310,10 +314,13 @@ public class DynamicProgramming {
         for (int i = 1; i < nums.length; i++) {
             for (int j = i - 1; j >= 0; j--) {
                 if (nums[j] < nums[i]) {
+                    // When LIS if updated then reset the count of path
                     if (1 + lenLIS[j] > lenLIS[i]) {
                         lenLIS[i] = 1 + lenLIS[j];
                         countLIS[i] = countLIS[j];
-                    } else if (1 + lenLIS[j] == lenLIS[i]) {
+                    }
+                    // If same length LIS  found the add the count of [j] with the existing count of [i]
+                    else if (1 + lenLIS[j] == lenLIS[i]) {
                         countLIS[i] += countLIS[j];
                     }
                 }
