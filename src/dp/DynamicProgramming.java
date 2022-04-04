@@ -8,7 +8,7 @@ public class DynamicProgramming {
         DynamicProgramming dynamicProgramming = new DynamicProgramming();
 
         int[] array = {1, 3, 5, 4, 7};
-        System.out.println(dynamicProgramming.findNumberOfLIS(array));
+        System.out.println(dynamicProgramming.integerReplacement(2147483647));
     }
 
     // Leetcode problem: 62
@@ -337,5 +337,42 @@ public class DynamicProgramming {
 
         return result;
     }
+
+    // Letcode problem: 397
+    /*
+     * DP with memoization
+     * It can be done by greedy solution
+     * For odd, if n = 4x + 1 or 3 then go to n-1 otherwise n + 1
+     * */
+    public int integerReplacement(int n) {
+        return integerReplaceMemoization(n, new HashMap<>());
+    }
+
+    public int integerReplaceMemoization(int n, Map<Integer, Integer> map) {
+        if (n == 1)
+            return 0;
+
+        if (map.containsKey(n))
+            return map.get(n);
+
+        if (n == Integer.MAX_VALUE) {
+            int result = 2 + integerReplaceMemoization(n - 1, map);
+            map.put(n, result);
+
+            return result;
+        }
+
+        if (n % 2 == 0) {
+            int result = 1 + integerReplaceMemoization(n / 2, map);
+            map.put(n, result);
+            return result;
+        }
+
+        int result = 1 + Math.min(integerReplaceMemoization(n - 1, map), integerReplaceMemoization(n + 1, map));
+        map.put(n, result);
+        return result;
+    }
+
+    // Leetcode problem: 714
 
 }

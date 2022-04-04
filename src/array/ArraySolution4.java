@@ -207,4 +207,32 @@ public class ArraySolution4 {
 
         return dp[max];
     }
+
+    // Leetcode problem: 396
+    public int maxRotateFunction(int[] nums) {
+        int ans, rotateSum = 0, sum = 0;
+
+        int n = nums.length;
+        for (int i = 0; i < n; i++) {
+            rotateSum += i * nums[i];
+            sum += nums[i];
+        }
+
+        ans = rotateSum;
+
+        for (int i = 1; i < n; i++) {
+            // After rotate last element goes to first position, so its contribution becomes 0
+            // So, subtract the previous contribution
+            // The contribution of other elements is increase by 1 multiplication
+            // So, add it. (Sum - last element)
+            // Every time last element is updated. [n-i]
+            rotateSum -= (n - 1) * nums[n - i];
+            rotateSum += (sum - nums[n - i]);
+
+            // Update ans
+            ans = Math.max(ans, rotateSum);
+        }
+
+        return ans;
+    }
 }

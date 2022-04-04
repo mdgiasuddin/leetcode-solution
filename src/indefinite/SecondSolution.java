@@ -274,18 +274,6 @@ public class SecondSolution {
         return minValue;
     }
 
-    public int maxRotateFunction(int[] nums) {
-        if (nums.length == 1)
-            return 0;
-        int sum = 0;
-        for (int i = 1; i < nums.length; i++) {
-            sum += (i - 1) * nums[i];
-        }
-        sum += nums[0] * (nums.length - 1);
-
-        return sum;
-    }
-
     public String addStrings(String num1, String num2) {
         if (num1.equals("0") && num2.equals("0"))
             return "0";
