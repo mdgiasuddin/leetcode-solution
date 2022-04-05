@@ -36,4 +36,13 @@ public class SlidingWindowSolution {
         return (arr[k] > arr[k - 1] && arr[k] > arr[k + 1])
                 || (arr[k] < arr[k - 1] && arr[k] < arr[k + 1]);
     }
+
+    // Leetcode problem: 1025
+    public boolean divisorGame(int n) {
+
+        // Anyone who will get odd number will always lose and even will always win
+        // For odd number, there is no option except odd number. He will leave even n for another
+
+        return n % 2 == 0;
+    }
 }

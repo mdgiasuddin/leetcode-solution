@@ -53,4 +53,29 @@ public class DFSSolution {
 
         return dp[n];
     }
+
+    // Leetcode problem: 1306
+    /*
+     * Jump Game III
+     * */
+    public boolean canReach(int[] arr, int start) {
+        boolean[] visited = new boolean[arr.length];
+        return canReach(arr, visited, start);
+    }
+
+    public boolean canReach(int[] arr, boolean[] visited, int current) {
+        if (current >= 0 && current < arr.length && arr[current] == 0) {
+            return true;
+        }
+        if (current < 0 || current >= arr.length || visited[current]) {
+            return false;
+        }
+
+        visited[current] = true;
+        if (canReach(arr, visited, current + arr[current])
+                || canReach(arr, visited, current - arr[current]))
+            return true;
+        visited[current] = false;
+        return false;
+    }
 }
