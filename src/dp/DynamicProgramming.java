@@ -8,7 +8,7 @@ public class DynamicProgramming {
         DynamicProgramming dynamicProgramming = new DynamicProgramming();
 
         int[] array = {1, 3, 5, 4, 7};
-        System.out.println(dynamicProgramming.integerReplacement(2147483647));
+        System.out.println(dynamicProgramming.knightDialer(10));
     }
 
     // Leetcode problem: 62
@@ -374,5 +374,68 @@ public class DynamicProgramming {
     }
 
     // Leetcode problem: 714
+
+    // Leetcode problem: 935
+    /*
+     *          1    2   3
+     *          4    5   6
+     *          7    8   9
+     *               0
+     * */
+    public int knightDialer(int n) {
+        // paths[i] means the position from which i is reachable => 0 is reachable from {4, 6}, 1 is reachable from {6, 8} ...
+        int[][] paths = {{4, 6}, {6, 8}, {7, 9}, {4, 8}, {0, 3, 9}, {}, {0, 1, 7}, {2, 6}, {1, 3}, {2, 4}};
+
+        int MOD = 1000000007;
+
+        /*int[][] dp = new int[n][10];
+        // dp[i][j] means the number of path after i step ending at j
+        // After 1 step, ending at any position the path will be 1. Just place the night to that position
+        Arrays.fill(dp[0], 1);
+        for (int i = 1; i < n; i++) {
+            for (int j = 0; j < 10; j++) {
+
+                // From every position from which j is reachable, update the value of dp[i][j]
+                for (int pos : paths[j]) {
+                    dp[i][j] = (dp[i][j] + dp[i - 1][pos]) % MOD;
+                }
+            }
+        }
+
+        // Sum up the values stored for every position in last row
+        int result = 0;
+        for (int val : dp[n - 1]) {
+            result = (result + val) % MOD;
+        }
+
+        return result;*/
+
+        // Here memory can be optimized by storing last 2 rows only
+
+        int[][] dp = new int[2][10];
+        // dp[i][j] means the number of path after i step ending at j
+        // After 1 step, ending at any position the path will be 1. Just place the night to that position
+        Arrays.fill(dp[0], 1);
+        for (int i = 1; i < n; i++) {
+            for (int j = 0; j < 10; j++) {
+
+                // From every position from which j is reachable, update the value of dp[i][j]
+                for (int pos : paths[j]) {
+                    dp[1][j] = (dp[1][j] + dp[0][pos]) % MOD;
+                }
+            }
+
+            System.arraycopy(dp[1], 0, dp[0], 0, 10);
+            Arrays.fill(dp[1], 0);
+        }
+
+        int result = 0;
+        for (int val : dp[0]) {
+            result = (result + val) % MOD;
+        }
+
+        return result;
+
+    }
 
 }
