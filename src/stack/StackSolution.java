@@ -25,8 +25,6 @@ public class StackSolution {
             } else {
                 stack.add(Integer.parseInt(op));
             }
-
-            System.out.println("Stack: " + stack);
         }
 
         int result = 0;
