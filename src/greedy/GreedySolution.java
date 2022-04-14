@@ -63,4 +63,25 @@ public class GreedySolution {
         return result;
     }
 
+    // Leetcode problem: 1029
+    /*
+     * Sort the array based on the difference between ai and bi
+     * From first half take ai and from second half take bi
+     * */
+    public int twoCitySchedCost(int[][] costs) {
+        Arrays.sort(costs, Comparator.comparingInt(a -> a[0] - a[1]));
+
+        int result = 0;
+
+        for (int i = 0; i < costs.length / 2; i++) {
+            result += costs[i][0];
+        }
+
+        for (int i = costs.length / 2; i < costs.length; i++) {
+            result += costs[i][1];
+        }
+
+        return result;
+    }
+
 }
