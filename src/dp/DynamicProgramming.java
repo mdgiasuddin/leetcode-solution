@@ -7,8 +7,8 @@ public class DynamicProgramming {
     public static void main(String[] args) {
         DynamicProgramming dynamicProgramming = new DynamicProgramming();
 
-        int[] array = {1, 3, 5, 4, 7};
-        System.out.println(dynamicProgramming.knightDialer(10));
+        int[] array = {100,-1,-100,-1,100};
+        System.out.println(dynamicProgramming.maxResult(array, 2));
     }
 
     // Leetcode problem: 62
@@ -436,6 +436,24 @@ public class DynamicProgramming {
 
         return result;
 
+    }
+
+    // Leetcode problem: 1696 Have to solve
+    public int maxResult(int[] nums, int k) {
+        int[] dp = new int[nums.length];
+        dp[0] = nums[0];
+
+        for (int i = 1; i < nums.length; i++) {
+            int maxFromPrev = dp[i - 1];
+            for (int j = i - 2; j >= i - k && j >= 0; j--) {
+                maxFromPrev = Math.max(maxFromPrev, dp[j]);
+                System.out.println("Hello: " + j);
+            }
+            dp[i] = maxFromPrev + nums[i];
+            System.out.println(i + " " + nums[i] + " " + dp[i]);
+        }
+
+        return dp[nums.length - 1];
     }
 
 }

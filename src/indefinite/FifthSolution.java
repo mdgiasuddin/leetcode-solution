@@ -45,21 +45,6 @@ public class FifthSolution {
         return distance[distance.length - 1];
     }
 
-    public int maxResult(int[] nums, int k) {
-        int[] dp = new int[nums.length];
-        Arrays.fill(dp, Integer.MIN_VALUE);
-        dp[0] = nums[0];
-
-        for (int i = 1; i < nums.length; i++) {
-            for (int j = 1; j <= k && i - j >= 0; j++) {
-                dp[i] = Math.max(dp[i], nums[i] + dp[i - j]);
-                System.out.println("i dp[i]: " + i + " " + dp[i]);
-            }
-        }
-
-        return dp[nums.length - 1];
-    }
-
     public int hIndex2(int[] citations) {
         int left = 0, n = citations.length, right = n - 1, ans = 0;
         while (left <= right) {
