@@ -3,6 +3,11 @@ package dfs;
 import indefinite.TreeNode;
 import pair.Pair;
 
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Set;
+
 public class DFSSolution {
 
     public static void main(String[] args) {
@@ -77,5 +82,76 @@ public class DFSSolution {
             return true;
         visited[current] = false;
         return false;
+    }
+
+    // Leetcode problem 934
+    /*
+     * First run dfs to find first island
+     * Then run bfs to find the shortest path to second island from first island
+     * */
+    public int shortestBridge(int[][] grid) {
+        Set<Pair> visited = new HashSet<>();
+        int[][] directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+
+        for (int row = 0; row < grid.length; row++) {
+            for (int col = 0; col < grid[0].length; col++) {
+                if (grid[row][col] == 1) {
+                    dfsGrid(grid, directions, visited, row, col);
+
+                    Queue<Pair> queue = new LinkedList<>(visited);
+                    return bfsGrid(grid, directions, visited, queue);
+                }
+            }
+        }
+        return 0;
+    }
+
+    private boolean isInvalid(int[][] grid, int row, int col) {
+        return row < 0 || row >= grid.length || col < 0 || col >= grid[0].length;
+    }
+
+    private void dfsGrid(int[][] grid, int[][] directions, Set<Pair> visited, int row, int col) {
+        if (isInvalid(grid, row, col) || grid[row][col] == 0 || visited.contains(new Pair(row, col)))
+            return;
+
+        visited.add(new Pair(row, col));
+
+        for (int[] direction : directions) {
+            dfsGrid(grid, directions, visited, row + direction[0], col + direction[1]);
+        }
+    }
+
+    private int bfsGrid(int[][] grid, int[][] directions, Set<Pair> visited, Queue<Pair> queue) {
+
+        int result = 0;
+
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+
+            while (size-- > 0) {
+                Pair pair = queue.poll();
+                for (int[] direction : directions) {
+                    int rowNew = pair.first + direction[0];
+                    int colNew = pair.second + direction[1];
+                    if (isInvalid(grid, rowNew, colNew) || visited.contains(new Pair(rowNew, colNew))) {
+                        continue;
+
+                    }
+
+                    // If second island is reached, return the path length
+                    if (grid[rowNew][colNew] == 1) {
+                        return result;
+                    }
+
+                    visited.add(new Pair(pair.first + direction[0], pair.second + direction[1]));
+                    queue.add(new Pair(pair.first + direction[0], pair.second + direction[1]));
+                }
+            }
+
+            result++;
+
+        }
+
+        return result;
     }
 }

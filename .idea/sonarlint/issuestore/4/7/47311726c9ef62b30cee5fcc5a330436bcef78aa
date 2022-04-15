@@ -1,0 +1,18 @@
+
+k	java:S117a"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(÷ûğÛûÿÿÿÿ
+k	java:S117a"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(÷ûğÛûÿÿÿÿ
+l	java:S117…"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ªûÔúÿÿÿÿ
+N	java:S106"9Replace this use of System.out or System.err by a logger.(©ÉˆÅ
+V	java:S125)"<This block of commented-out lines of code should be removed.(¡˜ê¦üÿÿÿÿ
+:
+java:S16596"Declare "n" on a separate line.(šƒ¼‰ûÿÿÿÿ
+^
+java:S1659a"CDeclare "fibN_1" and all following declarations on a separate line.(÷ûğÛûÿÿÿÿ
+R	java:S125Ò"<This block of commented-out lines of code should be removed.(â³–Ö
+@
+java:S1659Ÿ"$Declare "result" on a separate line.(‘Ê¤ìûÿÿÿÿ
+W	java:S125‘"<This block of commented-out lines of code should be removed.(ß‹àùÿÿÿÿ
+W	java:S125‘"<This block of commented-out lines of code should be removed.(ß‹àùÿÿÿÿ
+R	java:S125‡"<This block of commented-out lines of code should be removed.(¼Å³Ç
+O	java:S106Â"9Replace this use of System.out or System.err by a logger.(²ŞÚã
+O	java:S106Å"9Replace this use of System.out or System.err by a logger.(«¹Ş¸

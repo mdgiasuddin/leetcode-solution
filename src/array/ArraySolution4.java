@@ -1,6 +1,8 @@
 package array;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class ArraySolution4 {
     public static void main(String[] args) {
@@ -234,5 +236,30 @@ public class ArraySolution4 {
         }
 
         return ans;
+    }
+
+    // Leetcode problem: 1260
+    public List<List<Integer>> shiftGrid(int[][] grid, int k) {
+        int m = grid.length, n = grid[0].length;
+        int[] tempArray = new int[m * n];
+
+        for (int row = 0; row < m; row++) {
+            for (int col = 0; col < n; col++) {
+                int newPos = (row * n + col + k) % (m * n);
+                tempArray[newPos] = grid[row][col];
+            }
+        }
+
+        List<List<Integer>> result = new ArrayList<>();
+
+        for (int row = 0; row < m; row++) {
+            List<Integer> currentRow = new ArrayList<>();
+            for (int col = 0; col < n; col++) {
+                currentRow.add(tempArray[row * n + col]);
+            }
+            result.add(currentRow);
+        }
+
+        return result;
     }
 }
