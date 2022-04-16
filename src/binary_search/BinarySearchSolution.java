@@ -123,11 +123,13 @@ public class BinarySearchSolution {
             int mid = left + (right - left) / 2;
 
             if (x - arr[mid] > arr[mid + k] - x) {
-                // Inclusion of mid will not give optimal result, because [mid+1] to [mid+k] is optimal
+                // Inclusion of mid will not give optimal result, because [mid+1] to [mid+k] is optimal.
+                // Right answer lies in [mid+1] to right
                 left = mid + 1;
             } else {
-                // Inclusion of [mid+k] is not optimal, so start value must be <<== mid-
-                // Shift right to the mid
+                // Inclusion of [mid+k] is not optimal, so start value must be <<== mid.
+                // Shift right to the mid.
+                // Right answer lies in [left] to [mid+k-1]
                 right = mid;
             }
 
