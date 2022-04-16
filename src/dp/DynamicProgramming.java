@@ -94,7 +94,9 @@ public class DynamicProgramming {
         if (n <= 2)
             return n;
 
-        int fibN_2 = 1, fibN_1 = 2, fibN = 2;
+        int fibN_2 = 1;
+        int fibN_1 = 2;
+        int fibN = 2;
 
         for (int i = 3; i <= n; i++) {
             fibN = fibN_1 + fibN_2;
@@ -447,10 +449,8 @@ public class DynamicProgramming {
             int maxFromPrev = dp[i - 1];
             for (int j = i - 2; j >= i - k && j >= 0; j--) {
                 maxFromPrev = Math.max(maxFromPrev, dp[j]);
-                System.out.println("Hello: " + j);
             }
             dp[i] = maxFromPrev + nums[i];
-            System.out.println(i + " " + nums[i] + " " + dp[i]);
         }
 
         return dp[nums.length - 1];

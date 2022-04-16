@@ -3,10 +3,7 @@ package dfs;
 import indefinite.TreeNode;
 import pair.Pair;
 
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Set;
+import java.util.*;
 
 public class DFSSolution {
 
@@ -39,26 +36,6 @@ public class DFSSolution {
         return new Pair(withNode, withoutNode);
     }
 
-    // Leetcode problem 343
-    public int integerBreak(int n) {
-        int[] dp = new int[n + 1];
-
-        for (int i = 1; i <= n; i++) {
-
-            // If i is any middle number, we can use i without breaking it
-            if (i < n)
-                dp[i] = i;
-
-            // Try to get maximum by breaking
-            // Since there is j & i - j, we can loop only left side
-            for (int j = 1; j <= i / 2; j++) {
-                dp[i] = Math.max(dp[i], dp[j] * dp[i - j]);
-            }
-        }
-
-        return dp[n];
-    }
-
     // Leetcode problem: 1306
     /*
      * Jump Game III
@@ -77,11 +54,8 @@ public class DFSSolution {
         }
 
         visited[current] = true;
-        if (canReach(arr, visited, current + arr[current])
-                || canReach(arr, visited, current - arr[current]))
-            return true;
-        visited[current] = false;
-        return false;
+        return canReach(arr, visited, current + arr[current])
+                || canReach(arr, visited, current - arr[current]);
     }
 
     // Leetcode problem 934
@@ -153,5 +127,45 @@ public class DFSSolution {
         }
 
         return result;
+    }
+
+    // Leetcode problem: 802
+    /*
+     * A node is a terminal node if there are no outgoing edges.
+     * A node is a safe node if every possible path starting from that node leads to a terminal node.
+     * */
+    public List<Integer> eventualSafeNodes(int[][] graph) {
+        Map<Integer, Boolean> isSafe = new HashMap<>();
+
+        List<Integer> safeNodes = new ArrayList<>();
+        for (int i = 0; i < graph.length; i++) {
+            if (dfsSafeNode(i, graph, isSafe)) {
+                safeNodes.add(i);
+            }
+        }
+
+        return safeNodes;
+    }
+
+    private boolean dfsSafeNode(int node, int[][] graph, Map<Integer, Boolean> isSafe) {
+
+        // If node is already visited then return
+        if (isSafe.containsKey(node)) {
+            return isSafe.get(node);
+        }
+
+        // Initially set it false
+        isSafe.put(node, false);
+
+        for (int neighbor : graph[node]) {
+            // If any of the neighbors is not safe then the node is not safe
+            if (!dfsSafeNode(neighbor, graph, isSafe)) {
+                return false;
+            }
+        }
+
+        // If all the neighbors are safe then the node is safe
+        isSafe.replace(node, true);
+        return true;
     }
 }
