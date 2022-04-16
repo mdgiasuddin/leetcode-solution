@@ -1,7 +1,6 @@
 package binary_search;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class BinarySearchSolution {
@@ -75,14 +74,6 @@ public class BinarySearchSolution {
         return subArray <= m;
     }
 
-    private int findMaxInArray(int[] nums) {
-        int max = Integer.MIN_VALUE;
-        for (int num : nums) {
-            max = Math.max(max, num);
-        }
-        return max;
-    }
-
     private int findSumInOfElements(int[] nums) {
         int sum = 0;
         for (int num : nums) {
@@ -149,9 +140,8 @@ public class BinarySearchSolution {
      * Try all value from 1 to the largest value by binary search
      * */
     public int minEatingSpeed(int[] piles, int h) {
-        Arrays.sort(piles);
         int left = 1;
-        int right = piles[piles.length - 1];
+        int right = findMaxInArray(piles);
 
         int ans = right;
         while (left <= right) {
@@ -176,6 +166,14 @@ public class BinarySearchSolution {
         }
 
         return hourTaken <= hour;
+    }
+
+    private int findMaxInArray(int[] nums) {
+        int max = Integer.MIN_VALUE;
+        for (int num : nums) {
+            max = Math.max(max, num);
+        }
+        return max;
     }
 
 }
