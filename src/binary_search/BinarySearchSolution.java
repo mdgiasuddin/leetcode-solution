@@ -1,11 +1,34 @@
 package binary_search;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BinarySearchSolution {
 
     public static void main(String[] args) {
-        System.out.println(LocalDate.now().atStartOfDay());
+        int[] array = {2, 6, 10, 15, 20, 30, 32, 36, 40, 45};
+        BinarySearchSolution binarySearchSolution = new BinarySearchSolution();
+
+        binarySearchSolution.findClosestElements(array, 3, 16);
+
+    }
+
+    // Leetcode problem: 167
+    public boolean isPerfectSquare(int num) {
+
+        int start = 1;
+        int end = num;
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+
+            if (num / mid == mid) {
+                return mid * mid == num;
+            } else if (num / mid < mid)
+                end = mid - 1;
+            else
+                start = mid + 1;
+        }
+        return false;
     }
 
     // Leetcode problem: 410
@@ -65,6 +88,57 @@ public class BinarySearchSolution {
             sum += num;
         }
         return sum;
+    }
+
+    // Leetcode problem: 441
+    public int arrangeCoins(int n) {
+        long left = 1;
+        long right = n;
+        long ans = 1;
+
+        while (left <= right) {
+            long mid = left + (right - left) / 2;
+
+            if (mid * (mid + 1) / 2 <= n) {
+                ans = mid;
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+
+        return (int) ans;
+    }
+
+    // Leetcode problem: 658
+    /*
+     * The problem is tricky. Need careful attention
+     * Find the starting position
+     * */
+    public List<Integer> findClosestElements(int[] arr, int k, int x) {
+        int left = 0;
+        int right = arr.length - k;
+
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+
+            if (x - arr[mid] > arr[mid + k] - x) {
+                // Inclusion of mid will not give optimal result, because [mid+1] to [mid+k] is optimal
+                left = mid + 1;
+            } else {
+                // Inclusion of [mid+k] is not optimal, so start value must be <<== mid-
+                // Shift right to the mid
+                right = mid;
+            }
+
+        }
+
+        List<Integer> result = new ArrayList<>();
+        for (int i = left; i < left + k; i++) {
+            result.add(arr[i]);
+        }
+
+        return result;
     }
 
 }

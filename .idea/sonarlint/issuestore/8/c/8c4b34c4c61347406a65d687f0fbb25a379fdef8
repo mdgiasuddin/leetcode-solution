@@ -1,0 +1,85 @@
+
+K
+java:S1066¨"/Merge this if statement with the enclosing one.(Òíëøÿÿÿÿ
+E
+java:S1066½"/Merge this if statement with the enclosing one.(ØÃ¦*
+Y
+java:S2259ß"CA "NullPointerException" could be thrown; "nodeA" is nullable here.(Á¹ĞO
+Z
+java:S2259ä"CA "NullPointerException" could be thrown; "nodeB" is nullable here.(‘Â›¢
+Y
+java:S2259é"CA "NullPointerException" could be thrown; "nodeA" is nullable here.(Á¹ĞO
+Z
+java:S2259ê"CA "NullPointerException" could be thrown; "nodeB" is nullable here.(‘Â›¢
+a
+java:S2259ˆ"EA "NullPointerException" could be thrown; "midPrev" is nullable here.(ÔÚÿ¥üÿÿÿÿ
+X
+java:S2259p"BA "NullPointerException" could be thrown; "left" is nullable here.(×”ÚŒ
+S
+java:S2589Ô"7Remove this expression which always evaluates to "true"(À›×©øÿÿÿÿ
+Z
+java:S2583y"DChange this condition so that it does not always evaluate to "false"(””ƒª
+Z
+java:S2583|"DChange this condition so that it does not always evaluate to "false"(ö‘ıê
+W
+java:S1659"BDeclare "node2" and all following declarations on a separate line.(‚Ùı-
+\
+java:S1659)"ADeclare "idx2" and all following declarations on a separate line.(çáïµıÿÿÿÿ
+=
+java:S1659>""Declare "lenB" on a separate line.(Ö°Š»úÿÿÿÿ
+Q
+java:S1117l";Rename "result" which hides the field declared at line 623.(¨·Û 
+W
+java:S1117";Rename "result" which hides the field declared at line 623.(äù‚¬üÿÿÿÿ
+R
+java:S1117Ô";Rename "result" which hides the field declared at line 623.(á§Îë
+P
+java:S1117İ"9Rename "node" which hides the field declared at line 455.(ÜÈ²±
+_
+java:S1659¬"CDeclare "second" and all following declarations on a separate line.(â¾‡¯ıÿÿÿÿ
+6
+java:S1659Í"Declare "n" on a separate line.(ôé°Ä
+Z
+java:S1659Ğ">Declare "j" and all following declarations on a separate line.(ãäÚ‘üÿÿÿÿ
+W
+java:S1117Î";Rename "result" which hides the field declared at line 623.(™¸İåÿÿÿÿÿ
+D	java:S108Ô")Either remove or fill this block of code.(À›×©øÿÿÿÿ
+X
+java:S1659à"ADeclare "even" and all following declarations on a separate line.(Òü¹
+9
+java:S1659÷""Declare "fast" on a separate line.(ÄÅµÉ
+9
+java:S1659ƒ""Declare "fast" on a separate line.(ÄÅµÉ
+9
+java:S1659Œ""Declare "next" on a separate line.(ËËê‹
+Y
+java:S1659”"BDeclare "node2" and all following declarations on a separate line.(À¶ÁÑ
+T	java:S106‹"9Replace this use of System.out or System.err by a logger.(ĞÇ¥Ñøÿÿÿÿ
+O
+java:S1117¤"9Rename "node" which hides the field declared at line 455.(ËÂ­G
+Y
+java:S1659­"BDeclare "nextB" and all following declarations on a separate line.(°—Ù±
+P
+java:S1117­"9Rename "node" which hides the field declared at line 455.(°—Ù±
+]
+java:S1659ß"ADeclare "node" and all following declarations on a separate line.(®Ê‚ÿÿÿÿÿ
+U
+java:S1117ß"9Rename "node" which hides the field declared at line 455.(®Ê‚ÿÿÿÿÿ
+9
+java:S1659ö""Declare "fast" on a separate line.(ÄÅµÉ
+>
+java:S1659†""Declare "fast" on a separate line.(À§‹Éøÿÿÿÿ
+]
+java:S1659“"ADeclare "fast" and all following declarations on a separate line.(÷¼Ñ­úÿÿÿÿ
+i
+java:S3776©"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(Ú¾£²
+^
+java:S1659­"GDeclare "insertNode" and all following declarations on a separate line.(¨Ü°›
+9
+java:S1659Ì""Declare "lenB" on a separate line.(×Âû—
+:
+java:S1659Î"#Declare "nodeB" on a separate line.(”æğğ
+W
+java:S1117";Rename "result" which hides the field declared at line 623.(äù‚¬üÿÿÿÿ
+W
+java:S1117Ê";Rename "result" which hides the field declared at line 623.(äù‚¬üÿÿÿÿ

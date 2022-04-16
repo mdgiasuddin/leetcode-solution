@@ -1,8 +1,62 @@
 package sliding;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class SlidingWindowSolution {
     public static void main(String[] args) {
 
+    }
+
+    // Leetode problem: 187
+    /*
+     * Solve the problem by sliding window
+     * Instead of storing string calculate hash value and store.
+     * Keep track if the string has been taken in result or not
+     * Calculate hash value by 4-based integer where A=0, C=1, G=2, T=3
+     * */
+    public List<String> findRepeatedDnaSequences(String s) {
+        List<String> resultList = new ArrayList<>();
+
+        if (s.length() <= 10)
+            return resultList;
+
+        Map<Character, Integer> dnaCharValue = new HashMap<>() {{
+            put('A', 0);
+            put('C', 1);
+            put('G', 2);
+            put('T', 3);
+        }};
+
+        Map<Integer, Boolean> hashValueMap = new HashMap<>();
+
+        int hashValue = 0;
+        for (int i = 0; i < 10; i++) {
+            hashValue = (hashValue << 2) + dnaCharValue.get(s.charAt(i));
+        }
+
+        hashValueMap.put(hashValue, false);
+
+        int leftPos = 0;
+        int fourPower = 262144; // 4^9
+        for (int i = 10; i < s.length(); i++) {
+            hashValue -= (fourPower * dnaCharValue.get(s.charAt(leftPos++))); // Subtract the value left character
+            hashValue <<= 2; // Shift the position to left
+            hashValue += dnaCharValue.get(s.charAt(i)); // Add new character
+
+            if (hashValueMap.containsKey(hashValue)) {
+                if (!hashValueMap.get(hashValue)) {
+                    resultList.add(s.substring(leftPos, i + 1));
+                    hashValueMap.replace(hashValue, true);
+                }
+            } else {
+                hashValueMap.put(hashValue, false);
+            }
+        }
+
+        return resultList;
     }
 
     // Leetcode problem: 978

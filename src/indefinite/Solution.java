@@ -458,24 +458,6 @@ public class Solution {
         }
     }
 
-    public boolean isPerfectSquare(int num) {
-        if (num == 0)
-            return true;
-
-        int start = 1, end = num, mid;
-        while (start <= end) {
-            mid = start + (end - start) / 2;
-
-            if (num / mid == mid) {
-                return mid * mid == num;
-            } else if (num / mid < mid)
-                end = mid - 1;
-            else
-                start = mid + 1;
-        }
-        return false;
-    }
-
     int guess(int num) {
         int pick = 6;
         if (num == pick)

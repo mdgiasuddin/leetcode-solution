@@ -95,7 +95,8 @@ public class StringSolution7 {
      * Update the maximum point of unbalanced closing bracket
      * */
     public int minSwaps(String s) {
-        int unbalancedClosing = 0, maxUnbalanced = 0;
+        int unbalancedClosing = 0;
+        int maxUnbalanced = 0;
 
         for (int i = 0; i < s.length(); i++) {
             if (s.charAt(i) == '[') {
