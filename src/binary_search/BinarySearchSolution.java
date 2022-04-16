@@ -1,6 +1,7 @@
 package binary_search;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BinarySearchSolution {
@@ -141,6 +142,40 @@ public class BinarySearchSolution {
         }
 
         return result;
+    }
+
+    // Leetcode problem: 875
+    /*
+     * Try all value from 1 to the largest value by binary search
+     * */
+    public int minEatingSpeed(int[] piles, int h) {
+        Arrays.sort(piles);
+        int left = 1;
+        int right = piles[piles.length - 1];
+
+        int ans = right;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            if (canEatAll(piles, mid, h)) {
+                ans = mid;
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        }
+
+        return ans;
+    }
+
+    private boolean canEatAll(int[] piles, int eat, int hour) {
+
+        int hourTaken = 0;
+        for (int pile : piles) {
+            hourTaken += (pile + eat - 1) / eat; // Take the ceiling value
+        }
+
+        return hourTaken <= hour;
     }
 
 }
