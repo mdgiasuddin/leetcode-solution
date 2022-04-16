@@ -1,0 +1,38 @@
+
+n	java:S135'"YReduce the total number of break and continue statements in this loop to use at most one.(ôö¡É
+K
+java:S1066à"/Merge this if statement with the enclosing one.(ï±Ğ¯ÿÿÿÿÿ
+F
+java:S1066™"/Merge this if statement with the enclosing one.(¬­Ö
+K
+java:S1066 "/Merge this if statement with the enclosing one.(¼™ùøÿÿÿÿ
+f	java:S117‘"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(²¾¾U
+l	java:S117ğ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(“Ø·–üÿÿÿÿ
+f
+java:S1149@"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(£”åû
+f
+java:S1149A"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(ØÎû¦
+T
+java:S1854"9Remove this useless assignment to local variable "array".(ôÙ£¡ÿÿÿÿÿ
+e
+java:S1854	"CRemove this useless assignment to local variable "stringSolution3".(–³Úüÿÿÿÿÿ8çÉëŠƒ0
+V
+java:S1481	"4Remove this unused "stringSolution3" local variable.(–³Úüÿÿÿÿÿ8èÉëŠƒ0
+E
+java:S1481"*Remove this unused "array" local variable.(ôÙ£¡ÿÿÿÿÿ
+Q	java:S125"<This block of commented-out lines of code should be removed.(³‰Î¬
+_
+java:S1659c"DDeclare "current" and all following declarations on a separate line.(„åâ‡úÿÿÿÿ
+m
+java:S2234÷"WParameters to check have the same names but not the same order as the method arguments.(¸Œ7
+5
+java:S1659û"Declare "j" on a separate line.(Ïß÷
+R	java:S125‰"<This block of commented-out lines of code should be removed.(•ÂŞ
+^
+java:S1659"BDeclare "ways1" and all following declarations on a separate line.(ÉúÛîúÿÿÿÿ
+>
+java:S1659Ò"'Declare "remainder" on a separate line.(¹í¼¤
+=
+java:S1659ğ"!Declare "MOD" on a separate line.(“Ø·–üÿÿÿÿ
+h
+java:S3776ƒ"RRefactor this method to reduce its Cognitive Complexity from 24 to the 15 allowed.(¥…˜'
