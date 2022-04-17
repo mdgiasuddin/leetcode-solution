@@ -216,4 +216,38 @@ public class StackSolution {
         return result;
     }
 
+    // Leetcode problem: 735
+    public int[] asteroidCollision(int[] asteroids) {
+        Stack<Integer> stack = new Stack<>();
+
+        for (int asteroid : asteroids) {
+            while (!stack.isEmpty() && asteroid < 0 && stack.peek() > 0) {
+                int diff = stack.peek() + asteroid;
+
+                if (diff > 0) {
+                    // New asteroid is smaller. It will explode
+                    asteroid = 0;
+                } else if (diff < 0) {
+                    // Previous is smaller. It will explode
+                    stack.pop();
+                } else {
+                    // Two are equal. Both will explode
+                    asteroid = 0;
+                    stack.pop();
+                }
+            }
+
+            if (asteroid != 0) {
+                stack.push(asteroid);
+            }
+        }
+
+        int[] result = new int[stack.size()];
+        for (int i = result.length - 1; i >= 0; i--) {
+            result[i] = stack.pop();
+        }
+
+        return result;
+    }
+
 }

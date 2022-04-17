@@ -1,0 +1,13 @@
+
+k
+java:S1149"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(ÑÖÙƒıÿÿÿÿ
+Y
+java:S1854	"CRemove this useless assignment to local variable "stringSolution7".(öÍ§ò
+J
+java:S1481	"4Remove this unused "stringSolution7" local variable.(öÍ§ò
+m
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(ä€¸àùÿÿÿÿ
+U
+java:S1659"?Declare "or" and all following declarations on a separate line.(ïÎ—
+`
+java:S1659ƒ"DDeclare "closing" and all following declarations on a separate line.(ÿè˜øÿÿÿÿ
