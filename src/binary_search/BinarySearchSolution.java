@@ -1,7 +1,9 @@
 package binary_search;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class BinarySearchSolution {
 
@@ -11,6 +13,37 @@ public class BinarySearchSolution {
 
         binarySearchSolution.findClosestElements(array, 3, 16);
 
+    }
+
+    // Leetcode problem: 153
+    public int findMin(int[] nums) {
+        int left = 0;
+        int right = nums.length - 1;
+        int ans = nums[0];
+
+
+        while (left <= right) {
+
+            if (nums[left] < nums[right]) {
+                // Minimum number can be found in previous step, so check if the new is minimum
+                ans = Math.min(ans, nums[left]);
+                break;
+            }
+
+            int mid = left + (right - left) / 2;
+
+            // From next iteration mid will be omitted, so check if it contains the minimum.
+            ans = Math.min(ans, nums[mid]);
+
+            // If left part sorted then there is no chance of minimum value in left side.
+            if (nums[left] <= nums[mid]) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+
+        return ans;
     }
 
     // Leetcode problem: 167
@@ -174,6 +207,47 @@ public class BinarySearchSolution {
             max = Math.max(max, num);
         }
         return max;
+    }
+
+    public int maximumRemovals(String s, String p, int[] removable) {
+        int left = 0;
+        int right = removable.length - 1;
+        int ans = 0;
+        Set<Integer> set = new HashSet<>();
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            if (isSubsequence(s, p, set, removable, mid)) {
+                ans = mid + 1; // mid is 0-indexed, but ans is length
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+
+        return ans;
+    }
+
+    private boolean isSubsequence(String str, String subSeq, Set<Integer> set, int[] removable, int mid) {
+        set.clear();
+        for (int i = 0; i <= mid; i++) {
+            set.add(removable[i]);
+        }
+
+        int idx1 = 0;
+        int idx2 = 0;
+
+        while (idx1 < str.length() && idx2 < subSeq.length()) {
+            if (str.charAt(idx1) != subSeq.charAt(idx2) || set.contains(idx1)) {
+                idx1++;
+                continue;
+            }
+
+            idx1++;
+            idx2++;
+        }
+
+        return idx2 == subSeq.length();
     }
 
 }

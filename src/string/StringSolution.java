@@ -109,29 +109,6 @@ public class StringSolution {
         return ans.toString();
     }
 
-    // Leetcode problem: 20
-    /*
-     * Valid Parenthesis
-     * Use stack to solve the problem
-     * */
-    public boolean isValid(String s) {
-
-        Stack<Character> stack = new Stack<>();
-        for (char ch : s.toCharArray()) {
-            if (ch == '(' || ch == '{' || ch == '[') {
-                stack.push(ch);
-            } else {
-                if (stack.isEmpty())
-                    return false;
-                char top = stack.pop();
-                if ((top == '(' && ch != ')') || (top == '{' && ch != '}') || (top == '[' && ch != ']'))
-                    return false;
-            }
-        }
-
-        return stack.isEmpty();
-    }
-
     // Leetcode problem: 43
     /*
      * Multiply two number by string

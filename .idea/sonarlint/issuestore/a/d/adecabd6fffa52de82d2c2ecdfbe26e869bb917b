@@ -1,101 +1,0 @@
-
-d
-java:S1192µ"HDefine a constant instead of duplicating this literal "Hundred" 4 times.(ºÎ“ÿÿÿÿÿ
-n	java:S135i"YReduce the total number of break and continue statements in this loop to use at most one.(ãéº¦
-8
-java:S1643è"Use a StringBuilder instead.(•ÿÅÿÿÿÿÿ
-3
-java:S1643ë"Use a StringBuilder instead.(Œ÷‰ë
-8
-java:S1643î"Use a StringBuilder instead.(»´¤¬úÿÿÿÿ
-8
-java:S1643ñ"Use a StringBuilder instead.(áŸù‘úÿÿÿÿ
-2
-java:S1643ô"Use a StringBuilder instead.(ØÄõS
-3
-java:S1643÷"Use a StringBuilder instead.(ø¯â
-8
-java:S1643ú"Use a StringBuilder instead.(âê‰Ÿşÿÿÿÿ
-3
-java:S1643ı"Use a StringBuilder instead.(˜ñõ¬
-8
-java:S1643€"Use a StringBuilder instead.(ø­«­ùÿÿÿÿ
-8
-java:S1643ƒ"Use a StringBuilder instead.(Á÷öøÿÿÿÿ
-3
-java:S1643†"Use a StringBuilder instead.(„š·å
-3
-java:S1643‰"Use a StringBuilder instead.(òŸÍ”
-8
-java:S1643Œ"Use a StringBuilder instead.(À›Ø’ıÿÿÿÿ
-Y
-java:S2259Ì"BA "NullPointerException" could be thrown; "prev" is nullable here.(´³¼
-z
-java:S4165‡"cRemove this useless assignment; "minus" already holds the assigned value along all execution paths.(Ã›Í¤
-@
-java:S1659	"%Declare "prevRev" on a separate line.(ã³ùÿÿÿÿ
-5
-java:S1659"Declare "j" on a separate line.(ü™î
-^
-java:S1659"BDeclare "right" and all following declarations on a separate line.(»Ö½¢ûÿÿÿÿ
-^
-java:S1659–"BDeclare "right" and all following declarations on a separate line.(»Ö½¢ûÿÿÿÿ
-;
-java:S1659Ç"Declare "x" on a separate line.(ƒ¿üÍùÿÿÿÿ
-9
-java:S1659é""Declare "node" on a separate line.(ı“¬Ñ
-R
-java:S1117„";Rename "count" which hides the field declared at line 1063.(æÕ¿¼
-`
-java:S1659"DDeclare "current" and all following declarations on a separate line.(Ù÷×³ùÿÿÿÿ
-;
-java:S1659¿"Declare "j" on a separate line.(ªŸ´ìúÿÿÿÿ
-T	java:S106ô"9Replace this use of System.out or System.err by a logger.(µŸŞ…şÿÿÿÿ
-T	java:S106ö"9Replace this use of System.out or System.err by a logger.(¬ñé‡şÿÿÿÿ
-O	java:S106ø"9Replace this use of System.out or System.err by a logger.(Û®÷â
-^
-java:S1659ÿ"BDeclare "ugly3" and all following declarations on a separate line.(«Ôªıÿÿÿÿ
-W
-java:S1659Ÿ"@Declare "end" and all following declarations on a separate line.(ıõÆÂ
-Q
-java:S1854²"5Remove this useless assignment to local variable "n".(ùòË™üÿÿÿÿ
-B
-java:S1481²"&Remove this unused "n" local variable.(ùòË™üÿÿÿÿ
-?
-java:S1659Á"#Declare "right" on a separate line.(÷™¡…şÿÿÿÿ
-\
-java:S1659×"@Declare "end" and all following declarations on a separate line.(ìƒ´œûÿÿÿÿ
-n
-java:S3776¿"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(ÙÛşşÿÿÿÿ
-^
-java:S1659Ä"BDeclare "node2" and all following declarations on a separate line.(¦¹ñøÿÿÿÿ
-T
-java:S1854‰"=Remove this useless assignment to local variable "powerSign".(Ó¹Ïõ
-=
-java:S1659‚"'Declare "powerSign" on a separate line.(Ë›ºN
-D
-java:S1481‚".Remove this unused "powerSign" local variable.(Ë›ºN
-?	java:S108‘")Either remove or fill this block of code.(àØî
-W
-java:S1659™"@Declare "end" and all following declarations on a separate line.(ÎªÈĞ
-@
-java:S1905¬")Remove this unnecessary cast to "double".(÷‹
-A
-java:S1659·"%Declare "subQuot" on a separate line.(»ú—ûÿÿÿÿ
-W	java:S125º"<This block of commented-out lines of code should be removed.(…¢½“úÿÿÿÿ
-T	java:S106½"9Replace this use of System.out or System.err by a logger.(“Ê‡¿ûÿÿÿÿ
-T	java:S106À"9Replace this use of System.out or System.err by a logger.(øÊÎÇûÿÿÿÿ
-T	java:S106Â"9Replace this use of System.out or System.err by a logger.(ÌùÆ‡ÿÿÿÿÿ
-T	java:S106Ä"9Replace this use of System.out or System.err by a logger.(ñåßşÿÿÿÿ
-6
-java:S1659ÿ"Declare "i" on a separate line.(ÆãÎÄ
-9
-java:S1659™""Declare "next" on a separate line.(ò‘›
-]
-java:S1659Õ"ADeclare "prev" and all following declarations on a separate line.(»âğ²úÿÿÿÿ
-Z
-java:S1659"CDeclare "faster" and all following declarations on a separate line.(íÓ ®
-Z
-java:S1659•"CDeclare "slower" and all following declarations on a separate line.(¤Öœí
-2
-java:S3626¿"Remove this redundant jump.(ûÁİ…
