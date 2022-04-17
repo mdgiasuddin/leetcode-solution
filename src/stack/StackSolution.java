@@ -8,7 +8,7 @@ public class StackSolution {
     public static void main(String[] args) {
         StackSolution stackSolution = new StackSolution();
         String[] strings = {"5", "2", "C", "D", "+"};
-        System.out.println(stackSolution.calPoints(strings));
+
     }
 
     // Leetcode problem: 20
@@ -31,6 +31,39 @@ public class StackSolution {
         }
 
         return stack.isEmpty();
+    }
+
+    // Leetcode problem: 71
+    public String simplifyPath(String path) {
+
+        Stack<String> stack = new Stack<>();
+        path = path + "/";
+        StringBuilder current = new StringBuilder();
+
+        for (int i = 0; i < path.length(); i++) {
+
+            if (path.charAt(i) == '/') {
+                if (current.toString().equals("..")) {
+                    if (!stack.isEmpty())
+                        stack.pop();
+                } else if (current.length() > 0 && !current.toString().equals(".")) {
+                    // For consecutive '/' or '.' just ignore it
+                    stack.push(current.toString());
+                }
+                // Reset current string after pushing
+                current = new StringBuilder();
+            } else {
+                // Build up the current directory
+                current.append(path.charAt(i));
+            }
+        }
+
+        StringBuilder result = new StringBuilder();
+        while (!stack.isEmpty()) {
+            result.insert(0, "/" + stack.pop());
+        }
+
+        return (result.length() == 0) ? "/" : result.toString();
     }
 
     // Leetcode problem: 84
@@ -96,6 +129,46 @@ public class StackSolution {
         return maxArea;
     }
 
+    // Leetcode problem: 402
+    /*
+     * Maintain a stack
+     * If digits comes in increasing order just push it
+     * Whenever digit comes in decreasing order then remove all the bigger digits upto k
+     * */
+    public String removeKdigits(String num, int k) {
+        if (num.length() <= k)
+            return "0";
+        Stack<Character> stack = new Stack<>();
+
+        for (int i = 0; i < num.length(); i++) {
+            char ch = num.charAt(i);
+
+            while (!stack.isEmpty() && stack.peek() > ch && k > 0) {
+                stack.pop();
+                k--;
+            }
+            stack.push(ch);
+        }
+
+        // If more digits need to remove the remove from the last
+        while (k > 0) {
+            stack.pop();
+            k--;
+        }
+
+        StringBuilder result = new StringBuilder();
+        while (!stack.isEmpty()) {
+            result.insert(0, stack.pop());
+        }
+
+        // Remove leading zeros
+        String resultString = result.toString();
+        int i = 0;
+        while (i < resultString.length() && resultString.charAt(i) == '0') i++;
+
+        return i == resultString.length() ? "0" : resultString.substring(i);
+    }
+
     // Leetcode problem: 682
     public int calPoints(String[] ops) {
         Stack<Integer> stack = new Stack<>();
@@ -122,4 +195,5 @@ public class StackSolution {
 
         return result;
     }
+
 }
