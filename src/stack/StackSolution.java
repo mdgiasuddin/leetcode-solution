@@ -196,4 +196,24 @@ public class StackSolution {
         return result;
     }
 
+    // Leetcode problem: 739
+    public int[] dailyTemperatures(int[] temperatures) {
+        Stack<Pair> stack = new Stack<>();
+        int[] result = new int[temperatures.length];
+
+        for (int i = 0; i < temperatures.length; i++) {
+
+            // Update the result for all previous day's of which temperature is lower
+            while (!stack.isEmpty() && stack.peek().second < temperatures[i]) {
+                Pair top = stack.pop();
+                result[top.first] = i - top.first;
+            }
+
+            // Push new temperature with index
+            stack.push(new Pair(i, temperatures[i]));
+        }
+
+        return result;
+    }
+
 }
