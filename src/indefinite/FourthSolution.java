@@ -300,24 +300,6 @@ public class FourthSolution {
 
     }
 
-    public void generateParenthesis(List<String> result, String current, int n, int open, int close) {
-        if (open + close == 2 * n) {
-            result.add(current);
-            return;
-        }
-        if (open < n)
-            generateParenthesis(result, current + "(", n, open + 1, close);
-        if (close < open)
-            generateParenthesis(result, current + ")", n, open, close + 1);
-    }
-
-    public List<String> generateParenthesis(int n) {
-        List<String> result = new ArrayList<>();
-        generateParenthesis(result, "", n, 0, 0);
-
-        return result;
-    }
-
     public void combine(List<List<Integer>> result, List<Integer> currentList, int cur, int n, int k) {
         if (currentList.size() == k) {
             result.add(new ArrayList<>(currentList));
