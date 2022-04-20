@@ -136,11 +136,40 @@ public class StackSolution {
         return maxArea;
     }
 
+    // Leetcode problem: 150
+    /*
+     * This problem is similar to post operation equation in data structures course
+     * */
+    public int evalRPN(String[] tokens) {
+        Stack<Integer> stack = new Stack<>();
+
+        for (String token : tokens) {
+            if (token.equals("+") || token.equals("-") || token.equals("*") || token.equals("/")) {
+                int second = stack.pop();
+                int first = stack.pop();
+
+                if (token.equals("+")) {
+                    stack.push(first + second);
+                } else if (token.equals("-")) {
+                    stack.push(first - second);
+                } else if (token.equals("*")) {
+                    stack.push(first * second);
+                } else {
+                    stack.push(first / second);
+                }
+            } else {
+                stack.push(Integer.parseInt(token));
+            }
+        }
+
+        return stack.pop();
+    }
+
     // Leetcode problem: 402
     /*
      * Maintain a stack
      * If digits comes in increasing order just push it
-     * Whenever digit comes in decreasing order then remove all the bigger digits upto k
+     * Whenever digit comes in decreasing order then remove all the bigger digits up to k
      * */
     public String removeKdigits(String num, int k) {
         if (num.length() <= k)
@@ -261,11 +290,13 @@ public class StackSolution {
     /*
      * The problem is tricky
      * Build up a monotonic stack (Non-decreasing stack)
+     * The process of this problem is similar to the largest rectangle in histogram (Leetcode problem: 85)
      * */
     public int maxSumMinProduct(int[] nums) {
         long[] prefix = new long[nums.length + 1];
         long result = 0;
 
+        // Build up prefix sum for all the indices
         for (int i = 1; i <= nums.length; i++) {
             prefix[i] = nums[i - 1] + prefix[i - 1];
         }
