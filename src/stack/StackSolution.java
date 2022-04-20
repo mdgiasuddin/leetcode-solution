@@ -3,6 +3,8 @@ package stack;
 import pair.Pair;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
 public class StackSolution {
@@ -356,6 +358,38 @@ public class StackSolution {
         }
 
         return timeStack.size();
+    }
+
+
+    // Leetcode problem: 496
+    /*
+     * This problem is similar to daily temperature (Leetcode problem: 739)
+     * */
+    public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+
+        Map<Integer, Integer> indices = new HashMap<>();
+        int[] result = new int[nums1.length];
+        Arrays.fill(result, -1);
+
+        for (int i = 0; i < nums1.length; i++) {
+            indices.put(nums1[i], i);
+        }
+
+        Stack<Integer> stack = new Stack<>();
+        for (int num : nums2) {
+
+            // Set greater element for the numbers less than num
+            while (!stack.isEmpty() && stack.peek() < num) {
+                int top = stack.pop();
+                result[indices.get(top)] = num;
+            }
+
+            if (indices.containsKey(num)) {
+                stack.push(num);
+            }
+        }
+
+        return result;
     }
 
 }
