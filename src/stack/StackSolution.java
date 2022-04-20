@@ -9,6 +9,10 @@ public class StackSolution {
         StackSolution stackSolution = new StackSolution();
         String[] strings = {"5", "2", "C", "D", "+"};
 
+        int[] nums = {1, 2, 3, 2};
+
+        System.out.println(stackSolution.maxSumMinProduct(nums));
+
     }
 
     // Leetcode problem: 20
@@ -248,6 +252,44 @@ public class StackSolution {
         }
 
         return result;
+    }
+
+    // Leetcode problem: 1856
+    /*
+     * The problem is tricky
+     * Build up a monotonic stack (Non-decreasing stack)
+     * */
+    public int maxSumMinProduct(int[] nums) {
+        long[] prefix = new long[nums.length + 1];
+        long result = 0;
+
+        for (int i = 1; i <= nums.length; i++) {
+            prefix[i] = nums[i - 1] + prefix[i - 1];
+        }
+
+        Stack<Pair> stack = new Stack<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            int start = i;
+
+            while (!stack.isEmpty() && stack.peek().second > nums[i]) {
+                Pair top = stack.pop();
+                start = top.first;
+                long total = prefix[i] - prefix[start];
+                result = Math.max(result, total * top.second);
+            }
+            stack.add(new Pair(start, nums[i]));
+        }
+
+        while (!stack.isEmpty()) {
+            Pair top = stack.pop();
+            int start = top.first;
+            long total = prefix[nums.length] - prefix[start];
+
+            result = Math.max(result, total * top.second);
+        }
+
+        return (int) (result % 1000000007);
     }
 
 }

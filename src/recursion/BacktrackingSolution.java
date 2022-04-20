@@ -3,10 +3,10 @@ package recursion;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecursionSolution {
+public class BacktrackingSolution {
 
     public static void main(String[] args) {
-        RecursionSolution recursionSolution = new RecursionSolution();
+        BacktrackingSolution recursionSolution = new BacktrackingSolution();
     }
 
     // Leetcode problem: 22
