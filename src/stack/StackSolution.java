@@ -2,6 +2,7 @@ package stack;
 
 import pair.Pair;
 
+import java.util.Arrays;
 import java.util.Stack;
 
 public class StackSolution {
@@ -11,7 +12,9 @@ public class StackSolution {
 
         int[] nums = {1, 2, 3, 2};
 
-        System.out.println(stackSolution.maxSumMinProduct(nums));
+        int[] position = {10, 8, 0, 5, 3};
+        int[] speed = {2, 4, 1, 1, 3};
+        System.out.println(stackSolution.carFleet(12, position, speed));
 
     }
 
@@ -126,8 +129,8 @@ public class StackSolution {
         }
 
         int maxArea = 0;
-        for (int i = 0; i < histograms.length; i++) {
-            maxArea = Math.max(maxArea, largestRectangleArea(histograms[i]));
+        for (int[] histogram : histograms) {
+            maxArea = Math.max(maxArea, largestRectangleArea(histogram));
         }
 
         return maxArea;
@@ -290,6 +293,38 @@ public class StackSolution {
         }
 
         return (int) (result % 1000000007);
+    }
+
+    // Leetcode problem: 853
+    public int carFleet(int target, int[] position, int[] speed) {
+
+        Pair[] pairs = new Pair[position.length];
+
+        for (int i = 0; i < position.length; i++) {
+            pairs[i] = new Pair(position[i], speed[i]);
+        }
+
+        /*
+         * Sort the car revered way based on the position
+         * Any car in behind cannot cross the front car
+         * */
+
+        Arrays.sort(pairs, (a, b) -> b.first - a.first);
+
+        Stack<Double> timeStack = new Stack<>();
+        for (Pair pair : pairs) {
+            double time = (target - pair.first) * 1.0 / pair.second;
+            /*
+             * If any behind car need less time, then it will fleet with front car and reach the destination with the front car.
+             * So don't add this in stack
+             * */
+            if (!timeStack.isEmpty() && time <= timeStack.peek()) {
+                continue;
+            }
+            timeStack.push(time);
+        }
+
+        return timeStack.size();
     }
 
 }
