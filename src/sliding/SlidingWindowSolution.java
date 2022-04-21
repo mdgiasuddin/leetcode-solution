@@ -10,6 +10,54 @@ public class SlidingWindowSolution {
 
     }
 
+    // Leetcode problem: 3
+    /*
+     * Build a map to store index of every character
+     * If a character repeats then update the index and start index of substring
+     * Else update the maximum length so far
+     * */
+    public int lengthOfLongestSubstring(String s) {
+        int maxLength = 0, start = 0;
+        Map<Character, Integer> indexMap = new HashMap<>();
+
+        for (int end = 0; end < s.length(); end++) {
+            char ch = s.charAt(end);
+            if (indexMap.containsKey(ch)) {
+                indexMap.replace(ch, end);
+
+                // Slide start to the next position of non-repeating index
+                start = indexMap.get(ch) + 1;
+            } else {
+                indexMap.put(ch, end);
+                maxLength = Math.max(maxLength, end - start + 1);
+            }
+        }
+
+        return maxLength;
+    }
+
+    // Leetcode problem: 121
+    /*
+     * Maintain two value, left for buy and right for sell
+     * */
+    public int maxProfit(int[] prices) {
+        int left = 0, right = 1, maxProfit = 0;
+
+        while (right < prices.length) {
+            if (prices[left] < prices[right]) {
+                // Can make profit, Check whether it is maximum
+                maxProfit = Math.max(maxProfit, prices[right] - prices[left]);
+            } else {
+                // Lower price found, buy in this day
+                left = right;
+            }
+
+            right++;
+        }
+
+        return maxProfit;
+    }
+
     // Leetode problem: 187
     /*
      * Solve the problem by sliding window
