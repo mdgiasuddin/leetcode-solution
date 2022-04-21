@@ -1,9 +1,6 @@
 package sliding;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class SlidingWindowSolution {
     public static void main(String[] args) {
@@ -105,6 +102,37 @@ public class SlidingWindowSolution {
         }
 
         return resultList;
+    }
+
+    // Leetcode problem: 239
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        Deque<Integer> deque = new ArrayDeque<>();
+
+        int[] result = new int[nums.length - k + 1];
+        int left, right;
+        left = right = 0;
+
+        while (right < nums.length) {
+            while (!deque.isEmpty() && nums[right] > nums[deque.peekLast()]) {
+                deque.pollLast();
+            }
+            deque.offerLast(right);
+
+            // Pop the left value if the slide crosses
+            if (left > deque.peekFirst()) {
+                deque.pollFirst();
+            }
+
+            // For every slide determine the maximum
+            if (right + 1 >= k) {
+                result[left] = nums[deque.peekFirst()];
+                left++;
+            }
+
+            right++;
+        }
+
+        return result;
     }
 
     // Leetcode problem: 567
