@@ -390,45 +390,6 @@ public class StringSolution2 {
         return "x=" + (constant / xCoefficient);
     }
 
-    // Leetcode problem: 567
-    /*
-     * Compare with counter by sliding window
-     * */
-    public boolean checkInclusion(String s1, String s2) {
-        int remaining = s1.length();
-
-        int[] frequency = new int[26];
-
-        for (int i = 0; i < s1.length(); i++) {
-            frequency[s1.charAt(i) - 'a']++;
-        }
-
-        for (int i = 0, ws = 0; i < s2.length(); i++) {
-            char ch = s2.charAt(i);
-            if (frequency[ch - 'a'] > 0) { // Character is present in pattern
-                remaining--;
-            }
-
-            frequency[ch - 'a']--;
-
-            if (remaining == 0) { // All characters of pattern matched
-                return true;
-            }
-
-            /*
-             * If i traversed more than the pattern length then restore the counter of leftmost character of current window
-             * */
-            if (i >= s1.length() - 1) {
-                if (++frequency[s2.charAt(ws) - 'a'] > 0) {
-                    remaining++;
-                }
-                ws++;
-            }
-        }
-
-        return false;
-    }
-
     // Leetcode problem: 647
     /*
      * Build up a palindrome table increment count if palindrome found

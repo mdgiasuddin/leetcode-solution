@@ -107,6 +107,91 @@ public class SlidingWindowSolution {
         return resultList;
     }
 
+    // Leetcode problem: 567
+    /*
+     * Compare with counter by sliding window
+     * */
+    public boolean checkInclusion(String s1, String s2) {
+        int remaining = s1.length();
+
+        int[] frequency = new int[26];
+
+        for (int i = 0; i < s1.length(); i++) {
+            frequency[s1.charAt(i) - 'a']++;
+        }
+
+        for (int i = 0, ws = 0; i < s2.length(); i++) {
+            char ch = s2.charAt(i);
+            if (frequency[ch - 'a'] > 0) { // Character is present in pattern
+                remaining--;
+            }
+
+            frequency[ch - 'a']--;
+
+            if (remaining == 0) { // All characters of pattern matched
+                return true;
+            }
+
+            /*
+             * If i traversed more than the pattern length then restore the counter of leftmost character of current window
+             * */
+            if (i >= s1.length() - 1) {
+                if (++frequency[s2.charAt(ws) - 'a'] > 0) {
+                    remaining++;
+                }
+                ws++;
+            }
+        }
+
+        return false;
+    }
+
+    // Leetcode problem: 438
+    /*
+     * Solve the problem by sliding window
+     * See Leetcode problem: 567
+     * */
+    public List<Integer> findAnagrams(String s, String p) {
+        List<Integer> result = new ArrayList<>();
+
+        if (s.length() < p.length())
+            return result;
+
+        int[] counter = new int[26];
+        for (int i = 0; i < p.length(); i++) {
+            counter[p.charAt(i) - 'a']++;
+        }
+
+        int remaining = p.length(), start = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+
+            if (counter[ch - 'a'] > 0) {
+                // The character is present in p, so decrease the remaining
+                remaining--;
+                if (remaining == 0) {
+                    // All characters covered, so add it to the result
+                    result.add(start);
+                }
+            }
+
+            // Decrease the counter. If the character is not present it will be negative
+            counter[ch - 'a']--;
+
+            if (i >= p.length() - 1) {
+                if (++counter[s.charAt(start) - 'a'] > 0) {
+
+                    // If the first character taken is present in p, then increase the remaining.
+                    remaining++;
+                }
+                start++;
+            }
+        }
+
+        return result;
+    }
+
     // Leetcode problem: 978
     public int maxTurbulenceSize(int[] arr) {
         int start = 0, end, len = arr.length, maxLength = 1;
