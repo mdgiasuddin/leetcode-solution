@@ -148,7 +148,7 @@ public class SlidingWindowSolution {
             frequency[s1.charAt(i) - 'a']++;
         }
 
-        for (int i = 0, ws = 0; i < s2.length(); i++) {
+        for (int i = 0, windowStart = 0; i < s2.length(); i++) {
             char ch = s2.charAt(i);
             if (frequency[ch - 'a'] > 0) { // Character is present in pattern
                 remaining--;
@@ -164,10 +164,10 @@ public class SlidingWindowSolution {
              * If i traversed more than the pattern length then restore the counter of leftmost character of current window
              * */
             if (i >= s1.length() - 1) {
-                if (++frequency[s2.charAt(ws) - 'a'] > 0) {
+                if (++frequency[s2.charAt(windowStart) - 'a'] > 0) {
                     remaining++;
                 }
-                ws++;
+                windowStart++;
             }
         }
 
@@ -259,5 +259,68 @@ public class SlidingWindowSolution {
         // For odd number, there is no option except odd number. He will leave even n for another
 
         return n % 2 == 0;
+    }
+
+    // Leetcode problem: 1838
+    public int maxFrequency(int[] nums, int k) {
+        Arrays.sort(nums);
+
+        int left, right, maxLength = 1;
+        left = right = 0;
+        long total = nums[0];
+
+        while (right < nums.length) {
+            if (nums[right] * (right - left + 1) <= total + k) {
+                // This window is valid. Try to expand it.
+                maxLength = Math.max(maxLength, right - left + 1);
+                right++;
+
+                if (right < nums.length) {
+                    total += nums[right];
+                }
+            } else {
+                // The window is invalid. Reduce the window by shifting left.
+                total -= nums[left];
+                left++;
+            }
+        }
+
+        return maxLength;
+    }
+
+    // Leetcode problem: 209
+    /*
+     * This problem is similar to max frequency (Leetcode problem: 1838)
+     * */
+    public int minSubArrayLen(int target, int[] nums) {
+        int minLength = nums.length + 1;
+
+        int left, right, total;
+        total = nums[0];
+        left = right = 0;
+
+        while (right < nums.length) {
+
+            if (total >= target) {
+
+                // Total is fit to the target. Try to reduce the length by increasing left.
+                minLength = Math.min(minLength, right - left + 1);
+                total -= nums[left];
+
+                // If target is fit by only one element then no need to check further.
+                if (left == right) {
+                    return minLength;
+                }
+                left++;
+            } else {
+                // Total cannot fit to the target. So expand to the right
+                right++;
+                if (right < nums.length) {
+                    total += nums[right];
+                }
+            }
+        }
+
+        return minLength == nums.length + 1 ? 0 : minLength;
     }
 }
