@@ -8,7 +8,6 @@ import java.util.*;
 public class DFSSolution {
 
     public static void main(String[] args) {
-
     }
 
     // Leetcode problem: 337
@@ -166,6 +165,58 @@ public class DFSSolution {
 
         // If all the neighbors are safe then the node is safe
         isSafe.replace(node, true);
+        return true;
+    }
+
+    // Leetcode problem: 207
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+
+        // Build up a map for course and dependencies for faster access
+        Map<Integer, List<Integer>> courseMap = new HashMap<>();
+        for (int[] preRequisite : prerequisites) {
+            if (courseMap.containsKey(preRequisite[0])) {
+                courseMap.get(preRequisite[0]).add(preRequisite[1]);
+            } else {
+                List<Integer> dependencies = new ArrayList<>();
+                dependencies.add(preRequisite[1]);
+                courseMap.put(preRequisite[0], dependencies);
+            }
+        }
+
+        Set<Integer> visited = new HashSet<>();
+
+        for (int i = 0; i < numCourses; i++) {
+            if (!dfsCourse(i, courseMap, visited)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private boolean dfsCourse(int course, Map<Integer, List<Integer>> courseMap, Set<Integer> visited) {
+
+        // If a loop is created then return false.
+        if (visited.contains(course)) {
+            return false;
+        }
+
+        // If there is no dependency for this course return true.
+        if (!courseMap.containsKey(course) || courseMap.get(course).isEmpty()) {
+            return true;
+        }
+
+        visited.add(course);
+        // Check all the dependencies.
+        for (int preReq : courseMap.get(course)) {
+            if (!dfsCourse(preReq, courseMap, visited)) {
+                return false;
+            }
+        }
+
+        // Once calculated for this course, prevent further calculation.
+        visited.remove(course);
+        courseMap.get(course).clear();
         return true;
     }
 }
