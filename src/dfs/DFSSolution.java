@@ -173,14 +173,11 @@ public class DFSSolution {
 
         // Build up a map for course and dependencies for faster access
         Map<Integer, List<Integer>> courseMap = new HashMap<>();
+        for (int i = 0; i < numCourses; i++) {
+            courseMap.put(i, new ArrayList<>());
+        }
         for (int[] preRequisite : prerequisites) {
-            if (courseMap.containsKey(preRequisite[0])) {
-                courseMap.get(preRequisite[0]).add(preRequisite[1]);
-            } else {
-                List<Integer> dependencies = new ArrayList<>();
-                dependencies.add(preRequisite[1]);
-                courseMap.put(preRequisite[0], dependencies);
-            }
+            courseMap.get(preRequisite[0]).add(preRequisite[1]);
         }
 
         Set<Integer> visited = new HashSet<>();
@@ -202,7 +199,7 @@ public class DFSSolution {
         }
 
         // If there is no dependency for this course return true.
-        if (!courseMap.containsKey(course) || courseMap.get(course).isEmpty()) {
+        if (courseMap.get(course).isEmpty()) {
             return true;
         }
 
@@ -218,5 +215,98 @@ public class DFSSolution {
         visited.remove(course);
         courseMap.get(course).clear();
         return true;
+    }
+
+    public int[] findOrder(int numCourses, int[][] prerequisites) {
+        // Build up a map for course and dependencies for faster access
+        Map<Integer, List<Integer>> courseMap = new HashMap<>();
+        for (int i = 0; i < numCourses; i++) {
+            courseMap.put(i, new ArrayList<>());
+        }
+        for (int[] preRequisite : prerequisites) {
+            courseMap.get(preRequisite[0]).add(preRequisite[1]);
+        }
+
+        Set<Integer> visited = new HashSet<>();
+        Set<Integer> cycle = new HashSet<>();
+        List<Integer> result = new ArrayList<>();
+
+        for (int i = 0; i < numCourses; i++) {
+            if (!dfsCourse(i, courseMap, visited, cycle, result)) {
+                return new int[0];
+            }
+        }
+
+        return result.stream().mapToInt(i -> i).toArray();
+    }
+
+    private boolean dfsCourse(int course, Map<Integer, List<Integer>> courseMap, Set<Integer> visited, Set<Integer> cycle, List<Integer> result) {
+
+        // If a loop is created then return false.
+        if (cycle.contains(course)) {
+            return false;
+        }
+
+        // If there is no dependency for this course return true.
+        if (visited.contains(course)) {
+            return true;
+        }
+
+        cycle.add(course);
+        // Check all the dependencies.
+        for (int preReq : courseMap.get(course)) {
+            if (!dfsCourse(preReq, courseMap, visited, cycle, result)) {
+                return false;
+            }
+        }
+
+        // Once calculated for this course, prevent further calculation.
+        cycle.remove(course);
+        visited.add(course);
+        result.add(course);
+        return true;
+    }
+
+    // Leetcode problem: 417
+    public List<List<Integer>> pacificAtlantic(int[][] heights) {
+        Set<Pair> pacificIsland = new HashSet<>();
+        Set<Pair> atlanticIsland = new HashSet<>();
+
+        int ROW = heights.length;
+        int COL = heights[0].length;
+
+        for (int c = 0; c < COL; c++) {
+            dfsWaterFlow(0, c, heights, pacificIsland, heights[0][c]);
+            dfsWaterFlow(ROW - 1, c, heights, atlanticIsland, heights[ROW - 1][c]);
+        }
+
+        for (int r = 0; r < ROW; r++) {
+            dfsWaterFlow(r, 0, heights, pacificIsland, heights[r][0]);
+            dfsWaterFlow(r, COL - 1, heights, atlanticIsland, heights[r][COL - 1]);
+        }
+
+        List<List<Integer>> result = new ArrayList<>();
+        for (int r = 0; r < ROW; r++) {
+            for (int c = 0; c < COL; c++) {
+                if (pacificIsland.contains(new Pair(r, c)) && atlanticIsland.contains(new Pair(r, c))) {
+                    result.add(Arrays.asList(r, c));
+                }
+            }
+        }
+
+        return result;
+    }
+
+    private void dfsWaterFlow(int row, int col, int[][] height, Set<Pair> visited, int pevHeight) {
+        if (row < 0 || col < 0 || row >= height.length || col >= height[0].length || visited.contains(new Pair(row, col))
+                || height[row][col] < pevHeight) {
+            return;
+        }
+
+        visited.add(new Pair(row, col));
+        dfsWaterFlow(row + 1, col, height, visited, height[row][col]);
+        dfsWaterFlow(row - 1, col, height, visited, height[row][col]);
+        dfsWaterFlow(row, col + 1, height, visited, height[row][col]);
+        dfsWaterFlow(row, col - 1, height, visited, height[row][col]);
     }
 }
