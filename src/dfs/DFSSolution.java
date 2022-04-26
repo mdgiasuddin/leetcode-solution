@@ -3,11 +3,17 @@ package dfs;
 import indefinite.TreeNode;
 import pair.Pair;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class DFSSolution {
 
     public static void main(String[] args) {
+
+        String format = "yyyy-MM-dd'T'HH:mm:ss'Z'";
+
+        System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern(format)));
     }
 
     // Leetcode problem: 337
@@ -16,18 +22,18 @@ public class DFSSolution {
      * */
     public int rob(TreeNode root) {
 
-        Pair pair = bfsRobber(root);
+        Pair pair = dfsRobber(root);
 
         return Math.max(pair.first, pair.second);
     }
 
-    public Pair bfsRobber(TreeNode node) {
+    public Pair dfsRobber(TreeNode node) {
         if (node == null) {
             return new Pair(0, 0);
         }
 
-        Pair leftPair = bfsRobber(node.left);
-        Pair rightPair = bfsRobber(node.right);
+        Pair leftPair = dfsRobber(node.left);
+        Pair rightPair = dfsRobber(node.right);
 
         int withNode = node.val + leftPair.second + rightPair.second;
         int withoutNode = Math.max(leftPair.first, leftPair.second) + Math.max(rightPair.first, rightPair.second);
@@ -217,6 +223,7 @@ public class DFSSolution {
         return true;
     }
 
+    // Leetcode problem: 210
     public int[] findOrder(int numCourses, int[][] prerequisites) {
         // Build up a map for course and dependencies for faster access
         Map<Integer, List<Integer>> courseMap = new HashMap<>();
@@ -308,5 +315,88 @@ public class DFSSolution {
         dfsWaterFlow(row - 1, col, height, visited, height[row][col]);
         dfsWaterFlow(row, col + 1, height, visited, height[row][col]);
         dfsWaterFlow(row, col - 1, height, visited, height[row][col]);
+    }
+
+    // Leetcode problem: 463
+    /*
+     * First determine the island by DFS.
+     * Then calculate the perimeter.
+     * */
+    public int islandPerimeter(int[][] grid) {
+        Set<Pair> island = new HashSet<>();
+
+        for (int r = 0; r < grid.length; r++) {
+            for (int c = 0; c < grid[0].length; c++) {
+                if (grid[r][c] == 1) {
+                    dfsIsland(r, c, grid, island);
+
+                    return calculatePerimeter(grid, island);
+                }
+            }
+        }
+
+        return 0;
+    }
+
+    private void dfsIsland(int r, int c, int[][] grid, Set<Pair> visited) {
+        if (r < 0 || c < 0 || r >= grid.length || c >= grid[0].length || grid[r][c] == 0
+                || visited.contains(new Pair(r, c))) {
+
+            return;
+        }
+
+        visited.add(new Pair(r, c));
+        dfsIsland(r + 1, c, grid, visited);
+        dfsIsland(r - 1, c, grid, visited);
+        dfsIsland(r, c + 1, grid, visited);
+        dfsIsland(r, c - 1, grid, visited);
+    }
+
+    private int calculatePerimeter(int[][] grid, Set<Pair> isLand) {
+
+        int perimeter = 0;
+        for (Pair pair : isLand) {
+            perimeter += (pair.first == 0 || grid[pair.first - 1][pair.second] == 0) ? 1 : 0; // Upper boundary
+            perimeter += (pair.first == grid.length - 1 || grid[pair.first + 1][pair.second] == 0) ? 1 : 0; // Lower boundary
+            perimeter += (pair.second == 0 || grid[pair.first][pair.second - 1] == 0) ? 1 : 0; // Left boundary
+            perimeter += (pair.second == grid[0].length - 1 || grid[pair.first][pair.second + 1] == 0) ? 1 : 0; // Right boundary
+        }
+
+        return perimeter;
+    }
+
+    // Leetcode problem: 1905
+    public int countSubIslands(int[][] grid1, int[][] grid2) {
+
+        int count = 0;
+
+        Set<Pair> visited = new HashSet<>();
+
+        for (int r = 0; r < grid2.length; r++) {
+            for (int c = 0; c < grid2[0].length; c++) {
+                if (grid2[r][c] == 1 && !visited.contains(new Pair(r, c)) && dfsCountIsland(r, c, grid1, grid2, visited)) {
+                    count++;
+                }
+            }
+        }
+
+        return count;
+    }
+
+    private boolean dfsCountIsland(int r, int c, int[][] grid1, int[][] grid2, Set<Pair> visited) {
+        if (r < 0 || c < 0 || r >= grid2.length || c >= grid2[0].length || grid2[r][c] == 0
+                || visited.contains(new Pair(r, c))) {
+            return true;
+        }
+
+        visited.add(new Pair(r, c));
+        boolean subIsland = grid1[r][c] != 0;
+
+        subIsland &= dfsCountIsland(r - 1, c, grid1, grid2, visited);
+        subIsland &= dfsCountIsland(r + 1, c, grid1, grid2, visited);
+        subIsland &= dfsCountIsland(r, c - 1, grid1, grid2, visited);
+        subIsland &= dfsCountIsland(r, c + 1, grid1, grid2, visited);
+
+        return subIsland;
     }
 }
