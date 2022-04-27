@@ -3,7 +3,7 @@ package dfs;
 import indefinite.TreeNode;
 import pair.Pair;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
@@ -13,7 +13,7 @@ public class DFSSolution {
 
         String format = "yyyy-MM-dd'T'HH:mm:ss'Z'";
 
-        System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern(format)));
+        System.out.println(LocalDate.now().atStartOfDay().format(DateTimeFormatter.ofPattern(format)));
     }
 
     // Leetcode problem: 337
