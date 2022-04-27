@@ -111,57 +111,6 @@ public class StringSolution3 {
 
     }
 
-    // Leetcode problem: 752
-    /*
-     * Run BFS to reach target
-     * */
-    public int openLock(String[] deadends, String target) {
-        Set<String> deadEndsSet = new HashSet<>();
-        Collections.addAll(deadEndsSet, deadends);
-
-        if (deadEndsSet.contains("0000"))
-            return -1;
-
-        if (target.equals("0000"))
-            return 0;
-
-        Queue<Map.Entry<String, Integer>> queue = new LinkedList<>();
-        queue.add(Map.entry("0000", 0));
-
-        Set<String> visited = new HashSet<>();
-        visited.add("0000");
-
-        while (!queue.isEmpty()) {
-            Map.Entry<String, Integer> parent = queue.poll();
-
-            for (String child : getLockChildren(parent.getKey())) {
-                if (child.equals(target))
-                    return parent.getValue() + 1;
-                if (!visited.contains(child) && !deadEndsSet.contains(child)) {
-                    queue.add(Map.entry(child, parent.getValue() + 1));
-                    visited.add(child);
-                }
-            }
-        }
-
-        return -1;
-    }
-
-    public List<String> getLockChildren(String parent) {
-        List<String> children = new ArrayList<>();
-
-        for (int i = 0; i < 4; i++) {
-            String next = parent.substring(0, i) + (char) ((parent.charAt(i) - '0' + 1) % 10 + '0') + parent.substring(i + 1);
-            String prev = parent.substring(0, i) + (char) ((parent.charAt(i) - '0' + 9) % 10 + '0') + parent.substring(i + 1);
-
-            children.add(next);
-            children.add(prev);
-        }
-
-        return children;
-    }
-
-
     // Leetcode problem: 848
     /*
      * Shifting Letters

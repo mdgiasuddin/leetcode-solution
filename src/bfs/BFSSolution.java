@@ -2,14 +2,78 @@ package bfs;
 
 import pair.Pair;
 
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Set;
+import java.util.*;
 
 public class BFSSolution {
     public static void main(String[] args) {
 
+        BFSSolution bfsSolution = new BFSSolution();
+
+//        int[][] board = {
+//                {-1, -1, -1, -1, -1, -1},
+//                {-1, -1, -1, -1, -1, -1},
+//                {-1, -1, -1, -1, -1, -1},
+//                {-1, 35, -1, -1, 13, -1},
+//                {-1, -1, -1, -1, -1, -1},
+//                {-1, 15, -1, -1, -1, -1}
+//        };
+
+        int[][] board = {
+                {-1, -1},
+                {-1, 3}
+        };
+
+        System.out.println(bfsSolution.snakesAndLadders(board));
+    }
+
+    // Leetcode problem: 752
+    /*
+     * Run BFS to reach target
+     * */
+    public int openLock(String[] deadends, String target) {
+        Set<String> deadEndsSet = new HashSet<>();
+        Collections.addAll(deadEndsSet, deadends);
+
+        if (deadEndsSet.contains("0000"))
+            return -1;
+
+        if (target.equals("0000"))
+            return 0;
+
+        Queue<Map.Entry<String, Integer>> queue = new LinkedList<>();
+        queue.add(Map.entry("0000", 0));
+
+        Set<String> visited = new HashSet<>();
+        visited.add("0000");
+
+        while (!queue.isEmpty()) {
+            Map.Entry<String, Integer> parent = queue.poll();
+
+            for (String child : getLockChildren(parent.getKey())) {
+                if (child.equals(target))
+                    return parent.getValue() + 1;
+                if (!visited.contains(child) && !deadEndsSet.contains(child)) {
+                    queue.add(Map.entry(child, parent.getValue() + 1));
+                    visited.add(child);
+                }
+            }
+        }
+
+        return -1;
+    }
+
+    public List<String> getLockChildren(String parent) {
+        List<String> children = new ArrayList<>();
+
+        for (int i = 0; i < 4; i++) {
+            String next = parent.substring(0, i) + (char) ((parent.charAt(i) - '0' + 1) % 10 + '0') + parent.substring(i + 1);
+            String prev = parent.substring(0, i) + (char) ((parent.charAt(i) - '0' + 9) % 10 + '0') + parent.substring(i + 1);
+
+            children.add(next);
+            children.add(prev);
+        }
+
+        return children;
     }
 
     // Leetcode problem: 994
@@ -47,7 +111,7 @@ public class BFSSolution {
             }
         }
 
-        // Check if any good orange exists.
+        // Check if any fresh orange exists.
         for (int[] ints : grid) {
             for (int c = 0; c < grid[0].length; c++) {
                 if (ints[c] == 1) {
@@ -69,5 +133,46 @@ public class BFSSolution {
         grid[r][c] = 2;
         queue.add(new Pair(r, c));
         visited.add(new Pair(r, c));
+    }
+
+    // Leetcode problem: 909
+    public int snakesAndLadders(int[][] board) {
+
+        int N = board.length;
+
+        Set<Integer> visited = new HashSet<>();
+        Queue<Integer> queue = new LinkedList<>();
+
+        visited.add(1);
+        queue.add(1);
+
+        int moves = 1;
+        while (!queue.isEmpty()) {
+            int qSize = queue.size();
+
+            while (qSize-- > 0) {
+                int current = queue.poll();
+
+                for (int i = 1; i <= 6; i++) {
+                    int row = (current + i - 1) / N;
+                    int col = row % 2 == 0 ? (current + i - 1) % N : N - 1 - (current + i - 1) % N;
+
+                    int newPosition = board[N - 1 - row][col] == -1 ? current + i : board[N - 1 - row][col];
+
+                    if (newPosition == N * N) {
+                        return moves;
+                    }
+
+                    if (!visited.contains(newPosition)) {
+                        queue.add(newPosition);
+                        visited.add(newPosition);
+                    }
+                }
+            }
+
+            moves++;
+        }
+
+        return -1;
     }
 }

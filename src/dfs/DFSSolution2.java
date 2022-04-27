@@ -11,6 +11,50 @@ public class DFSSolution2 {
 
     }
 
+    // Leetcode problem: 130
+    /*
+     * DFS through the boundary and mark all 'O' to any special character
+     * Then traverse the whole array and reset the special character to 'O', other position to 'X'
+     * */
+    public void solve(char[][] board) {
+
+        int m = board.length, n = board[0].length;
+        if (m < 2 || n < 2)
+            return;
+
+        for (int col = 0; col < n; col++) {
+            dfsBoundary(board, 0, col);
+            dfsBoundary(board, m - 1, col);
+        }
+
+        for (int row = 0; row < m; row++) {
+            dfsBoundary(board, row, 0);
+            dfsBoundary(board, row, n - 1);
+        }
+
+        for (int row = 0; row < m; row++) {
+            for (int col = 0; col < n; col++) {
+                if (board[row][col] == '#') {
+                    board[row][col] = 'O';
+                } else {
+                    board[row][col] = 'X';
+                }
+            }
+        }
+    }
+
+    public void dfsBoundary(char[][] board, int row, int col) {
+        if (row < 0 || col < 0 || row >= board.length || col >= board[0].length || board[row][col] != 'O')
+            return;
+
+        board[row][col] = '#';
+        dfsBoundary(board, row - 1, col); // Up
+        dfsBoundary(board, row + 1, col); // Down
+        dfsBoundary(board, row, col - 1); // Left
+        dfsBoundary(board, row, col + 1); // Up
+
+    }
+
     // Leetcode problem: 695
     public int maxAreaOfIsland(int[][] grid) {
         int maxArea = 0;
