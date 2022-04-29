@@ -1,16 +1,15 @@
 package trie;
+ class TrieNode {
+     public boolean endNode;
+     public TrieNode[] children;
 
-public class TrieNode {
-    public boolean endNode;
-    public TrieNode[] children;
+     public TrieNode() {
+         this.endNode = false;
+         this.children = new TrieNode[26]; // Initialized by null
+     }
+ }
 
-    public TrieNode() {
-        this.endNode = false;
-        this.children = new TrieNode[26]; // Initialized by null
-    }
-}
-
-class Trie {
+public class Trie {
     private final TrieNode root;
 
     public Trie() {
@@ -57,9 +56,6 @@ class Trie {
 
         return true;
     }
-}
-
-class TrieDemo {
 
     public static void main(String[] args) {
         Trie trie = new Trie();

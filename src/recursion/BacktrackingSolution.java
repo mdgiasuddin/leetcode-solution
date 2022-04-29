@@ -1,7 +1,11 @@
 package recursion;
 
+import trie.TrieNodeNew;
+
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class BacktrackingSolution {
 
@@ -57,5 +61,49 @@ public class BacktrackingSolution {
 
         visited[row][col] = false;
         return false;
+    }
+
+    // Leetcode problem: 212
+    public List<String> findWords(char[][] board, String[] words) {
+        TrieNodeNew root = new TrieNodeNew();
+
+        for (String word : words) {
+            root.addWord(word);
+        }
+
+        int ROWS = board.length, COLS = board[0].length;
+        boolean[][] visited = new boolean[ROWS][COLS];
+        Set<String> result = new HashSet<>();
+
+        for (int r = 0; r < ROWS; r++) {
+            for (int c = 0; c < COLS; c++) {
+                dfsWord(r, c, board, root, visited, result, "");
+            }
+        }
+
+        return result.stream().toList();
+    }
+
+    private void dfsWord(int r, int c, char[][] board, TrieNodeNew root, boolean[][] visited, Set<String> result, String current) {
+        if (r < 0 || r >= board.length || c < 0 || c >= board[0].length
+                || !root.children.containsKey(board[r][c]) || visited[r][c]) {
+
+            return;
+        }
+
+        visited[r][c] = true;
+        current += board[r][c];
+
+        root = root.children.get(board[r][c]);
+        if (root.endNode) {
+            result.add(current);
+        }
+
+        dfsWord(r - 1, c, board, root, visited, result, current);
+        dfsWord(r + 1, c, board, root, visited, result, current);
+        dfsWord(r, c - 1, board, root, visited, result, current);
+        dfsWord(r, c + 1, board, root, visited, result, current);
+
+        visited[r][c] = false;
     }
 }

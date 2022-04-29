@@ -84,4 +84,41 @@ public class DFSSolution2 {
                 + dfsArea(r, c - 1, grid, visited)
                 + dfsArea(r, c + 1, grid, visited);
     }
+
+    // Leetcode problem: 329
+    public int longestIncreasingPath(int[][] matrix) {
+        int ROWS = matrix.length, COLS = matrix[0].length;
+        int[][] result = new int[ROWS][COLS];
+
+        int LIP = 1;
+
+        for (int r = 0; r < ROWS; r++) {
+            for (int c = 0; c <= COLS; c++) {
+                // All values in matrix is >= 0, so send a negative value as previous.
+                LIP = Math.max(LIP, dfsIncreasing(r, c, matrix, -1, result));
+            }
+        }
+
+        return LIP;
+    }
+
+    public int dfsIncreasing(int r, int c, int[][] matrix, int prev, int[][] result) {
+        if (r < 0 || r >= matrix.length || c < 0 || c >= matrix[0].length || matrix[r][c] <= prev) {
+            return 0;
+        }
+
+        if (result[r][c] > 0) {
+            return result[r][c];
+        }
+
+        int res = 1;
+        res = Math.max(res, 1 + dfsIncreasing(r - 1, c, matrix, matrix[r][c], result));
+        res = Math.max(res, 1 + dfsIncreasing(r + 1, c, matrix, matrix[r][c], result));
+        res = Math.max(res, 1 + dfsIncreasing(r, c - 1, matrix, matrix[r][c], result));
+        res = Math.max(res, 1 + dfsIncreasing(r, c + 1, matrix, matrix[r][c], result));
+
+        result[r][c] = res;
+        return res;
+    }
+
 }
