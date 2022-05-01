@@ -8,6 +8,39 @@ public class TreeSolution {
 
     }
 
+    // Leetcode problem: 108
+    public TreeNode sortedArrayToBST(int[] nums) {
+
+        return sortedArrayToBST(nums, 0, nums.length - 1);
+    }
+
+    public TreeNode sortedArrayToBST(int[] nums, int left, int right) {
+        if (left > right)
+            return null;
+
+        int mid = left + (right - left) / 2;
+        TreeNode root = new TreeNode(nums[mid]);
+        root.left = sortedArrayToBST(nums, left, mid - 1);
+        root.right = sortedArrayToBST(nums, mid + 1, right);
+
+        return root;
+    }
+
+    // Leetcode problem: 98
+    public boolean isValidBST(TreeNode root) {
+        return isValidBST(root, Long.MIN_VALUE, Long.MAX_VALUE);
+    }
+
+    public boolean isValidBST(TreeNode root, long leftBoundary, long rightBoundary) {
+        if (root == null)
+            return true;
+
+        if (root.val <= leftBoundary || root.val >= rightBoundary)
+            return false;
+
+        return isValidBST(root.left, leftBoundary, root.val)
+                && isValidBST(root.right, root.val, rightBoundary);
+    }
 
     // Leetcode problem: 110
     public boolean isBalanced(TreeNode root) {

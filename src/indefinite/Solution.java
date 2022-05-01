@@ -1026,26 +1026,6 @@ public class Solution {
         return head;
     }
 
-    int count = 0;
-
-    public boolean isValidBST(TreeNode root, boolean result) {
-        if (root == null)
-            return result;
-        result = result && isValidBST(root.left, result);
-        if (root.val == Integer.MIN_VALUE && maxValue == Integer.MIN_VALUE && count == 0)
-            count++;
-        else if (root.val <= maxValue)
-            return false;
-        else
-            maxValue = root.val;
-        result = result && isValidBST(root.right, result);
-        return result;
-    }
-
-    public boolean isValidBST(TreeNode root) {
-        return isValidBST(root, true);
-    }
-
     public void rotate(int[] nums, int k) {
         int n = nums.length;
         int actualRotate = k % n;
