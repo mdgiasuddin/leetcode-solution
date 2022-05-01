@@ -163,23 +163,6 @@ public class SecondSolution {
         return result;
     }
 
-    int finalSum = 0;
-
-    public void sumNumbers(TreeNode root, int sum) {
-        if (root == null) {
-            finalSum += sum;
-            return;
-        }
-        if (root.left == null && root.right == null) {
-            finalSum += (sum * 10 + root.val);
-            return;
-        }
-
-        sum = sum * 10 + root.val;
-        if (root.left != null) sumNumbers(root.left, sum);
-        if (root.right != null) sumNumbers(root.right, sum);
-    }
-
     public int hammingWeight(int n) {
         int count = 0;
         while (n != 0) {
