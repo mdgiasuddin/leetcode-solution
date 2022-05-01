@@ -280,26 +280,6 @@ public class FourthSolution {
         return false;
     }
 
-    public boolean isBalanced(TreeNode root) {
-        return findHeight(root) != -1;
-    }
-
-    public int findHeight(TreeNode node) {
-        if (node == null) {
-            return 0;
-        }
-
-        int leftHeight = 1 + findHeight(node.left);
-        int rightHeight = 1 + findHeight(node.right);
-
-        if (leftHeight == 0 || rightHeight == 0 || Math.abs(leftHeight - rightHeight) > 1) {
-            return -1;
-        }
-
-        return Math.max(leftHeight, rightHeight);
-
-    }
-
     public void combine(List<List<Integer>> result, List<Integer> currentList, int cur, int n, int k) {
         if (currentList.size() == k) {
             result.add(new ArrayList<>(currentList));
