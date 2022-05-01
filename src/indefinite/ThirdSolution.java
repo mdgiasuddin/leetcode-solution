@@ -374,24 +374,6 @@ public class ThirdSolution {
         return result;
     }
 
-    int goodNodeCount = 0;
-
-    public void goodNodes(TreeNode root, int currentMax) {
-        if (root == null)
-            return;
-        if (root.val >= currentMax) {
-            goodNodeCount++;
-            currentMax = root.val;
-        }
-        goodNodes(root.left, currentMax);
-        goodNodes(root.right, currentMax);
-    }
-
-    public int goodNodes(TreeNode root) {
-        goodNodes(root, root.val);
-        return goodNodeCount;
-    }
-
     int evenSum = 0;
 
     public int getChildNodeSum(TreeNode root) {
