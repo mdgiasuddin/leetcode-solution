@@ -220,4 +220,32 @@ public class TreeSolution {
         return res;
     }
 
+    // Leetcode problem: 543
+    /*
+     * The solution is tricky.
+     * */
+    public int diameterOfBinaryTree(TreeNode root) {
+        int[] result = new int[1];
+
+        diameterOfBinaryTree(root, result);
+
+        return result[0];
+    }
+
+    public int diameterOfBinaryTree(TreeNode node, int[] result) {
+        if (node == null) {
+            return -1;
+        }
+
+        int left = diameterOfBinaryTree(node.left, result);
+        int right = diameterOfBinaryTree(node.right, result);
+
+        // Update the diameter. Here 2 for left and right outgoing edge.
+        // If all the children are null, it will be minimized by -1.
+        result[0] = Math.max(result[0], 2 + left + right);
+
+        // Return the height of the node to its parent.
+        return 1 + Math.max(left, right);
+    }
+
 }

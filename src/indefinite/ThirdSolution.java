@@ -3,37 +3,6 @@ package indefinite;
 import java.util.*;
 
 public class ThirdSolution {
-//    int maxPath = 0;
-//
-//    public int diameterOfBinaryTree(TreeNode root) {
-//        diameterOfBinaryTreeAux(root);
-//        return maxPath;
-//    }
-//
-//    private int diameterOfBinaryTreeAux(TreeNode root) {
-//        if (root == null) return 0;
-//        int left = diameterOfBinaryTreeAux(root.left), right = diameterOfBinaryTreeAux(root.right);
-//        maxPath = Math.max(maxPath, left + right);
-//        return Math.max(left, right) + 1;
-//    }
-
-    int maxDiameter = 0;
-
-    public int diameterOfBinaryTree(TreeNode root) {
-        diameterOfBinaryTreeAux(root);
-        return maxDiameter;
-    }
-
-    public int diameterOfBinaryTreeAux(TreeNode root) {
-        if (root == null)
-            return 0;
-
-        int leftDiameter = diameterOfBinaryTreeAux(root.left);
-        int rightDiameter = diameterOfBinaryTreeAux(root.right);
-
-        maxDiameter = Math.max(maxDiameter, leftDiameter + rightDiameter);
-        return 1 + Math.max(leftDiameter, rightDiameter);
-    }
 
     public TreeNode searchBST(TreeNode root, int val) {
         if (root == null)
