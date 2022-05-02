@@ -653,27 +653,6 @@ public class SecondSolution {
         return result;
     }
 
-    boolean hasSum = false;
-
-    public void hasPathSum(TreeNode root, int sum, int targetSum) {
-        if (root == null)
-            return;
-        sum += root.val;
-        if (root.left == null && root.right == null) {
-            if (sum == targetSum)
-                hasSum = true;
-        }
-        if (root.left != null)
-            hasPathSum(root.left, sum, targetSum);
-        if (root.right != null)
-            hasPathSum(root.right, sum, targetSum);
-    }
-
-    public boolean hasPathSum(TreeNode root, int targetSum) {
-        hasPathSum(root, 0, targetSum);
-        return hasSum;
-    }
-
     public void pathSum(TreeNode root, int targetSum, int sum, List<List<Integer>> finalResult, List<Integer> current) {
 
         if (root == null)

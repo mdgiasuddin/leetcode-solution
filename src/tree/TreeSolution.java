@@ -2,6 +2,11 @@ package tree;
 
 import indefinite.TreeNode;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 public class TreeSolution {
 
     public static void main(String[] args) {
@@ -79,6 +84,85 @@ public class TreeSolution {
         }
 
         return sumNumbers(node.left, currentSum) + sumNumbers(node.right, currentSum);
+    }
+
+    // Leetcode problem: 112
+    /*
+     * This problem is similar to sum of numbers (Leetcode problem: 129)
+     * */
+    public boolean hasPathSum(TreeNode root, int targetSum) {
+        return hasPathSum(root, 0, targetSum);
+    }
+
+    public boolean hasPathSum(TreeNode node, int currentSum, int targetSum) {
+        if (node == null) {
+            return false;
+        }
+
+        currentSum += node.val;
+
+        if (node.left == null && node.right == null) {
+            return currentSum == targetSum;
+        }
+
+        return hasPathSum(node.left, currentSum, targetSum) || hasPathSum(node.right, currentSum, targetSum);
+    }
+
+    // Leetcode problem: 199
+    /*
+     * This problem can be solved by level order traversal
+     * */
+    public List<Integer> rightSideView(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        if (root != null) {
+            queue.add(root);
+        }
+
+        while (!queue.isEmpty()) {
+            int qSize = queue.size();
+
+            // Add the rightmost node to result
+            result.add(queue.peek().val);
+
+            // Add all the children to the queue
+            while (qSize-- > 0) {
+                TreeNode node = queue.poll();
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
+                if (node.left != null) {
+                    queue.add(node.left);
+                }
+
+            }
+        }
+
+        return result;
+    }
+
+    // Leetcode problem: 199
+    /*
+     * This is recursive version
+     * */
+    public List<Integer> rightSideViewRecursive(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        rightSideViewRecursive(root, result, 0);
+        return result;
+
+    }
+
+    public void rightSideViewRecursive(TreeNode root, List<Integer> result, int level) {
+        if (root == null)
+            return;
+
+        if (level == result.size()) {
+            // For the first seen, add it.
+            result.add(root.val);
+        }
+        rightSideViewRecursive(root.right, result, level + 1);
+        rightSideViewRecursive(root.left, result, level + 1);
     }
 
     // Leetcode problem: 226
