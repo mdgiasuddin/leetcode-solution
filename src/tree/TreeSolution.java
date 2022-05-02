@@ -179,6 +179,29 @@ public class TreeSolution {
         return root;
     }
 
+    // Leetcode problem: 230
+    /*
+     * Solve the problem by inorder traversal.
+     * Keep track how many node have been visited already.
+     * */
+    int kthMinimum = Integer.MAX_VALUE, visitedNode = 0;
+
+    public int kthSmallest(TreeNode root, int k) {
+        kthSmallestAux(root, k);
+        return kthMinimum;
+    }
+
+    public void kthSmallestAux(TreeNode root, int k) {
+        if (root == null)
+            return;
+
+        kthSmallestAux(root.left, k);
+        visitedNode++;
+        if (visitedNode == k)
+            kthMinimum = root.val;
+        kthSmallestAux(root.right, k);
+    }
+
     // Leetcode problem: 1448
     public int goodNodes(TreeNode root) {
         return goodNodes(root, root.val);

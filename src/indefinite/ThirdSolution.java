@@ -80,26 +80,6 @@ public class ThirdSolution {
         return root;
     }
 
-
-    int kthMinimum = Integer.MAX_VALUE, kSoFar = 0;
-
-    public int kthSmallest(TreeNode root, int k) {
-        kthSmallestAux(root, k);
-        return kthMinimum;
-    }
-
-    public void kthSmallestAux(TreeNode root, int k) {
-        if (root == null)
-            return;
-
-        kthSmallestAux(root.left, k);
-        kSoFar++;
-        if (kSoFar == k)
-            kthMinimum = root.val;
-        kthSmallestAux(root.right, k);
-    }
-
-
     TreeNode res = new TreeNode(0), temp = res;
 
     public TreeNode increasingBST(TreeNode root) {
