@@ -2,10 +2,7 @@ package tree;
 
 import indefinite.TreeNode;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class TreeSolution {
 
@@ -45,6 +42,18 @@ public class TreeSolution {
 
         return isValidBST(root.left, leftBoundary, root.val)
                 && isValidBST(root.right, root.val, rightBoundary);
+    }
+
+    // Leetcode problem: 100
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+        if (p == null && q == null)
+            return true;
+
+        if (p == null || q == null || p.val != q.val)
+            return false;
+
+        return isSameTree(p.left, q.left) &&
+                isSameTree(p.right, q.right);
     }
 
     // Leetcode problem: 110
@@ -184,22 +193,21 @@ public class TreeSolution {
      * Solve the problem by inorder traversal.
      * Keep track how many node have been visited already.
      * */
-    int kthMinimum = Integer.MAX_VALUE, visitedNode = 0;
-
     public int kthSmallest(TreeNode root, int k) {
-        kthSmallestAux(root, k);
-        return kthMinimum;
+        int[] arr = {0, 0};
+        kthSmallestAux(root, k, arr);
+        return arr[1];
     }
 
-    public void kthSmallestAux(TreeNode root, int k) {
+    public void kthSmallestAux(TreeNode root, int k, int[] arr) {
         if (root == null)
             return;
 
-        kthSmallestAux(root.left, k);
-        visitedNode++;
-        if (visitedNode == k)
-            kthMinimum = root.val;
-        kthSmallestAux(root.right, k);
+        kthSmallestAux(root.left, k, arr);
+        arr[0]++;
+        if (arr[0] == k)
+            arr[1] = root.val;
+        kthSmallestAux(root.right, k, arr);
     }
 
     // Leetcode problem: 1448
@@ -246,6 +254,35 @@ public class TreeSolution {
 
         // Return the height of the node to its parent.
         return 1 + Math.max(left, right);
+    }
+
+    // Leetcode problem: 105
+    /*
+     * Build tree from preorder and inorder traversal
+     * */
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        Map<Integer, Integer> map = new HashMap<>();
+        int[] indices = new int[1];
+        for (int i = 0; i < inorder.length; i++)
+            map.put(inorder[i], i);
+
+        return buildTree(preorder, inorder, indices, 0, preorder.length - 1, map);
+    }
+
+    private TreeNode buildTree(int[] preorder, int[] inorder, int[] indices, int left, int right, Map<Integer, Integer> map) {
+        if (left > right)
+            return null;
+
+        TreeNode root = new TreeNode(preorder[indices[0]]);
+        int inorderPos = map.get(preorder[indices[0]]);
+
+        indices[0]++;
+
+        // For post order traversal, first build up right child
+        root.left = buildTree(preorder, inorder, indices, left, inorderPos - 1, map);
+        root.right = buildTree(preorder, inorder, indices, inorderPos + 1, right, map);
+
+        return root;
     }
 
 }
