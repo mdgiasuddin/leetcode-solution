@@ -285,4 +285,34 @@ public class TreeSolution {
         return root;
     }
 
+    // Leetcode problem: 513
+    /*
+     * This problem can be solved by level order traversal.
+     * */
+    public int findBottomLeftValue(TreeNode root) {
+        Queue<TreeNode> queue = new LinkedList<>();
+
+        int result = root.val;
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            result = queue.peek().val;
+
+            int qSize = queue.size();
+
+            while (qSize-- > 0) {
+                TreeNode node = queue.poll();
+
+                if (node.left != null) {
+                    queue.add(node.left);
+                }
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
+            }
+        }
+
+        return result;
+    }
+
 }
