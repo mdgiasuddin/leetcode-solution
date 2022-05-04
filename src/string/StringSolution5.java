@@ -1,6 +1,6 @@
 package string;
 
-import indefinite.TreeNode;
+import tree.TreeNode;
 
 import java.util.*;
 

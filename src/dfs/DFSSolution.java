@@ -1,7 +1,7 @@
 package dfs;
 
-import indefinite.TreeNode;
 import pair.Pair;
+import tree.TreeNode;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

@@ -1,7 +1,5 @@
 package tree;
 
-import indefinite.TreeNode;
-
 import java.util.*;
 
 public class TreeSolution {
@@ -313,6 +311,100 @@ public class TreeSolution {
         }
 
         return result;
+    }
+
+    /*
+     * Recursive solution of Leetcode problem: 513
+     * Similar to right side view.
+     * */
+    public int findBottomLeftValueRecursive(TreeNode root) {
+
+        // First index for the left most value, second for level.
+        int[] result = new int[2];
+        findBottomLeftValueRecursive(root, 0, result);
+
+        return result[0];
+    }
+
+    public void findBottomLeftValueRecursive(TreeNode node, int level, int[] result) {
+        if (node == null)
+            return;
+
+        if (result[1] == level) {
+            result[0] = node.val;
+            result[1]++;
+        }
+
+        findBottomLeftValueRecursive(node.left, level + 1, result);
+        findBottomLeftValueRecursive(node.right, level + 1, result);
+    }
+
+    // Leetcode problem: 116
+    /*
+     * Solve by level order traversal.
+     * */
+    public Node connect(Node root) {
+        Queue<Node> queue = new LinkedList<>();
+
+        if (root == null)
+            return null;
+
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            int qSize = queue.size();
+
+            while (qSize-- > 0) {
+                Node node = queue.poll();
+
+                if (qSize > 0) {
+                    // If not last node in current level then set next node;
+                    node.next = queue.peek();
+                } else {
+                    node.next = null;
+                }
+
+                // Since tree is balanced, If there is left child then also right child.
+                if (node.left != null) {
+                    queue.add(node.left);
+                    queue.add(node.right);
+                }
+            }
+
+        }
+
+        return root;
+    }
+
+    /*
+     * This is O(1) memory version of Leetcode problem: 116
+     * */
+    public Node connectConstMemory(Node root) {
+        Node current = root;
+
+        // next start node is the left most node of each level.
+        Node nextStart = current == null ? null : current.left;
+
+        while (current != null && nextStart != null) {
+
+            // Connection between two children of same parent.
+            current.left.next = current.right;
+
+            // Connection between two children of different parent.
+            if (current.next != null)
+                current.right.next = current.next.left;
+
+            if (current.next != null) {
+                // If more node present in right then go to right side.
+                current = current.next;
+            } else {
+                // Else go to next level.
+                current = nextStart;
+                nextStart = current.left;
+            }
+        }
+
+        return root;
     }
 
 }

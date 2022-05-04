@@ -1,7 +1,7 @@
 package array;
 
-import indefinite.TreeNode;
 import pair.Pair;
+import tree.TreeNode;
 
 import java.util.HashMap;
 import java.util.LinkedList;
