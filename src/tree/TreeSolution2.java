@@ -24,4 +24,29 @@ public class TreeSolution2 {
 
         return dp[n];
     }
+
+    // Leetcode problem: 235
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if (p.val < root.val && q.val < root.val) {
+            return lowestCommonAncestor(root.left, p, q);
+        }
+        if (p.val > root.val && q.val > root.val) {
+            return lowestCommonAncestor(root.right, p, q);
+        }
+
+        return root;
+    }
+
+    // Leetcode problem: 951
+    public boolean flipEquiv(TreeNode root1, TreeNode root2) {
+        if (root1 == null || root2 == null)
+            return root1 == null && root2 == null;
+
+        if (root1.val != root2.val)
+            return false;
+
+        boolean notFlip = flipEquiv(root1.left, root2.left) && flipEquiv(root1.right, root2.right);
+
+        return notFlip || flipEquiv(root1.left, root2.right) && flipEquiv(root1.right, root2.left);
+    }
 }
