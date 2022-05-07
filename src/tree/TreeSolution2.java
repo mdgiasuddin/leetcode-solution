@@ -1,5 +1,7 @@
 package tree;
 
+import java.util.*;
+
 public class TreeSolution2 {
 
     public static void main(String[] args) {
@@ -49,4 +51,144 @@ public class TreeSolution2 {
 
         return notFlip || flipEquiv(root1.left, root2.right) && flipEquiv(root1.right, root2.left);
     }
+
+    // Leetcode problem: 572
+    public boolean isSubtree(TreeNode root, TreeNode subRoot) {
+        if (subRoot == null)
+            return true;
+
+        if (root == null)
+            return false;
+
+        if (isSameTree(root, subRoot))
+            return true;
+
+        return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
+    }
+
+    // Leetcode problem: 100
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+        if (p == null && q == null)
+            return true;
+
+        if (p == null || q == null || p.val != q.val)
+            return false;
+
+        return isSameTree(p.left, q.left) &&
+                isSameTree(p.right, q.right);
+    }
+
+    // Leetcode problem: 103
+    /*
+     * The problem is same as level order traversal. Just reverse the row of even index.
+     * */
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        if (root != null) {
+            queue.add(root);
+        }
+
+        boolean reverse = false;
+        while (!queue.isEmpty()) {
+            List<Integer> row = new ArrayList<>();
+            int qSize = queue.size();
+
+            while (qSize-- > 0) {
+                TreeNode node = queue.poll();
+                row.add(node.val);
+
+                if (node.left != null) {
+                    queue.add(node.left);
+                }
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
+            }
+
+            if (reverse) {
+                Collections.reverse(row);
+            }
+            reverse = !reverse;
+
+            result.add(row);
+        }
+
+        return result;
+    }
+
+    // Leetcode problem: 669
+    public TreeNode trimBST(TreeNode root, int low, int high) {
+
+        if (root == null)
+            return null;
+
+        // All the left size is out of range. Go to right side.
+        if (root.val < low)
+            return trimBST(root.right, low, high);
+
+        // All the right size is out of range. Go to left side.
+        if (root.val > high)
+            return trimBST(root.left, low, high);
+
+        root.left = trimBST(root.left, low, high);
+        root.right = trimBST(root.right, low, high);
+
+        return root;
+    }
+
+    // Leetcode problem: 538
+    /*
+     * Inorder traversal (right->mid->left).
+     * */
+    public TreeNode convertBST(TreeNode root) {
+
+        // Use a global variable to store the current addition.
+        int[] addition = new int[1];
+
+        convertBST(root, addition);
+
+        return root;
+    }
+
+    public void convertBST(TreeNode node, int[] addition) {
+        if (node == null)
+            return;
+
+        convertBST(node.right, addition);
+
+        node.val += addition[0];
+        addition[0] = node.val;
+
+        convertBST(node.left, addition);
+
+    }
+
+    // Leetcode problem: 114
+    /*
+     * Preorder traversal.
+     * */
+    public void flatten(TreeNode root) {
+        TreeNode[] node = {new TreeNode(0)};
+        flatten(root, node);
+    }
+
+    public void flatten(TreeNode root, TreeNode[] node) {
+        if (root == null)
+            return;
+
+        // Save left and right for next recursion.
+        TreeNode left = root.left;
+        TreeNode right = root.right;
+
+        // Process current node.
+        node[0].right = root;
+        node[0].left = null;
+        node[0] = root;
+
+        flatten(left, node);
+        flatten(right, node);
+    }
+
 }

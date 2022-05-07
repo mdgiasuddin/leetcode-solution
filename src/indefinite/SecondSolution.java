@@ -140,31 +140,6 @@ public class SecondSolution {
         return mid;
     }
 
-    public List<List<Integer>> levelOrder(TreeNode root) {
-        List<List<Integer>> result = new ArrayList<>();
-        if (root == null)
-            return result;
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
-        queue.add(null);
-        List<Integer> list = new ArrayList<>();
-        while (!queue.isEmpty()) {
-            TreeNode temp = queue.poll();
-            if (temp == null) {
-                result.add(list);
-                list = new ArrayList<>();
-                if (queue.isEmpty()) break;
-                queue.add(null);
-            } else {
-                list.add(temp.val);
-                if (temp.left != null) queue.add(temp.left);
-                if (temp.right != null) queue.add(temp.right);
-            }
-        }
-
-        return result;
-    }
-
     public int hammingWeight(int n) {
         int count = 0;
         while (n != 0) {
@@ -435,22 +410,6 @@ public class SecondSolution {
         node.next = nextB;
 
         return list1;
-    }
-
-    TreeNode node = new TreeNode(0);
-
-    public void flatten(TreeNode root) {
-        if (root == null)
-            return;
-
-        TreeNode left = root.left;
-        TreeNode right = root.right;
-
-        node.right = root;
-        node.left = null;
-        node = root;
-        flatten(left);
-        flatten(right);
     }
 
     public ListNode deleteDuplicates(ListNode head) {
