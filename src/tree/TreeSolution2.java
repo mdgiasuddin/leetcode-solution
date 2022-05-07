@@ -191,4 +191,28 @@ public class TreeSolution2 {
         flatten(right, node);
     }
 
+    // Leetcode problem: 124
+    /*
+     * This problem is similar to diameter of binary tree (Leetcode problem: 543)
+     * */
+    public int maxPathSum(TreeNode root) {
+        int[] result = {root.val};
+
+        maxPathSum(root, result);
+
+        return result[0];
+    }
+
+    public int maxPathSum(TreeNode node, int[] result) {
+        if (node == null)
+            return 0;
+
+        int left = Math.max(0, maxPathSum(node.left, result));
+        int right = Math.max(0, maxPathSum(node.right, result));
+
+        result[0] = Math.max(result[0], node.val + left + right);
+
+        return node.val + Math.max(left, right);
+    }
+
 }
