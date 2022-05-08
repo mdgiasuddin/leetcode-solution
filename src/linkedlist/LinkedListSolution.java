@@ -103,6 +103,33 @@ public class LinkedListSolution {
         return dummy.next;
     }
 
+    // Leetcode problem: 23
+    /*
+     * Merge adjacent two lists until become a single list.
+     * */
+    public ListNode mergeKLists(ListNode[] lists) {
+
+        if (lists.length == 0) {
+            return null;
+        }
+
+        int currentLength = lists.length;
+        while (currentLength > 1) {
+            for (int i = 0; i < currentLength; i += 2) {
+                ListNode list1 = lists[i];
+                ListNode list2 = i + 1 < currentLength ? lists[i + 1] : null;
+
+                lists[i / 2] = mergeTwoLists(list1, list2);
+            }
+
+            // Next time process half of the lists.
+            currentLength = (currentLength + 1) / 2;
+
+        }
+
+        return lists[0];
+    }
+
     // Leetcode problem: 203
     public ListNode removeElements(ListNode head, int val) {
 
