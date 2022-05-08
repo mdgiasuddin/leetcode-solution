@@ -226,26 +226,6 @@ public class Solution {
         return false;
     }
 
-    public boolean isPalindrome(ListNode head) {
-        if (head == null)
-            return true;
-        List<Integer> nodes = new ArrayList<>();
-
-        ListNode node = head;
-        while (node != null) {
-            nodes.add(node.val);
-            node = node.next;
-        }
-        int i = 0, j = nodes.size() - 1;
-        while (i < j) {
-            if (!nodes.get(i).equals(nodes.get(j)))
-                return false;
-            i++;
-            j--;
-        }
-        return true;
-    }
-
     public int addDigits(int num) {
         int sum;
         while (num > 9) {

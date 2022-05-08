@@ -163,4 +163,40 @@ public class LinkedListSolution {
             second = next2;
         }
     }
+
+    // Leetcode problem: 234
+    public boolean isPalindrome(ListNode head) {
+        if (head == null || head.next == null)
+            return true;
+
+        ListNode slow = head, fast = head.next;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        ListNode second = slow.next;
+        slow.next = null;
+
+        // Reverse the second half.
+        ListNode prev = null;
+        while (second != null) {
+            ListNode next = second.next;
+            second.next = prev;
+            prev = second;
+            second = next;
+        }
+
+        // Check palindrome. Second half has <= nodes than first half.
+        second = prev;
+        while (second != null) {
+            if (second.val != head.val)
+                return false;
+
+            second = second.next;
+            head = head.next;
+        }
+
+        return true;
+    }
 }
