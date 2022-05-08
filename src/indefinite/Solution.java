@@ -1,5 +1,6 @@
 package indefinite;
 
+import linkedlist.ListNode;
 import tree.TreeNode;
 
 import java.util.*;
@@ -218,22 +219,6 @@ public class Solution {
         }
 
         return count;
-    }
-
-    public ListNode reverseList(ListNode head) {
-        if (head == null)
-            return null;
-        ListNode prev, current, next;
-        prev = null;
-        current = head;
-        while (current != null) {
-            next = current.next;
-            current.next = prev;
-            prev = current;
-            current = next;
-        }
-        head = prev;
-        return head;
     }
 
     public boolean containsDuplicate(int[] nums) {

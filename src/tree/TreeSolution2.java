@@ -215,4 +215,30 @@ public class TreeSolution2 {
         return node.val + Math.max(left, right);
     }
 
+    // Leetcode problem: 94
+    /*
+     * Inorder traversal iterative solution.
+     * Go to left child until face null.
+     * Then go to right child.
+     * */
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+
+        TreeNode current = root;
+        Stack<TreeNode> stack = new Stack<>();
+
+        while (current != null || !stack.isEmpty()) {
+            while (current != null) {
+                stack.push(current);
+                current = current.left;
+            }
+
+            current = stack.pop();
+            result.add(current.val);
+            current = current.right;
+        }
+
+        return result;
+    }
+
 }

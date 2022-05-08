@@ -1,5 +1,6 @@
 package indefinite;
 
+import linkedlist.ListNode;
 import tree.TreeNode;
 
 import java.util.*;
@@ -327,53 +328,6 @@ public class SecondSolution {
 
         return odd;
     }
-
-    public ListNode middleNode(ListNode head) {
-        if (head == null || head.next == null)
-            return head;
-
-        ListNode slow = head, fast = head.next;
-        while (fast.next != null && fast.next.next != null) {
-            slow = slow.next;
-            fast = fast.next.next;
-        }
-        return slow.next;
-    }
-
-    public void reorderList(ListNode head) {
-        if (head == null || head.next == null || head.next.next == null)
-            return;
-
-        ListNode slow = head, fast = head.next;
-        while (fast.next != null && fast.next.next != null) {
-            slow = slow.next;
-            fast = fast.next.next;
-        }
-        ListNode mid = slow.next;
-        slow.next = null;
-
-        System.out.println("Mid: " + mid.val);
-        ListNode prev = null, next;
-        while (mid != null) {
-            next = mid.next;
-            mid.next = prev;
-            prev = mid;
-            mid = next;
-        }
-
-        ListNode node1 = head, node2 = prev, next1, next2;
-        while (!(node1 == null || node2 == null)) {
-            next1 = node1.next;
-            node1.next = node2;
-            next2 = node2.next;
-            if (next1 != null)
-                node2.next = next1;
-            node1 = next1;
-            node2 = next2;
-        }
-
-    }
-
 
     public int getDecimalValue(ListNode head) {
         int number = 0;
