@@ -57,6 +57,46 @@ public class LinkedListSolution {
         return prev;
     }
 
+    /*
+     * Reverse linked list. Recursive solution
+     * */
+    public ListNode reverseListRec(ListNode head) {
+        if (head == null || head.next == null)
+            return head;
+
+        ListNode rev = reverseListRec(head.next);
+
+        // Created a loop.
+        head.next.next = head;
+
+        // Release the loop.
+        head.next = null;
+
+        return rev;
+    }
+
+    // Leetcode problem: 203
+    public ListNode removeElements(ListNode head, int val) {
+
+        // Delete the val in the head.
+        while (head != null && head.val == val)
+            head = head.next;
+
+        ListNode current = head, prev = head;
+        while (current != null) {
+            if (current.val == val) {
+                // Delete the node.
+                prev.next = current.next;
+            } else {
+                // Move the prev pointer.
+                prev = current;
+            }
+            current = current.next;
+        }
+
+        return head;
+    }
+
     // Leetcode problem: 143
     /*
      * Divide the list into two parts. Reverse the right part. Then merge them.
