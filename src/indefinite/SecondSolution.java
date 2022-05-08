@@ -6,35 +6,6 @@ import tree.TreeNode;
 import java.util.*;
 
 public class SecondSolution {
-    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        if (l1 == null)
-            return l2;
-        if (l2 == null)
-            return l1;
-
-        ListNode node1 = l1, node2 = l2, prev = l1, next;
-
-        while (!(node1 == null || node2 == null)) {
-            if (node1.val <= node2.val) {
-                prev = node1;
-                node1 = node1.next;
-            } else {
-                next = node2.next;
-                node2.next = node1;
-                if (node1 == l1) {
-                    l1 = node2;
-                } else {
-                    prev.next = node2;
-                }
-                prev = node2;
-                node2 = next;
-            }
-        }
-        if (node1 == null)
-            prev.next = node2;
-
-        return l1;
-    }
 
     public void merge(int[] nums1, int m, int[] nums2, int n) {
         for (int i = 1; i <= m; i++) {

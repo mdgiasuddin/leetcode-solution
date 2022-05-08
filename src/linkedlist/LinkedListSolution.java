@@ -75,6 +75,34 @@ public class LinkedListSolution {
         return rev;
     }
 
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+
+        // Take a dummy node at the head.
+        ListNode dummy = new ListNode();
+
+        ListNode tail = dummy;
+
+        while (list1 != null && list2 != null) {
+            if (list1.val <= list2.val) {
+                tail.next = list1;
+                list1 = list1.next;
+            } else {
+                tail.next = list2;
+                list2 = list2.next;
+            }
+            tail = tail.next;
+        }
+
+        if (list1 == null) {
+            tail.next = list2;
+        } else {
+            tail.next = list1;
+        }
+
+        // Return from next position to dummy node.
+        return dummy.next;
+    }
+
     // Leetcode problem: 203
     public ListNode removeElements(ListNode head, int val) {
 
