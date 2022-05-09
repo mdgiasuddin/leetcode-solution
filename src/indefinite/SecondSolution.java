@@ -337,31 +337,6 @@ public class SecondSolution {
         return list1;
     }
 
-    public ListNode deleteDuplicates(ListNode head) {
-        if (head == null || head.next == null)
-            return head;
-
-        ListNode dummyNode = new ListNode(-500);
-        dummyNode.next = head;
-        head = dummyNode;
-
-        ListNode prev = head, node = head.next, next = head.next.next;
-
-        while (next != null) {
-            if (next.val == node.val) {
-                prev.next = next.next;
-                next = next.next;
-            } else {
-                node = next;
-                next = next.next;
-                if (prev.next != node)
-                    prev = prev.next;
-            }
-        }
-
-        return head.next;
-    }
-
     public TreeNode sortedListToBST(ListNode head) {
         if (head == null)
             return null;
