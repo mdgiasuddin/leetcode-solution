@@ -775,51 +775,6 @@ public class Solution {
         return lastWordLength;
     }
 
-    public ListNode reverseBetween(ListNode head, int left, int right) {
-        if (head == null || left == right)
-            return head;
-
-        ListNode node = head, prev, next, leftNode, rightNode;
-        leftNode = rightNode = head;
-        int i = 1;
-        while (i < right) {
-            i++;
-            node = node.next;
-            if (i == left) {
-                leftNode = node;
-            }
-            if (i == right) {
-                rightNode = node;
-            }
-
-        }
-        prev = rightNode.next;
-        node = leftNode;
-        i = 1;
-        while (i <= right - left + 1) {
-            next = node.next;
-            node.next = prev;
-            prev = node;
-            node = next;
-
-            i++;
-        }
-
-        if (left == 1)
-            return prev;
-        node = head;
-        i = 1;
-        while (i < left) {
-            leftNode = node;
-            node = node.next;
-            i++;
-        }
-
-        leftNode.next = prev;
-
-        return head;
-    }
-
     public ListNode swapNodes(ListNode head, int k) {
         ListNode leftNode, slower, faster;
         slower = faster = head;

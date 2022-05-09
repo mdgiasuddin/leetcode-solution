@@ -366,4 +366,38 @@ public class LinkedListSolution {
 
         return second;
     }
+
+    // Leetcode problem: 92
+    public ListNode reverseBetween(ListNode head, int left, int right) {
+        if (head == null || head.next == null || left == right)
+            return head;
+
+        ListNode dummy = new ListNode();
+        dummy.next = head;
+        ListNode first = dummy;
+
+        // First is the just left node of left position.
+        int i = 1;
+        while (i < left) {
+            first = first.next;
+            i++;
+        }
+
+
+        // Reverse from left position to right.
+        ListNode prev = null, current = first.next;
+        while (i <= right) {
+            ListNode next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+            i++;
+        }
+
+        // Make link with reverse->right and left->reverse.
+        first.next.next = current;
+        first.next = prev;
+
+        return dummy.next;
+    }
 }
