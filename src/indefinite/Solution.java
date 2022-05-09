@@ -764,21 +764,6 @@ public class Solution {
         return minus ? -number : number;
     }
 
-    public ListNode swapPairs(ListNode head) {
-        if (head == null)
-            return null;
-
-        ListNode prev = head, next = head.next;
-        while (!(prev == null || next == null)) {
-            int temp = prev.val;
-            prev.val = next.val;
-            next.val = temp;
-            prev = next.next;
-            next = prev == null ? null : prev.next;
-        }
-        return head;
-    }
-
     public int lengthOfLastWord(String s) {
         int i = s.length() - 1;
         int lastWordLength = 0;
@@ -788,40 +773,6 @@ public class Solution {
             i--;
         }
         return lastWordLength;
-    }
-
-    public ListNode rotateRight(ListNode head, int k) {
-        if (head == null || k == 0)
-            return head;
-        ListNode node = head;
-        int n = 0;
-        while (node != null) {
-            n++;
-            node = node.next;
-        }
-        int actualRotate = k % n;
-        if (actualRotate == 0)
-            return head;
-
-        ListNode rightPart = head;
-        int right = n - actualRotate;
-        node = head;
-        int i = 1;
-        while (i < right) {
-            node = node.next;
-            i++;
-        }
-        head = node.next;
-        node.next = null;
-        node = head;
-        ListNode prev = head;
-        while (node != null) {
-            prev = node;
-            node = node.next;
-        }
-        prev.next = rightPart;
-
-        return head;
     }
 
     public ListNode reverseBetween(ListNode head, int left, int right) {
@@ -866,28 +817,6 @@ public class Solution {
 
         leftNode.next = prev;
 
-        return head;
-    }
-
-    public ListNode removeNthFromEnd(ListNode head, int n) {
-        if (head == null)
-            return null;
-        ListNode slower, faster, prev;
-        slower = faster = prev = head;
-        int i = 1;
-        while (i < n) {
-            faster = faster.next;
-            i++;
-        }
-        while (faster.next != null) {
-            prev = slower;
-            slower = slower.next;
-            faster = faster.next;
-        }
-        if (prev == slower)
-            head = head.next;
-        else
-            prev.next = slower.next;
         return head;
     }
 

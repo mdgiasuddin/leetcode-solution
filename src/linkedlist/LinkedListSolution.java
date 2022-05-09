@@ -250,4 +250,120 @@ public class LinkedListSolution {
 
         return true;
     }
+
+    // Leetcode problem: 19
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode ahead = head;
+
+        // Move ahead to nth position.
+        while (n-- > 0) {
+            ahead = ahead.next;
+        }
+
+        // When ahead reaches to the end, current will be nth position from the end.
+        ListNode current = head, prev = head;
+        while (ahead != null) {
+            ahead = ahead.next;
+            prev = current;
+            current = current.next;
+        }
+
+        // Delete the first node.
+        if (current == head) {
+            head = head.next;
+        } else {
+            prev.next = current.next;
+        }
+
+        return head;
+    }
+
+    // Leetcode problem: 24
+    public ListNode swapPairs(ListNode head) {
+
+        if (head == null || head.next == null)
+            return head;
+
+        ListNode dummy = new ListNode();
+
+        ListNode prev = dummy, first = head, second = head.next;
+
+        while (first != null && second != null) {
+
+            // Swap the current pair.
+            ListNode third = second.next;
+            second.next = first;
+            first.next = third;
+
+            // Connection with previous pair.
+            prev.next = second;
+            prev = first;
+
+            // Shift to next pair.
+            first = third;
+            if (first != null) {
+                second = third.next;
+            }
+        }
+
+        return dummy.next;
+    }
+
+    // Leetcode problem: 86
+    public ListNode partition(ListNode head, int x) {
+        ListNode left = new ListNode(), right = new ListNode();
+
+        ListNode leftTail = left, rightTail = right;
+
+        while (head != null) {
+            if (head.val < x) {
+                leftTail.next = head;
+                leftTail = leftTail.next;
+            } else {
+                rightTail.next = head;
+                rightTail = rightTail.next;
+            }
+
+            head = head.next;
+        }
+
+        rightTail.next = null;
+        leftTail.next = right.next;
+
+        return left.next;
+    }
+
+    // Leetcode problem: 61
+    public ListNode rotateRight(ListNode head, int k) {
+        if (head == null || head.next == null)
+            return head;
+
+        int n = 1;
+
+        ListNode tail = head;
+
+        // Count the number of nodes.
+        while (tail.next != null) {
+            n++;
+            tail = tail.next;
+        }
+
+        k %= n;
+        if (k == 0)
+            return head;
+
+        // Since it is right rotate, so k = n - k. For left rotate, leave k as it is.
+        k = n - k;
+
+        ListNode current = head;
+        while (--k > 0) {
+            current = current.next;
+        }
+
+        ListNode second = current.next;
+        current.next = null;
+        tail.next = head;
+
+        return second;
+    }
 }
