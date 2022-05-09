@@ -459,43 +459,6 @@ public class Solution {
         return sum;
     }
 
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-
-        if (l1 == null && l2 == null)
-            return null;
-
-        ListNode node1 = l1, node2 = l2, prev = l1;
-        int carry = 0;
-        boolean fistInsert = true;
-        while (!(node1 == null && node2 == null)) {
-            int sum = carry + ((node1 == null ? 0 : node1.val) + (node2 == null ? 0 : node2.val));
-            carry = sum / 10;
-            sum %= 10;
-            if (node1 == null) {
-                node1 = new ListNode(sum);
-                if (fistInsert) {
-                    l1 = node1;
-                } else {
-                    prev.next = node1;
-                }
-            } else {
-                node1.val = sum;
-            }
-            prev = node1;
-            node1 = node1.next;
-            if (node2 != null) {
-                node2 = node2.next;
-            }
-            fistInsert = false;
-        }
-        if (carry > 0) {
-            node1 = new ListNode(carry);
-            prev.next = node1;
-        }
-
-        return l1;
-    }
-
     public String intToRoman(int num) {
         String result = "";
         while (num > 0) {

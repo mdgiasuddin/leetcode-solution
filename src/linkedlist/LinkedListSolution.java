@@ -75,6 +75,34 @@ public class LinkedListSolution {
         return rev;
     }
 
+    // Leetcode problem: 23
+    /*
+     * Merge adjacent two lists until become a single list.
+     * */
+    public ListNode mergeKLists(ListNode[] lists) {
+
+        if (lists.length == 0) {
+            return null;
+        }
+
+        int currentLength = lists.length;
+        while (currentLength > 1) {
+            for (int i = 0; i < currentLength; i += 2) {
+                ListNode list1 = lists[i];
+                ListNode list2 = i + 1 < currentLength ? lists[i + 1] : null;
+
+                lists[i / 2] = mergeTwoLists(list1, list2);
+            }
+
+            // Next time process half of the lists.
+            currentLength = (currentLength + 1) / 2;
+
+        }
+
+        return lists[0];
+    }
+
+    // Leetcode problem: 21
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
 
         // Take a dummy node at the head.
@@ -103,31 +131,27 @@ public class LinkedListSolution {
         return dummy.next;
     }
 
-    // Leetcode problem: 23
-    /*
-     * Merge adjacent two lists until become a single list.
-     * */
-    public ListNode mergeKLists(ListNode[] lists) {
+    // Leetcode problem: 2
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode dummy = new ListNode();
+        ListNode current = dummy;
 
-        if (lists.length == 0) {
-            return null;
+        int carry = 0;
+        while (l1 != null || l2 != null || carry != 0) {
+            int v1 = l1 == null ? 0 : l1.val;
+            int v2 = l2 == null ? 0 : l2.val;
+
+            int val = (v1 + v2 + carry);
+            carry = val / 10;
+            val %= 10;
+
+            current.next = new ListNode(val);
+            current = current.next;
+            l1 = l1 == null ? null : l1.next;
+            l2 = l2 == null ? null : l2.next;
         }
 
-        int currentLength = lists.length;
-        while (currentLength > 1) {
-            for (int i = 0; i < currentLength; i += 2) {
-                ListNode list1 = lists[i];
-                ListNode list2 = i + 1 < currentLength ? lists[i + 1] : null;
-
-                lists[i / 2] = mergeTwoLists(list1, list2);
-            }
-
-            // Next time process half of the lists.
-            currentLength = (currentLength + 1) / 2;
-
-        }
-
-        return lists[0];
+        return dummy.next;
     }
 
     // Leetcode problem: 203
