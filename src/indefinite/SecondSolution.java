@@ -68,50 +68,6 @@ public class SecondSolution {
         return String.copyValueOf(sum, i, sumLength - i);
     }
 
-    public ListNode sortList(ListNode head) {
-        if (head == null || head.next == null) return head;
-
-        ListNode mid = findMid(head);
-        sortList(head);
-        sortList(mid);
-
-        return merge(head, mid);
-    }
-
-    ListNode merge(ListNode left, ListNode right) {
-        ListNode result = new ListNode(-1);
-        ListNode temp = result;
-
-        while (!(left == null && right == null)) {
-            if (left.val <= right.val) {
-                temp.next = left;
-                left = left.next;
-            } else {
-                temp.next = right;
-                right = right.next;
-            }
-            temp = temp.next;
-        }
-        if (left != null) {
-            temp.next = left;
-        }
-        if (right != null)
-            temp.next = right;
-
-        return result.next;
-    }
-
-    ListNode findMid(ListNode head) {
-        ListNode midPrev = null;
-        while (!(head == null || head.next == null)) {
-            midPrev = midPrev == null ? head : midPrev.next;
-            head = head.next.next;
-        }
-        ListNode mid = midPrev.next;
-        midPrev.next = null;
-        return mid;
-    }
-
     public int hammingWeight(int n) {
         int count = 0;
         while (n != 0) {
@@ -356,19 +312,6 @@ public class SecondSolution {
         root.right = sortedListToBST(mid.next);
 
         return root;
-    }
-
-    public boolean hasCycle(ListNode head) {
-        ListNode slow, fast;
-        slow = fast = head;
-
-        while (!(fast == null || fast.next == null)) {
-            slow = slow.next;
-            fast = fast.next.next;
-            if (slow == fast)
-                return true;
-        }
-        return false;
     }
 
     public ListNode detectCycle(ListNode head) {
