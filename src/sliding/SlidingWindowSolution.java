@@ -323,4 +323,21 @@ public class SlidingWindowSolution {
 
         return minLength == nums.length + 1 ? 0 : minLength;
     }
+
+    // Leetocde problem: 53
+    public int maxSubArray(int[] nums) {
+        int result = nums[0];
+        int current = 0;
+
+        for (int num : nums) {
+            // If previous sum is negative, then don't need to continue previous window. Reset it.
+            if (current < 0)
+                current = 0;
+
+            current += num;
+            result = Math.max(result, current);
+        }
+
+        return result;
+    }
 }
