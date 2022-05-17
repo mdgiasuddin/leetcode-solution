@@ -4,6 +4,12 @@ public class BitOperation {
 
     public static void main(String[] args) {
 
+        BitOperation bitOperation = new BitOperation();
+
+//        int[] nums = {1, 1, 1, 2, 2, 3, 4};
+        int[] nums = {1};
+
+        System.out.println();
     }
 
     // Leetcode problem: 371

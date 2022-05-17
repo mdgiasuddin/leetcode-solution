@@ -1,8 +1,6 @@
 package array;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class ArraySolution4 {
     public static void main(String[] args) {
@@ -261,5 +259,47 @@ public class ArraySolution4 {
         }
 
         return result;
+    }
+
+    // Leetcode problem: 347
+    public int[] topKFrequent(int[] nums, int k) {
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for (int num : nums) {
+            if (!map.containsKey(num)) {
+                map.put(num, 1);
+            } else {
+                int newCount = 1 + map.get(num);
+                map.replace(num, newCount);
+            }
+        }
+
+        ArrayList<Integer>[] freq = new ArrayList[nums.length + 1];
+        for (int i = 0; i <= nums.length; i++) {
+            freq[i] = new ArrayList<>();
+        }
+
+        // Create a list against the count value.
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            freq[(entry.getValue())].add(entry.getKey());
+        }
+
+        List<Integer> result = new ArrayList<>();
+
+        // Here added means how many elements added to the result so far.
+        int added = 0;
+        for (int i = nums.length; i >= 0; i--) {
+            if (freq[i].size() > 0) {
+
+                // Increase the value of added and add the values.
+                added += freq[i].size();
+                result.addAll(freq[i]);
+
+                if (added == k)
+                    break;
+            }
+        }
+
+        return result.stream().mapToInt(i -> i).toArray();
     }
 }

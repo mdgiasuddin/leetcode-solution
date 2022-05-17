@@ -392,38 +392,28 @@ public class StringSolution2 {
 
     // Leetcode problem: 647
     /*
-     * Build up a palindrome table increment count if palindrome found
-     * See Leetcode problem: 132
+     * Count odd length palindrome and even length palindrome centering from every index.
      * */
     public int countSubstrings(String s) {
-        int palindromicSubstring = 0;
+        int res = 0;
 
-        int strLen = s.length();
-        boolean[][] palindromeTable = new boolean[strLen][strLen];
-        for (int i = 0; i < strLen; i++) {
-            palindromicSubstring++;
-            palindromeTable[i][i] = true;
+        for (int i = 0; i < s.length(); i++) {
+            res += countPalindrome(s, i, i); // Odd length.
+            res += countPalindrome(s, i, i + 1); // Even length.
         }
 
-        for (int i = 0; i < strLen - 1; i++) {
-            if (s.charAt(i) == s.charAt(i + 1)) {
-                palindromeTable[i][i + 1] = true;
-                palindromicSubstring++;
-            }
+        return res;
+    }
+
+    private int countPalindrome(String s, int left, int right) {
+        int res = 0;
+
+        while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+            res++;
+            left--;
+            right++;
         }
-
-        for (int currentLength = 3; currentLength <= strLen; currentLength++) {
-            for (int i = 0; i < strLen - (currentLength - 1); i++) {
-                int j = i + currentLength - 1;
-
-                if (s.charAt(i) == s.charAt(j) && palindromeTable[i + 1][j - 1]) {
-                    palindromeTable[i][j] = true;
-                    palindromicSubstring++;
-                }
-            }
-        }
-
-        return palindromicSubstring;
+        return res;
     }
 
     // Leetcode problem: 474
