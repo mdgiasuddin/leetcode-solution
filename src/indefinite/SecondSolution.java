@@ -77,17 +77,6 @@ public class SecondSolution {
         return count;
     }
 
-    public int[] countBits(int n) {
-        int[] bits = new int[n + 1];
-
-        bits[0] = 0;
-        for (int i = 1; i <= n; i++) {
-            bits[i] = bits[i >> 1] + i % 2;
-        }
-
-        return bits;
-    }
-
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         int len1 = getLength(l1);
         int len2 = getLength(l2);

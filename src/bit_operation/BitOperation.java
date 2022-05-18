@@ -27,4 +27,20 @@ public class BitOperation {
 
         return a;
     }
+
+    // Leetcode problem: 338
+    /*
+     * Dynamic programming.
+     * */
+    public int[] countBits(int n) {
+        int[] bits = new int[n + 1];
+
+        bits[0] = 0;
+        for (int i = 1; i <= n; i++) {
+            // DP[i] = DP[i/2] + '1' in rightmost bit.
+            bits[i] = bits[i >> 1] + i % 2;
+        }
+
+        return bits;
+    }
 }
