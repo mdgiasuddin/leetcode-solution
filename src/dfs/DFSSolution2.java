@@ -1,8 +1,11 @@
 package dfs;
 
+import graph.Node;
 import pair.Pair;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class DFSSolution2 {
@@ -119,6 +122,30 @@ public class DFSSolution2 {
 
         result[r][c] = res;
         return res;
+    }
+
+    // Leetcode problem: 133
+    public Node cloneGraph(Node node) {
+        Map<Node, Node> map = new HashMap<>();
+
+        return cloneGraph(node, map);
+    }
+
+    private Node cloneGraph(Node node, Map<Node, Node> map) {
+        if (node == null)
+            return null;
+
+        if (map.containsKey(node))
+            return map.get(node);
+
+        Node copy = new Node(node.val);
+        map.put(node, copy);
+
+        for (Node neighbor : node.neighbors) {
+            copy.neighbors.add(cloneGraph(neighbor, map));
+        }
+
+        return copy;
     }
 
 }
