@@ -9,28 +9,25 @@ public class SlidingWindowSolution {
 
     // Leetcode problem: 3
     /*
-     * Build a map to store index of every character
-     * If a character repeats then update the index and start index of substring
-     * Else update the maximum length so far
+     * Build a map to store the character in current window.
+     * If a character repeats then remove the character until the repeating character found.
+     * Else update the maximum length so far.
      * */
     public int lengthOfLongestSubstring(String s) {
-        int maxLength = 0, start = 0;
-        Map<Character, Integer> indexMap = new HashMap<>();
+        int l = 0, maxLen = 0;
+        Set<Character> set = new HashSet<>();
 
-        for (int end = 0; end < s.length(); end++) {
-            char ch = s.charAt(end);
-            if (indexMap.containsKey(ch)) {
-                indexMap.replace(ch, end);
-
-                // Slide start to the next position of non-repeating index
-                start = indexMap.get(ch) + 1;
-            } else {
-                indexMap.put(ch, end);
-                maxLength = Math.max(maxLength, end - start + 1);
+        for (int r = 0; r < s.length(); r++) {
+            while (set.contains(s.charAt(r))) {
+                set.remove(s.charAt(l));
+                l++;
             }
+            set.add(s.charAt(r));
+            maxLen = Math.max(maxLen, r - l + 1);
+
         }
 
-        return maxLength;
+        return maxLen;
     }
 
     // Leetcode problem: 121

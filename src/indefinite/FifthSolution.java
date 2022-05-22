@@ -255,6 +255,13 @@ public class FifthSolution {
         return result;
     }
 
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        subsets(nums, result, new ArrayList<>(), 0);
+
+        return result;
+    }
+
     private void subsets(int[] nums, List<List<Integer>> result, List<Integer> currentList, int current) {
         result.add(new ArrayList<>(currentList));
 
@@ -263,13 +270,6 @@ public class FifthSolution {
             subsets(nums, result, currentList, i + 1);
             currentList.remove(currentList.size() - 1);
         }
-    }
-
-    public List<List<Integer>> subsets(int[] nums) {
-        List<List<Integer>> result = new ArrayList<>();
-        subsets(nums, result, new ArrayList<>(), 0);
-
-        return result;
     }
 
     private void subsetsWithDup(int[] nums, List<List<Integer>> result, List<Integer> currentList, int current, Integer prev) {

@@ -25,4 +25,38 @@ public class DynamicProgramming2 {
 
         return dp[n];
     }
+
+    // Leetcode problem: 152
+    /*
+     * This solution is tricky.
+     * */
+    public int maxProduct(int[] nums) {
+        int currentMax = 1, currentMin = 1;
+
+        // First assume the maximum value of the array is the max product.
+        int result = nums[0];
+        for (int num : nums) {
+            result = Math.max(result, num);
+        }
+
+        for (int num : nums) {
+
+            // If num is 0, no need to continue with previous sub-array. reset it.
+            if (num == 0) {
+                currentMax = 1;
+                currentMin = 1;
+                continue;
+            }
+
+            // Current max and min are the maximum and minimum product respectively including
+            // this number.
+            int tmp = num * currentMax;
+            currentMax = Math.max(num, Math.max(tmp, num * currentMin));
+            currentMin = Math.min(num, Math.min(tmp, num * currentMin));
+
+            result = Math.max(result, currentMax);
+        }
+
+        return result;
+    }
 }

@@ -83,6 +83,7 @@ public class ArraySolution2 {
     // Leetcode problem: 48
     /*
      * Rotate matrix 90 degree clockwise
+     * Loop range are important. i => (0 ... n / 2), j => (i ... n-1-i)
      * */
     public void rotate(int[][] matrix) {
         int n = matrix.length;

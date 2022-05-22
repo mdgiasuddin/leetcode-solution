@@ -1,5 +1,8 @@
 package prefix;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class PrefixSumSolution {
 
     public static void main(String[] args) {
@@ -32,5 +35,27 @@ public class PrefixSumSolution {
         }
 
         return result;
+    }
+
+    // Leetcode problem: 560
+    public int subarraySum(int[] nums, int k) {
+
+        // Prefix sum stores how many times current sum is present from the start position.
+        Map<Integer, Integer> prefixSum = new HashMap<>();
+        int res = 0, currentSum = 0;
+        prefixSum.put(0, 1);
+
+        for (int num : nums) {
+            currentSum += num;
+
+            // If current - k is present in the prefix sum, then we can take the sub-array window
+            // after sum k to current.
+            res += prefixSum.getOrDefault(currentSum - k, 0);
+
+            int prev = prefixSum.getOrDefault(currentSum, 0);
+            prefixSum.put(currentSum, 1 + prev);
+        }
+
+        return res;
     }
 }

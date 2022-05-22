@@ -348,8 +348,6 @@ public class TreeSolution {
                 if (qSize > 0) {
                     // If not last node in current level then set next node;
                     node.next = queue.peek();
-                } else {
-                    node.next = null;
                 }
 
                 // Since tree is balanced, If there is left child then also right child.
