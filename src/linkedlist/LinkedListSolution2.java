@@ -111,4 +111,32 @@ public class LinkedListSolution2 {
         return slow;
     }
 
+    // Leetcode problem: 147
+    public ListNode insertionSortList(ListNode head) {
+        ListNode dummy = new ListNode();
+        dummy.next = head;
+
+        ListNode prev = head, current = head.next;
+
+        while (current != null) {
+            if (current.val >= prev.val) {
+                prev = current;
+                current = current.next;
+                continue;
+            }
+
+            ListNode tmp = dummy;
+            while (current.val > tmp.next.val)
+                tmp = tmp.next;
+
+            prev.next = current.next;
+            current.next = tmp.next;
+            tmp.next = current;
+            current = prev.next;
+
+        }
+
+        return dummy.next;
+    }
+
 }

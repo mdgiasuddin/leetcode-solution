@@ -1,6 +1,7 @@
 package array;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class ArraySolution5 {
 
@@ -24,5 +25,20 @@ public class ArraySolution5 {
         }
 
         return result;
+    }
+
+    public String largestNumber(int[] nums) {
+        List<String> strings = new java.util.ArrayList<>(Arrays.stream(nums).mapToObj(String::valueOf).toList());
+
+        strings.sort((a, b) -> (b + a).compareTo(a + b));
+
+        StringBuilder result = new StringBuilder();
+        for (String str : strings) {
+            result.append(str);
+        }
+
+        if (result.toString().startsWith("0"))
+            return "0";
+        return result.toString();
     }
 }

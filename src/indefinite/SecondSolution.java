@@ -326,40 +326,6 @@ public class SecondSolution {
         return slow;
     }
 
-    public ListNode insertionSortList(ListNode head) {
-        if (head == null || head.next == null)
-            return head;
-
-        ListNode currentNode = head, insertNode, element;
-
-        while (currentNode.next != null) {
-            if (currentNode.val <= currentNode.next.val)
-                currentNode = currentNode.next;
-            else {
-                element = currentNode.next;
-                currentNode.next = currentNode.next.next;
-
-                if (element.val <= head.val) {
-                    element.next = head;
-                    head = element;
-                    continue;
-                }
-                insertNode = head;
-                while (insertNode.next != null) {
-                    if (element.val < insertNode.next.val) {
-                        ListNode temp = insertNode.next;
-                        insertNode.next = element;
-                        element.next = temp;
-                        break;
-                    } else
-                        insertNode = insertNode.next;
-                }
-            }
-        }
-
-        return head;
-    }
-
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         int lenA, lenB;
         lenA = lenB = 0;
