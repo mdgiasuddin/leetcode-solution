@@ -58,4 +58,30 @@ public class PrefixSumSolution {
 
         return res;
     }
+
+    // Leetcode problem: 523
+    /*
+     * This problem is similar to sub-array sum. (Leetcode problem: 560)
+     * Instead of storing the current sum, store the reminder.
+     * */
+    public boolean checkSubarraySum(int[] nums, int k) {
+        Map<Integer, Integer> prefixMap = new HashMap<>();
+
+        prefixMap.put(0, -1);
+        int currentSum = 0;
+        for (int i = 0; i < nums.length; i++) {
+            currentSum = (currentSum + nums[i]) % k;
+
+            // Since sub-array size >= 2, check the difference of previous index > 1.
+            if (prefixMap.containsKey(currentSum) && i - prefixMap.get(currentSum) > 1)
+                return true;
+
+            // If the reminder already stored don't need to store again.
+            if (!prefixMap.containsKey(currentSum))
+                prefixMap.put(currentSum, i);
+
+        }
+
+        return false;
+    }
 }
