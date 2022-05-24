@@ -8,14 +8,23 @@ import java.util.*;
 public class Solution {
     int maxValue = Integer.MIN_VALUE;
 
+    // Leetcode problem: 7
     public int reverse(int x) {
+
         int rev = 0, prevRev = 0;
         int n = x < 0 ? -x : x;
+
         while (n > 0) {
             int current = n % 10;
             rev = (rev * 10) + current;
+
+            /*
+             * Check whether it overflows.
+             * If this overflows, then the number will be completely different from previous.
+             * */
             if ((rev - current) / 10 != prevRev)
                 return 0;
+
             prevRev = rev;
             n /= 10;
         }
@@ -762,17 +771,6 @@ public class Solution {
         }
 
         return minus ? -number : number;
-    }
-
-    public int lengthOfLastWord(String s) {
-        int i = s.length() - 1;
-        int lastWordLength = 0;
-
-        while (i >= 0 && s.charAt(i) != ' ') {
-            lastWordLength++;
-            i--;
-        }
-        return lastWordLength;
     }
 
     public ListNode swapNodes(ListNode head, int k) {

@@ -184,6 +184,22 @@ public class StringSolution7 {
         return queue.poll();
     }
 
+    // Leetcode problem: 58
+    public int lengthOfLastWord(String s) {
+        int r = s.length() - 1;
+
+        // Find index of last character.
+        while (r >= 0 && s.charAt(r) == ' ')
+            r--;
+
+        // Find the index of space after the last character.
+        int l = r;
+        while (l >= 0 && s.charAt(l) != ' ')
+            l--;
+
+        return r - l;
+    }
+
     // Leetcode problem: 1044
     // Leetcode problem: 1048
     // Leetcode problem: 1063

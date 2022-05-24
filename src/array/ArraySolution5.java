@@ -2,6 +2,7 @@ package array;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.PriorityQueue;
 
 public class ArraySolution5 {
 
@@ -64,5 +65,28 @@ public class ArraySolution5 {
         while (n > 0) {
             nums1[last--] = nums2[--n];
         }
+    }
+
+    // Leetocode problem: 1096
+    /*
+     * Build up a max priority queue to get maximum number every time.
+     * */
+    public int lastStoneWeight(int[] stones) {
+        PriorityQueue<Integer> queue = new PriorityQueue<>((a, b) -> b - a);
+
+        for (int stone : stones) {
+            queue.add(stone);
+        }
+
+        while (queue.size() > 1) {
+            int first = queue.poll();
+            int second = queue.poll();
+
+            if (first > second) {
+                queue.add(first - second);
+            }
+        }
+
+        return queue.isEmpty() ? 0 : queue.poll();
     }
 }

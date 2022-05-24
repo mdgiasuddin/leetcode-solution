@@ -234,51 +234,35 @@ public class ArraySolution {
     }
 
     // Leetcode problem: 26
-    /*
-     * Save the first index where the element first shown
-     * Then for the same value come erase the position by '_'
-     * Whenever a different value come store it next to the first index
-     * */
     public int removeDuplicates(int[] nums) {
-        int firstIndex = 0;
+        int res = 1;
 
         for (int i = 1; i < nums.length; i++) {
-
-            // Different element comes. Store it next to the first index
-            if (nums[firstIndex] != nums[i]) {
-                firstIndex++;
-
-                nums[firstIndex] = nums[i];
-
-                // If first index is less than current position then erase ith position
-                if (firstIndex != i)
-                    nums[i] = '_';
-            } else { // If same value comes erase it
-                nums[i] = '_';
+            // If new value comes store it to res position.
+            if (nums[i] != nums[i - 1]) {
+                nums[res] = nums[i];
+                res++;
             }
         }
-        return firstIndex + 1;
+
+        return res;
     }
 
     // Leetcode problem: 27
-    /*
-     * This problem similar to previous problem (Leetcode problem: 26)
-     * */
     public int removeElement(int[] nums, int val) {
-        int firstIndex = 0;
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] == val) {
-                nums[i] = '_';
-            } else {
-                if (firstIndex != i) {
-                    nums[firstIndex] = nums[i];
-                    nums[i] = '_';
-                }
-                firstIndex++;
-            }
-        }
-        return firstIndex;
+        int i = 0, res = 0;
 
+        while (i < nums.length) {
+            // Increase i until a number != val found.
+            while (i < nums.length && nums[i] == val)
+                i++;
+
+            // If any element found insert at the position to res.
+            if (i < nums.length)
+                nums[res++] = nums[i++];
+        }
+
+        return res;
     }
 
     // Leetcode problem: 33
