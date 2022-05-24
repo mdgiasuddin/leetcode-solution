@@ -7,28 +7,6 @@ import java.util.*;
 
 public class SecondSolution {
 
-    public void merge(int[] nums1, int m, int[] nums2, int n) {
-        for (int i = 1; i <= m; i++) {
-            nums1[m + n - i] = nums1[m - i];
-        }
-
-        int idx1 = n, idx2 = 0, target = 0;
-        while (idx1 < m + n && idx2 < n) {
-            if (nums1[idx1] <= nums2[idx2]) {
-                nums1[target] = nums1[idx1++];
-            } else {
-                nums1[target] = nums2[idx2++];
-            }
-            target++;
-        }
-        while (idx1 < m + n) {
-            nums1[target++] = nums1[idx1++];
-        }
-        while (idx2 < n) {
-            nums1[target++] = nums2[idx2++];
-        }
-    }
-
     public String addBinary(String a, String b) {
         if (a.equals("0") && b.equals("0"))
             return "0";
