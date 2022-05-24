@@ -250,18 +250,13 @@ public class ArraySolution {
 
     // Leetcode problem: 27
     public int removeElement(int[] nums, int val) {
-        int i = 0, res = 0;
+        int res = 0;
 
-        while (i < nums.length) {
-            // Increase i until a number != val found.
-            while (i < nums.length && nums[i] == val)
-                i++;
-
-            // If any element found insert at the position to res.
-            if (i < nums.length)
-                nums[res++] = nums[i++];
+        for (int num : nums) {
+            // num != val take it.
+            if (num != val)
+                nums[res++] = num;
         }
-
         return res;
     }
 
