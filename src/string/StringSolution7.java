@@ -236,7 +236,33 @@ public class StringSolution7 {
         return emailSet.size();
     }
 
-    // Leetcode problem: 1044
-    // Leetcode problem: 1048
-    // Leetcode problem: 1063
+    // Leetcode problem: 290
+    /*
+     * This problem is similar to Isomorphic String (Leetcode problem: 205).
+     * */
+    public boolean wordPattern(String pattern, String s) {
+        String[] words = s.split(" ");
+
+        if (words.length != pattern.length())
+            return false;
+
+        Map<Character, String> charStr = new HashMap<>();
+        Map<String, Character> strChar = new HashMap<>();
+
+        for (int i = 0; i < words.length; i++) {
+            char ch = pattern.charAt(i);
+            String word = words[i];
+
+            if (charStr.containsKey(ch) && !charStr.get(ch).equals(word))
+                return false;
+
+            if (strChar.containsKey(word) && strChar.get(word) != ch)
+                return false;
+
+            charStr.put(ch, word);
+            strChar.put(word, ch);
+        }
+
+        return true;
+    }
 }

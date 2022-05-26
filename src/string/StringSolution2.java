@@ -81,23 +81,18 @@ public class StringSolution2 {
      * Use HashMap to store the mappings of character
      * */
     public boolean isIsomorphic(String s, String t) {
-        if (s.length() != t.length())
-            return false;
+        Map<Character, Character> mapST = new HashMap<>();
+        Map<Character, Character> mapTS = new HashMap<>();
 
-        Map<Character, Character> characterMap = new HashMap<>();
         for (int i = 0; i < s.length(); i++) {
-            if (characterMap.containsKey(s.charAt(i)) && characterMap.get(s.charAt(i)) != t.charAt(i))
+            char charS = s.charAt(i);
+            char charT = t.charAt(i);
+            if ((mapST.containsKey(charS) && mapST.get(charS) != charT)
+                    || (mapTS.containsKey(charT) && mapTS.get(charT) != charS))
                 return false;
 
-            characterMap.put(s.charAt(i), t.charAt(i));
-        }
-
-        Map<Character, Character> characterMap2 = new HashMap<>();
-        for (int i = 0; i < s.length(); i++) {
-            if (characterMap2.containsKey(t.charAt(i)) && characterMap2.get(t.charAt(i)) != s.charAt(i))
-                return false;
-
-            characterMap2.put(t.charAt(i), s.charAt(i));
+            mapST.put(charS, charT);
+            mapTS.put(charT, charS);
         }
 
         return true;

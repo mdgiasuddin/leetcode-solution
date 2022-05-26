@@ -132,4 +132,25 @@ public class ArraySolution5 {
 
         return result;
     }
+
+    // Leetcode problem: 1189
+    public int maxNumberOfBalloons(String text) {
+        // Index and count of chars in balloon 'a', 'b', 'l', 'n', 'o'
+        int[] indices = {0, 1, 11, 13, 14};
+        int[] balloon = {1, 1, 2, 1, 2};
+        int[] count = new int[26];
+
+        for (int i = 0; i < text.length(); i++) {
+            count[text.charAt(i) - 'a']++;
+
+        }
+
+        // Result is the minimum multiplication of all characters in balloon.
+        int res = text.length();
+        for (int i = 0; i < 5; i++) {
+            res = Math.min(res, count[indices[i]] / balloon[i]);
+        }
+
+        return res;
+    }
 }
