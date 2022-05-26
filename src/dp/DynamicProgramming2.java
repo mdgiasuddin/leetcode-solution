@@ -59,4 +59,18 @@ public class DynamicProgramming2 {
 
         return result;
     }
+
+    // Leetcode problem: 746
+    public int minCostClimbingStairs(int[] cost) {
+        int n = cost.length;
+        int first = cost[0], second = cost[1];
+
+        for (int i = 2; i < n; i++) {
+            int third = cost[i] + Math.min(first, second);
+            first = second;
+            second = third;
+        }
+
+        return Math.min(first, second);
+    }
 }

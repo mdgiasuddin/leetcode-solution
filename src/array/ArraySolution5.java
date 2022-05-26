@@ -1,5 +1,6 @@
 package array;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.PriorityQueue;
@@ -88,5 +89,47 @@ public class ArraySolution5 {
         }
 
         return queue.isEmpty() ? 0 : queue.poll();
+    }
+
+    // Leetcode problem: 605
+    public boolean canPlaceFlowers(int[] flowerbed, int n) {
+        if (n == 0)
+            return true;
+
+        for (int i = 0; i < flowerbed.length; i++) {
+
+            // Check if a flower can be placed.
+            if (flowerbed[i] == 0 && (i == 0 || flowerbed[i - 1] == 0)
+                    && (i == flowerbed.length - 1 || flowerbed[i + 1] == 0)) {
+                flowerbed[i] = 1;
+                n--;
+            }
+        }
+
+        return n <= 0;
+    }
+
+    // Leetcode problem: 448
+    /*
+     * For every number make its index element negative.
+     * Then check in which index numbers are still positive.
+     * */
+    public List<Integer> findDisappearedNumbers(int[] nums) {
+        List<Integer> result = new ArrayList<>();
+
+        for (int num : nums) {
+            int index = Math.abs(num) - 1;
+
+            if (nums[index] > 0)
+                nums[index] = -nums[index];
+        }
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] > 0) {
+                result.add(i + 1);
+            }
+        }
+
+        return result;
     }
 }

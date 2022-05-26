@@ -44,4 +44,24 @@ public class TwoPointerSolution {
 
         return result;
     }
+
+    // Leetcode problem: 977
+    public int[] sortedSquares(int[] nums) {
+        int n = nums.length;
+        int l = 0, r = n - 1, k = n - 1;
+        int[] squares = new int[n];
+
+        while (l <= r) {
+            if (nums[l] * nums[l] > nums[r] * nums[r]) {
+                squares[k] = nums[l] * nums[l];
+                l++;
+            } else {
+                squares[k] = nums[r] * nums[r];
+                r--;
+            }
+            k--;
+        }
+
+        return squares;
+    }
 }

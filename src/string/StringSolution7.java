@@ -1,8 +1,6 @@
 package string;
 
-import java.util.Arrays;
-import java.util.PriorityQueue;
-import java.util.Stack;
+import java.util.*;
 
 public class StringSolution7 {
     public static void main(String[] args) {
@@ -198,6 +196,44 @@ public class StringSolution7 {
             l--;
 
         return r - l;
+    }
+
+    // Leetcode problem: 929
+    public int numUniqueEmails(String[] emails) {
+
+        Set<String> emailSet = new HashSet<>();
+
+        for (String email : emails) {
+
+            // This using string library function.
+            /*
+            String[] splitted = email.split("@");
+            String local = splitted[0].split("\\+")[0];
+            local = local.replace(".", "");
+            emailSet.add(local + '@' + splitted[1]);
+            */
+
+            boolean plusFound = false, domainFound = false;
+
+            StringBuilder emailBuilder = new StringBuilder();
+            for (int i = 0; i < email.length(); i++) {
+                char ch = email.charAt(i);
+                if (ch == '@') {
+                    domainFound = true;
+                } else if (ch == '+') {
+                    plusFound = true;
+                }
+                // If domain found or before '+' then add all.
+                if (domainFound || (!plusFound && ch != '.')) {
+                    emailBuilder.append(ch);
+                }
+
+            }
+
+            if (emailSet.add(emailBuilder.toString())) ;
+        }
+
+        return emailSet.size();
     }
 
     // Leetcode problem: 1044
