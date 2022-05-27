@@ -69,52 +69,6 @@ public class ArraySolution {
         return area;
     }
 
-    // Leetcode problem: 4
-    /*
-     * Binary search
-     * [1, 5, 10, 18, 20, 25] [3, 4, 6, 7, 9, 12] => [1, 3, 4, 5, 6 | 7 || 9 | 10, 12, 18, 20, 25]
-        Left = 1, 3, 4, 5, 6, 7     Right = 9, 10, 12, 18, 20, 25
-        Nums1 => 1, 5               10, 18, 20, 25
-        Nums => 3, 4, 6, 7          9, 12
-        left1 < right2 & left2 < right1
-        Median Max(left1, left2) & Min(right1, right2)
-     * Binary search until this condition fulfilled
-     * */
-    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-
-        if (nums1.length > nums2.length) {
-            int[] temp = nums1;
-            nums1 = nums2;
-            nums2 = temp;
-        }
-
-        int low = 0, high = nums1.length;
-        int middle = (nums1.length + nums2.length) / 2;
-
-        double median = Integer.MIN_VALUE;
-        while (low <= high) {
-            int cut1 = low + (high - low) / 2;
-            int cut2 = middle - cut1;
-            int left1 = cut1 == 0 ? Integer.MIN_VALUE : nums1[cut1 - 1];
-            int left2 = cut2 == 0 ? Integer.MIN_VALUE : nums2[cut2 - 1];
-            int right1 = cut1 == nums1.length ? Integer.MAX_VALUE : nums1[cut1];
-            int right2 = cut2 == nums2.length ? Integer.MAX_VALUE : nums2[cut2];
-
-            if (left1 > right2) {
-                high = cut1 - 1;
-            } else if (left2 > right1) {
-                low = cut1 + 1;
-            } else {
-                median = (nums1.length + nums2.length) % 2 == 0 ? (Math.max(left1, left2) + Math.min(right1, right2)) / 2.0
-                        : Math.min(right1, right2);
-
-                break;
-            }
-        }
-
-        return median;
-    }
-
     // Leetcode problem: 15
     /*
      * 3 sum
