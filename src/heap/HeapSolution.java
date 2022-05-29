@@ -1,8 +1,8 @@
 package heap;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.PriorityQueue;
+import pair.Pair;
+
+import java.util.*;
 
 public class HeapSolution {
 
@@ -42,4 +42,38 @@ public class HeapSolution {
 
         return true;
     }
+
+    // Leetcode problem: 1851
+    public int[] minInterval(int[][] intervals, int[] queries) {
+        Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
+
+        int[] sortedQueries = Arrays.stream(queries).sorted().toArray();
+        Map<Integer, Integer> result = new HashMap<>();
+
+        PriorityQueue<Pair> queue = new PriorityQueue<>(Comparator.comparingInt(a -> a.first));
+
+        int i = 0;
+        for (int query : sortedQueries) {
+            // Add all the intervals that may cover the current query.
+            while (i < intervals.length && intervals[i][0] <= query) {
+                queue.add(new Pair(intervals[i][1] - intervals[i][0] + 1, intervals[i][1]));
+                i++;
+            }
+
+            // Remove the intervals which are far left from the query and cannot cover query anymore.
+            while (!queue.isEmpty() && queue.peek().second < query) {
+                queue.poll();
+            }
+
+            result.put(query, queue.isEmpty() ? -1 : queue.peek().first);
+        }
+
+        int[] resultArray = new int[queries.length];
+        for (int j = 0; j < queries.length; j++) {
+            resultArray[j] = result.get(queries[i]);
+        }
+
+        return resultArray;
+    }
+
 }
