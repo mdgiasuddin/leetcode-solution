@@ -122,7 +122,59 @@ public class RecursiveDP {
         if (map.containsKey(pair))
             return map.get(pair);
 
-        boolean res = canPartition(idx + 1, current + nums[idx], target, nums, map) || canPartition(idx + 1, current, target, nums, map);
+        boolean res = canPartition(idx + 1, current + nums[idx], target, nums, map)
+                || canPartition(idx + 1, current, target, nums, map);
+
+        map.put(pair, res);
+        return res;
+    }
+
+    // Leetcode problem: 1553
+    public int minDays(int n) {
+        Map<Integer, Integer> map = new HashMap<>();
+
+        map.put(0, 0);
+        map.put(1, 1);
+
+        return minDays(n, map);
+    }
+
+    private int minDays(int n, Map<Integer, Integer> map) {
+        if (map.containsKey(n))
+            return map.get(n);
+
+        // Eat (n % 2) orange to make eat divisible by 2 then 1 for eating n / 2 orange.
+        // Eat (n % 3) orange to make eat divisible by 3 then 1 for eating n / 3 orange.
+        int two = 1 + (n % 2) + minDays(n / 2, map);
+        int three = 1 + (n % 3) + minDays(n / 3, map);
+
+        map.put(n, Math.min(two, three));
+        return Math.min(two, three);
+    }
+
+    // Leetcode problem: 877
+    public boolean stoneGame(int[] piles) {
+        int sum = 0;
+        for (int pile : piles)
+            sum += pile;
+
+        return stoneGame(0, piles.length - 1, piles, new HashMap<>()) > sum / 2;
+    }
+
+    private int stoneGame(int l, int r, int[] piles, Map<Pair, Integer> map) {
+        if (l > r)
+            return 0;
+
+        Pair pair = new Pair(l, r);
+
+        if (map.containsKey(pair))
+            return map.get(pair);
+
+        // Calculate only Alice's piles. For even length Alice can take a pile.
+        int left = (r - l + 1) % 2 == 0 ? piles[l] : 0;
+        int right = (r - l + 1) % 2 == 0 ? piles[r] : 0;
+
+        int res = Math.max(left + stoneGame(l + 1, r, piles, map), right + stoneGame(l, r - 1, piles, map));
 
         map.put(pair, res);
         return res;
