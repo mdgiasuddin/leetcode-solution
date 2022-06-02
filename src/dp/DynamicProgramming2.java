@@ -119,6 +119,9 @@ public class DynamicProgramming2 {
     }
 
     // Leetcode problem: 1911
+    /*
+     * The solution is little tricky.
+     * */
     public long maxAlternatingSum(int[] nums) {
         long sumEven = 0, sumOdd = 0;
 
@@ -134,5 +137,26 @@ public class DynamicProgramming2 {
         }
 
         return sumEven;
+    }
+
+    // Leetcode problem: 1866
+    /*
+     * If the largest stick is set to the last then 1 stick always visible.
+     * If another stick smaller than the largest set to the last, the stick will always invisible.
+     * So, DP[n][k] = dp[n - 1][k - 1] + (n - 1) * dp[n - 1][k].
+     * */
+    public int rearrangeSticks(int n, int k) {
+        long[][] dp = new long[n + 1][k + 1];
+        dp[1][1] = 1;
+        long MOD = 1000000007;
+
+        for (int N = 2; N <= n; N++) {
+            for (int K = 1; K <= k; K++) {
+                long res = (dp[N - 1][K - 1] + (N - 1) * dp[N - 1][K]) % MOD;
+                dp[N][K] = res;
+            }
+        }
+
+        return (int) dp[n][k];
     }
 }
