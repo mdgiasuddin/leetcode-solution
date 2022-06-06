@@ -359,6 +359,7 @@ public class ArraySolution {
 
         if (permuteSoFar.size() == nums.length) {
             result.add(new ArrayList<>(permuteSoFar));
+            return;
         }
 
         for (int i = 0; i < nums.length; i++) {
@@ -396,6 +397,7 @@ public class ArraySolution {
     private void permuteUnique(Map<Integer, Integer> countMap, List<List<Integer>> result, List<Integer> permuteSoFar, int requiredLength) {
         if (permuteSoFar.size() == requiredLength) {
             result.add(new ArrayList<>(permuteSoFar));
+            return;
         }
 
         for (Map.Entry<Integer, Integer> entry : countMap.entrySet()) {

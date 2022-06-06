@@ -13,6 +13,32 @@ public class BacktrackingSolution {
         BacktrackingSolution recursionSolution = new BacktrackingSolution();
     }
 
+    // Leetcode problem: 17
+    public List<String> letterCombinations(String digits) {
+        if (digits.isEmpty())
+            return new ArrayList<>();
+
+        String[] strs = {"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+
+        List<String> result = new ArrayList<>();
+
+        letterCombinations(digits, strs, result, "", 0);
+
+        return result;
+    }
+
+    public void letterCombinations(String digits, String[] strs, List<String> result, String current, int idx) {
+        if (idx == digits.length()) {
+            result.add(current);
+            return;
+        }
+
+        int digit = digits.charAt(idx) - '0';
+        for (int i = 0; i < strs[digit - 2].length(); i++) {
+            letterCombinations(digits, strs, result, current + strs[digit - 2].charAt(i), idx + 1);
+        }
+    }
+
     // Leetcode problem: 22
     public List<String> generateParenthesis(int n) {
         List<String> result = new ArrayList<>();
@@ -30,6 +56,24 @@ public class BacktrackingSolution {
             generateParenthesis(result, current + "(", n, open + 1, close);
         if (close < open)
             generateParenthesis(result, current + ")", n, open, close + 1);
+    }
+
+    // Leetcode problem: 78
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        subsets(nums, result, new ArrayList<>(), 0);
+
+        return result;
+    }
+
+    private void subsets(int[] nums, List<List<Integer>> result, List<Integer> currentList, int current) {
+        result.add(new ArrayList<>(currentList));
+
+        for (int i = current; i < nums.length; i++) {
+            currentList.add(nums[i]);
+            subsets(nums, result, currentList, i + 1);
+            currentList.remove(currentList.size() - 1);
+        }
     }
 
     // Leetcode problem: 79
@@ -61,6 +105,42 @@ public class BacktrackingSolution {
 
         visited[row][col] = false;
         return false;
+    }
+
+    // Leetcode problem: 131
+    /*
+     * Palindrome partitioning
+     * Find all the combination by backtracking
+     * */
+    public List<List<String>> partition(String s) {
+        List<List<String>> finalResult = new ArrayList<>();
+        partition(s, finalResult, new ArrayList<>(), 0, s.length());
+
+        return finalResult;
+    }
+
+    public void partition(String s, List<List<String>> finalResult, List<String> currentList, int left, int right) {
+        if (left >= right) {
+            finalResult.add(new ArrayList<>(currentList));
+            return;
+        }
+
+        for (int i = left + 1; i <= right; i++) {
+            if (isPalindrome(s, left, i - 1)) {
+                currentList.add(s.substring(left, i));
+                partition(s, finalResult, currentList, i, right);
+                currentList.remove(currentList.size() - 1);
+            }
+        }
+    }
+
+    public boolean isPalindrome(String str, int left, int right) {
+        while (left < right) {
+            if (str.charAt(left++) != str.charAt(right--))
+                return false;
+        }
+
+        return true;
     }
 
     // Leetcode problem: 212

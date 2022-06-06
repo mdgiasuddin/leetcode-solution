@@ -264,35 +264,6 @@ public class StringSolution {
         return maxLength;
     }
 
-
-    // Leetcode problem: 131
-    /*
-     * Palindrome partitioning
-     * Find all the combination by backtracking
-     * */
-    public List<List<String>> partition(String s) {
-        List<List<String>> finalResult = new ArrayList<>();
-        partition(s, finalResult, new ArrayList<>(), 0, s.length());
-
-        return finalResult;
-    }
-
-    public void partition(String s, List<List<String>> finalResult, List<String> currentList, int left, int right) {
-        if (left >= right) {
-            finalResult.add(new ArrayList<>(currentList));
-            return;
-        }
-
-        for (int i = left + 1; i <= right; i++) {
-            System.out.println("left: i: " + left + " " + i);
-            if (isPalindrome(s, left, i - 1)) {
-                currentList.add(s.substring(left, i));
-                partition(s, finalResult, currentList, i, right);
-                currentList.remove(currentList.size() - 1);
-            }
-        }
-    }
-
     // Leetcode problem: 132
     /*
      * Palindrome partitioning II
