@@ -359,7 +359,8 @@ public class BacktrackingSolution {
         return result;
     }
 
-    public void solveNQueens(int row, char[][] board, List<List<String>> result) {
+    // Leetcode problem: 51
+    private void solveNQueens(int row, char[][] board, List<List<String>> result) {
         if (row == board.length) {
             result.add(convertArrayToList(board));
             return;
