@@ -187,29 +187,6 @@ public class FifthSolution {
 
     }
 
-    private void combine(int n, int k, List<List<Integer>> result, List<Integer> currentList, int current) {
-        if (currentList.size() >= k) {
-            result.add(new ArrayList<>(currentList));
-            return;
-        }
-        for (int i = current; i <= n; i++) {
-            if (n - i + 1 < k - currentList.size()) {
-                break;
-            }
-            currentList.add(i);
-            combine(n, k, result, currentList, i + 1);
-            currentList.remove(currentList.size() - 1);
-        }
-
-    }
-
-    public List<List<Integer>> combine(int n, int k) {
-        List<List<Integer>> result = new ArrayList<>();
-        combine(n, k, result, new ArrayList<>(), 1);
-
-        return result;
-    }
-
     private void combinationSum3(int k, int n, List<List<Integer>> result, List<Integer> currentList, int currentSum, int current) {
         if (currentList.size() >= k && currentSum == n) {
             result.add(new ArrayList<>(currentList));
