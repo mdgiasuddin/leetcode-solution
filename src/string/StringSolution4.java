@@ -247,40 +247,6 @@ public class StringSolution4 {
         return result;
     }
 
-    // Leetcode problem: 93
-    /*
-     * Restore Ip
-     * Backtracking solution
-     * */
-    public List<String> restoreIpAddresses(String s) {
-        List<String> result = new ArrayList<>();
-        if (s.length() > 12)
-            return result;
-
-        ipBacktrack(s, result, "", 0, 0);
-
-        return result;
-    }
-
-    public void ipBacktrack(String s, List<String> result, String currentIp, int leftIndex, int dots) {
-        if (dots == 4 && leftIndex == s.length()) {
-            result.add(currentIp.substring(0, currentIp.length() - 1));
-            return;
-        }
-
-        // If all digit not visited
-        if (dots > 4) {
-            return;
-        }
-
-        // Check all possible 3 cases
-        for (int i = leftIndex; i <= Math.min(leftIndex + 2, s.length() - 1); i++) {
-            if (Integer.parseInt(s.substring(leftIndex, i + 1)) <= 255 && (i == leftIndex || s.charAt(leftIndex) != '0')) {
-                ipBacktrack(s, result, currentIp + s.substring(leftIndex, i + 1) + ".", i + 1, dots + 1);
-            }
-        }
-    }
-
     // Leetcode problem: 331
     /*
      * Use stack
