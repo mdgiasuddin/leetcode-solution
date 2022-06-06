@@ -232,27 +232,6 @@ public class FifthSolution {
         return result;
     }
 
-    private void subsetsWithDup(int[] nums, List<List<Integer>> result, List<Integer> currentList, int current, Integer prev) {
-        result.add(new ArrayList<>(currentList));
-        for (int i = current; i < nums.length; i++) {
-            if (nums[i] == prev)
-                continue;
-            currentList.add(nums[i]);
-            prev = -20;
-            subsetsWithDup(nums, result, currentList, i + 1, prev);
-            prev = currentList.get(currentList.size() - 1);
-            currentList.remove(currentList.size() - 1);
-        }
-    }
-
-    public List<List<Integer>> subsetsWithDup(int[] nums) {
-        List<List<Integer>> result = new ArrayList<>();
-        Arrays.sort(nums);
-        subsetsWithDup(nums, result, new ArrayList<>(), 0, -20);
-
-        return result;
-    }
-
     public boolean PredictTheWinner(int[] nums) {
         Pair[][] dp = new Pair[nums.length][nums.length];
         for (int i = 0; i < nums.length; i++) {

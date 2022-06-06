@@ -1,6 +1,7 @@
 package recursion;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BacktrackingSolution2 {
@@ -94,4 +95,28 @@ public class BacktrackingSolution2 {
 
         return true;
     }
+
+    // Leetcode problem: 90
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        Arrays.sort(nums);
+        subsetsWithDup(nums, result, new ArrayList<>(), 0, -20);
+
+        return result;
+    }
+
+    private void subsetsWithDup(int[] nums, List<List<Integer>> result, List<Integer> currentList, int current, Integer prev) {
+        result.add(new ArrayList<>(currentList));
+        for (int i = current; i < nums.length; i++) {
+            if (nums[i] == prev)
+                continue;
+
+            currentList.add(nums[i]);
+            prev = -20;
+            subsetsWithDup(nums, result, currentList, i + 1, prev);
+            prev = currentList.get(currentList.size() - 1);
+            currentList.remove(currentList.size() - 1);
+        }
+    }
+
 }
