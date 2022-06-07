@@ -9,7 +9,7 @@ public class BacktrackingSolution2 {
     public static void main(String[] args) {
         BacktrackingSolution2 backtrackingSolution2 = new BacktrackingSolution2();
 
-        System.out.println(backtrackingSolution2.combine(4, 2));
+        System.out.println(backtrackingSolution2.differByOne("100", "099"));
     }
 
     // Leetcode problem: 77
@@ -117,6 +117,59 @@ public class BacktrackingSolution2 {
             prev = currentList.get(currentList.size() - 1);
             currentList.remove(currentList.size() - 1);
         }
+    }
+
+    public boolean splitString(String s) {
+        for (int i = 0; i < s.length() - 1; i++) {
+            String val = s.substring(0, i + 1);
+
+            if (splitString(s, i + 1, val))
+                return true;
+        }
+        return false;
+
+    }
+
+    private boolean splitString(String s, int idx, String prev) {
+        if (idx == s.length())
+            return true;
+
+        for (int i = idx; i < s.length(); i++) {
+            String val = s.substring(idx, i + 1);
+            if (differByOne(prev, val) && splitString(s, i + 1, val))
+                return true;
+        }
+
+        return false;
+    }
+
+    private boolean differByOne(String str1, String str2) {
+
+        int idx1 = str1.length() - 1, idx2 = str2.length() - 1;
+
+        int carry = 0;
+        boolean first = true;
+        while (idx1 >= 0 || idx2 >= 0 || carry > 0) {
+            int digit1 = idx1 >= 0 ? str1.charAt(idx1) - '0' : 0;
+            int digit2 = idx2 >= 0 ? str2.charAt(idx2) - '0' : 0;
+            int digit = digit1 - (digit2 + carry);
+
+            if (digit < 0) {
+                digit += 10;
+                carry = 1;
+            } else {
+                carry = 0;
+            }
+
+            if ((first && digit != 1) || (!first && digit != 0))
+                return false;
+
+            first = false;
+            idx1--;
+            idx2--;
+        }
+
+        return true;
     }
 
 }
