@@ -1,8 +1,6 @@
 package recursion;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class BacktrackingSolution2 {
 
@@ -170,6 +168,48 @@ public class BacktrackingSolution2 {
         }
 
         return true;
+    }
+
+    // Leetcode problem: 1239
+    public int maxLength(List<String> arr) {
+        return maxLength(arr, new HashSet<>(), 0);
+    }
+
+    private int maxLength(List<String> arr, Set<Character> set, int idx) {
+        if (idx == arr.size())
+            return set.size();
+
+        int res = 0;
+
+        // If not overlap, include this string.
+        if (!overlap(set, arr.get(idx))) {
+
+            for (char ch : arr.get(idx).toCharArray()) {
+                set.add(ch);
+            }
+
+            res = maxLength(arr, set, idx + 1);
+            for (char ch : arr.get(idx).toCharArray()) {
+                set.remove(ch);
+            }
+        }
+
+        // Return the maximum, including or not including.
+        return Math.max(res, maxLength(arr, set, idx + 1));
+
+    }
+
+    private boolean overlap(Set<Character> set, String str) {
+        Set<Character> tmp = new HashSet<>(set);
+
+        for (char ch : str.toCharArray()) {
+            if (tmp.contains(ch)) {
+                return true;
+            }
+            tmp.add(ch);
+        }
+
+        return false;
     }
 
 }
