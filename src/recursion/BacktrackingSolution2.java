@@ -212,4 +212,40 @@ public class BacktrackingSolution2 {
         return false;
     }
 
+    // Leetcode problem: 698
+    public boolean canPartitionKSubsets(int[] nums, int k) {
+        int sum = 0;
+        for (int num : nums)
+            sum += num;
+
+        if (sum % k != 0)
+            return false;
+
+        Arrays.sort(nums);
+        boolean[] used = new boolean[nums.length];
+
+        return canPartitionKSubsets(nums, k, sum / k, 0, nums.length - 1, used);
+    }
+
+    private boolean canPartitionKSubsets(int[] nums, int k, int target, int current, int idx, boolean[] used) {
+        if (k == 0)
+            return true;
+
+        if (current == target)
+            return canPartitionKSubsets(nums, k - 1, target, 0, nums.length - 1, used);
+
+        for (int i = idx; i >= 0; i--) {
+            if (used[i] || current + nums[i] > target)
+                continue;
+
+            used[i] = true;
+            if (canPartitionKSubsets(nums, k, target, current + nums[i], i - 1, used))
+                return true;
+
+            used[i] = false;
+        }
+
+        return false;
+    }
+
 }
