@@ -64,4 +64,37 @@ public class TwoPointerSolution {
 
         return squares;
     }
+
+    // Leetcode problem: 1498
+    public int numSubseq(int[] nums, int target) {
+        Arrays.sort(nums);
+
+        long MOD = 1000000007;
+        int r = nums.length - 1;
+
+        long res = 0;
+        for (int i = 0; i < nums.length; i++) {
+            while (r >= i && nums[i] + nums[r] > target)
+                r--;
+
+            // For all the number getter than it has 2 choices. Include / Not include.
+            if (i <= r) {
+                res = (res + getPower(2, r - i)) % MOD;
+            }
+        }
+
+        return (int) res;
+    }
+
+    private long getPower(long x, long n) {
+
+        if (n == 0)
+            return 1;
+
+        long p = getPower(x, n / 2);
+        if (n % 2 == 0)
+            return ((p % 1000000007) * (p % 1000000007)) % 1000000007;
+
+        return (x * (p % 1000000007) * (p % 1000000007)) % 1000000007;
+    }
 }
