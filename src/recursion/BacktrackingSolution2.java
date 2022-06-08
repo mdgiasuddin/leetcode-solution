@@ -212,4 +212,83 @@ public class BacktrackingSolution2 {
         return false;
     }
 
+    // Leetcode problem: 698
+    public boolean canPartitionKSubsets(int[] nums, int k) {
+        int sum = 0;
+        for (int num : nums)
+            sum += num;
+
+        if (sum % k != 0)
+            return false;
+
+        Arrays.sort(nums);
+        boolean[] used = new boolean[nums.length];
+
+        return canPartitionKSubsets(nums, k, sum / k, 0, nums.length - 1, used);
+    }
+
+    private boolean canPartitionKSubsets(int[] nums, int k, int target, int current, int idx, boolean[] used) {
+        if (k == 0)
+            return true;
+
+        if (current == target)
+            return canPartitionKSubsets(nums, k - 1, target, 0, nums.length - 1, used);
+
+        for (int i = idx; i >= 0; i--) {
+            if (used[i] || current + nums[i] > target)
+                continue;
+
+            used[i] = true;
+            if (canPartitionKSubsets(nums, k, target, current + nums[i], i - 1, used))
+                return true;
+
+            used[i] = false;
+        }
+
+        return false;
+    }
+
+    // Leetcode problem: 473
+    /*
+     * This problem is completely similar to partition to k subsets.
+     * Just use k = 4 here.
+     * */
+    public boolean makesquare(int[] matchsticks) {
+        int sum = 0;
+        for (int matchstick : matchsticks) {
+            sum += matchstick;
+        }
+
+        if (sum % 4 != 0)
+            return false;
+
+        Arrays.sort(matchsticks);
+        boolean[] used = new boolean[matchsticks.length];
+
+        return makesquare(matchsticks, 4, sum / 4, matchsticks.length - 1, 0, used);
+    }
+
+    private boolean makesquare(int[] matchsticks, int armsLeft, int target, int idx, int current, boolean[] used) {
+
+        if (armsLeft == 0)
+            return true;
+
+        if (current == target) {
+            return makesquare(matchsticks, armsLeft - 1, target, matchsticks.length - 1, 0, used);
+        }
+
+        for (int i = idx; i >= 0; i--) {
+            if (used[i] || current + matchsticks[i] > target)
+                continue;
+
+            used[i] = true;
+            if (makesquare(matchsticks, armsLeft, target, i - 1, current + matchsticks[i], used))
+                return true;
+
+            used[i] = false;
+        }
+
+        return false;
+    }
+
 }
