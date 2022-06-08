@@ -16,6 +16,7 @@ class Node {
 
 public class LRUCache {
 
+    // Leetcode problem: 146
     private final int CAPACITY;
     private final Node LEFT, RIGHT;
     private Map<Integer, Node> cache;
@@ -30,6 +31,7 @@ public class LRUCache {
         RIGHT.prev = LEFT;
     }
 
+    // Insert at the rightmost (recent) position.
     private void insert(Node node) {
         Node prev = RIGHT.prev;
 
@@ -50,6 +52,8 @@ public class LRUCache {
     public int get(int key) {
         if (cache.containsKey(key)) {
             Node node = cache.get(key);
+
+            // Remove from the list and insert it to the recent position.
             remove(node);
             insert(node);
             return node.val;
@@ -59,6 +63,8 @@ public class LRUCache {
     }
 
     public void put(int key, int value) {
+
+        // If already exists, remove it and insert to the recent position.
         if (cache.containsKey(key))
             remove(cache.get(key));
 
@@ -67,6 +73,7 @@ public class LRUCache {
 
         insert(node);
 
+        // If size exceeds the capacity remove the LRU (leftmost) from both the cache and the list.
         if (cache.size() > CAPACITY) {
             Node lru = LEFT.next;
             remove(lru);

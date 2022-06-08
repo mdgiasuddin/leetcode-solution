@@ -1,5 +1,9 @@
 package indefinite;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class SixthSolution {
 
     public int maxProfit2(int[] prices) {
@@ -40,5 +44,33 @@ public class SixthSolution {
         return count;
     }
 
+    // Leetcode problem: 554
+    /*
+     * For every gap position found the total gap in that position.
+     * Then found maximum gap in any position.
+     * Break the wall through that position.
+     * */
+    public int leastBricks(List<List<Integer>> wall) {
+
+        Map<Integer, Integer> gaps = new HashMap<>();
+
+        for (List<Integer> row : wall) {
+            int pos = 0;
+
+            for (int i = 0; i < row.size() - 1; i++) {
+                pos += row.get(i);
+                int gap = gaps.getOrDefault(pos, 0);
+
+                gaps.put(pos, gap + 1);
+            }
+        }
+
+        int maxGap = 0;
+        for (Map.Entry<Integer, Integer> entry : gaps.entrySet()) {
+            maxGap = Math.max(maxGap, entry.getValue());
+        }
+
+        return wall.size() - maxGap;
+    }
 
 }

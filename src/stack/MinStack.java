@@ -13,6 +13,7 @@ class StackPair {
 
 public class MinStack {
 
+    // Leetcode problem: 155
     Stack<StackPair> stack;
 
     public MinStack() {
@@ -20,6 +21,7 @@ public class MinStack {
     }
 
     public void push(int val) {
+        // Every time of pushing value add the minimum so far.
         int minimum;
         if (stack.isEmpty()) {
             minimum = val;
