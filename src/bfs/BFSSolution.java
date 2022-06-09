@@ -175,4 +175,31 @@ public class BFSSolution {
 
         return -1;
     }
+
+    // Leetcode problem: 1871
+    public boolean canReach(String s, int minJump, int maxJump) {
+        int len = s.length();
+        if (s.charAt(len - 1) == '1')
+            return false;
+
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(0);
+
+        // Keep track of the farthest node to which all nodes have already been visited.
+        int farthest = 0;
+        while (!queue.isEmpty()) {
+            int idx = queue.poll();
+
+            for (int i = Math.max(idx + minJump, farthest + 1); i <= Math.min(len - 1, idx + maxJump); i++) {
+                if (s.charAt(i) == '0') {
+                    if (i == len - 1)
+                        return true;
+                    queue.add(i);
+                }
+            }
+
+            farthest = idx + maxJump;
+        }
+        return false;
+    }
 }

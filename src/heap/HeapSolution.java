@@ -76,4 +76,36 @@ public class HeapSolution {
         return resultArray;
     }
 
+    public int[] assignTasks(int[] servers, int[] tasks) {
+        PriorityQueue<int[]> available = new PriorityQueue<>((a, b) -> a[0] == b[0] ? a[1] - b[1] : a[0] - b[0]);
+
+        PriorityQueue<int[]> unavailable = new PriorityQueue<>(Comparator.comparingInt(a -> a[2]));
+
+        for (int i = 0; i < servers.length; i++) {
+            int[] server = {servers[i], i, 0};
+            available.add(server);
+        }
+
+        int[] res = new int[tasks.length];
+        int i = 0, t = 0;
+        while (i < tasks.length) {
+
+            while (!unavailable.isEmpty() && unavailable.peek()[2] == t) {
+                int[] server = unavailable.poll();
+                available.add(server);
+            }
+
+            while (!available.isEmpty() && i < tasks.length && i <= t) {
+                int[] server = available.poll();
+                res[i] = server[1];
+                server[2] = t + tasks[i];
+                unavailable.add(server);
+                i++;
+            }
+            t++;
+        }
+
+        return res;
+    }
+
 }
