@@ -1,8 +1,6 @@
 package indefinite;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class SixthSolution {
 
@@ -71,6 +69,16 @@ public class SixthSolution {
         }
 
         return wall.size() - maxGap;
+    }
+
+    // Leetcode problem: 1461
+    public boolean hasAllCodes(String s, int k) {
+        Set<String> set = new HashSet<>();
+        for (int i = 0; i <= s.length() - k; i++) {
+            set.add(s.substring(i, i + k));
+        }
+
+        return set.size() == Math.pow(2, k);
     }
 
 }
