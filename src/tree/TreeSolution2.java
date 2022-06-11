@@ -241,4 +241,41 @@ public class TreeSolution2 {
         return result;
     }
 
+    // Leetcode problem: 101
+    /*
+     * Solve by level order traversal (BFS).
+     * */
+    public boolean isSymmetric(TreeNode root) {
+        if (root == null)
+            return true;
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root.left);
+        queue.add(root.right);
+
+        while (!queue.isEmpty()) {
+            TreeNode tempLeft = queue.poll();
+            TreeNode tempRight = queue.poll();
+
+            if (tempLeft == null && tempRight == null)
+                continue;
+
+            if (tempLeft == null || tempRight == null || tempLeft.val != tempRight.val)
+                return false;
+
+            // All children are null. So don't need to traverse next level.
+            if (tempLeft.left == null && tempLeft.right == null
+                    && tempRight.left == null && tempRight.right == null)
+                continue;
+
+            queue.add(tempLeft.left);
+            queue.add(tempRight.right);
+
+            queue.add(tempLeft.right);
+            queue.add(tempRight.left);
+        }
+
+        return true;
+    }
+
 }
