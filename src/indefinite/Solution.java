@@ -47,26 +47,6 @@ public class Solution {
         array[0] = 100;
     }
 
-    public String longestCommonPrefix(String[] strs) {
-        if (strs.length == 0)
-            return "";
-
-        StringBuilder result = new StringBuilder();
-
-        String str = strs[0];
-        for (int j = 0; j < str.length(); j++) {
-            int i;
-            for (i = 1; i < strs.length; i++) {
-                if (j == strs[i].length() || strs[i].charAt(j) != str.charAt(j))
-                    return result.toString();
-            }
-            result.append(str.charAt(j));
-        }
-
-        return result.toString();
-
-    }
-
     public int[] plusOne(int[] digits) {
         for (int i = digits.length - 1; i >= 0; i--) {
             digits[i] = (digits[i] + 1) % 10;

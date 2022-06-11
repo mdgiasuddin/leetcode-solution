@@ -265,4 +265,21 @@ public class StringSolution7 {
 
         return true;
     }
+
+    // Leetcode problem: 14
+    public String longestCommonPrefix(String[] strs) {
+        StringBuilder res = new StringBuilder();
+
+        // Compare all strings with first string.
+        for (int i = 0; i < strs[0].length(); i++) {
+            for (String str : strs) {
+                if (i == str.length() || str.charAt(i) != strs[0].charAt(i))
+                    return res.toString();
+            }
+
+            res.append(strs[0].charAt(i));
+        }
+
+        return res.toString();
+    }
 }
