@@ -282,4 +282,76 @@ public class StringSolution7 {
 
         return res.toString();
     }
+
+    // Leetcode problem: 12
+    public String intToRoman(int num) {
+        StringBuilder result = new StringBuilder();
+        while (num > 0) {
+            if (num >= 1000) {
+                result.append("M");
+                num -= 1000;
+            } else if (num >= 900) {
+                result.append("CM");
+                num -= 900;
+            } else if (num >= 500) {
+                result.append("D");
+                num -= 500;
+            } else if (num >= 400) {
+                result.append("CD");
+                num -= 400;
+            } else if (num >= 100) {
+                result.append("C");
+                num -= 100;
+            } else if (num >= 90) {
+                result.append("XC");
+                num -= 90;
+            } else if (num >= 50) {
+                result.append("L");
+                num -= 50;
+            } else if (num >= 40) {
+                result.append("XL");
+                num -= 40;
+            } else if (num >= 10) {
+                result.append("X");
+                num -= 10;
+            } else if (num >= 9) {
+                result.append("IX");
+                num -= 9;
+            } else if (num >= 5) {
+                result.append("V");
+                num -= 5;
+            } else if (num >= 4) {
+                result.append("IV");
+                num -= 4;
+            } else {
+                result.append("I");
+                num -= 1;
+            }
+        }
+
+        return result.toString();
+    }
+
+    // Leetcode problem: 13
+    public int romanToInt(String s) {
+        Map<Character, Integer> roman = new HashMap<>();
+        roman.put('M', 1000);
+        roman.put('D', 500);
+        roman.put('C', 100);
+        roman.put('L', 50);
+        roman.put('X', 10);
+        roman.put('V', 5);
+        roman.put('I', 1);
+
+        int number = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (i + 1 < s.length() && roman.get(s.charAt(i)) < roman.get(s.charAt(i + 1))) {
+                // Like: CM, CD, XC, XL, IX, IV
+                number -= roman.get(s.charAt(i));
+            } else {
+                number += roman.get(s.charAt(i));
+            }
+        }
+        return number;
+    }
 }

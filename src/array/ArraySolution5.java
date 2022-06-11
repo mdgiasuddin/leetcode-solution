@@ -1,9 +1,6 @@
 package array;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class ArraySolution5 {
 
@@ -149,6 +146,45 @@ public class ArraySolution5 {
         int res = text.length();
         for (int i = 0; i < 5; i++) {
             res = Math.min(res, count[indices[i]] / balloon[i]);
+        }
+
+        return res;
+    }
+
+    // Leetcode problem: 2001
+    /*
+     * Build up count matrix for the ratio of width and height.
+     * */
+    public long interchangeableRectangles(int[][] rectangles) {
+        Map<Double, Long> rectCount = new HashMap<>();
+
+        for (int[] rectangle : rectangles) {
+            double ratio = (rectangle[0] * 1.0) / rectangle[1];
+            long c = rectCount.getOrDefault(ratio, 0L);
+
+            rectCount.put(ratio, c + 1);
+        }
+
+        long res = 0;
+        for (Map.Entry<Double, Long> entry : rectCount.entrySet()) {
+            if (entry.getValue() > 1) {
+                res += (entry.getValue() * (entry.getValue() - 1)) / 2;
+            }
+        }
+
+        return res;
+    }
+
+    // Leetcode problem: 1985
+    /*
+     * Sort the number and find the minimum of all k-elements slides.
+     * */
+    public int minimumDifference(int[] nums, int k) {
+        Arrays.sort(nums);
+
+        int res = Integer.MAX_VALUE;
+        for (int i = 0; i <= nums.length - k; i++) {
+            res = Math.min(res, nums[i + k - 1] - nums[i]);
         }
 
         return res;

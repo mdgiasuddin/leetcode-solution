@@ -448,54 +448,6 @@ public class Solution {
         return sum;
     }
 
-    public String intToRoman(int num) {
-        String result = "";
-        while (num > 0) {
-            if (num >= 1000) {
-                result += "M";
-                num -= 1000;
-            } else if (num >= 900) {
-                result += "CM";
-                num -= 900;
-            } else if (num >= 500) {
-                result += "D";
-                num -= 500;
-            } else if (num >= 400) {
-                result += "CD";
-                num -= 400;
-            } else if (num >= 100) {
-                result += "C";
-                num -= 100;
-            } else if (num >= 90) {
-                result += "XC";
-                num -= 90;
-            } else if (num >= 50) {
-                result += "L";
-                num -= 50;
-            } else if (num >= 40) {
-                result += "XL";
-                num -= 40;
-            } else if (num >= 10) {
-                result += "X";
-                num -= 10;
-            } else if (num >= 9) {
-                result += "IX";
-                num -= 9;
-            } else if (num >= 5) {
-                result += "V";
-                num -= 5;
-            } else if (num >= 4) {
-                result += "IV";
-                num -= 4;
-            } else if (num >= 1) {
-                result += "I";
-                num -= 1;
-            }
-        }
-
-        return result;
-    }
-
     void numberToWords(int num, String power, List<String> stringList) {
         if (num == 0)
             return;
@@ -556,53 +508,6 @@ public class Solution {
         }
 
         return String.join(" ", stringList);
-    }
-
-    public int romanToInt(String s) {
-        int number = 0;
-        while (s.length() > 0) {
-            if (s.startsWith("CM")) {
-                number += 900;
-                s = s.substring(2);
-            } else if (s.startsWith("M")) {
-                number += 1000;
-                s = s.substring(1);
-            } else if (s.startsWith("CD")) {
-                number += 400;
-                s = s.substring(2);
-            } else if (s.startsWith("D")) {
-                number += 500;
-                s = s.substring(1);
-            } else if (s.startsWith("XC")) {
-                number += 90;
-                s = s.substring(2);
-            } else if (s.startsWith("C")) {
-                number += 100;
-                s = s.substring(1);
-            } else if (s.startsWith("XL")) {
-                number += 40;
-                s = s.substring(2);
-            } else if (s.startsWith("L")) {
-                number += 50;
-                s = s.substring(1);
-            } else if (s.startsWith("IX")) {
-                number += 9;
-                s = s.substring(2);
-            } else if (s.startsWith("X")) {
-                number += 10;
-                s = s.substring(1);
-            } else if (s.startsWith("IV")) {
-                number += 4;
-                s = s.substring(2);
-            } else if (s.startsWith("V")) {
-                number += 5;
-                s = s.substring(1);
-            } else if (s.startsWith("I")) {
-                number += 1;
-                s = s.substring(1);
-            }
-        }
-        return number;
     }
 
     public double myPow(double x, int n) {
