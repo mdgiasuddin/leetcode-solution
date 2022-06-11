@@ -278,4 +278,19 @@ public class TreeSolution2 {
         return true;
     }
 
+    // This is recursive solution of Leetcode problem: 101
+    public boolean isSymmetricRec(TreeNode root) {
+        return isSymmetric(root.left, root.right);
+    }
+
+    public boolean isSymmetric(TreeNode tLeft, TreeNode tRight) {
+        if (tLeft == null && tRight == null)
+            return true;
+
+        if (tLeft == null || tRight == null || tLeft.val != tRight.val)
+            return false;
+
+        return isSymmetric(tLeft.left, tRight.right) && isSymmetric(tLeft.right, tRight.left);
+    }
+
 }

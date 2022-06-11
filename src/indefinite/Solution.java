@@ -646,13 +646,4 @@ public class Solution {
         slower.val = temp;
         return head;
     }
-
-    public void rotate(int[] nums, int k) {
-        int n = nums.length;
-        int actualRotate = k % n;
-        if (actualRotate == 0)
-            return;
-
-
-    }
 }

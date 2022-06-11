@@ -139,4 +139,33 @@ public class LinkedListSolution2 {
         return dummy.next;
     }
 
+    // Leetcode problem: 328
+    public ListNode oddEvenList(ListNode head) {
+        if (head == null || head.next == null)
+            return head;
+
+        ListNode oddHead = new ListNode();
+        ListNode evenHead = new ListNode();
+
+        ListNode tOdd = oddHead, tEven = evenHead;
+
+        boolean odd = true;
+
+        while (head != null) {
+            if (odd) {
+                tOdd.next = head;
+                tOdd = tOdd.next;
+            } else {
+                tEven.next = head;
+                tEven = tEven.next;
+            }
+            head = head.next;
+            odd = !odd;
+        }
+
+        tOdd.next = evenHead.next;
+        tEven.next = null;
+
+        return oddHead.next;
+    }
 }
