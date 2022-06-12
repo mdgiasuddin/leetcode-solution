@@ -99,68 +99,6 @@ public class ThirdSolution {
         return sum;
     }
 
-    public boolean isEvenOddTree(TreeNode root) {
-        int maxMin = Integer.MIN_VALUE;
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
-        queue.add(null);
-        boolean evenLevel = true;
-
-        while (!queue.isEmpty()) {
-            TreeNode temp = queue.poll();
-
-            if (temp == null) {
-                if (queue.isEmpty())
-                    break;
-                maxMin = evenLevel ? Integer.MAX_VALUE : Integer.MIN_VALUE;
-                evenLevel = !evenLevel;
-                queue.add(null);
-            } else {
-                if ((evenLevel && (temp.val <= maxMin || temp.val % 2 == 0))
-                        || (!evenLevel && (temp.val >= maxMin || temp.val % 2 == 1)))
-                    return false;
-
-                maxMin = temp.val;
-
-                if (temp.left != null)
-                    queue.add(temp.left);
-                if (temp.right != null)
-                    queue.add(temp.right);
-            }
-        }
-
-        return true;
-    }
-
-    public void getLeafNodes(TreeNode root, List<Integer> list) {
-        if (root == null)
-            return;
-        if (root.left == null && root.right == null) {
-            list.add(root.val);
-            return;
-        }
-
-        getLeafNodes(root.left, list);
-        getLeafNodes(root.right, list);
-    }
-
-    public boolean leafSimilar(TreeNode root1, TreeNode root2) {
-        List<Integer> list1 = new ArrayList<>();
-        List<Integer> list2 = new ArrayList<>();
-
-        getLeafNodes(root1, list1);
-        getLeafNodes(root2, list2);
-
-        if (list1.size() != list2.size())
-            return false;
-
-        for (int i = 0; i < list1.size(); i++) {
-            if (list1.get(i) != list2.get(i))
-                return false;
-        }
-        return true;
-    }
-
     public boolean isCompleteTree(TreeNode root) {
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
@@ -217,7 +155,7 @@ public class ThirdSolution {
 
     public List<List<String>> printTree(TreeNode root) {
         this.h = height(root);
-        int n = h + 1, m = (1 << h) - 1;
+        int m = (1 << h) - 1;
         result = new ArrayList<>();
         tmp = new ArrayList<>();
         for (int i = 0; i < m; i++) tmp.add("");

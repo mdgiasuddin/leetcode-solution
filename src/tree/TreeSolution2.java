@@ -315,4 +315,69 @@ public class TreeSolution2 {
         return findTarget(node.left, k, set) || findTarget(node.right, k, set);
     }
 
+    // Leetcode problem: 1609
+    /*
+     * Level order traversal. Check value of each level.
+     * */
+    public boolean isEvenOddTree(TreeNode root) {
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+
+        boolean even = true;
+        while (!queue.isEmpty()) {
+            int queueSize = queue.size();
+
+            int minMax = even ? Integer.MIN_VALUE : Integer.MAX_VALUE;
+
+            while (queueSize-- > 0) {
+                TreeNode node = queue.poll();
+
+                if (even) {
+                    if (node.val % 2 == 0 || node.val <= minMax)
+                        return false;
+                } else {
+                    if (node.val % 2 == 1 || node.val >= minMax)
+                        return false;
+                }
+                minMax = node.val;
+
+                if (node.left != null)
+                    queue.add(node.left);
+                if (node.right != null)
+                    queue.add(node.right);
+            }
+
+            even = !even;
+        }
+
+        return true;
+    }
+
+    // Leetcode problem: 872
+    /*
+     * Get all leaves of both trees and compare if they are equals.
+     * */
+    public boolean leafSimilar(TreeNode root1, TreeNode root2) {
+        List<Integer> list1 = new ArrayList<>();
+        List<Integer> list2 = new ArrayList<>();
+
+        getLeafNodes(root1, list1);
+        getLeafNodes(root2, list2);
+
+        return list1.equals(list2);
+    }
+
+    public void getLeafNodes(TreeNode root, List<Integer> list) {
+        if (root == null)
+            return;
+        if (root.left == null && root.right == null) {
+            list.add(root.val);
+            return;
+        }
+
+        getLeafNodes(root.left, list);
+        getLeafNodes(root.right, list);
+    }
+
 }

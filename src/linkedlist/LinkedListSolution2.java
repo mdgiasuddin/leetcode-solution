@@ -168,4 +168,26 @@ public class LinkedListSolution2 {
 
         return oddHead.next;
     }
+
+    // Leetcode problem: 1721
+    public ListNode swapNodes(ListNode head, int k) {
+        ListNode leftNode, slower, faster;
+        slower = faster = head;
+        int i = 1;
+        while (i < k) {
+            i++;
+            faster = faster.next;
+        }
+
+        leftNode = faster;
+        while (faster.next != null) {
+            slower = slower.next;
+            faster = faster.next;
+        }
+
+        int temp = leftNode.val;
+        leftNode.val = slower.val;
+        slower.val = temp;
+        return head;
+    }
 }

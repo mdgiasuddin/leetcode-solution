@@ -222,6 +222,7 @@ public class Solution {
         System.out.println("]");
     }
 
+    // Leetcode problem: 264
     public int nthUglyNumber(int n) {
         int[] array = new int[n];
         array[0] = 1;
@@ -243,6 +244,7 @@ public class Solution {
         return array[n - 1];
     }
 
+    // Leetcode problem: 268
     public int missingNumber(int[] nums) {
         int n = nums.length;
         int sum = n * (n + 1) / 2;
@@ -304,31 +306,6 @@ public class Solution {
         }
     }
 
-    int guess(int num) {
-        int pick = 6;
-        if (num == pick)
-            return 0;
-        if (pick < num)
-            return -1;
-        return 1;
-    }
-
-    public int guessNumber(int n) {
-        int start = 1, end = n, mid, g;
-
-        while (start <= end) {
-            mid = start + (end - start) / 2;
-            g = guess(mid);
-            if (g == 0)
-                return mid;
-            else if (g == -1)
-                end = mid - 1;
-            else
-                start = mid + 1;
-        }
-        return start;
-    }
-
     public boolean canConstruct(String ransomNote, String magazine) {
         int[] array = new int[26];
         for (char ch : magazine.toCharArray()) {
@@ -351,20 +328,6 @@ public class Solution {
             xor ^= ch;
         }
         return (char) xor;
-    }
-
-    public boolean isSubsequence(String s, String t) {
-        if (s.length() == 0)
-            return true;
-        int i = 0;
-        for (char ch : t.toCharArray()) {
-            if (s.charAt(i) == ch) {
-                i++;
-                if (i == s.length())
-                    return true;
-            }
-        }
-        return false;
     }
 
     public String reverseString(String string) {
@@ -626,24 +589,5 @@ public class Solution {
         }
 
         return minus ? -number : number;
-    }
-
-    public ListNode swapNodes(ListNode head, int k) {
-        ListNode leftNode, slower, faster;
-        slower = faster = head;
-        int i = 1;
-        while (i < k) {
-            i++;
-            faster = faster.next;
-        }
-        leftNode = faster;
-        while (faster.next != null) {
-            slower = slower.next;
-            faster = faster.next;
-        }
-        int temp = leftNode.val;
-        leftNode.val = slower.val;
-        slower.val = temp;
-        return head;
     }
 }
