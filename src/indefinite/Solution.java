@@ -3,7 +3,10 @@ package indefinite;
 import linkedlist.ListNode;
 import tree.TreeNode;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Solution {
     int maxValue = Integer.MIN_VALUE;
@@ -29,6 +32,17 @@ public class Solution {
             n /= 10;
         }
         return x < 0 ? -rev : rev;
+    }
+
+    // Leetcode problem: 94
+    public List<Integer> inorderTraversal(TreeNode root) {
+        if (root == null)
+            return new ArrayList<>();
+
+        List<Integer> traversal = new ArrayList<>(inorderTraversal(root.left));
+        traversal.add(root.val);
+        traversal.addAll(inorderTraversal(root.right));
+        return traversal;
     }
 
     public boolean isPalindrome(int x) {
@@ -64,16 +78,6 @@ public class Solution {
         return digits;
     }
 
-    public List<Integer> inorderTraversal(TreeNode root) {
-        if (root == null)
-            return new ArrayList<>();
-
-        List<Integer> traversal = new ArrayList<>(inorderTraversal(root.left));
-        traversal.add(root.val);
-        traversal.addAll(inorderTraversal(root.right));
-        return traversal;
-    }
-
     public int findMax(int[] nums) {
         int left, right, mid;
         left = 0;
@@ -93,22 +97,6 @@ public class Solution {
         if (left == right)
             return nums[left];
         return Math.max(nums[left], nums[right]);
-    }
-
-    public boolean isAnagram(String s, String t) {
-        int[] array = new int[26];
-        for (char c : s.toCharArray()) {
-            array[c - 'a']++;
-        }
-        for (char c : t.toCharArray()) {
-            array[c - 'a']--;
-        }
-        for (int element : array) {
-            if (element != 0)
-                return false;
-        }
-
-        return true;
     }
 
     public void deleteNode(ListNode node) {
@@ -160,17 +148,6 @@ public class Solution {
         return count;
     }
 
-    public boolean containsDuplicate(int[] nums) {
-        Set<Integer> set = new HashSet<>();
-        for (int num : nums) {
-            if (set.contains(num))
-                return false;
-            set.add(num);
-        }
-
-        return true;
-    }
-
     public boolean containsNearbyDuplicate(int[] nums, int k) {
         Map<Integer, Integer> map = new HashMap<>();
 
@@ -196,30 +173,6 @@ public class Solution {
             num = sum;
         }
         return num;
-    }
-
-    public boolean isUgly(int n) {
-        if (n == 0)
-            return false;
-        while (n % 2 == 0) {
-            n /= 2;
-        }
-        while (n % 3 == 0) {
-            n /= 3;
-        }
-        while (n % 5 == 0) {
-            n /= 5;
-        }
-
-        return n == 1;
-    }
-
-    public void printArray(int[] nums) {
-        System.out.print("[ ");
-        for (int num : nums) {
-            System.out.print(num + " ");
-        }
-        System.out.println("]");
     }
 
     // Leetcode problem: 264
@@ -441,52 +394,6 @@ public class Solution {
         }
 
         return String.join(" ", stringList);
-    }
-
-    public double myPow(double x, int n) {
-        int sign = 1, powerSign = 1;
-        if (x < 0) {
-            x = -x;
-            sign = -1;
-        }
-        if (n < 0) {
-            n = -n;
-            powerSign = -1;
-        }
-        if (n == 0)
-            return 1;
-        if (n == 1)
-            return x * sign;
-
-        double mul = 1;
-        while (n > 0) {
-
-        }
-        return mul;
-    }
-
-    public int jump(int[] nums) {
-        int n = nums.length;
-        int ans = 0, end = 0, far = 0;
-        for (int i = 0; i < n - 1; i++) {
-            far = Math.max(far, i + nums[i]);
-            if (end == i) {
-                ans++;
-                end = far;
-            }
-            if (end >= n - 1) break;
-        }
-        return end < n - 1 ? -1 : ans;
-    }
-
-    public double negativePow(double x, int n) {
-        if (n == 0) {
-            return 1;
-        }
-        if (n % 2 == 0) {
-            return negativePow(x * x, n / 2);
-        }
-        return ((double) 1 / (x)) * negativePow(x, n + 1);
     }
 
     public int divide(int dividend, int divisor) {
