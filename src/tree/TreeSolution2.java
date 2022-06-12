@@ -293,4 +293,26 @@ public class TreeSolution2 {
         return isSymmetric(tLeft.left, tRight.right) && isSymmetric(tLeft.right, tRight.left);
     }
 
+    public boolean findTarget(TreeNode root, int k) {
+        Set<Integer> set = new HashSet<>();
+
+        return findTarget(root, k, set);
+    }
+
+    // Leetcode problem: 653
+    /*
+     * Two sum in binary tree.
+     * */
+    public boolean findTarget(TreeNode node, int k, Set<Integer> set) {
+        if (node == null)
+            return false;
+
+        if (set.contains(k - node.val))
+            return true;
+
+        set.add(node.val);
+
+        return findTarget(node.left, k, set) || findTarget(node.right, k, set);
+    }
+
 }

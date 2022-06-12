@@ -316,38 +316,4 @@ public class ThirdSolution {
         recurse(root.right, res, level + 1);
     }
 
-    public TreeNode insertIntoBST(TreeNode root, int val) {
-        if (root == null)
-            return new TreeNode(val);
-
-        if (val < root.val)
-            root.left = insertIntoBST(root.left, val);
-        else
-            root.right = insertIntoBST(root.right, val);
-
-        return root;
-    }
-
-    boolean found = false;
-
-    public boolean findTarget(TreeNode root, int k) {
-        Set<Integer> set = new HashSet<>();
-        findTarget(root, k, set);
-
-        return found;
-    }
-
-    private void findTarget(TreeNode root, int k, Set<Integer> set) {
-        if (root == null)
-            return;
-
-        if (set.contains(k - root.val)) {
-            found = true;
-            return;
-        } else {
-            set.add(root.val);
-        }
-        findTarget(root.left, k, set);
-        findTarget(root.right, k, set);
-    }
 }
