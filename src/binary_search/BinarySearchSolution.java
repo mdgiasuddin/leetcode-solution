@@ -1,9 +1,6 @@
 package binary_search;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class BinarySearchSolution {
 
@@ -296,6 +293,28 @@ public class BinarySearchSolution {
         }
 
         return idx2 == subSeq.length();
+    }
+
+    // Leetcode problem: 274
+    /*
+     * A scientist has an index h if h of their n papers have at least h citations each
+     * */
+    public int hIndex(int[] citations) {
+        Arrays.sort(citations);
+        int left = 0, n = citations.length, right = n - 1, ans = 0;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (citations[mid] < n - mid) {
+                // Is not h index, so move right
+                left = mid + 1;
+            } else {
+                // Is h index, update answer and try for greater h index
+                ans = n - mid;
+                right = mid - 1;
+            }
+        }
+
+        return ans;
     }
 
 }

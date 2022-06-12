@@ -44,28 +44,6 @@ public class ArraySolution4 {
         return false;
     }
 
-    // Leetcode problem: 274
-    /*
-     * A scientist has an index h if h of their n papers have at least h citations each
-     * */
-    public int hIndex(int[] citations) {
-        Arrays.sort(citations);
-        int left = 0, n = citations.length, right = n - 1, ans = 0;
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
-            if (citations[mid] < n - mid) {
-                // Is not h index, so move right
-                left = mid + 1;
-            } else {
-                // Is h index, update answer and try for greater h index
-                ans = n - mid;
-                right = mid - 1;
-            }
-        }
-
-        return ans;
-    }
-
     // Leetcode problem: 289
     /*
      * Traverse each index and update it according to the living cell of the surrounding neighbours

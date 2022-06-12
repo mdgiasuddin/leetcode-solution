@@ -3,29 +3,9 @@ package indefinite;
 import tree.TreeNode;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class FourthSolution {
-//    public int mySqrt(int x) {
-//        if (x < 2)
-//            return x;
-//        int start = 0, end = x / 2, mid;
-//
-//        while (start <= end) {
-//            mid = start + (end - start + 1) / 2;
-//
-//            if (mid == x / mid)
-//                return mid;
-//            else if (mid > x / mid)
-//                end = mid + 1;
-//            else
-//                start = mid;
-//
-//        }
-//
-//        return start;
-//    }
 
     public int findDuplicate(int[] nums) {
         int n = nums.length;
@@ -36,75 +16,21 @@ public class FourthSolution {
         return sum;
     }
 
-    int mySqrt(int x) {
-        if (x == 0 || x == 1) {
-            return x;
-        }
-
-        int left = 0, right = x / 2, middle;
-
-        while (left < right) {
-            middle = left + (right - left + 1) / 2;
-
-            if (middle > x / middle) {
-                right = middle - 1;
-            } else {
-                left = middle;
-            }
-
-        }
-        return left;
-    }
-
-    public boolean judgeSquareSum(int c) {
-        int first = 0, second = mySqrt(c);
-
-        while (first <= second) {
-            if (first * first + second * second < c)
-                first++;
-            else if (first * first + second * second > c)
-                second--;
-            else
-                return true;
-        }
-
-        return false;
-    }
-
-    public int triangleNumber(int[] nums) {
-        Arrays.sort(nums);
-        int count = 0;
-
-        for (int i = nums.length - 1; i >= 2; i--) {
-            int left = 0, right = i - 1;
-
-            while (left < right) {
-                if (nums[left] + nums[right] > nums[i]) {
-                    count += (right - left);
-                    right--;
-                } else {
-                    left++;
-                }
-            }
-        }
-        return count;
-    }
-
     public int nthUglyNumber(int n, int a, int b, int c) {
         int mulA, mulB, mulC;
-        Long uglyN = 0L;
+        long uglyN = 0L;
         mulA = mulB = mulC = 1;
         for (int i = 1; i <= n; i++) {
-            uglyN = Long.valueOf(Math.min(a * mulA, Math.min(b * mulB, c * mulC)));
-            if (uglyN == a * mulA)
+            uglyN = Math.min(a * mulA, Math.min(b * mulB, c * mulC));
+            if (uglyN == (long) a * mulA)
                 mulA++;
-            if (uglyN == b * mulB)
+            if (uglyN == (long) b * mulB)
                 mulB++;
-            if (uglyN == c * mulC)
+            if (uglyN == (long) c * mulC)
                 mulC++;
         }
 
-        return uglyN.intValue();
+        return (int) uglyN;
     }
 
     public int countDigitOne(int n) {
@@ -122,19 +48,6 @@ public class FourthSolution {
         }
 
         return count;
-    }
-
-    public int fib(int n) {
-        if (n <= 1)
-            return n;
-
-        int fib_1 = 1, fib_2 = 0, fibN = 1;
-        for (int i = 2; i <= n; i++) {
-            fibN = fib_1 + fib_2;
-            fib_2 = fib_1;
-            fib_1 = fibN;
-        }
-        return fibN;
     }
 
     int rangeSum = 0;
@@ -204,39 +117,6 @@ public class FourthSolution {
         prev = root;
         findMode(root.right, result);
     }
-
-
-    public List<List<Integer>> permute(int[] nums) {
-        List<List<Integer>> result = new ArrayList<>();
-
-        permute(nums, new boolean[nums.length], new ArrayList<>(), result);
-        return result;
-    }
-
-    public void permute(int[] nums, boolean[] used, List<Integer> permutation, List<List<Integer>> result) {
-        if (permutation.size() == nums.length) {
-            result.add(new ArrayList<>(permutation));
-            return;
-        }
-
-        for (int i = 0; i < nums.length; i++) {
-            System.out.print("begin: " + i + " ");
-            UtilClass.printBooleanArray(used);
-            if (used[i])
-                continue;
-
-            used[i] = true;
-            permutation.add(nums[i]);
-            System.out.println("num add: " + nums[i]);
-            permute(nums, used, permutation, result);
-            System.out.println("i: " + i);
-            used[i] = false;
-            System.out.println("nums remove: " + permutation.get(permutation.size() - 1));
-            permutation.remove(permutation.size() - 1);
-            UtilClass.printBooleanArray(used);
-        }
-    }
-
 
     // have to see after prayer
     public void solveSudoku(char[][] board) {
@@ -319,16 +199,16 @@ public class FourthSolution {
         int count = 0;
         int current = 0;
 
-        for (int i = 0; i < a.length; i++) {
+        for (int j : a) {
             if (count == 0)
-                current = a[i];
+                current = j;
 
-            if (current == a[i])
+            if (current == j)
                 count++;
             else
                 count--;
 
-            System.out.println("a[i] current count: " + a[i] + " " + current + " " + count);
+            System.out.println("a[i] current count: " + j + " " + current + " " + count);
         }
         return current;
     }
@@ -354,7 +234,6 @@ public class FourthSolution {
             }
         }
 
-        System.out.println("Unique list: " + list);
     }
 
 

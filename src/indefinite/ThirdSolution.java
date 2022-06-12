@@ -6,16 +6,6 @@ import java.util.*;
 
 public class ThirdSolution {
 
-    public TreeNode searchBST(TreeNode root, int val) {
-        if (root == null)
-            return null;
-        if (root.val == val)
-            return root;
-        if (val < root.val)
-            return searchBST(root.left, val);
-        return searchBST(root.right, val);
-    }
-
     int minDiff = Integer.MAX_VALUE;
     TreeNode prev = null;
 
@@ -147,7 +137,9 @@ public class ThirdSolution {
             return;
         if (root.left == null && root.right == null) {
             list.add(root.val);
+            return;
         }
+
         getLeafNodes(root.left, list);
         getLeafNodes(root.right, list);
     }

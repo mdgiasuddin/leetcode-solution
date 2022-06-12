@@ -291,4 +291,32 @@ public class BacktrackingSolution2 {
         return false;
     }
 
+    // Leetcode problem: 216
+    public List<List<Integer>> combinationSum3(int k, int n) {
+        List<List<Integer>> result = new ArrayList<>();
+        combinationSum3(k, n, result, new ArrayList<>(), 0, 1);
+
+        return result;
+    }
+
+    private void combinationSum3(int k, int n, List<List<Integer>> result, List<Integer> currentList, int currentSum, int current) {
+        if (currentList.size() >= k && currentSum == n) {
+            result.add(new ArrayList<>(currentList));
+            return;
+        }
+        if (currentList.size() >= k || currentSum >= n) {
+            return;
+        }
+
+        for (int i = current; i <= 9; i++) {
+            if (10 - i < k - currentList.size() || currentSum + i > n) {
+                break;
+            }
+            currentList.add(i);
+            combinationSum3(k, n, result, currentList, currentSum + i, i + 1);
+            currentList.remove(currentList.size() - 1);
+        }
+
+    }
+
 }
