@@ -200,29 +200,6 @@ public class SecondSolution {
         return result;
     }
 
-    public ListNode oddEvenList(ListNode head) {
-        if (head == null || head.next == null || head.next.next == null)
-            return head;
-
-        ListNode odd = head, even = head.next, oddNode = head, evenNode = head.next, oddNext, evenNext, prev = head;
-        while (!(oddNode == null || evenNode == null)) {
-            oddNext = evenNode.next;
-            evenNext = oddNext == null ? null : oddNext.next;
-
-            oddNode.next = oddNext;
-            evenNode.next = evenNext;
-            prev = oddNode;
-            oddNode = oddNode.next;
-            evenNode = evenNode.next;
-        }
-        if (prev.next != null)
-            prev = prev.next;
-
-        prev.next = even;
-
-        return odd;
-    }
-
     public int getDecimalValue(ListNode head) {
         int number = 0;
         ListNode node = head;

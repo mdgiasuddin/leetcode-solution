@@ -241,4 +241,56 @@ public class TreeSolution2 {
         return result;
     }
 
+    // Leetcode problem: 101
+    /*
+     * Solve by level order traversal (BFS).
+     * */
+    public boolean isSymmetric(TreeNode root) {
+        if (root == null)
+            return true;
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root.left);
+        queue.add(root.right);
+
+        while (!queue.isEmpty()) {
+            TreeNode tempLeft = queue.poll();
+            TreeNode tempRight = queue.poll();
+
+            if (tempLeft == null && tempRight == null)
+                continue;
+
+            if (tempLeft == null || tempRight == null || tempLeft.val != tempRight.val)
+                return false;
+
+            // All children are null. So don't need to traverse next level.
+            if (tempLeft.left == null && tempLeft.right == null
+                    && tempRight.left == null && tempRight.right == null)
+                continue;
+
+            queue.add(tempLeft.left);
+            queue.add(tempRight.right);
+
+            queue.add(tempLeft.right);
+            queue.add(tempRight.left);
+        }
+
+        return true;
+    }
+
+    // This is recursive solution of Leetcode problem: 101
+    public boolean isSymmetricRec(TreeNode root) {
+        return isSymmetric(root.left, root.right);
+    }
+
+    public boolean isSymmetric(TreeNode tLeft, TreeNode tRight) {
+        if (tLeft == null && tRight == null)
+            return true;
+
+        if (tLeft == null || tRight == null || tLeft.val != tRight.val)
+            return false;
+
+        return isSymmetric(tLeft.left, tRight.right) && isSymmetric(tLeft.right, tRight.left);
+    }
+
 }

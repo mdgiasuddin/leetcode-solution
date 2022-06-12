@@ -65,43 +65,13 @@ public class Solution {
     }
 
     public List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer> traversal = new ArrayList<>();
         if (root == null)
             return new ArrayList<>();
-        traversal.addAll(inorderTraversal(root.left));
+
+        List<Integer> traversal = new ArrayList<>(inorderTraversal(root.left));
         traversal.add(root.val);
         traversal.addAll(inorderTraversal(root.right));
         return traversal;
-    }
-
-    public boolean isSymmetric(TreeNode root) {
-        if (root == null)
-            return true;
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(root.left);
-        queue.add(root.right);
-
-        while (!queue.isEmpty()) {
-            TreeNode tempLeft = queue.remove();
-            TreeNode tempRight = queue.remove();
-
-            if (tempLeft == null && tempRight == null)
-                continue;
-            if (tempLeft == null || tempRight == null)
-                return false;
-
-            if (tempLeft.val != tempRight.val)
-                return false;
-
-            if (tempLeft.left == null && tempLeft.right == null && tempRight.left == null && tempRight.right == null)
-                continue;
-            queue.add(tempLeft.left);
-            queue.add(tempRight.right);
-            queue.add(tempLeft.right);
-            queue.add(tempRight.left);
-        }
-
-        return true;
     }
 
     public int findMax(int[] nums) {
@@ -675,14 +645,5 @@ public class Solution {
         leftNode.val = slower.val;
         slower.val = temp;
         return head;
-    }
-
-    public void rotate(int[] nums, int k) {
-        int n = nums.length;
-        int actualRotate = k % n;
-        if (actualRotate == 0)
-            return;
-
-
     }
 }
