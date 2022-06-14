@@ -8,7 +8,11 @@ import java.util.*;
 public class DFSSolution2 {
 
     public static void main(String[] args) {
+        DFSSolution2 dfsSolution2 = new DFSSolution2();
 
+        int[][] edges = {{0, 1}, {1, 2}, {3, 4}, {2, 4}};
+
+        System.out.println(dfsSolution2.countComponents(6, edges));
     }
 
     // Leetcode problem: 130
@@ -175,6 +179,42 @@ public class DFSSolution2 {
         }
 
         return true;
+    }
+
+    // Leetcode problem: 323
+    /*
+     * Number of connected components in an undirected graph.
+     * Run DFS and count the components.
+     * */
+    public int countComponents(int n, int[][] edges) {
+        Set<Integer> visited = new HashSet<>();
+
+        Map<Integer, List<Integer>> edgeMap = new HashMap<>();
+        for (int i = 0; i < n; i++)
+            edgeMap.put(i, new ArrayList<>());
+
+        for (int[] edge : edges) {
+            edgeMap.get(edge[0]).add(edge[1]);
+            edgeMap.get(edge[1]).add(edge[0]);
+        }
+
+        int res = 0;
+        for (int i = 0; i < n; i++) {
+            if (!visited.contains(i)) {
+                res++;
+                dfsCountComponent(i, edgeMap, visited);
+            }
+        }
+
+        return res;
+    }
+
+    private void dfsCountComponent(int v, Map<Integer, List<Integer>> edgeMap, Set<Integer> visited) {
+        visited.add(v);
+        for (int nei : edgeMap.get(v)) {
+            if (!visited.contains(nei))
+                dfsCountComponent(nei, edgeMap, visited);
+        }
     }
 
 }
