@@ -6,6 +6,10 @@ public class StringSolution7 {
     public static void main(String[] args) {
         StringSolution7 stringSolution7 = new StringSolution7();
 
+        String[] strs = {"eat", "tea", "tan", "ate", "nat", "bat"};
+
+        System.out.println(stringSolution7.groupAnagrams(strs));
+
     }
 
     // Leetcode problem: 1106
@@ -366,5 +370,28 @@ public class StringSolution7 {
         }
 
         return i == s.length();
+    }
+
+    // Leetcode problem: 49
+    public List<List<String>> groupAnagrams(String[] strs) {
+        Map<Map<Character, Integer>, List<String>> map = new HashMap<>();
+
+        for (String str : strs) {
+            Map<Character, Integer> counter = new HashMap<>();
+
+            for (int i = 0; i < str.length(); i++) {
+                char ch = str.charAt(i);
+
+                int c = 1 + counter.getOrDefault(ch, 0);
+                counter.put(ch, c);
+            }
+
+            List<String> list = map.getOrDefault(counter, new ArrayList<>());
+            list.add(str);
+
+            map.put(counter, list);
+        }
+
+        return new ArrayList<>(map.values());
     }
 }
