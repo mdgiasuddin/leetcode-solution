@@ -69,9 +69,9 @@ public class StringSolution {
         if (numRows == 1)
             return s;
 
+        int inc = 2 * (numRows - 1);
         StringBuilder ans = new StringBuilder();
         for (int i = 0; i < numRows; i++) {
-            int inc = 2 * (numRows - 1);
             for (int j = i; j < s.length(); j += inc) {
 
                 // Character for incremental stage

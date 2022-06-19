@@ -1,6 +1,8 @@
 package two_pointer;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class TwoPointerSolution {
 
@@ -116,5 +118,54 @@ public class TwoPointerSolution {
             }
         }
         return count;
+    }
+
+    // Leetcode problem: 1268
+    public List<List<String>> suggestedProducts(String[] products, String searchWord) {
+        Arrays.sort(products);
+
+        List<List<String>> result = new ArrayList<>();
+
+        int l = 0, r = products.length - 1;
+
+        for (int i = 0; i < searchWord.length(); i++) {
+            char ch = searchWord.charAt(i);
+
+            l = binarySearch(products, ch, i, l, r, true);
+            r = binarySearch(products, ch, i, l, r, false);
+
+            int remain = r - l + 1;
+            List<String> list = new ArrayList<>();
+
+            for (int j = 0; j < Math.min(3, remain); j++)
+                list.add(products[l + j]);
+
+            result.add(list);
+        }
+
+        return result;
+    }
+
+    private int binarySearch(String[] products, char ch, int charIdx, int start, int end, boolean isStart) {
+
+        int ans = -1;
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+            if (charIdx >= products[mid].length()) {
+                start = mid + 1;
+            } else if (products[mid].charAt(charIdx) == ch) {
+                ans = mid;
+                if (isStart)
+                    end = mid - 1;
+                else
+                    start = mid + 1;
+            } else if (products[mid].charAt(charIdx) < ch) {
+                start = mid + 1;
+            } else {
+                end = mid - 1;
+            }
+        }
+
+        return ans == -1 ? (isStart ? end + 1 : start - 1) : ans;
     }
 }

@@ -87,6 +87,8 @@ public class DynamicProgramming2 {
         List<Integer> uniqueNums = new ArrayList<>();
         Map<Integer, Integer> map = new HashMap<>();
 
+        map.values();
+
         uniqueNums.add(nums[0]);
         int count = 1;
         for (int i = 1; i < nums.length; i++) {
