@@ -202,4 +202,204 @@ public class BFSSolution {
         }
         return false;
     }
+
+    // Leetcode problem: 433
+    /*
+     * BFS Search
+     * See Leetcode problem: 127
+     * */
+    public int minMutation(String start, String end, String[] bank) {
+        Set<String> bankSet = new HashSet<>(List.of(bank));
+
+        if (!bankSet.contains(end)) {
+            return -1;
+        }
+
+        Queue<String> queue = new LinkedList<>();
+        int maxLength = 0;
+        queue.add(start);
+        char[] dnaChars = {'A', 'C', 'G', 'T'};
+
+        while (!queue.isEmpty()) {
+            int currentSize = queue.size();
+            maxLength++;
+            while (currentSize-- > 0) {
+                String top = queue.poll();
+                for (int i = 0; i < top.length(); i++) {
+                    for (char dnaChar : dnaChars) {
+                        String temp = top.substring(0, i) + dnaChar + top.substring(i + 1);
+                        if (temp.equals(top))
+                            continue;
+
+                        if (temp.equals(end)) {
+                            return maxLength;
+                        }
+                        if (bankSet.contains(temp)) {
+                            queue.add(temp);
+                            bankSet.remove(temp);
+                        }
+                    }
+                }
+            }
+        }
+
+        return -1;
+    }
+
+    // Leetcode problem: 127
+    /*
+     * Word ladder
+     * Breadth first search to find minimum distance
+     * Find next node by changing one single character of each index of the word
+     * */
+    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+
+        Set<String> visited = new HashSet<>();
+        Set<String> wordSet = new HashSet<>(wordList);
+
+        if (!wordSet.contains(endWord))
+            return 0;
+
+        Queue<String> queue = new LinkedList<>();
+        queue.add(beginWord);
+        visited.add(beginWord);
+
+        int res = 1;
+        while (!queue.isEmpty()) {
+            int qSize = queue.size();
+
+            while (qSize-- > 0) {
+                String word = queue.poll();
+
+                if (word.equals(endWord))
+                    return res;
+
+                queue.addAll(getNeighborWords(word, visited, wordSet));
+            }
+
+            res++;
+
+        }
+
+        return 0;
+    }
+
+    private List<String> getNeighborWords(String word, Set<String> visited, Set<String> wordSet) {
+
+        List<String> wordList = new ArrayList<>();
+        for (int i = 0; i < word.length(); i++) {
+
+            for (char c = 'a'; c <= 'z'; c++) {
+                String neighbor = word.substring(0, i) + c + word.substring(i + 1);
+                if (!neighbor.equals(word) && wordSet.contains(neighbor) && !visited.contains(neighbor)) {
+                    wordList.add(neighbor);
+                    visited.add(neighbor);
+                }
+            }
+        }
+
+        return wordList;
+    }
+
+    // Leetcode problem: 126
+    /*
+     * This is extended version of Word Ladder (Leetcode problem: 127)
+     * First run BFS to find word ladder then run DFS to get ladders.
+     * */
+    public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
+        List<List<String>> result = new ArrayList<>();
+
+        Set<String> wordSet = new HashSet<>(wordList);
+        if (!wordSet.contains(endWord))
+            return new ArrayList<>();
+
+        Queue<String> queue = new LinkedList<>();
+        Map<String, Integer> visited = new HashMap<>();
+        Map<String, List<String>> adjacencyList = new HashMap<>();
+        boolean found = false;
+
+        queue.add(beginWord);
+        visited.put(beginWord, 0);
+        int depth = 1;
+
+        while (!queue.isEmpty()) {
+            int qSize = queue.size();
+
+            while (qSize-- > 0) {
+                String word = queue.poll();
+
+                if (word.equals(endWord)) {
+                    found = true;
+                    break;
+                }
+
+                List<String> adjacent = new ArrayList<>();
+
+                List<String> children = getChildren(word, wordSet);
+
+                for (String child : children) {
+                    if (!visited.containsKey(child)) {
+                        visited.put(child, depth);
+                        adjacent.add(child);
+                        queue.add(child);
+                    } else if (visited.get(child) == depth) {
+                        adjacent.add(child);
+                    }
+                }
+                adjacencyList.put(word, adjacent);
+            }
+
+            if (found)
+                break;
+
+            depth++;
+        }
+
+        if (!found)
+            return new ArrayList<>();
+
+
+        List<String> currentList = new ArrayList<>();
+        currentList.add(beginWord);
+
+        dfsLadder(currentList, endWord, depth, result, adjacencyList);
+
+        return result;
+    }
+
+    private List<String> getChildren(String word, Set<String> wordSet) {
+
+        List<String> children = new ArrayList<>();
+
+        for (int i = 0; i < word.length(); i++) {
+            for (char ch = 'a'; ch <= 'z'; ch++) {
+                String child = word.substring(0, i) + ch + word.substring(i + 1);
+                if (!word.equals(child) && wordSet.contains(child)) {
+                    children.add(child);
+                }
+            }
+        }
+
+        return children;
+    }
+
+    private void dfsLadder(List<String> currentList, String endWord, int depth, List<List<String>> result, Map<String, List<String>> adjacencyList) {
+        if (currentList.get(currentList.size() - 1).equals(endWord)) {
+            result.add(new ArrayList<>(currentList));
+            return;
+        }
+
+        if (currentList.size() == depth) {
+            return;
+        }
+
+        List<String> children = adjacencyList.get(currentList.get(currentList.size() - 1));
+
+        for (String child : children) {
+            currentList.add(child);
+
+            dfsLadder(currentList, endWord, depth, result, adjacencyList);
+            currentList.remove(currentList.size() - 1);
+        }
+    }
 }

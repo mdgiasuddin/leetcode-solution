@@ -3,7 +3,10 @@ package string;
 import indefinite.UtilClass;
 import tree.TreeNode;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class StringSolution {
 
@@ -220,48 +223,6 @@ public class StringSolution {
             }
         }
         return matrix[m][n];
-    }
-
-    // Leetcode problem: 127
-    /*
-     * Word ladder
-     * Breadth first search to find minimum distance
-     * Find next node by changing one single character of each index of the word
-     * */
-    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
-        Set<String> wordSet = new HashSet<>(wordList);
-
-        if (!wordSet.contains(endWord))
-            return 0;
-
-        Queue<String> queue = new LinkedList<>();
-        queue.add(beginWord);
-        int maxLength = 0;
-
-        while (!queue.isEmpty()) {
-            maxLength++;
-            int qSize = queue.size();
-
-            while (qSize-- > 0) {
-                String top = queue.poll();
-                for (int i = 0; i < top.length(); i++) {
-
-                    for (char ch = 'a'; ch <= 'z'; ch++) {
-                        String temp = top.substring(0, i) + ch + top.substring(i + 1);
-                        if (temp.equals(top))
-                            continue;
-                        if (temp.equals(endWord))
-                            return maxLength + 1;
-                        if (wordSet.contains(temp)) {
-                            queue.add(temp);
-                            wordSet.remove(temp);
-                        }
-                    }
-                }
-            }
-        }
-
-        return maxLength;
     }
 
     // Leetcode problem: 132
