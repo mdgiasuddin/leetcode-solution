@@ -2,6 +2,8 @@ package string;
 
 import tree.TreeNode;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Stack;
 
@@ -9,7 +11,7 @@ public class StringSolution5 {
     public static void main(String[] args) {
         StringSolution5 stringSolution5 = new StringSolution5();
 
-        System.out.println(stringSolution5.reorganizeString("aacccjjjjbbek"));
+        System.out.println(stringSolution5.lengthOfLongestSubstringTwoDistinct("abcbaabc"));
     }
 
     // Leetcode problem: 516
@@ -310,5 +312,42 @@ public class StringSolution5 {
         }
 
         return result.toString();
+    }
+
+    // 37.1 Longest Substring Which Contains 2 Unique Characters (From Book)
+    public int lengthOfLongestSubstringTwoDistinct(String s) {
+        if (s.length() <= 2)
+            return s.length();
+
+        Map<Character, Integer> map = new HashMap<>();
+        map.put(s.charAt(0), 0);
+        map.put(s.charAt(1), 1);
+
+        int left = 0, right = 2, maxLength = 2;
+
+        while (right < s.length()) {
+            if (map.containsKey(s.charAt(right))) {
+                maxLength = Math.max(maxLength, right - left + 1);
+            } else {
+                int index = s.length();
+                char ch = '0';
+
+                for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+                    if (entry.getValue() < index) {
+                        index = entry.getValue();
+                        ch = entry.getKey();
+                    }
+                }
+
+                left = map.get(ch) + 1;
+                map.remove(ch);
+            }
+
+            map.put(s.charAt(right), right);
+            right++;
+
+        }
+
+        return maxLength;
     }
 }
