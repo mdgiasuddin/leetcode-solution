@@ -6,6 +6,12 @@ import java.util.*;
 
 public class ThirdSolution {
 
+    public static void main(String[] args) {
+        ThirdSolution thirdSolution = new ThirdSolution();
+        int[] arr = new int[10];
+        thirdSolution.containsNearbyAlmostDuplicate(arr, 10, 5);
+    }
+
     int minDiff = Integer.MAX_VALUE;
     TreeNode prev = null;
 
@@ -252,6 +258,30 @@ public class ThirdSolution {
         }
         recurse(root.left, res, level + 1);
         recurse(root.right, res, level + 1);
+    }
+
+    // Leetcode problem: 220
+    public boolean containsNearbyAlmostDuplicate(int[] nums, int k, int t) {
+        if (k == 0 || t < 0)
+            return false;
+
+        TreeSet<Long> set = new TreeSet<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            Long floor = set.floor((long) nums[i] + t);
+            Long ceiling = set.ceiling((long) nums[i] - t);
+
+            if (floor != null && floor >= nums[i] || ceiling != null && ceiling <= nums[i])
+                return true;
+
+            if (i >= k)
+                set.remove((long) nums[i - k]);
+
+            set.add((long) nums[i]);
+
+        }
+
+        return false;
     }
 
 }
