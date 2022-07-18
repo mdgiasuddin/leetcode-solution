@@ -189,4 +189,58 @@ public class ArraySolution5 {
 
         return res;
     }
+
+    // Leetcode problem: 135
+    public int candy(int[] ratings) {
+        /*int[] result = new int[ratings.length];
+        Arrays.fill(result, 1);
+
+        // First traverse left to right.
+        for (int i = 1; i < ratings.length; i++) {
+            if (ratings[i] > ratings[i - 1])
+                result[i] = result[i - 1] + 1;
+        }
+
+        // Then traverse right to left.
+        for (int i = ratings.length - 2; i >= 0; i--) {
+            if (ratings[i] > ratings[i + 1] && result[i] <= result[i + 1])
+                result[i] = result[i + 1] + 1;
+        }
+
+        int sum = 0;
+
+        for (int r : result)
+            sum += r;
+
+        return sum;*/
+
+        // This is memory optimized version.
+
+        int ans = 1; // For first index;
+
+        int up, down, peak;
+        up = down = peak = 0;
+        for (int i = 1; i < ratings.length; i++) {
+            if (ratings[i] > ratings[i - 1]) {
+                up++;
+                peak = up;
+                down = 0;
+
+                ans += up + 1;
+            } else if (ratings[i] == ratings[i - 1]) {
+                up = down = peak = 0;
+                ans += 1;
+            } else {
+                down++;
+                up = 0;
+
+                ans += down;
+
+                // Increase the peak by 1. 1,2,3  3,2,1. To keep more candy in the previous.
+                ans += (down > peak ? 1 : 0);
+            }
+        }
+
+        return ans;
+    }
 }
