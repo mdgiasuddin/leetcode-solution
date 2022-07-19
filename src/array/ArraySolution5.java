@@ -243,4 +243,51 @@ public class ArraySolution5 {
 
         return ans;
     }
+
+    // Leetcode problem: 334
+    public boolean increasingTriplet(int[] nums) {
+        /*int n = nums.length;
+        if (n < 3)
+            return false;
+
+        int [] leftMin = new int[n];
+        int [] rightMax = new int[n];
+
+        leftMin[0] = nums[0];
+        rightMax[n - 1] = nums[n - 1];
+
+        // Store the minimum values in left side.
+        for (int i = 1; i < n; i++) {
+            leftMin[i] = Math.min(nums[i], leftMin[i - 1]);
+        }
+
+        // Store the maximum values in right side.
+        for (int i = n - 2; i >= 0; i--) {
+            rightMax[i] = Math.max(nums[i], rightMax[i + 1]);
+        }
+
+        for (int i = 0; i < n; i++) {
+            if (leftMin[i] < nums[i] && nums[i] < rightMax[i])
+                return true;
+        }
+
+        return false;*/
+
+        // This is constant memory version.
+
+        int first = Integer.MAX_VALUE;
+        int second = Integer.MAX_VALUE;
+
+        for (int num : nums) {
+            if (num <= first) {
+                first = num;
+            } else if (num <= second) {
+                second = num;
+            } else {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

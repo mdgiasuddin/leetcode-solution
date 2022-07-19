@@ -2,10 +2,7 @@ package string;
 
 import tree.TreeNode;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.PriorityQueue;
-import java.util.Stack;
+import java.util.*;
 
 public class StringSolution5 {
     public static void main(String[] args) {
@@ -349,5 +346,51 @@ public class StringSolution5 {
         }
 
         return maxLength;
+    }
+
+    // Leetcode problem: 293
+    // Lintcode problem: 914
+    public List<String> generatePossibleNextMoves(String s) {
+        List<String> result = new ArrayList<>();
+
+        char[] chars = s.toCharArray();
+
+        for (int i = 0; i < s.length() - 1; i++) {
+            if (chars[i] == '+' && chars[i + 1] == '+') {
+                chars[i] = chars[i + 1] = '-';
+
+                result.add(String.valueOf(chars));
+
+                chars[i] = chars[i + 1] = '+';
+            }
+        }
+
+        return result;
+    }
+
+    // Leetcode problem: 294
+    // Lintcode problem: 913
+    public boolean canWin(String s) {
+        char[] chars = s.toCharArray();
+        return canWin(chars);
+    }
+
+    public boolean canWin(char[] chars) {
+
+        for (int i = 0; i < chars.length - 1; i++) {
+            if (chars[i] == '+' && chars[i + 1] == '+') {
+                chars[i] = chars[i + 1] = '-';
+
+                // Don't return in this line. First restore the '+' then return.
+                boolean win = canWin(chars);
+
+                chars[i] = chars[i + 1] = '+';
+
+                if (!win)
+                    return true;
+            }
+        }
+
+        return false;
     }
 }
