@@ -319,4 +319,74 @@ public class BacktrackingSolution2 {
 
     }
 
+    public void solveSudoku(char[][] board) {
+
+        // For find safe value.
+        Map<Integer, Set<Character>> rowVals = new HashMap<>();
+        Map<Integer, Set<Character>> colVals = new HashMap<>();
+        Map<List<Integer>, Set<Character>> squareVals = new HashMap<>();
+
+        // Store the existing values.
+        for (int i = 0; i < 9; i++) {
+            rowVals.put(i, new HashSet<>());
+            colVals.put(i, new HashSet<>());
+        }
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                squareVals.put(Arrays.asList(i, j), new HashSet<>());
+            }
+        }
+
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (board[i][j] != '.') {
+                    rowVals.get(i).add(board[i][j]);
+                    colVals.get(j).add(board[i][j]);
+                    squareVals.get(Arrays.asList(i / 3, j / 3)).add(board[i][j]);
+                }
+            }
+        }
+
+        solveSudoku(0, 0, board, rowVals, colVals, squareVals);
+    }
+
+    private boolean solveSudoku(int row, int col, char[][] board, Map<Integer, Set<Character>> rowVals, Map<Integer, Set<Character>> colVals, Map<List<Integer>, Set<Character>> squareVals) {
+
+        // All rows completed.
+        if (row >= 9)
+            return true;
+
+        // The cell already filled. Recurse the next one.
+        if (board[row][col] != '.') {
+            return solveSudoku(row + (col + 1) / 9, (col + 1) % 9, board, rowVals, colVals, squareVals);
+        }
+
+        for (char ch = '1'; ch <= '9'; ch++) {
+            if (!rowVals.get(row).contains(ch) && !colVals.get(col).contains(ch) &&
+                    !squareVals.get(Arrays.asList(row / 3, col / 3)).contains(ch)) {
+
+                board[row][col] = ch;
+
+                rowVals.get(row).add(ch);
+                colVals.get(col).add(ch);
+                squareVals.get(Arrays.asList(row / 3, col / 3)).add(ch);
+
+                if (solveSudoku(row + (col + 1) / 9, (col + 1) % 9, board, rowVals, colVals, squareVals))
+                    return true;
+
+                else {
+                    // If not valid, backtrack.
+                    board[row][col] = '.';
+
+                    rowVals.get(row).remove(ch);
+                    colVals.get(col).remove(ch);
+                    squareVals.get(Arrays.asList(row / 3, col / 3)).remove(ch);
+                }
+            }
+        }
+
+        return false;
+    }
+
 }
