@@ -33,7 +33,8 @@ public class BacktrackingSolution3 {
     }
 
     private int dfsPath(int r, int c, int[][] grid, int coveredCells, int zeroCells, boolean[][] visited) {
-        if (r < 0 || r >= grid.length || c < 0 || c >= grid[0].length || visited[r][c] || grid[r][c] == -1 || (grid[r][c] == 2 && coveredCells != zeroCells))
+        if (r < 0 || r >= grid.length || c < 0 || c >= grid[0].length || visited[r][c] || grid[r][c] == -1
+                || (grid[r][c] == 2 && coveredCells != zeroCells))
             return 0;
 
         if (grid[r][c] == 2) {
