@@ -164,6 +164,8 @@ public class LinkedListSolution2 {
         }
 
         tOdd.next = evenHead.next;
+
+        // Don't forget to do this.
         tEven.next = null;
 
         return oddHead.next;
