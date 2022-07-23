@@ -34,17 +34,6 @@ public class Solution {
         return x < 0 ? -rev : rev;
     }
 
-    // Leetcode problem: 94
-    public List<Integer> inorderTraversal(TreeNode root) {
-        if (root == null)
-            return new ArrayList<>();
-
-        List<Integer> traversal = new ArrayList<>(inorderTraversal(root.left));
-        traversal.add(root.val);
-        traversal.addAll(inorderTraversal(root.right));
-        return traversal;
-    }
-
     public boolean isPalindrome(int x) {
         String xString = String.valueOf(x);
         int i = 0, j = xString.length() - 1;

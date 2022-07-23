@@ -215,32 +215,6 @@ public class TreeSolution2 {
         return node.val + Math.max(left, right);
     }
 
-    // Leetcode problem: 94
-    /*
-     * Inorder traversal iterative solution.
-     * Go to left child until face null.
-     * Then go to right child.
-     * */
-    public List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer> result = new ArrayList<>();
-
-        TreeNode current = root;
-        Stack<TreeNode> stack = new Stack<>();
-
-        while (current != null || !stack.isEmpty()) {
-            while (current != null) {
-                stack.push(current);
-                current = current.left;
-            }
-
-            current = stack.pop();
-            result.add(current.val);
-            current = current.right;
-        }
-
-        return result;
-    }
-
     // Leetcode problem: 101
     /*
      * Solve by level order traversal (BFS).
@@ -378,6 +352,87 @@ public class TreeSolution2 {
 
         getLeafNodes(root.left, list);
         getLeafNodes(root.right, list);
+    }
+
+    // Leetcode problem: 94
+    /*
+     * Inorder traversal iterative solution.
+     * Go to left child until face null.
+     * Then go to right child.
+     * */
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+
+        TreeNode current = root;
+        Stack<TreeNode> stack = new Stack<>();
+
+        while (current != null || !stack.isEmpty()) {
+            while (current != null) {
+                stack.push(current);
+                current = current.left;
+            }
+
+            current = stack.pop();
+            result.add(current.val);
+            current = current.right;
+        }
+
+        return result;
+    }
+
+    // Leetcode problem: 144
+    /*
+     * Preorder traversal (Iterative approach).
+     * */
+    public List<Integer> preorderTraversal(TreeNode root) {
+        Stack<TreeNode> stack = new Stack<>();
+        List<Integer> result = new ArrayList<>();
+
+        if (root != null)
+            stack.push(root);
+
+        while (!stack.isEmpty()) {
+            TreeNode node = stack.pop();
+            result.add(node.val);
+
+            // First right then left so that we traverse left side first.
+            if (node.right != null)
+                stack.push(node.right);
+            if (node.left != null)
+                stack.push(node.left);
+        }
+
+        return result;
+    }
+
+
+    // Leetcode problem: 145
+    /*
+     * Postorder traversal (Iterative approach).
+     * */
+    public List<Integer> postorderTraversal(TreeNode root) {
+        Stack<TreeNode> stack1 = new Stack<>();
+        Stack<TreeNode> stack2 = new Stack<>();
+
+        if (root != null)
+            stack1.push(root);
+
+        while (!stack1.isEmpty()) {
+            TreeNode node = stack1.pop();
+            stack2.push(node);
+
+            if (node.left != null)
+                stack1.push(node.left);
+            if (node.right != null)
+                stack1.push(node.right);
+        }
+
+        List<Integer> result = new ArrayList<>();
+        while (!stack2.isEmpty()) {
+            result.add(stack2.pop().val);
+        }
+
+        return result;
     }
 
 }
