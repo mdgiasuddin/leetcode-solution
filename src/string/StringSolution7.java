@@ -89,12 +89,12 @@ public class StringSolution7 {
 
     // Leetcode problem: 1963
     /*
-     * Problem is tricky
+     * Problem is tricky.
      * Find out the maximum closing bracket with is unbalanced.
-     * If closing brackets are balanced, opening brackets will be automatically balanced
-     * 1 swap will balance 2 unbalanced closing bracket
-     * If closing bracket found increment unbalanced and when opening bracket found decrement it
-     * Update the maximum point of unbalanced closing bracket
+     * If closing brackets are balanced, opening brackets will be automatically balanced.
+     * 1 swap will balance 2 unbalanced closing bracket.
+     * If closing bracket found increment unbalanced and when opening bracket found decrement it.
+     * Update the maximum point of unbalanced closing bracket.
      * */
     public int minSwaps(String s) {
         int unbalancedClosing = 0;

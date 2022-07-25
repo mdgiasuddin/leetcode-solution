@@ -1,7 +1,5 @@
 package heap;
 
-import pair.Pair;
-
 import java.util.*;
 
 public class HeapSolution {
@@ -45,35 +43,34 @@ public class HeapSolution {
 
     // Leetcode problem: 1851
     public int[] minInterval(int[][] intervals, int[] queries) {
+
         Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
+        int[] sortedQueries = new int[queries.length];
+        System.arraycopy(queries, 0, sortedQueries, 0, queries.length);
+        Arrays.sort(sortedQueries);
 
-        int[] sortedQueries = Arrays.stream(queries).sorted().toArray();
-        Map<Integer, Integer> result = new HashMap<>();
-
-        PriorityQueue<Pair> queue = new PriorityQueue<>(Comparator.comparingInt(a -> a.first));
+        PriorityQueue<List<Integer>> queue = new PriorityQueue<>(Comparator.comparingInt(a -> a.get(0)));
+        Map<Integer, Integer> resMap = new HashMap<>();
 
         int i = 0;
-        for (int query : sortedQueries) {
-            // Add all the intervals that may cover the current query.
-            while (i < intervals.length && intervals[i][0] <= query) {
-                queue.add(new Pair(intervals[i][1] - intervals[i][0] + 1, intervals[i][1]));
+        for (int q : sortedQueries) {
+            while (i < intervals.length && intervals[i][0] <= q) {
+                queue.add(Arrays.asList(intervals[i][1] - intervals[i][0] + 1, intervals[i][1]));
                 i++;
             }
 
-            // Remove the intervals which are far left from the query and cannot cover query anymore.
-            while (!queue.isEmpty() && queue.peek().second < query) {
+            while (!queue.isEmpty() && queue.peek().get(1) < q)
                 queue.poll();
-            }
 
-            result.put(query, queue.isEmpty() ? -1 : queue.peek().first);
+            if (!queue.isEmpty())
+                resMap.put(q, queue.peek().get(0));
         }
 
-        int[] resultArray = new int[queries.length];
-        for (int j = 0; j < queries.length; j++) {
-            resultArray[j] = result.get(queries[i]);
-        }
+        int[] resArray = new int[queries.length];
+        for (i = 0; i < queries.length; i++)
+            resArray[i] = resMap.getOrDefault(queries[i], -1);
 
-        return resultArray;
+        return resArray;
     }
 
     public int[] assignTasks(int[] servers, int[] tasks) {

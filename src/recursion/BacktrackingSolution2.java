@@ -117,6 +117,7 @@ public class BacktrackingSolution2 {
         }
     }
 
+    // Leetcode problem: 1849
     public boolean splitString(String s) {
         for (int i = 0; i < s.length() - 1; i++) {
             String val = s.substring(0, i + 1);

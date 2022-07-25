@@ -254,6 +254,7 @@ public class BinarySearchSolution {
         return max;
     }
 
+    // Leetcode problem: 1898
     public int maximumRemovals(String s, String p, int[] removable) {
         int left = 0;
         int right = removable.length - 1;
