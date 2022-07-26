@@ -169,31 +169,6 @@ public class ThirdSolution {
         return result;
     }
 
-    int evenSum = 0;
-
-    public int getChildNodeSum(TreeNode root) {
-        if (root == null)
-            return 0;
-        return (root.left == null ? 0 : root.left.val) + (root.right == null ? 0 : root.right.val);
-
-    }
-
-    void sumEvenGrandparentAux(TreeNode root) {
-        if (root == null)
-            return;
-        if (root.val % 2 == 0) {
-            evenSum += getChildNodeSum(root.left);
-            evenSum += getChildNodeSum(root.right);
-        }
-        sumEvenGrandparentAux(root.left);
-        sumEvenGrandparentAux(root.right);
-    }
-
-    public int sumEvenGrandparent(TreeNode root) {
-        sumEvenGrandparentAux(root);
-        return evenSum;
-    }
-
     int sum = 0;
 
     public int distributeCoins(TreeNode root) {
