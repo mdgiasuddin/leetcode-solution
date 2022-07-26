@@ -290,4 +290,41 @@ public class ArraySolution5 {
 
         return false;
     }
+
+    // Leetcode problem: 885
+    /*
+     * Go 1-step right, 1-step down, 2-step left, 2-step up, 3-step right, 3-step down & so on.
+     * After every 2 iteration step size will be increased.
+     * After each iteration, the index may be out of bounds. We will only add valid index.
+     * After completing iteration in one direction, we will change the direction.
+     * */
+    public int[][] spiralMatrixIII(int rows, int cols, int rStart, int cStart) {
+        int[][] result = new int[rows * cols][2];
+        int index = 0, iteration = 0;
+
+        int r = rStart, c = cStart;
+        int dr = 0, dc = 1, currentStep = 1;
+        result[index++] = new int[]{r, c};
+
+        while (index < rows * cols) {
+            iteration += 1;
+            for (int i = 0; i < currentStep; i++) {
+                r += dr;
+                c += dc;
+
+                if (r >= 0 && r < rows && c >= 0 && c < cols)
+                    result[index++] = new int[]{r, c};
+            }
+
+            int tmp = dr;
+            dr = dc;
+            dc = -tmp;
+
+            if (iteration % 2 == 0)
+                currentStep += 1;
+
+        }
+
+        return result;
+    }
 }
