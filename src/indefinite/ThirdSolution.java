@@ -80,31 +80,6 @@ public class ThirdSolution {
         return root;
     }
 
-    public int deepestLeavesSum(TreeNode root) {
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
-        queue.add(null);
-        int sum = 0;
-
-        while (!queue.isEmpty()) {
-            TreeNode temp = queue.poll();
-            if (temp == null) {
-                if (queue.isEmpty())
-                    break;
-                sum = 0;
-                queue.add(null);
-            } else {
-                sum += temp.val;
-                if (temp.left != null)
-                    queue.add(temp.left);
-                if (temp.right != null)
-                    queue.add(temp.right);
-            }
-        }
-
-        return sum;
-    }
-
     public boolean isCompleteTree(TreeNode root) {
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
