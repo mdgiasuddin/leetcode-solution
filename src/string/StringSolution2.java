@@ -139,9 +139,9 @@ public class StringSolution2 {
     // Leetcode problem: 316
     // Leetcode problem: 1081
     /*
-     * Build up a counter array of number of occurrences of character
-     * Compare every character with the last taken character
-     * Remove if the character is greater and there is another character later
+     * Build up a counter array of number of occurrences of character.
+     * Compare every character with the last taken character.
+     * Remove if the character is greater and there is another character later.
      * */
     public String removeDuplicateLetters(String s) {
         int[] counter = new int[26];

@@ -317,23 +317,6 @@ public class SecondSolution {
         return nodeA;
     }
 
-    int result = 0;
-
-    private void sumRootToLeaf(TreeNode root, int sum) {
-        if (root == null)
-            return;
-        if (root.left == null && root.right == null)
-            result += sum;
-        sum = (sum << 1) | root.val;
-        sumRootToLeaf(root.left, sum);
-        sumRootToLeaf(root.right, sum);
-    }
-
-    public int sumRootToLeaf(TreeNode root) {
-        sumRootToLeaf(root, 0);
-        return result;
-    }
-
     public List<List<Integer>> levelOrderBottom(TreeNode root) {
         List<List<Integer>> result = new ArrayList<>();
 

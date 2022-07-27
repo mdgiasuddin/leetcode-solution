@@ -59,4 +59,21 @@ public class TreeSolution3 {
 
         return sum;
     }
+
+    // Leetcode problem: 1022
+    public int sumRootToLeaf(TreeNode root) {
+        return sumRootToLeaf(root, 0);
+
+    }
+
+    public int sumRootToLeaf(TreeNode node, int current) {
+        if (node == null)
+            return 0;
+
+        current = current * 2 + node.val;
+        if (node.left == null && node.right == null)
+            return current;
+
+        return sumRootToLeaf(node.left, current) + sumRootToLeaf(node.right, current);
+    }
 }

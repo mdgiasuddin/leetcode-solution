@@ -448,32 +448,4 @@ public class StringSolution6 {
         return (currentX == 0 && currentY == 0) || currentDir != 0;
     }
 
-    // Leetcode problem: 1047
-    /*
-     * Use stack
-     * */
-    public String removeDuplicates(String s) {
-        Stack<Character> stack = new Stack<>();
-
-        for (int i = 0; i < s.length(); i++) {
-            char ch = s.charAt(i);
-
-            // Remove the character until it is in the top of stack
-            if (!stack.isEmpty() && stack.peek() == ch) {
-                while (!stack.isEmpty() && stack.peek() == ch) {
-                    stack.pop();
-                }
-            } else {
-                stack.push(ch);
-            }
-        }
-
-        StringBuilder result = new StringBuilder();
-        while (!stack.isEmpty()) {
-            result.insert(0, stack.pop());
-        }
-
-        return result.toString();
-    }
-
 }
