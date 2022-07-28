@@ -80,41 +80,6 @@ public class ThirdSolution {
         return root;
     }
 
-    public boolean isCompleteTree(TreeNode root) {
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
-        queue.add(null);
-
-        int requiredLength = 1, currentLength = 0;
-        boolean leftReachable = true;
-        while (!queue.isEmpty()) {
-            TreeNode temp = queue.poll();
-
-            if (temp == null) {
-                if (!queue.isEmpty()) {
-                    if (currentLength < requiredLength)
-                        return false;
-                    queue.add(null);
-                    requiredLength *= 2;
-                    currentLength = 0;
-                } else
-                    break;
-            } else {
-                currentLength++;
-                if ((!leftReachable && (temp.left != null || temp.right != null))
-                        || (temp.left == null && temp.right != null))
-                    return false;
-                if (temp.left != null)
-                    queue.add(temp.left);
-                if (temp.right != null)
-                    queue.add(temp.right);
-                if (temp.left == null || temp.right == null)
-                    leftReachable = false;
-            }
-        }
-        return true;
-    }
-
     List<String> tmp;
     List<List<String>> result;
     int h;

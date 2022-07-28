@@ -2,6 +2,7 @@ package tree;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 public class TreeSolution3 {
     public static void main(String[] args) {
@@ -63,7 +64,6 @@ public class TreeSolution3 {
     // Leetcode problem: 1022
     public int sumRootToLeaf(TreeNode root) {
         return sumRootToLeaf(root, 0);
-
     }
 
     public int sumRootToLeaf(TreeNode node, int current) {
@@ -75,5 +75,103 @@ public class TreeSolution3 {
             return current;
 
         return sumRootToLeaf(node.left, current) + sumRootToLeaf(node.right, current);
+    }
+
+    // Leetcode problem: 1028
+    /*
+     * Build up a stack and find out right parent
+     * */
+    public TreeNode recoverFromPreorder(String traversal) {
+        int i = 0;
+        Stack<TreeNode> stack = new Stack<>();
+        while (i < traversal.length()) {
+            int level = 0;
+
+            while (traversal.charAt(i) == '-') {
+                level++;
+                i++;
+            }
+
+            int numStartIndex = i;
+            while (i < traversal.length() && Character.isDigit(traversal.charAt(i))) {
+                i++;
+            }
+            int num = Integer.parseInt(traversal.substring(numStartIndex, i));
+
+            TreeNode node = new TreeNode(num);
+
+            if (stack.isEmpty()) {
+                stack.push(node);
+                continue;
+            }
+
+            // Find out right parent.
+            while (stack.size() > level) {
+                stack.pop();
+            }
+
+            TreeNode top = stack.peek();
+            // First try to insert at left child.
+            if (top.left == null) {
+                top.left = node;
+            } else {
+                top.right = node;
+            }
+
+            stack.push(node);
+        }
+
+        while (stack.size() > 1) {
+            stack.pop();
+        }
+
+        return stack.pop();
+    }
+
+    // Leetcode problem: 958
+    /*
+     * Solve the problem by level order traversal.
+     * */
+    public boolean isCompleteTree(TreeNode root) {
+        Queue<TreeNode> queue = new LinkedList<>();
+
+        queue.add(root);
+        int requiredNode = 1;
+        while (!queue.isEmpty()) {
+            int qSize = queue.size();
+
+            // Check this level is full or not.
+            boolean full = (qSize == requiredNode);
+
+            boolean leftFull = true;
+            while (qSize-- > 0) {
+                TreeNode node = queue.poll();
+
+                /*
+                 * Already null child found in the left but there are child in current node or
+                 * - left child is null but right child is not null, then it is not complete.
+                 * */
+                if ((!leftFull && (node.left != null || node.right != null))
+                        || (node.left == null && node.right != null))
+                    return false;
+
+                // Update leftFull for right side.
+                leftFull = node.left != null && node.right != null;
+
+                if (node.left != null)
+                    queue.add(node.left);
+                if (node.right != null)
+                    queue.add(node.right);
+            }
+
+            // Current level is not full & there are children in the next level.
+            if (!full && !queue.isEmpty())
+                return false;
+
+            // Required node will be doubled for the next level.
+            requiredNode *= 2;
+        }
+
+        return true;
     }
 }

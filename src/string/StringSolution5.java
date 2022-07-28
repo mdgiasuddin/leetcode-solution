@@ -1,7 +1,5 @@
 package string;
 
-import tree.TreeNode;
-
 import java.util.*;
 
 public class StringSolution5 {
@@ -183,57 +181,6 @@ public class StringSolution5 {
     /*
      * Math.ceil(b.length() / a.length()) or Math.ceil(b.length() / a.length()) + 1
      * */
-
-    // Leetcode problem: 1028
-    /*
-     * Build up a stack and find out right parent
-     * */
-    public TreeNode recoverFromPreorder(String traversal) {
-        int i = 0;
-        Stack<TreeNode> stack = new Stack<>();
-        while (i < traversal.length()) {
-            int level = 0;
-
-            while (traversal.charAt(i) == '-') {
-                level++;
-                i++;
-            }
-
-            int numStartIndex = i;
-            while (i < traversal.length() && Character.isDigit(traversal.charAt(i))) {
-                i++;
-            }
-            int num = Integer.parseInt(traversal.substring(numStartIndex, i));
-
-            TreeNode node = new TreeNode(num);
-
-            if (stack.isEmpty()) {
-                stack.push(node);
-                continue;
-            }
-
-            // Find out right parent
-            while (stack.size() > level) {
-                stack.pop();
-            }
-
-            TreeNode top = stack.peek();
-            // First try to insert at left child
-            if (top.left == null) {
-                top.left = node;
-            } else {
-                top.right = node;
-            }
-
-            stack.push(node);
-        }
-
-        while (stack.size() > 1) {
-            stack.pop();
-        }
-
-        return stack.pop();
-    }
 
     // Leetcode problem: 467
     /*
