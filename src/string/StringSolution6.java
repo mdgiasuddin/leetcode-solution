@@ -318,6 +318,9 @@ public class StringSolution6 {
     }
 
     // Leetcode problem: 921
+    /*
+     * This problem is tricky & important.
+     * */
     public int minAddToMakeValid(String s) {
         /*Stack<Character> stack = new Stack<>();
 

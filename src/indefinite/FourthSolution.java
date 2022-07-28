@@ -33,27 +33,6 @@ public class FourthSolution {
         return count;
     }
 
-    int rangeSum = 0;
-
-    public int rangeSumBST(TreeNode root, int low, int high) {
-        rangeSumBSTAux(root, low, high);
-        return rangeSum;
-    }
-
-    public void rangeSumBSTAux(TreeNode root, int low, int high) {
-        if (root == null)
-            return;
-        if (root.val >= low && root.val <= high) {
-            rangeSum += root.val;
-            rangeSumBSTAux(root.left, low, high);
-            rangeSumBSTAux(root.right, low, high);
-        }
-        if (root.val < low)
-            rangeSumBSTAux(root.right, low, high);
-        else if (root.val > high)
-            rangeSumBSTAux(root.left, low, high);
-    }
-
     int index = -1, currentCount = 1, maxCount = 1;
     TreeNode prev = null;
 
