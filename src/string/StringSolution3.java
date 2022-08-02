@@ -91,9 +91,10 @@ public class StringSolution3 {
 
     // Leetcode problem: 696
     /*
-     * Sliding window solution
-     * Previous and current store consecutive number of digits
-     * When a different digit found update result previous and current window
+     * Sliding window solution.
+     * Previous and current store consecutive number of digits.
+     * When a different digit found update result previous and current window.
+     * 0000111 for this, answer will be 01 0011, 000111 min(consecutive 0's, consecutive 1's).
      * */
     public int countBinarySubstrings(String s) {
         int prev = 0, current = 1, result = 0;

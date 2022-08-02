@@ -182,8 +182,8 @@ public class BinarySearchSolution {
 
     // Leetcode problem: 658
     /*
-     * The problem is tricky. Need careful attention
-     * Find the starting position
+     * The problem is tricky. Need careful attention.
+     * Find the starting position.
      * */
     public List<Integer> findClosestElements(int[] arr, int k, int x) {
         int left = 0;

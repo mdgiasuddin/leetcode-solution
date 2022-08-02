@@ -196,4 +196,67 @@ public class TreeSolution3 {
         if (node.val < high)
             rangeSumBST(node.right, low, high, sum);
     }
+
+    // Leetcode problem: 783
+    /*
+     * Solve the problem by inorder traversal.
+     * */
+    public int minDiffInBST(TreeNode root) {
+        TreeNode[] prev = {null};
+        int[] res = {Integer.MAX_VALUE};
+
+        minDiffInBST(root, prev, res);
+
+        return res[0];
+    }
+
+    private void minDiffInBST(TreeNode node, TreeNode[] prev, int[] res) {
+        if (node == null)
+            return;
+
+        minDiffInBST(node.left, prev, res);
+
+        // If already a visited node then update result.
+        if (prev[0] != null)
+            res[0] = Math.min(res[0], node.val - prev[0].val);
+        prev[0] = node;
+
+        minDiffInBST(node.right, prev, res);
+    }
+
+    // Leetcode problem: 623
+    public TreeNode addOneRow(TreeNode root, int val, int depth) {
+        if (depth == 1) {
+            TreeNode newRoot = new TreeNode(val);
+            newRoot.left = root;
+            return newRoot;
+        }
+
+        return addOneRow(root, val, depth, 2);
+    }
+
+    public TreeNode addOneRow(TreeNode node, int val, int depth, int parentOfLevel) {
+
+        if (node == null)
+            return null;
+
+        if (parentOfLevel < depth) {
+
+            // Go to the expected level.
+            node.left = addOneRow(node.left, val, depth, parentOfLevel + 1);
+            node.right = addOneRow(node.right, val, depth, parentOfLevel + 1);
+        } else if (parentOfLevel == depth) {
+
+            // Add a layer.
+            TreeNode left = node.left, right = node.right;
+            TreeNode newLeft = new TreeNode(val), newRight = new TreeNode(val);
+
+            node.left = newLeft;
+            newLeft.left = left;
+            node.right = newRight;
+            newRight.right = right;
+        }
+
+        return node;
+    }
 }

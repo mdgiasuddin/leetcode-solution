@@ -168,4 +168,42 @@ public class TwoPointerSolution {
 
         return ans == -1 ? (isStart ? end + 1 : start - 1) : ans;
     }
+
+    // Leetcode problem: 633
+    public boolean judgeSquareSum(int c) {
+        int first = 0, second = mySqrt(c);
+
+        while (first <= second) {
+            if (first * first + second * second < c)
+                first++;
+            else if (first * first + second * second > c)
+                second--;
+            else
+                return true;
+        }
+
+        return false;
+    }
+
+    private int mySqrt(int x) {
+        if (x == 0 || x == 1) {
+            return x;
+        }
+
+        int left = 0, right = x / 2;
+
+        while (left < right) {
+
+            // Take the ceiling of middle.
+            int middle = left + (right - left + 1) / 2;
+
+            if (middle > x / middle) {
+                right = middle - 1;
+            } else {
+                left = middle;
+            }
+
+        }
+        return left;
+    }
 }

@@ -12,26 +12,6 @@ public class ThirdSolution {
         thirdSolution.containsNearbyAlmostDuplicate(arr, 10, 5);
     }
 
-    int minDiff = Integer.MAX_VALUE;
-    TreeNode prev = null;
-
-    public int minDiffInBST(TreeNode root) {
-        inorder(root);
-        return minDiff;
-    }
-
-    void inorder(TreeNode node) {
-        if (node == null)
-            return;
-
-        inorder(node.left);
-        if (prev != null) {
-            minDiff = Math.min(minDiff, node.val - prev.val);
-        }
-        prev = node;
-        inorder(node.right);
-    }
-
     TreeNode res = new TreeNode(0), temp = res;
 
     public TreeNode increasingBST(TreeNode root) {
@@ -45,39 +25,6 @@ public class ThirdSolution {
             increasingBST(root.right);
         }
         return res.right;
-    }
-
-    public TreeNode addOneRow(TreeNode root, int val, int depth) {
-        if (depth == 1) {
-            TreeNode newRoot = new TreeNode(val);
-            newRoot.left = root;
-            return newRoot;
-        }
-
-        return addOneRow(root, val, depth, 2);
-    }
-
-    public TreeNode addOneRow(TreeNode root, int val, int depth, int parentOfLevel) {
-        if (root == null && parentOfLevel == depth + 1)
-            return new TreeNode(val);
-        if (root == null)
-            return null;
-
-        if (parentOfLevel < depth) {
-            root.left = addOneRow(root.left, val, depth, parentOfLevel + 1);
-            root.right = addOneRow(root.right, val, depth, parentOfLevel + 1);
-        } else if (parentOfLevel == depth) {
-
-            TreeNode left = root.left, right = root.right;
-            TreeNode newLeft = new TreeNode(val), newRight = new TreeNode(val);
-
-            root.left = newLeft;
-            newLeft.left = left;
-            root.right = newRight;
-            newRight.right = right;
-        }
-
-        return root;
     }
 
     List<String> tmp;
