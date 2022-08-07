@@ -192,4 +192,54 @@ public class LinkedListSolution2 {
         slower.val = temp;
         return head;
     }
+
+    // Leetcode problem: 445
+    /*
+     * Fill leading position of small list with 0.
+     * This problem contains high level recursion.
+     * Understand the step carefully.
+     * */
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        int len1 = getLength(l1);
+        int len2 = getLength(l2);
+
+        if (len1 < len2) {
+            l1 = fillWithZero(l1, len2 - len1);
+        } else {
+            l2 = fillWithZero(l2, len1 - len2);
+        }
+        ListNode result = addList(l1, l2);
+
+        return result.val == 0 ? result.next : result;
+    }
+
+    ListNode addList(ListNode l1, ListNode l2) {
+        if (l1 == null)
+            return new ListNode(0);
+
+        ListNode node = addList(l1.next, l2.next);
+        int sum = l1.val + l2.val + node.val;
+        node.val = sum % 10;
+        ListNode carryNode = new ListNode(sum / 10);
+        carryNode.next = node;
+
+        return carryNode;
+    }
+
+    private int getLength(ListNode head) {
+        if (head == null)
+            return 0;
+        return 1 + getLength(head.next);
+    }
+
+    private ListNode fillWithZero(ListNode head, int lenZero) {
+        if (lenZero == 0)
+            return head;
+
+        ListNode newNode = new ListNode(0);
+        newNode.next = head;
+        head = newNode;
+
+        return fillWithZero(head, lenZero - 1);
+    }
 }
