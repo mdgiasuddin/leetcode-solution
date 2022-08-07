@@ -240,4 +240,35 @@ public class DynamicProgramming2 {
 
         return dp[s1.length()][s2.length()];
     }
+
+    // Leetcode problem: 1220
+    /*
+     * This problem is similar to knight dialer (Leetcode problem: 935).
+     * a -> e, e - > (a, i), i -> (a, e, o, u), o -> (i, u), u -> a.
+     * So, a <- (e, i, u), e <- (a, i), i <- (e, o), o <- i, u <- (i, o).
+     * */
+    public int countVowelPermutation(int n) {
+        int[] dp = {1, 1, 1, 1, 1};
+        int MOD = 1000000007;
+
+        for (int j = 2; j <= n; j++) {
+            int a = ((dp[1] + dp[2]) % MOD + dp[4]) % MOD;
+            int e = (dp[0] + dp[2]) % MOD;
+            int i = (dp[1] + dp[3]) % MOD;
+            int o = dp[2];
+            int u = (dp[2] + dp[3]) % MOD;
+
+            dp[0] = a;
+            dp[1] = e;
+            dp[2] = i;
+            dp[3] = o;
+            dp[4] = u;
+        }
+
+        int res = 0;
+        for (int c : dp)
+            res = (res + c) % MOD;
+
+        return res;
+    }
 }

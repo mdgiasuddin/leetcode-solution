@@ -235,7 +235,7 @@ public class TreeSolution3 {
         return addOneRow(root, val, depth, 2);
     }
 
-    public TreeNode addOneRow(TreeNode node, int val, int depth, int parentOfLevel) {
+    private TreeNode addOneRow(TreeNode node, int val, int depth, int parentOfLevel) {
 
         if (node == null)
             return null;
@@ -248,13 +248,13 @@ public class TreeSolution3 {
         } else if (parentOfLevel == depth) {
 
             // Add a layer.
-            TreeNode left = node.left, right = node.right;
             TreeNode newLeft = new TreeNode(val), newRight = new TreeNode(val);
 
+            newLeft.left = node.left;
             node.left = newLeft;
-            newLeft.left = left;
+
+            newRight.right = node.right;
             node.right = newRight;
-            newRight.right = right;
         }
 
         return node;
