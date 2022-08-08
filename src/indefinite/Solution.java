@@ -1,7 +1,6 @@
 package indefinite;
 
 import linkedlist.ListNode;
-import tree.TreeNode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -296,31 +295,6 @@ public class Solution {
         }
 
         return second;
-    }
-
-    public void sumOfLeftLeaves(TreeNode root, List<Integer> list, boolean isLeft) {
-        if (root == null)
-            return;
-        if (isLeft && root.left == null && root.right == null) {
-            list.add(root.val);
-            return;
-        }
-        if (!isLeft && root.left == null && root.right == null)
-            return;
-
-        sumOfLeftLeaves(root.left, list, true);
-        sumOfLeftLeaves(root.left, list, false);
-
-    }
-
-    public int sumOfLeftLeaves(TreeNode root) {
-        int sum = 0;
-        List<Integer> list = new ArrayList<>();
-        sumOfLeftLeaves(root, list, true);
-        for (int element : list) {
-            sum += element;
-        }
-        return sum;
     }
 
     void numberToWords(int num, String power, List<String> stringList) {

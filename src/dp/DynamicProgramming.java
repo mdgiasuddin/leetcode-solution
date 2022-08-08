@@ -7,7 +7,7 @@ public class DynamicProgramming {
     public static void main(String[] args) {
         DynamicProgramming dynamicProgramming = new DynamicProgramming();
 
-        int[] array = {100,-1,-100,-1,100};
+        int[] array = {100, -1, -100, -1, 100};
         System.out.println(dynamicProgramming.maxResult(array, 2));
     }
 
@@ -181,6 +181,7 @@ public class DynamicProgramming {
             map.put(stone, new HashSet<>());
         }
 
+        // First jump is always 1.
         map.get(0).add(1);
 
         for (int stone : stones) {

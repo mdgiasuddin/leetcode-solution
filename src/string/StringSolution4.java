@@ -220,13 +220,13 @@ public class StringSolution4 {
 
     // Leetcode problem: 424
     /*
-     * Build up a counter of each character
-     * Update the maximum character count
-     * In every window check if the replacement required is less than or equal to k
-     * If condition fulfilled update result value
-     * Otherwise move left pointer and decrement the counter of left character
-     * During decrement maximum character need not update because only when counter of any character crosses current maximum
-     * - the result will be updated, otherwise it has no effect
+     * Build up a counter of each character.
+     * Update the maximum character count.
+     * In every window check if the replacement required is less than or equal to k.
+     * If condition fulfilled update result value.
+     * Otherwise, move left pointer and decrement the counter of left character.
+     * During decrement maximum character need not update because only when counter of any character crosses current maximum.
+     * - the result will be updated, otherwise it has no effect.
      * */
     public int characterReplacement(String s, int k) {
         int[] charCount = new int[26];

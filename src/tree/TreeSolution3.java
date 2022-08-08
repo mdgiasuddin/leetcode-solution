@@ -259,4 +259,19 @@ public class TreeSolution3 {
 
         return node;
     }
+
+    // Leetcode problem: 404
+    public int sumOfLeftLeaves(TreeNode root) {
+        return sumOfLeftLeaves(root, false);
+    }
+
+    public int sumOfLeftLeaves(TreeNode node, boolean isLeft) {
+        if (node == null)
+            return 0;
+
+        if (isLeft && node.left == null && node.right == null)
+            return node.val;
+
+        return sumOfLeftLeaves(node.left, true) + sumOfLeftLeaves(node.right, false);
+    }
 }

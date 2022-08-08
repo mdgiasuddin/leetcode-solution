@@ -40,11 +40,11 @@ public class GreedySolution {
 
     // Leetcode problem: 435
     /*
-     * Sort the intervals based on start
-     * Compare adjacent intervals whether overlap with previous one
-     * If no overlap then only update the previous end
-     * Else update result and update previous
-     * Always remove the value with larger end if overlap
+     * Sort the intervals based on start.
+     * Compare adjacent intervals whether overlap with previous one.
+     * If no overlap then only update the previous end.
+     * Else update result and update previous.
+     * Always remove the value with larger end if overlapped.
      * */
     public int eraseOverlapIntervals(int[][] intervals) {
         Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
