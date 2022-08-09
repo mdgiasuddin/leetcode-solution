@@ -137,4 +137,79 @@ public class StackSolution2 {
         return result.toString();
     }
 
+    // Leetcode problem: 394
+    /*
+     * Maintain a stack
+     * Push character until ']' appears
+     * When ']' appears then pop all the characters after '[' and push after processing
+     * */
+    public String decodeString(String s) {
+        Stack<String> stack = new Stack<>();
+
+        int i = 0;
+        while (i < s.length()) {
+            char ch = s.charAt(i);
+            if (ch != ']') {
+                stack.push(String.valueOf(ch));
+            } else {
+                StringBuilder substr = new StringBuilder();
+                while (!stack.peek().equals("[")) {
+                    substr.insert(0, stack.pop());
+                }
+                stack.pop(); // pop '['
+
+                // Calculate the number before '['
+                StringBuilder numString = new StringBuilder();
+                while (!stack.isEmpty() && stack.peek().length() == 1 && Character.isDigit(stack.peek().charAt(0))) {
+                    numString.insert(0, stack.pop());
+                }
+                stack.push(substr.toString().repeat(Integer.parseInt(numString.toString())));
+
+            }
+
+            i++;
+        }
+
+        StringBuilder str = new StringBuilder();
+        while (!stack.isEmpty()) {
+            str.insert(0, stack.pop());
+        }
+
+        return str.toString();
+    }
+
+    // Leetcode problem: 331
+    /*
+     * Use stack
+     * When '#' comes then pop last two and push #
+     * */
+    public boolean isValidSerialization(String preorder) {
+        Stack<String> stack = new Stack<>();
+
+        int i = 0;
+        while (i < preorder.length()) {
+            // If digit found traverse until digit
+            char ch = preorder.charAt(i);
+            if (ch >= '0' && ch <= '9') {
+                int j = i;
+                while (j < preorder.length() && preorder.charAt(j) >= '0' && preorder.charAt(j) <= '9') {
+                    j++;
+                }
+                stack.push(preorder.substring(i, j));
+                i = j - 1;
+            } else if (ch == '#') {
+                while (!stack.isEmpty() && stack.peek().equals("#")) {
+                    stack.pop();
+                    if (stack.isEmpty() || stack.peek().equals("#"))
+                        return false;
+                    stack.pop();
+                }
+                stack.push("#");
+            }
+            i++;
+        }
+
+        return stack.size() == 1 && stack.peek().equals("#");
+    }
+
 }

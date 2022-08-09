@@ -247,30 +247,6 @@ public class Solution {
         }
     }
 
-    public boolean canConstruct(String ransomNote, String magazine) {
-        int[] array = new int[26];
-        for (char ch : magazine.toCharArray()) {
-            array[ch - 'a']++;
-        }
-        for (char ch : ransomNote.toCharArray()) {
-            array[ch - 'a']--;
-            if (array[ch - 'a'] < 0)
-                return false;
-        }
-        return true;
-    }
-
-    public char findTheDifference(String s, String t) {
-        int xor = 0;
-        for (char ch : s.toCharArray()) {
-            xor ^= ch;
-        }
-        for (char ch : t.toCharArray()) {
-            xor ^= ch;
-        }
-        return (char) xor;
-    }
-
     public String reverseString(String string) {
         if (string.length() <= 1)
             return string;

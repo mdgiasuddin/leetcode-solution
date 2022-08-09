@@ -8,7 +8,6 @@ public class StringSolution4 {
         StringSolution4 stringSolution4 = new StringSolution4();
 
 //        System.out.println(stringSolution4.isValidSerialization("9,3,4,#,#,1,#,#,2,#,6,#,#"));
-        System.out.println(stringSolution4.decodeString("2[abc]3[cd]ef"));
     }
 
     // Leetcode problem: 301
@@ -247,86 +246,12 @@ public class StringSolution4 {
         return result;
     }
 
-    // Leetcode problem: 331
-    /*
-     * Use stack
-     * When '#' comes then pop last two and push #
-     * */
-    public boolean isValidSerialization(String preorder) {
-        Stack<String> stack = new Stack<>();
-
-        int i = 0;
-        while (i < preorder.length()) {
-            // If digit found traverse until digit
-            char ch = preorder.charAt(i);
-            if (ch >= '0' && ch <= '9') {
-                int j = i;
-                while (j < preorder.length() && preorder.charAt(j) >= '0' && preorder.charAt(j) <= '9') {
-                    j++;
-                }
-                stack.push(preorder.substring(i, j));
-                i = j - 1;
-            } else if (ch == '#') {
-                while (!stack.isEmpty() && stack.peek().equals("#")) {
-                    stack.pop();
-                    if (stack.isEmpty() || stack.peek().equals("#"))
-                        return false;
-                    stack.pop();
-                }
-                stack.push("#");
-            }
-            i++;
-        }
-
-        return stack.size() == 1 && stack.peek().equals("#");
-    }
-
-    // Leetcode problem: 394
-    /*
-     * Maintain a stack
-     * Push character until ']' appears
-     * When ']' appears then pop all the characters after '[' and push after processing
-     * */
-    public String decodeString(String s) {
-        Stack<String> stack = new Stack<>();
-
-        int i = 0;
-        while (i < s.length()) {
-            char ch = s.charAt(i);
-            if (ch != ']') {
-                stack.push(String.valueOf(ch));
-            } else {
-                StringBuilder substr = new StringBuilder();
-                while (!stack.peek().equals("[")) {
-                    substr.insert(0, stack.pop());
-                }
-                stack.pop(); // pop '['
-
-                // Calculate the number before '['
-                StringBuilder numString = new StringBuilder();
-                while (!stack.isEmpty() && stack.peek().length() == 1 && Character.isDigit(stack.peek().charAt(0))) {
-                    numString.insert(0, stack.pop());
-                }
-                stack.push(substr.toString().repeat(Integer.parseInt(numString.toString())));
-
-            }
-
-            i++;
-        }
-
-        StringBuilder str = new StringBuilder();
-        while (!stack.isEmpty()) {
-            str.insert(0, stack.pop());
-        }
-
-        return str.toString();
-    }
-
     // Leetcode problem: 395
     /*
-     * Count the occurrences of all characters
-     * If there exists no character whose count is < k then return entire string
-     * If any character exists recursively call left side and right of that character and take the max
+     * This problem is tricky.
+     * Count the occurrences of all characters.
+     * If there exists no character whose count is < k then return entire string.
+     * If any character exists recursively call left side and right of that character and take the max.
      * */
     public int longestSubstring(String s, int k) {
         return longestSubstring(s.toCharArray(), 0, s.length(), k);
@@ -336,6 +261,7 @@ public class StringSolution4 {
         if (end - start < k) {
             return 0;
         }
+
         int[] counter = new int[26];
         for (int i = start; i < end; i++) {
             counter[charArray[i] - 'a']++;
@@ -345,7 +271,7 @@ public class StringSolution4 {
             if (counter[charArray[i] - 'a'] < k) {
                 int j = i;
 
-                // Skip all characters whose count < k
+                // Skip all characters whose count < k.
                 while (j < end && counter[charArray[j] - 'a'] < k) j++;
 
                 return Math.max(longestSubstring(charArray, start, i, k), longestSubstring(charArray, j, end, k));
@@ -396,6 +322,22 @@ public class StringSolution4 {
 
         // Third number has been formatted, so not first is true now
         return isAdditiveNumber(num.substring(thirdString.length()), second, third, true);
+    }
+
+    // Leetcode problem: 383
+    public boolean canConstruct(String ransomNote, String magazine) {
+        int[] count = new int[26];
+
+        for (int i = 0; i < magazine.length(); i++) {
+            count[magazine.charAt(i) - 'a']++;
+        }
+
+        for (int i = 0; i < ransomNote.length(); i++) {
+            if (--count[ransomNote.charAt(i) - 'a'] < 0)
+                return false;
+        }
+
+        return true;
     }
 
 }
