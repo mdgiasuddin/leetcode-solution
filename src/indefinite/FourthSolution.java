@@ -16,23 +16,6 @@ public class FourthSolution {
         return sum;
     }
 
-    public int countDigitOne(int n) {
-        int count = 0, power = 1, power10, rem;
-
-        while (n >= power) {
-            power10 = power * 10;
-            count += ((n / power10) * power);
-            rem = n % power10;
-            if (rem >= 2 * power - 1)
-                count += power;
-            else if (rem >= power)
-                count += (rem - power + 1);
-            power *= 10;
-        }
-
-        return count;
-    }
-
     int index = -1, currentCount = 1, maxCount = 1;
     TreeNode prev = null;
 

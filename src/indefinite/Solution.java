@@ -33,6 +33,39 @@ public class Solution {
         return x < 0 ? -rev : rev;
     }
 
+    // Leetcode problem: 233
+    /*
+     * The problem is tricky.
+     * */
+    public int countDigitOne(int n) {
+        int count = 0, power = 1, power10, rem;
+
+        while (n >= power) {
+            power10 = power * 10;
+
+            /*
+             * For power = 10 there are 10, 11, 12, ..., 19 (10 1s). Similarly, for 100 => 101, 102, 103, 199 (100 1s).
+             * So, multiplied by power.
+             * */
+            count += ((n / power10) * power);
+            rem = n % power10;
+
+            /*
+             * n / power10 covers 0 to previous power. For 1356, power = 10, n / 100 covers 0, 1, 2, ..., 12 hundreds.
+             * So, calculate for 13. If the reminder >= 19 (2 * power - 1), we can take the full 10 options (10, 11, 12, ..., 19).
+             * But for less value we will get fewer options. For rem = 15, we will get 10, 11, 13, ..., 15.
+             * */
+            if (rem >= 2 * power - 1)
+                count += power;
+            else if (rem >= power)
+                count += (rem - power + 1);
+
+            power *= 10;
+        }
+
+        return count;
+    }
+
     public boolean isPalindrome(int x) {
         String xString = String.valueOf(x);
         int i = 0, j = xString.length() - 1;
