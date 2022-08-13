@@ -217,4 +217,37 @@ public class DFSSolution2 {
         }
     }
 
+    // Leetcode problem: 241
+    public List<Integer> diffWaysToCompute(String expression) {
+
+        List<Integer> result = new ArrayList<>();
+
+        for (int i = 0; i < expression.length(); i++) {
+            char ch = expression.charAt(i);
+            if (ch == '+' || ch == '-' || ch == '*') {
+                List<Integer> leftResult = diffWaysToCompute(expression.substring(0, i));
+                List<Integer> rightResult = diffWaysToCompute(expression.substring(i + 1));
+
+                for (int left : leftResult) {
+                    for (int right : rightResult) {
+                        if (ch == '+') {
+                            result.add(left + right);
+                        } else if (ch == '-') {
+                            result.add(left - right);
+                        } else {
+                            result.add(left * right);
+                        }
+                    }
+                }
+            }
+        }
+
+        // If no operation (+,-,*) found, just return the number.
+        if (result.size() == 0) {
+            result.add(Integer.valueOf(expression));
+        }
+
+        return result;
+    }
+
 }
