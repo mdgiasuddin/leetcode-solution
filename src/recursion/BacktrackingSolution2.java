@@ -112,8 +112,7 @@ public class BacktrackingSolution2 {
             currentList.add(nums[i]);
             prev = -20;
             subsetsWithDup(nums, result, currentList, i + 1, prev);
-            prev = currentList.get(currentList.size() - 1);
-            currentList.remove(currentList.size() - 1);
+            prev = currentList.remove(currentList.size() - 1);
         }
     }
 

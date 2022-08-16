@@ -273,7 +273,27 @@ public class TreeSolution3 {
         return sumOfLeftLeaves(node.left, true) + sumOfLeftLeaves(node.right, false);
     }
 
+    // Leetcode problem: 111
+    public int minDepth(TreeNode root) {
+        if (root == null)
+            return 0;
+
+        if (root.left == null && root.right == null)
+            return 1;
+
+        if (root.left == null)
+            return 1 + minDepth(root.right);
+
+        if (root.right == null)
+            return 1 + minDepth(root.left);
+
+        return 1 + Math.min(minDepth(root.left), minDepth(root.right));
+    }
+
     // Leetcode problem: 113
+    /*
+     * Backtracking solution.
+     * */
     public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
         List<List<Integer>> result = new ArrayList<>();
         List<Integer> current = new ArrayList<>();
