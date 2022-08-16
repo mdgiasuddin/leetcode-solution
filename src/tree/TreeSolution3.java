@@ -1,8 +1,6 @@
 package tree;
 
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.*;
 
 public class TreeSolution3 {
     public static void main(String[] args) {
@@ -273,5 +271,34 @@ public class TreeSolution3 {
             return node.val;
 
         return sumOfLeftLeaves(node.left, true) + sumOfLeftLeaves(node.right, false);
+    }
+
+    // Leetcode problem: 113
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+        List<List<Integer>> result = new ArrayList<>();
+        List<Integer> current = new ArrayList<>();
+
+        pathSum(root, targetSum, 0, result, current);
+        return result;
+    }
+
+    public void pathSum(TreeNode root, int targetSum, int sum, List<List<Integer>> finalResult, List<Integer> current) {
+
+        if (root == null)
+            return;
+
+        sum += root.val;
+        current.add(root.val);
+
+        if (root.left == null && root.right == null && sum == targetSum)
+            finalResult.add(new ArrayList<>(current));
+
+        if (root.left != null)
+            pathSum(root.left, targetSum, sum, finalResult, current);
+        if (root.right != null)
+            pathSum(root.right, targetSum, sum, finalResult, current);
+
+        // Backtrack.
+        current.remove(current.size() - 1);
     }
 }

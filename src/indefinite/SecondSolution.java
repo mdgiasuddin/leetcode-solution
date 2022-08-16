@@ -306,31 +306,4 @@ public class SecondSolution {
         return result;
     }
 
-    public void pathSum(TreeNode root, int targetSum, int sum, List<List<Integer>> finalResult, List<Integer> current) {
-
-        if (root == null)
-            return;
-        sum += root.val;
-        current.add(root.val);
-        if (root.left == null && root.right == null) {
-            if (sum == targetSum) {
-                finalResult.add(new ArrayList<>(current));
-            }
-        }
-        if (root.left != null)
-            pathSum(root.left, targetSum, sum, finalResult, current);
-        if (root.right != null)
-            pathSum(root.right, targetSum, sum, finalResult, current);
-
-        current.remove(current.size() - 1);
-    }
-
-    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
-        List<List<Integer>> result = new ArrayList<>();
-        List<Integer> current = new ArrayList<>();
-
-        pathSum(root, targetSum, 0, result, current);
-        return result;
-    }
-
 }
