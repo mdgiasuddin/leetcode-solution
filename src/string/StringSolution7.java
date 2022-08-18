@@ -350,4 +350,37 @@ public class StringSolution7 {
 
         return new ArrayList<>(map.values());
     }
+
+    // Leetcode problem: 828
+    /*
+     * This problem is similar to count vowels of all substrings (Leetcode problem: 2063).
+     * Just take all the substring from previous character position to next character position (exclusive).
+     * */
+    public int uniqueLetterString(String s) {
+        Map<Character, List<Integer>> map = new HashMap<>();
+
+        for (char ch = 'A'; ch <= 'Z'; ch++) {
+            map.put(ch, new ArrayList<>());
+            map.get(ch).add(-1);
+        }
+
+        for (int i = 0; i < s.length(); i++) {
+            map.get(s.charAt(i)).add(i);
+        }
+
+        for (Map.Entry<Character, List<Integer>> entry : map.entrySet()) {
+            entry.getValue().add(s.length());
+        }
+
+        int res = 0;
+
+        for (Map.Entry<Character, List<Integer>> entry : map.entrySet()) {
+            for (int i = 1; i < entry.getValue().size() - 1; i++) {
+                res += (entry.getValue().get(i) - entry.getValue().get(i - 1)) * (entry.getValue().get(i + 1) - entry.getValue().get(i));
+            }
+
+        }
+
+        return res;
+    }
 }

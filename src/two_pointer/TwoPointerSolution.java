@@ -185,7 +185,12 @@ public class TwoPointerSolution {
         return false;
     }
 
-    private int mySqrt(int x) {
+    // Leetcode problem: 69
+    /*
+     * Binary search.
+     * The ranges are tricky.
+     * */
+    public int mySqrt(int x) {
         if (x == 0 || x == 1) {
             return x;
         }
