@@ -366,15 +366,18 @@ public class DFSSolution {
     }
 
     // Leetcode problem: 1905
+    /*
+     * DFS every island of grid2 & determine whether it is a sub island of grid1.
+     * */
     public int countSubIslands(int[][] grid1, int[][] grid2) {
 
         int count = 0;
 
-        Set<Pair> visited = new HashSet<>();
+        boolean[][] visited = new boolean[grid2.length][grid2[0].length];
 
         for (int r = 0; r < grid2.length; r++) {
             for (int c = 0; c < grid2[0].length; c++) {
-                if (grid2[r][c] == 1 && !visited.contains(new Pair(r, c)) && dfsCountIsland(r, c, grid1, grid2, visited)) {
+                if (grid2[r][c] == 1 && !visited[r][c] && dfsCountIsland(r, c, grid1, grid2, visited)) {
                     count++;
                 }
             }
@@ -383,13 +386,13 @@ public class DFSSolution {
         return count;
     }
 
-    private boolean dfsCountIsland(int r, int c, int[][] grid1, int[][] grid2, Set<Pair> visited) {
+    private boolean dfsCountIsland(int r, int c, int[][] grid1, int[][] grid2, boolean[][] visited) {
         if (r < 0 || c < 0 || r >= grid2.length || c >= grid2[0].length || grid2[r][c] == 0
-                || visited.contains(new Pair(r, c))) {
+                || visited[r][c]) {
             return true;
         }
 
-        visited.add(new Pair(r, c));
+        visited[r][c] = true;
         boolean subIsland = grid1[r][c] != 0;
 
         subIsland &= dfsCountIsland(r - 1, c, grid1, grid2, visited);

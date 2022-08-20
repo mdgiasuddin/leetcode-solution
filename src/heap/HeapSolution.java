@@ -54,11 +54,14 @@ public class HeapSolution {
 
         int i = 0;
         for (int q : sortedQueries) {
+            // Insert the intervals that may contain q.
             while (i < intervals.length && intervals[i][0] <= q) {
+                // Store the interval range & end value.
                 queue.add(Arrays.asList(intervals[i][1] - intervals[i][0] + 1, intervals[i][1]));
                 i++;
             }
 
+            // Remove the intervals that are far behind and cannot contain q or >q intervals.
             while (!queue.isEmpty() && queue.peek().get(1) < q)
                 queue.poll();
 
