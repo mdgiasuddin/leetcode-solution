@@ -95,9 +95,9 @@ public class TwoPointerSolution {
 
         long p = getPower(x, n / 2);
         if (n % 2 == 0)
-            return ((p % 1000000007) * (p % 1000000007)) % 1000000007;
+            return (p * p) % 1000000007;
 
-        return (x * (p % 1000000007) * (p % 1000000007)) % 1000000007;
+        return (x * p * p) % 1000000007;
     }
 
     // Leetcode problem: 611
