@@ -381,46 +381,6 @@ public class StringSolution6 {
         return flip;
     }
 
-    // Leetcode problem: 940
-    /*
-     * Dynamic programming
-     * */
-    public int distinctSubseqII(String s) {
-        int strLen = s.length();
-
-        long[] dp = new long[strLen + 1];
-        dp[0] = 1; // 1 for ""
-        dp[1] = 2; // 1 for "" and another for "s[0]"
-        int[] lastSeen = new int[26];
-        lastSeen[s.charAt(0) - 'a'] = 1;
-
-        long MOD = 1000000007;
-
-        for (int i = 2; i <= strLen; i++) {
-            char ch = s.charAt(i - 1);
-
-            /*
-             * If the character is new then dp[i] will be doubled dp[i-1]
-             * For example "abcbd" -> dp[2] = "", "a", "b", "ab" dp[3] = will be the previous all and 'b' appended with all previous
-             * So, extra string will be added. "c", "ac", "bc", "abc"
-             * For dp[3] 'b' is not new. It has been seen at position 2. So, 'b' appended with all strings dp[1] ("b", "ab") will be duplicate
-             * So, subtract dp[1] from dp[3] calculated doubling dp[2]
-             * */
-            dp[i] = (2 * dp[i - 1]) % MOD;
-
-            if (lastSeen[ch - 'a'] > 0) {
-                dp[i] = (dp[i] - dp[lastSeen[ch - 'a'] - 1]) % MOD;
-            }
-
-            lastSeen[ch - 'a'] = i;
-        }
-
-        // Deduct empty string from final result
-        return (int) ((dp[strLen] - 1 + MOD) % MOD);
-    }
-
-    // Leetcode problem: 943
-
     // Leetcode problem: 1041
     public boolean isRobotBounded(String instructions) {
         List<Map.Entry<Integer, Integer>> directions = Arrays.asList(

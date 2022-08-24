@@ -69,69 +69,66 @@ public class DFSSolution {
      * Then run bfs to find the shortest path to second island from first island
      * */
     public int shortestBridge(int[][] grid) {
-        Set<Pair> visited = new HashSet<>();
-        int[][] directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+        int N = grid.length;
 
-        for (int row = 0; row < grid.length; row++) {
-            for (int col = 0; col < grid[0].length; col++) {
-                if (grid[row][col] == 1) {
-                    dfsGrid(grid, directions, visited, row, col);
+        boolean[][] visited = new boolean[N][N];
+        Queue<int[]> queue = new LinkedList<>();
 
-                    Queue<Pair> queue = new LinkedList<>(visited);
-                    return bfsGrid(grid, directions, visited, queue);
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if (grid[i][j] == 1) {
+                    dfsGrid(i, j, grid, visited, queue);
+                    break;
                 }
             }
+
+            if (!queue.isEmpty())
+                break;
         }
-        return 0;
-    }
 
-    private boolean isInvalid(int[][] grid, int row, int col) {
-        return row < 0 || row >= grid.length || col < 0 || col >= grid[0].length;
-    }
-
-    private void dfsGrid(int[][] grid, int[][] directions, Set<Pair> visited, int row, int col) {
-        if (isInvalid(grid, row, col) || grid[row][col] == 0 || visited.contains(new Pair(row, col)))
-            return;
-
-        visited.add(new Pair(row, col));
-
-        for (int[] direction : directions) {
-            dfsGrid(grid, directions, visited, row + direction[0], col + direction[1]);
-        }
-    }
-
-    private int bfsGrid(int[][] grid, int[][] directions, Set<Pair> visited, Queue<Pair> queue) {
-
-        int result = 0;
-
+        int flip = 0;
+        int[][] neighbors = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
         while (!queue.isEmpty()) {
-            int size = queue.size();
+            int qSize = queue.size();
 
-            while (size-- > 0) {
-                Pair pair = queue.poll();
-                for (int[] direction : directions) {
-                    int rowNew = pair.first + direction[0];
-                    int colNew = pair.second + direction[1];
-                    if (isInvalid(grid, rowNew, colNew) || visited.contains(new Pair(rowNew, colNew))) {
+            while (qSize-- > 0) {
+                int[] pos = queue.poll();
+
+                for (int[] neighbor : neighbors) {
+                    if (pos[0] + neighbor[0] < 0 || pos[0] + neighbor[0] >= N || pos[1] + neighbor[1] < 0 || pos[1] + neighbor[1] >= N
+                            || visited[pos[0] + neighbor[0]][pos[1] + neighbor[1]])
                         continue;
 
-                    }
+                    if (grid[pos[0] + neighbor[0]][pos[1] + neighbor[1]] == 1)
+                        return flip;
 
-                    // If second island is reached, return the path length
-                    if (grid[rowNew][colNew] == 1) {
-                        return result;
-                    }
+                    queue.add(new int[]{pos[0] + neighbor[0], pos[1] + neighbor[1]});
+                    grid[pos[0] + neighbor[0]][pos[1] + neighbor[1]] = 1;
+                    visited[pos[0] + neighbor[0]][pos[1] + neighbor[1]] = true;
 
-                    visited.add(new Pair(pair.first + direction[0], pair.second + direction[1]));
-                    queue.add(new Pair(pair.first + direction[0], pair.second + direction[1]));
                 }
+
             }
 
-            result++;
+            flip += 1;
+
 
         }
 
-        return result;
+        return flip;
+    }
+
+    private void dfsGrid(int r, int c, int[][] grid, boolean[][] visited, Queue<int[]> queue) {
+        if (r < 0 || r >= grid.length || c < 0 || c >= grid.length || grid[r][c] == 0 || visited[r][c])
+            return;
+
+        visited[r][c] = true;
+        queue.add(new int[]{r, c});
+
+        dfsGrid(r - 1, c, grid, visited, queue);
+        dfsGrid(r + 1, c, grid, visited, queue);
+        dfsGrid(r, c - 1, grid, visited, queue);
+        dfsGrid(r, c + 1, grid, visited, queue);
     }
 
     // Leetcode problem: 802

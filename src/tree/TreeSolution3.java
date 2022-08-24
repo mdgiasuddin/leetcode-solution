@@ -173,26 +173,19 @@ public class TreeSolution3 {
         return true;
     }
 
-    public int rangeSumBST(TreeNode root, int low, int high) {
-        int[] sum = {0};
-        rangeSumBST(root, low, high, sum);
-
-        return sum[0];
-    }
-
     // Leetcode problem: 938
-    public void rangeSumBST(TreeNode node, int low, int high, int[] sum) {
-        if (node == null)
-            return;
+    public int rangeSumBST(TreeNode root, int low, int high) {
+        if (root == null)
+            return 0;
 
-        if (node.val >= low && node.val <= high)
-            sum[0] += node.val;
+        int sum = root.val >= low && root.val <= high ? root.val : 0;
+        if (root.val > low)
+            sum += rangeSumBST(root.left, low, high);
 
-        if (node.val > low)
-            rangeSumBST(node.left, low, high, sum);
+        if (root.val < high)
+            sum += rangeSumBST(root.right, low, high);
 
-        if (node.val < high)
-            rangeSumBST(node.right, low, high, sum);
+        return sum;
     }
 
     // Leetcode problem: 783
