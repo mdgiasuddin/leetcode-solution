@@ -95,16 +95,17 @@ public class DFSSolution {
                 int[] pos = queue.poll();
 
                 for (int[] neighbor : neighbors) {
-                    if (pos[0] + neighbor[0] < 0 || pos[0] + neighbor[0] >= N || pos[1] + neighbor[1] < 0 || pos[1] + neighbor[1] >= N
-                            || visited[pos[0] + neighbor[0]][pos[1] + neighbor[1]])
+                    int r = pos[0] + neighbor[0];
+                    int c = pos[1] + neighbor[1];
+                    if (r < 0 || r >= N || c < 0 || c >= N || visited[r][c])
                         continue;
 
-                    if (grid[pos[0] + neighbor[0]][pos[1] + neighbor[1]] == 1)
+                    if (grid[r][c] == 1)
                         return flip;
 
-                    queue.add(new int[]{pos[0] + neighbor[0], pos[1] + neighbor[1]});
-                    grid[pos[0] + neighbor[0]][pos[1] + neighbor[1]] = 1;
-                    visited[pos[0] + neighbor[0]][pos[1] + neighbor[1]] = true;
+                    queue.add(new int[]{r, c});
+                    grid[r][c] = 1;
+                    visited[r][c] = true;
 
                 }
 
