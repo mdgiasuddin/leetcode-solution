@@ -1,5 +1,8 @@
 package recursion;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BacktrackingSolution3 {
 
     public static void main(String[] args) {
@@ -52,5 +55,54 @@ public class BacktrackingSolution3 {
         visited[r][c] = false;
 
         return res;
+    }
+
+    // Leetcode problem: 842
+    public List<Integer> splitIntoFibonacci(String num) {
+        List<List<Integer>> result = new ArrayList<>();
+
+        splitIntoFibonacci(num, 0, result, new ArrayList<>());
+
+        return result.isEmpty() ? new ArrayList<>() : result.get(0);
+    }
+
+    public void splitIntoFibonacci(String num, int idx, List<List<Integer>> result, List<Integer> current) {
+
+        // We need any 1 fibonacci combination. So, if 1 already found no need to go further.
+        if (!result.isEmpty())
+            return;
+
+        // Check if satisfies fibonacci condition.
+        if (current.size() > 2) {
+            if (current.get(current.size() - 1) != current.get(current.size() - 2) + current.get(current.size() - 3))
+                return;
+        }
+
+        if (idx == num.length()) {
+
+            // All characters visited but haven't found 3 numbers, then don't add.
+            if (current.size() > 2)
+                result.add(new ArrayList<>(current));
+
+            return;
+        }
+
+        int currentNum = 0;
+        for (int i = idx; i < num.length(); i++) {
+
+            // Avoid leading 0.
+            if (num.charAt(idx) == '0' && i > idx)
+                return;
+
+            currentNum = currentNum * 10 + num.charAt(i) - '0';
+
+            // Integer overflow.
+            if (currentNum < 0)
+                return;
+
+            current.add(currentNum);
+            splitIntoFibonacci(num, i + 1, result, current);
+            current.remove(current.size() - 1);
+        }
     }
 }

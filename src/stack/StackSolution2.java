@@ -212,4 +212,32 @@ public class StackSolution2 {
         return stack.size() == 1 && stack.peek().equals("#");
     }
 
+    // Leetcode problem: 856
+    /*
+     * Score the parenthesis
+     * Use stack
+     * Whenever '(' comes save the score calculated so far and reset the score
+     * Whenever ')' comes pop last score saved and update the current score
+     * */
+    public int scoreOfParentheses(String s) {
+        Stack<Integer> stack = new Stack<>();
+        int currentScore = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+
+            if (ch == '(') {
+                stack.push(currentScore);
+                currentScore = 0;
+            } else {
+                // stack.pop give the score stored before '(' to which the ')' is balancing
+                // Current score (Before updating) = 0 means ')' comes exactly after '(', So Math.max(...) will give 1
+                // Otherwise will be the double of the previous calculated score
+                currentScore = stack.pop() + Math.max(currentScore * 2, 1);
+            }
+        }
+
+        return currentScore;
+    }
+
 }
