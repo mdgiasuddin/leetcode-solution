@@ -18,7 +18,7 @@ public class StringSolution6 {
         List<String> result = new ArrayList<>();
 
         // Skip '(' & ')'
-        for (int i = 2; i < s.length() - 1; i++) {
+        for (int i = 2; i <= s.length() - 2; i++) {
             for (String left : placeDecimal(s, 1, i)) {
                 for (String right : placeDecimal(s, i, s.length() - 1)) {
                     result.add("(" + left + ", " + right + ")");

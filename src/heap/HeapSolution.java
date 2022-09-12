@@ -108,4 +108,39 @@ public class HeapSolution {
         return res;
     }
 
+    // Leetcode problem: 1383
+    public int maxPerformance(int n, int[] speed, int[] efficiency, int k) {
+
+        final int MOD = 1000000007;
+        int[][] spEff = new int[n][2];
+
+        for (int i = 0; i < n; i++) {
+            spEff[i][0] = speed[i];
+            spEff[i][1] = efficiency[i];
+        }
+
+        // Sort the array based on efficiency desc.
+        Arrays.sort(spEff, Comparator.comparingInt(a -> -a[1]));
+
+        PriorityQueue<Integer> queue = new PriorityQueue<>();
+
+        long res = 0;
+        long s = 0;
+        for (int[] se : spEff) {
+
+            // Remove the minimum speed if size overflows.
+            if (queue.size() == k) {
+                s -= queue.poll();
+            }
+
+            s += se[0];
+            queue.add(se[0]);
+
+            // Total speed is multiplied by minimum efficiency & se[1] contains minimum efficiency so far.
+            res = Math.max(res, s * se[1]);
+        }
+
+        return (int) (res % MOD);
+    }
+
 }
