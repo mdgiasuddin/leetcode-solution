@@ -160,7 +160,7 @@ public class StackSolution2 {
 
                 // Calculate the number before '['
                 StringBuilder numString = new StringBuilder();
-                while (!stack.isEmpty() && stack.peek().length() == 1 && Character.isDigit(stack.peek().charAt(0))) {
+                while (!stack.isEmpty() && Character.isDigit(stack.peek().charAt(0))) {
                     numString.insert(0, stack.pop());
                 }
                 stack.push(substr.toString().repeat(Integer.parseInt(numString.toString())));

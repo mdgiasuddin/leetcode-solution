@@ -9,6 +9,7 @@ public class HeapSolution {
         HeapSolution heapSolution = new HeapSolution();
 
         int[][] nums = {{7, 5, 6}, {6, 7, 8}, {10, 1, 6}};
+
     }
 
     // Leetcode problem: 1094
@@ -141,6 +142,47 @@ public class HeapSolution {
         }
 
         return (int) (res % MOD);
+    }
+
+    // Leetcode problem: 1834
+    public int[] getOrder(int[][] tasks) {
+
+        // Store all the tasks sorted by initial enqueue time.
+        // So that after at a time all the task can be added to available task based on enqueue time.
+        PriorityQueue<int[]> allTasks = new PriorityQueue<>(Comparator.comparingInt(a -> a[1]));
+
+        // Available task that is processed one by one based on processing time.
+        PriorityQueue<int[]> available = new PriorityQueue<>((a, b) -> a[2] == b[2] ? a[0] - b[0] : a[2] - b[2]);
+
+        for (int i = 0; i < tasks.length; i++) {
+            allTasks.add(new int[]{i, tasks[i][0], tasks[i][1]});
+        }
+
+        int[] res = new int[tasks.length];
+
+        // First processing time will be the enqueue time of the first task.
+        int t = allTasks.peek()[1];
+        int i = 0;
+        while (!allTasks.isEmpty() || !available.isEmpty()) {
+
+            // Move task to available if enqueue time crosses.
+            while (!allTasks.isEmpty() && allTasks.peek()[1] <= t) {
+                available.add(allTasks.poll());
+            }
+            if (!available.isEmpty()) {
+
+                // If available task then process it & the next processing time will be the finish time of it.
+                int[] task = available.poll();
+                res[i++] = task[0];
+                t += task[2];
+            } else {
+
+                // Else next processing time will the enqueue time of the next task.
+                t = allTasks.peek()[1];
+            }
+        }
+
+        return res;
     }
 
 }

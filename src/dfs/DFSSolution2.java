@@ -12,7 +12,10 @@ public class DFSSolution2 {
 
         int[][] edges = {{0, 1}, {1, 2}, {3, 4}, {2, 4}};
 
-        System.out.println(dfsSolution2.countComponents(6, edges));
+//        String[] words = {"wrt", "wrf", "er", "ett", "rftt"};
+        String[] words = {"zy", "zx"};
+
+        System.out.println(dfsSolution2.alienOrder(words));
     }
 
     // Leetcode problem: 130
@@ -248,6 +251,66 @@ public class DFSSolution2 {
         }
 
         return result;
+    }
+
+    // Leetcode problem: 269
+    // Lintcode problem: 892
+    public String alienOrder(String[] words) {
+        Map<Character, Set<Character>> map = new HashMap<>();
+
+        for (String word : words) {
+            for (int i = 0; i < word.length(); i++) {
+                map.put(word.charAt(i), new HashSet<>());
+            }
+        }
+
+        for (int i = 0; i < words.length - 1; i++) {
+            String word1 = words[i];
+            String word2 = words[i + 1];
+
+            int minLen = Math.min(word1.length(), word2.length());
+            if (word1.length() > word2.length() && word1.substring(0, minLen).equals(word2))
+                return "";
+
+            for (int j = 0; j < minLen; j++) {
+                if (word1.charAt(j) != word2.charAt(j)) {
+                    Set<Character> adj = map.get(word1.charAt(j));
+                    adj.add(word2.charAt(j));
+                    map.put(word1.charAt(j), adj);
+
+                    break;
+                }
+            }
+        }
+
+        StringBuilder res = new StringBuilder();
+        Map<Character, Boolean> visited = new HashMap<>();
+        System.out.println("Map: " + map);
+        for (char ch : map.keySet()) {
+            if (dfsAlienOrder(ch, map, visited, res)) {
+                return "";
+            }
+        }
+
+        return res.reverse().toString();
+    }
+
+    private boolean dfsAlienOrder(char ch, Map<Character, Set<Character>> map, Map<Character, Boolean> visited, StringBuilder res) {
+        if (visited.containsKey(ch)) {
+            return visited.get(ch);
+        }
+
+        visited.put(ch, true);
+        for (char adj : map.get(ch)) {
+            if (dfsAlienOrder(adj, map, visited, res)) {
+                return true;
+            }
+        }
+
+        visited.put(ch, false);
+        res.append(ch);
+
+        return false;
     }
 
 }
