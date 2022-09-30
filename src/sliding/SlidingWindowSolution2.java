@@ -63,4 +63,27 @@ public class SlidingWindowSolution2 {
 
         return result;
     }
+
+    // Leetcode problem: 1423
+    /*
+     * Since card can be selected only from left end or right, decide how many cards from left & right end.
+     * */
+    public int maxScore(int[] cardPoints, int k) {
+        int sum = 0, n = cardPoints.length;
+
+        // First take all the cards from left end.
+        for (int i = 0; i < k; i++) {
+            sum += cardPoints[i];
+        }
+
+        int res = sum;
+
+        // Then try adding from right end & removing from left end. Find which one gives maximum.
+        for (int i = 1; i <= k; i++) {
+            sum += (cardPoints[n - i] - cardPoints[k - i]);
+            res = Math.max(res, sum);
+        }
+
+        return res;
+    }
 }

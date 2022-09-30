@@ -185,4 +185,28 @@ public class HeapSolution {
         return res;
     }
 
+    // Leetcode problem: 973
+    /*
+     * Sort the based on the distance from origin & take first k points.
+     * Time complexity of sort is O(n*log(n)). To minimize time complexity build up a min heap.
+     * Build min heap complexity is O(n). Then extract k points complexity is O(k*log(n)).
+     * */
+    public int[][] kClosest(int[][] points, int k) {
+
+        List<Point2D> list = new ArrayList<>();
+        for (int[] point : points) {
+            list.add(new Point2D(point[0] * point[0] + point[1] * point[1], point[0], point[1]));
+        }
+
+        PriorityQueue<Point2D> queue = new PriorityQueue<>(list);
+
+        int[][] res = new int[k][2];
+        for (int i = 0; i < k; i++) {
+            Point2D point = queue.poll();
+            res[i] = new int[]{point.x, point.y};
+        }
+
+        return res;
+    }
+
 }

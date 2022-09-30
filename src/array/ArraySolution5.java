@@ -327,4 +327,29 @@ public class ArraySolution5 {
 
         return result;
     }
+
+    // Leetcode problem: 1921
+    public int eliminateMaximum(int[] dist, int[] speed) {
+        int n = dist.length;
+        int[] minuteReaches = new int[n];
+
+        // Calculate how many minutes will be taken for each monster to reach the city. Take the ceiling.
+        for (int i = 0; i < n; i++) {
+            minuteReaches[i] = (dist[i] + speed[i] - 1) / speed[i];
+        }
+
+        Arrays.sort(minuteReaches);
+        int res = 0;
+        for (int minute = 1; minute <= n; minute += 1) {
+
+            // If the monster reaches before destroying, then loss the game.
+            if (minuteReaches[minute - 1] < minute)
+                return res;
+
+            // Destroy 1 monster every 1 minute.
+            res += 1;
+        }
+
+        return res;
+    }
 }
