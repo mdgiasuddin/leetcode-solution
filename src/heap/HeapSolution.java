@@ -209,6 +209,8 @@ public class HeapSolution {
         return res;
     }
 
+    // Leetcode problem: 1296
+    // Leetcode problem: 846
     public boolean isPossibleDivide(int[] nums, int k) {
         if (nums.length % k != 0) {
             return false;
@@ -216,6 +218,7 @@ public class HeapSolution {
 
         Map<Integer, Integer> map = new HashMap<>();
 
+        // Calculate the count of each element.
         for (int num : nums) {
             int count = map.getOrDefault(num, 0);
             map.put(num, count + 1);
@@ -225,6 +228,8 @@ public class HeapSolution {
 
         while (!queue.isEmpty()) {
             int min = queue.peek();
+
+            // Check all numbers exist or not.
             for (int i = min; i < min + k; i++) {
                 int count = map.getOrDefault(i, 0);
                 if (count == 0)
@@ -232,13 +237,15 @@ public class HeapSolution {
 
                 count -= 1;
                 map.put(i, count);
+
+                // If this is not the minimum but count is 0.
                 if (count == 0 && queue.peek() != i) {
                     return false;
                 }
 
+                // Remove the number from the queue.
                 if (count == 0) {
                     queue.poll();
-                    map.remove(i);
                 }
             }
         }
