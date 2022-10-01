@@ -4,7 +4,8 @@ import java.util.*;
 
 public class ArraySolution4 {
     public static void main(String[] args) {
-        ArraySolution4 arraySolution4 = new ArraySolution4();
+
+//        ArraySolution4 arraySolution4 = new ArraySolution4();
     }
 
     // Leetcode problem: 240

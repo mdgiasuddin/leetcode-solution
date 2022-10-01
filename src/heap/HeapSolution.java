@@ -8,7 +8,9 @@ public class HeapSolution {
 
         HeapSolution heapSolution = new HeapSolution();
 
-        int[][] nums = {{7, 5, 6}, {6, 7, 8}, {10, 1, 6}};
+        int[] nums = {1, 2, 3, 3, 4, 4, 5, 6};
+
+        System.out.println(heapSolution.isPossibleDivide(nums, 3));
 
     }
 
@@ -207,6 +209,45 @@ public class HeapSolution {
         }
 
         return res;
+    }
+
+    public boolean isPossibleDivide(int[] nums, int k) {
+        if (nums.length % k == 0) {
+            return false;
+        }
+
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for (int num : nums) {
+            int count = map.getOrDefault(num, 0);
+            map.put(num, count + 1);
+        }
+
+        System.out.println("Map: " + map);
+        PriorityQueue<Integer> queue = new PriorityQueue<>(map.keySet());
+
+        System.out.println("queue: " + queue);
+
+        while (!queue.isEmpty()) {
+            int min = queue.peek();
+            System.out.println("Min: " + min);
+            for (int i = min; i < min + k; i++) {
+                int count = map.getOrDefault(i, 0);
+                if (count == 0)
+                    return false;
+
+                count -= 1;
+                if (count == 0 && queue.peek() != i)
+                    return false;
+
+                if (count == 0) {
+                    queue.poll();
+                    map.remove(i);
+                }
+            }
+        }
+
+        return true;
     }
 
 }
