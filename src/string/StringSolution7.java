@@ -383,4 +383,21 @@ public class StringSolution7 {
 
         return res;
     }
+
+    // Leetcode problem: 1980
+    /*
+     * Since the number of strings is n & the length of string is also n, we will generate a string that -
+     * has only 1 character difference.
+     * */
+    public String findDifferentBinaryString(String[] nums) {
+        StringBuilder res = new StringBuilder();
+
+        for (int i = 0; i < nums.length; i++) {
+
+            // Result is different by ith character with ith string.
+            res.append(nums[i].charAt(i) == '0' ? '1' : '0');
+        }
+
+        return res.toString();
+    }
 }

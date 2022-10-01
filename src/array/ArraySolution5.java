@@ -352,4 +352,46 @@ public class ArraySolution5 {
 
         return res;
     }
+
+    // Leetcode problem: 1958
+    /*
+     * Go to each of 8 directions & try to find a good line.
+     * */
+    public boolean checkMove(char[][] board, int rMove, int cMove, char color) {
+
+        int m = board.length;
+        int n = board[0].length;
+
+        int[][] directions = {
+                {-1, 0}, {1, 0}, {0, -1}, {0, 1}, {-1, -1}, {-1, 1}, {1, -1}, {1, 1}
+        };
+
+        for (int[] direction : directions) {
+            int r = rMove + direction[0];
+            int c = cMove + direction[1];
+
+            while (isValid(r, c, m, n) && board[r][c] != color) {
+
+                // If blank cell found in the line, it is invalid.
+                if (board[r][c] == '.')
+                    break;
+
+                r += direction[0];
+                c += direction[1];
+            }
+
+            // If position is found where color is same as endpoint & minimum length is 3.
+            if ((Math.abs(r - rMove) > 1 || Math.abs(c - cMove) > 1) && isValid(r, c, m, n) && board[r][c] == color) {
+                return true;
+            }
+        }
+
+        return false;
+
+
+    }
+
+    private boolean isValid(int r, int c, int m, int n) {
+        return r >= 0 && r < m && c >= 0 && c < n;
+    }
 }
