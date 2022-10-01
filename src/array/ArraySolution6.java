@@ -33,4 +33,34 @@ public class ArraySolution6 {
 
         return match1 && match2 && match3;
     }
+
+    // Leetcode problem: 2017
+    public long gridGame(int[][] grid) {
+        int n = grid[0].length;
+
+        long[] prefix1 = new long[n];
+        long[] prefix2 = new long[n];
+
+        prefix1[0] = grid[0][0];
+        prefix2[0] = grid[1][0];
+        for (int i = 1; i < n; i++) {
+            prefix1[i] = grid[0][i] + prefix1[i - 1];
+            prefix2[i] = grid[1][i] + prefix2[i - 1];
+        }
+
+        long res = Long.MAX_VALUE;
+        // Calculate how many points robot2 get if robot1 moves down at ith index.
+        // Then robot2 will get either top row point or bottom row point. Since robot2 plays optimally,
+        // - get the max of these 2.
+        // Since robot1 also plays optimally, get the minimum of all the max point robot2 can get.
+        for (int i = 0; i < n; i++) {
+            long top = prefix1[n - 1] - prefix1[i];
+            long bottom = i == 0 ? 0 : prefix2[i - 1];
+
+            long secondRobot = Math.max(top, bottom);
+            res = Math.min(res, secondRobot);
+        }
+
+        return res;
+    }
 }
