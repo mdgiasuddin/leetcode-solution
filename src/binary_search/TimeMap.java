@@ -7,15 +7,16 @@ import java.util.Map;
 
 public class TimeMap {
 
-    Map<String, List<Value>> map;
+    // Leetcode problem: 981
+    Map<String, List<TimeMapValue>> map;
 
     public TimeMap() {
         map = new HashMap<>();
     }
 
     public void set(String key, String value, int timestamp) {
-        List<Value> values = map.getOrDefault(key, new ArrayList<>());
-        values.add(new Value(value, timestamp));
+        List<TimeMapValue> values = map.getOrDefault(key, new ArrayList<>());
+        values.add(new TimeMapValue(value, timestamp));
 
         map.put(key, values);
     }
@@ -24,7 +25,7 @@ public class TimeMap {
         if (!map.containsKey(key))
             return "";
 
-        List<Value> values = map.get(key);
+        List<TimeMapValue> values = map.get(key);
 
         int l = 0;
         int r = values.size() - 1;
@@ -45,11 +46,11 @@ public class TimeMap {
     }
 }
 
-class Value {
+class TimeMapValue {
     String value;
     int timestamp;
 
-    public Value(String value, int timestamp) {
+    public TimeMapValue(String value, int timestamp) {
         this.value = value;
         this.timestamp = timestamp;
     }

@@ -2,7 +2,10 @@ package array;
 
 public class ArraySolution6 {
     public static void main(String[] args) {
+        ArraySolution6 arraySolution6 = new ArraySolution6();
 
+        int[] nums = {3, 5, 2, 1, 6, 4};
+        arraySolution6.wiggleSort(nums);
     }
 
     // Leetcode problem: 1899
@@ -62,5 +65,31 @@ public class ArraySolution6 {
         }
 
         return res;
+    }
+
+    // Leetcode problem: 280
+    // Lintcode problem: 508
+    public void wiggleSort(int[] nums) {
+
+        boolean isLess = true;
+        int i = 0;
+        while (i < nums.length - 1) {
+            if (isLess) {
+                if (nums[i] > nums[i + 1]) {
+                    int tmp = nums[i];
+                    nums[i] = nums[i + 1];
+                    nums[i + 1] = tmp;
+                }
+            } else {
+                if (nums[i] < nums[i + 1]) {
+                    int tmp = nums[i];
+                    nums[i] = nums[i + 1];
+                    nums[i + 1] = tmp;
+                }
+            }
+
+            i += 1;
+            isLess = !isLess;
+        }
     }
 }
