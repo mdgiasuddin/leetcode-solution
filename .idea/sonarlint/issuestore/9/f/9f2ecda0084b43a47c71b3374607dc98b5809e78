@@ -1,0 +1,27 @@
+
+E
+java:S1066D"/Merge this if statement with the enclosing one.(ÝŠè¥
+J
+java:S1066V"/Merge this if statement with the enclosing one.(Ì¹Á¦ÿÿÿÿÿ
+f
+java:S1149"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(Ÿà×“
+k
+java:S1149,"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(ŽÛø‚ýÿÿÿÿ
+k
+java:S1149-"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(ÑÖÙƒýÿÿÿÿ
+l
+java:S1149€"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(ƒÿƒ—ùÿÿÿÿ
+l
+java:S1149£"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(ƒÿƒ—ùÿÿÿÿ
+N	java:S106"9Replace this use of System.out or System.err by a logger.(Ðžà‡
+Q	java:S125
+"<This block of commented-out lines of code should be removed.(ÃÚƒ€
+@
+java:S1659"%Declare "closing" on a separate line.(ïŠ·ùÿÿÿÿ
+[
+java:S1659o"EDeclare "expCount" and all following declarations on a separate line.(ø½±Æ
+O	java:S106×"9Replace this use of System.out or System.err by a logger.(Ý¿â¦
+]
+java:S1659ê"FDeclare "maxLength" and all following declarations on a separate line.(ŒóÌÁ
+n
+java:S3776ÿ"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(úŽíÀÿÿÿÿÿ

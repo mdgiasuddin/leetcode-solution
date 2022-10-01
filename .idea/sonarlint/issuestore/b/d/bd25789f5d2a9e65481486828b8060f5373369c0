@@ -1,0 +1,36 @@
+
+r
+java:S1149"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(ÑÖÙƒıÿÿÿÿ8»É¿õ¢0
+r
+java:S11490"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(ƒÿƒ—ùÿÿÿÿ8¼É¿õ¢0
+m
+java:S1149X"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(Ó°ß•8¼É¿õ¢0
+s
+java:S1149’"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(û›şöıÿÿÿÿ8¼É¿õ¢0
+s
+java:S1149³"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(ÑÖÙƒıÿÿÿÿ8½É¿õ¢0
+s
+java:S1149Ô"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(û›şöıÿÿÿÿ8½É¿õ¢0
+n
+java:S1149ï"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(Ó°ß•8½É¿õ¢0
+s
+java:S1149ƒ"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(û›şöıÿÿÿÿ8¾É¿õ¢0
+n
+java:S1149²"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(Ó°ß•8¾É¿õ¢0
+n
+java:S1149Û"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(´Æ¦ù8¾É¿õ¢0
+s
+java:S1149ú"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(û›şöıÿÿÿÿ8¿É¿õ¢0
+Z
+java:S1854"8Remove this useless assignment to local variable "nums".(õÊø­øÿÿÿÿ8¿É¿õ¢0
+X
+java:S1854";Remove this useless assignment to local variable "strings".(¥€Ù“8ÀÉ¿õ¢0
+I
+java:S1481",Remove this unused "strings" local variable.(¥€Ù“8ÂÉ¿õ¢0
+K
+java:S1481")Remove this unused "nums" local variable.(õÊø­øÿÿÿÿ8ÂÉ¿õ¢0
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(çŠÛúÿÿÿÿ8ÃÉ¿õ¢0
+o
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(Ñù£–8ÄÉ¿õ¢0
+H
+java:S10751"&Remove this hard-coded path-delimiter.(¬ï·şÿÿÿÿ8ÈÉ¿õ¢0

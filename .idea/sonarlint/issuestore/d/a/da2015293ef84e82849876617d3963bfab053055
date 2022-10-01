@@ -1,0 +1,28 @@
+
+P
+java:S3518„"9Make sure "num" can't be zero before doing this division.(Ÿ¥ò
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(ÛÛÙ¸ÿÿÿÿÿ8¥×¿õ¢0
+]	java:S125"<This block of commented-out lines of code should be removed.(’ÒÖ‰úÿÿÿÿ8¦×¿õ¢0
+b
+java:S1659""@Declare "len" and all following declarations on a separate line.(üªß½úÿÿÿÿ8§×¿õ¢0
+A
+java:S1659c"Declare "j" on a separate line.(¦¢Éëùÿÿÿÿ8«×¿õ¢0
+=
+java:S1659€"Declare "n" on a separate line.(Ù’È8­×¿õ¢0
+=
+java:S1659 "Declare "n" on a separate line.(Ù’È8¯×¿õ¢0
+u
+java:S3776Ç"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(»–§Ñÿÿÿÿÿ8±×¿õ¢0
+=
+java:S1659È"Declare "n" on a separate line.(Ù’È8²×¿õ¢0
+n
+java:S3776ê"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(¼¸ĞÎşÿÿÿÿ
+@
+java:S5413Ş")Verify that "remove()" is used correctly.(ªÒ¸†
+W
+java:S1659ë"@Declare "num" and all following declarations on a separate line.(’­´è
+7	java:S131ö""Add a default case to this switch.(î­™o
+?
+java:S1659—"#Declare "right" on a separate line.(ÙŞá¹ûÿÿÿÿ
+<
+java:S1659°"&Declare "deletion" on a separate line.(è¥•X
