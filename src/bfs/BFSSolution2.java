@@ -54,4 +54,41 @@ public class BFSSolution2 {
         }
         return result;
     }
+
+    // Leetcode problem: 286
+    // Lintcode problem: 663
+    public void wallsAndGates(int[][] rooms) {
+        Queue<int[]> queue = new LinkedList<>();
+        int m = rooms.length;
+        int n = rooms[0].length;
+        int infinity = Integer.MAX_VALUE;
+
+        int[][] directions = {
+                {-1, 0}, {1, 0}, {0, -1}, {0, 1}
+        };
+
+        // Find all the gates. Its distance is 0.
+        for (int r = 0; r < m; r++) {
+            for (int c = 0; c < n; c++) {
+                if (rooms[r][c] == 0) {
+                    queue.add(new int[]{r, c, 0});
+                }
+            }
+        }
+
+        // Run BFS from each gate & update the distance of each room.
+        while (!queue.isEmpty()) {
+            int[] room = queue.poll();
+
+            for (int[] direction : directions) {
+                int r = room[0] + direction[0];
+                int c = room[1] + direction[1];
+
+                if (r >= 0 && r < m && c >= 0 && c < n && rooms[r][c] == infinity) {
+                    rooms[r][c] = room[2] + 1;
+                    queue.add(new int[]{r, c, room[2] + 1});
+                }
+            }
+        }
+    }
 }
