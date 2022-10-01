@@ -10,8 +10,6 @@ public class HeapSolution {
 
         int[] nums = {1, 2, 3, 3, 4, 4, 5, 6};
 
-        System.out.println(heapSolution.isPossibleDivide(nums, 3));
-
     }
 
     // Leetcode problem: 1094
@@ -212,7 +210,7 @@ public class HeapSolution {
     }
 
     public boolean isPossibleDivide(int[] nums, int k) {
-        if (nums.length % k == 0) {
+        if (nums.length % k != 0) {
             return false;
         }
 
@@ -223,22 +221,20 @@ public class HeapSolution {
             map.put(num, count + 1);
         }
 
-        System.out.println("Map: " + map);
         PriorityQueue<Integer> queue = new PriorityQueue<>(map.keySet());
-
-        System.out.println("queue: " + queue);
 
         while (!queue.isEmpty()) {
             int min = queue.peek();
-            System.out.println("Min: " + min);
             for (int i = min; i < min + k; i++) {
                 int count = map.getOrDefault(i, 0);
                 if (count == 0)
                     return false;
 
                 count -= 1;
-                if (count == 0 && queue.peek() != i)
+                map.put(i, count);
+                if (count == 0 && queue.peek() != i) {
                     return false;
+                }
 
                 if (count == 0) {
                     queue.poll();
