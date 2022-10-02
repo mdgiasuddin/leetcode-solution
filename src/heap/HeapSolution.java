@@ -7,9 +7,6 @@ public class HeapSolution {
     public static void main(String[] args) {
 
         HeapSolution heapSolution = new HeapSolution();
-
-        int[] nums = {1, 2, 3, 3, 4, 4, 5, 6};
-
     }
 
     // Leetcode problem: 1094

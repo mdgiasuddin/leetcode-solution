@@ -71,10 +71,9 @@ public class ArraySolution6 {
     // Lintcode problem: 508
     public void wiggleSort(int[] nums) {
 
-        boolean isLess = true;
         int i = 0;
         while (i < nums.length - 1) {
-            if (isLess) {
+            if (i % 2 == 0) {
                 if (nums[i] > nums[i + 1]) {
                     int tmp = nums[i];
                     nums[i] = nums[i + 1];
@@ -89,7 +88,6 @@ public class ArraySolution6 {
             }
 
             i += 1;
-            isLess = !isLess;
         }
     }
 }
