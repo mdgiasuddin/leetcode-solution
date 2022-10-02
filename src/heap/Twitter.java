@@ -4,6 +4,7 @@ import java.util.*;
 
 public class Twitter {
 
+    // Leetcode problem: 355
     Map<Integer, Set<Integer>> followMap;
     Map<Integer, List<int[]>> tweetMap;
     int time;
