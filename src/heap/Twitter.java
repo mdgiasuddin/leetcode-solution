@@ -39,6 +39,8 @@ public class Twitter {
                 int index = tweets.size() - 1;
 
                 int[] tweet = tweets.get(index);
+
+                // Save the next index from the last to get the previous tweet of that user.
                 newsFeeds.add(new NewsFeed(tweet[0], followee, tweet[1], index - 1));
             }
         }

@@ -250,4 +250,41 @@ public class HeapSolution {
         return true;
     }
 
+    // Leetcode problem: 621
+    public int leastInterval(char[] tasks, int n) {
+        Queue<int[]> queue = new LinkedList<>();
+
+        Map<Character, Integer> map = new HashMap<>();
+        for (char task : tasks) {
+            int count = map.getOrDefault(task, 0);
+            map.put(task, count - 1);
+        }
+
+        // Since we added the counts negative values, it'll work as a max priority queue.
+        PriorityQueue<Integer> maxQueue = new PriorityQueue<>(map.values());
+
+        int time = 0;
+        while (!maxQueue.isEmpty() || !queue.isEmpty()) {
+            time += 1;
+
+            // Restore the task to max queue that can be done at time t.
+            while (!queue.isEmpty() && queue.peek()[1] <= time) {
+                maxQueue.add(queue.poll()[0]);
+            }
+
+            // If there is available task do this.
+            if (!maxQueue.isEmpty()) {
+                int task = maxQueue.poll();
+
+                // If there is same more task add it to the queue with next available time.
+                if (task < -1) {
+                    queue.add(new int[]{task + 1, time + n + 1});
+                }
+            }
+
+        }
+
+        return time;
+    }
+
 }
