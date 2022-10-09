@@ -118,7 +118,6 @@ public class StringSolution6 {
             } else {
                 totalLength--;
             }
-            System.out.println(ch + " : " + totalLength);
         }
 
         return "";
