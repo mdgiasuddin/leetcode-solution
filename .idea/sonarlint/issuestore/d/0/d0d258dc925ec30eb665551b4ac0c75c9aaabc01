@@ -1,0 +1,19 @@
+
+U	java:S106"9Replace this use of System.out or System.err by a logger.(ûüÒÊ8Àß¿õ¢0
+g
+java:S1659)"EDeclare "maxReach" and all following declarations on a separate line.(ÂÞ€—øÿÿÿÿ8Âß¿õ¢0
+X	java:S125"<This block of commented-out lines of code should be removed.(á¯¼í8Ãß¿õ¢0
+X	java:S125"<This block of commented-out lines of code should be removed.(á¯¼í8Äß¿õ¢0
+X	java:S125"<This block of commented-out lines of code should be removed.(á¯¼í8Åß¿õ¢0
+t
+java:S3776p"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(Œ‚®öùÿÿÿÿ8Çß¿õ¢0
+f
+java:S3358}"DExtract this nested ternary operation into an independent statement.(„žìûÿÿÿÿÿ8Êß¿õ¢0
+u
+java:S3776Ž"RRefactor this method to reduce its Cognitive Complexity from 38 to the 15 allowed.(Ÿ‹Ûøÿÿÿÿ8Ìß¿õ¢0
+`
+java:S1659"BDeclare "right" and all following declarations on a separate line.(„¾‘‡8Íß¿õ¢0
+B
+java:S1659‘"Declare "i" on a separate line.(½¡‘ºþÿÿÿÿ8Îß¿õ¢0
+5
+java:S1659È"Declare "n" on a separate line.(£ßœ
