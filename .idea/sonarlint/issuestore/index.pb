@@ -23,3 +23,25 @@ N
 src/binary_search/TimeMap.java,1\d\1d2ae5ac7edf2204ccd1314ba55fabf35aa09996
 E
 src/heap/Twitter.java,8\d\8de0f473c8c8cfca1a30d763beffa4c50ff9f80b
+T
+$src/tech_dose/RangeMinimumQuery.java,6\f\6fb380b719f3d2a8b0b932b19ee8905bbfd4dfa4
+J
+src/heap/HeapSolution.java,7\6\7628927ef928478bd4d4ab97042e91d355fe7cb5
+O
+src/string/StringSolution6.java,5\9\59f3988977b813340a488f9a96f81f5ebdefea51
+[
++src/binary_search/BinarySearchSolution.java,d\d\ddb25a37922b7471d8933add896ce1256f17e1ac
+G
+src/array/NumArray.java,c\4\c4b806ffe844e5b78e95e1bbeee9319232fe2ea3
+H
+src/array/NumMatrix.java,7\2\72bfcec0d4a4d54bf94240a9a99f036b96e50338
+H
+src/bfs/BFSSolution.java,c\5\c5a523222dbe9b3d407e9715523d86b2ed98faf4
+I
+src/bfs/BFSSolution2.java,d\2\d2620dce3e2e630e30d3b5ad8270deec14b8977e
+I
+src/trie/TrieNodeNew.java,e\4\e4a0c6231b333f0d9ad712d0d8617f72381062cd
+E
+src/heap/Point2D.java,3\d\3dfa1efdbc476e2799877dca114d67acc0c21a53
+C
+src/graph/Node.java,c\b\cb2cf51b44af4245f2576bc366646efea182343d

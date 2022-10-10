@@ -1,6 +1,15 @@
 package graph;
 
+import java.util.*;
+
 public class GraphSolution {
+
+    public static void main(String[] args) {
+        GraphSolution graphSolution = new GraphSolution();
+
+        int[][] delay = {{2, 1, 1}, {2, 3, 1}, {3, 4, 1}};
+        System.out.println(graphSolution.networkDelayTime(delay, 4, 2));
+    }
 
     // Leetcode problem: 684
     public int[] findRedundantConnection(int[][] edges) {
@@ -53,5 +62,42 @@ public class GraphSolution {
         }
 
         return true;
+    }
+
+    // Leetcode problem: 743
+    public int networkDelayTime(int[][] times, int n, int k) {
+        Map<Integer, List<int[]>> edges = new HashMap<>();
+
+        for (int i = 1; i <= n; i++) {
+            edges.put(i, new ArrayList<>());
+        }
+
+        for (int[] time : times) {
+            edges.get(time[0]).add(new int[]{time[1], time[2]});
+        }
+
+        Set<Integer> visited = new HashSet<>();
+        PriorityQueue<int[]> queue = new PriorityQueue<>(Comparator.comparingInt(a -> a[1]));
+        queue.add(new int[]{k, 0});
+
+        int t = 0;
+        while (!queue.isEmpty()) {
+            int[] node = queue.poll();
+
+            // If already got lower value for this node. So skip the greater value.
+            if (!visited.contains(node[0])) {
+                t = Math.max(t, node[1]);
+                visited.add(node[0]);
+                List<int[]> neighbors = edges.get(node[0]);
+                for (int[] neighbor : neighbors) {
+                    if (!visited.contains(neighbor[0])) {
+                        queue.add(new int[]{neighbor[0], node[1] + neighbor[1]});
+                    }
+                }
+            }
+
+        }
+
+        return visited.size() == n ? t : -1;
     }
 }
