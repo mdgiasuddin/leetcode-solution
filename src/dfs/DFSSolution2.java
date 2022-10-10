@@ -10,12 +10,10 @@ public class DFSSolution2 {
     public static void main(String[] args) {
         DFSSolution2 dfsSolution2 = new DFSSolution2();
 
-        int[][] edges = {{0, 1}, {1, 2}, {3, 4}, {2, 4}};
+        int[][] edges = {{0, 1}, {1, 3}, {2, 3}, {4, 0}, {4, 5}};
 
 //        String[] words = {"wrt", "wrf", "er", "ett", "rftt"};
-        String[] words = {"zy", "zx"};
-
-        System.out.println(dfsSolution2.alienOrder(words));
+        System.out.println(dfsSolution2.minReorder(6, edges));
     }
 
     // Leetcode problem: 130
@@ -313,4 +311,43 @@ public class DFSSolution2 {
         return false;
     }
 
+    // Leetcode problem: 1466
+    public int minReorder(int n, int[][] connections) {
+        Set<List<Integer>> edges = new HashSet<>();
+        Map<Integer, List<Integer>> adjacencyList = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            adjacencyList.put(i, new ArrayList<>());
+        }
+
+        // Add neighbors in both direction. Add the edges in hash set for first searching.
+        for (int[] connection : connections) {
+            adjacencyList.get(connection[0]).add(connection[1]);
+            adjacencyList.get(connection[1]).add(connection[0]);
+
+            edges.add(Arrays.asList(connection[0], connection[1]));
+        }
+
+        boolean[] visited = new boolean[n];
+
+        return dfs(0, edges, adjacencyList, visited);
+    }
+
+    private int dfs(int city, Set<List<Integer>> edges, Map<Integer, List<Integer>> adjacencyList, boolean[] visited) {
+
+        visited[city] = true;
+        int res = 0;
+        for (int neighbor : adjacencyList.get(city)) {
+            if (visited[neighbor])
+                continue;
+
+            // If there is no edge directed towards 0.
+            if (!edges.contains(Arrays.asList(neighbor, city))) {
+                res += 1;
+            }
+
+            res += dfs(neighbor, edges, adjacencyList, visited);
+        }
+
+        return res;
+    }
 }
