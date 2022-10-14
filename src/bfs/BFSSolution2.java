@@ -91,4 +91,53 @@ public class BFSSolution2 {
             }
         }
     }
+
+    // Leetcode problem: 1162
+    /*
+     * Maximum distance from land.
+     * BFS solution.
+     * */
+    public int maxDistance(int[][] grid) {
+        int n = grid.length;
+
+        Queue<int[]> queue = new LinkedList<>();
+        for (int r = 0; r < n; r++) {
+            for (int c = 0; c < n; c++) {
+                if (grid[r][c] == 1) {
+                    queue.add(new int[]{r, c});
+                }
+            }
+        }
+
+        // If all are water or land.
+        if (queue.isEmpty() || queue.size() == n * n)
+            return -1;
+
+        int[][] directions = {
+                {-1, 0}, {1, 0}, {0, -1}, {0, 1}
+        };
+
+        int max = -1;
+        while (!queue.isEmpty()) {
+            int qSize = queue.size();
+
+            while (qSize-- > 0) {
+                int[] pos = queue.poll();
+
+                for (int[] direction : directions) {
+                    int r = pos[0] + direction[0];
+                    int c = pos[1] + direction[1];
+
+                    if (r >= 0 && r < n && c >= 0 && c < n && grid[r][c] == 0) {
+                        grid[r][c] = 1;
+                        queue.add(new int[]{r, c});
+                    }
+                }
+            }
+
+            max += 1;
+        }
+
+        return max;
+    }
 }

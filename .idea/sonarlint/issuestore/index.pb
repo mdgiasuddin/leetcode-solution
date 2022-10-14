@@ -36,8 +36,6 @@ H
 H
 src/bfs/BFSSolution.java,c\5\c5a523222dbe9b3d407e9715523d86b2ed98faf4
 I
-src/bfs/BFSSolution2.java,d\2\d2620dce3e2e630e30d3b5ad8270deec14b8977e
-I
 src/trie/TrieNodeNew.java,e\4\e4a0c6231b333f0d9ad712d0d8617f72381062cd
 E
 src/heap/Point2D.java,3\d\3dfa1efdbc476e2799877dca114d67acc0c21a53
