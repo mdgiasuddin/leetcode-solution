@@ -350,4 +350,32 @@ public class DFSSolution2 {
 
         return res;
     }
+
+    // Leetcode problem: 547
+    public int findCircleNum(int[][] isConnected) {
+        int n = isConnected.length;
+
+        boolean[] visited = new boolean[n];
+        int province = 0;
+        for (int i = 0; i < n; i++) {
+            if (!visited[i]) {
+                dfsGraph(i, n, isConnected, visited);
+                province += 1;
+            }
+        }
+
+        return province;
+    }
+
+    private void dfsGraph(int node, int n, int[][] isConnected, boolean[] visited) {
+        if (visited[node])
+            return;
+
+        visited[node] = true;
+        for (int i = 0; i < n; i++) {
+            if (isConnected[node][i] == 1) {
+                dfsGraph(i, n, isConnected, visited);
+            }
+        }
+    }
 }
