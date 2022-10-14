@@ -49,4 +49,70 @@ public class DFSSolution3 {
             dfsRoom(neighbor, rooms, visited);
         }
     }
+
+    // Leetcode problem: 1254
+    /*
+     * Number of closed island. 0 for land 1 for water.
+     * First dfs from boundary land which are reachable from boundary land.
+     * Then dfs from inside land. If a can reach to boundary land, it is not closed.
+     * */
+    public int closedIsland(int[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+
+        for (int r = 0; r < m; r++) {
+            dfsFromBoundary(r, 0, grid);
+            dfsFromBoundary(r, n - 1, grid);
+        }
+
+        for (int c = 1; c < n - 1; c++) {
+            dfsFromBoundary(0, c, grid);
+            dfsFromBoundary(m - 1, c, grid);
+        }
+
+        int res = 0;
+        for (int r = 1; r < m - 1; r++) {
+            for (int c = 1; c < n - 1; c++) {
+                if (grid[r][c] == 0 && dfsFromIsland(r, c, grid)) {
+                    res += 1;
+                }
+            }
+        }
+
+        return res;
+    }
+
+    private void dfsFromBoundary(int r, int c, int[][] grid) {
+        if (r < 0 || r >= grid.length || c < 0 || c >= grid[0].length || grid[r][c] != 0)
+            return;
+
+        grid[r][c] = -1;
+
+        dfsFromBoundary(r - 1, c, grid);
+        dfsFromBoundary(r + 1, c, grid);
+        dfsFromBoundary(r, c - 1, grid);
+        dfsFromBoundary(r, c + 1, grid);
+    }
+
+    private boolean dfsFromIsland(int r, int c, int[][] grid) {
+
+        // Reached boundary land. So discard it.
+        if (grid[r][c] == -1)
+            return false;
+
+        // Reached to water. Accept it.
+        if (grid[r][c] == 1)
+            return true;
+
+        // Mark as visited & change it as a water boundary.
+        grid[r][c] = 1;
+
+        // Check whether all four side is surrounded by water or not.
+        boolean res = dfsFromIsland(r - 1, c, grid);
+        res = res && dfsFromIsland(r + 1, c, grid);
+        res = res && dfsFromIsland(r, c - 1, grid);
+        res = res && dfsFromIsland(r, c + 1, grid);
+
+        return res;
+    }
 }
