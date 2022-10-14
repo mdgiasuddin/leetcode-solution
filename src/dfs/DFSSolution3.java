@@ -115,4 +115,45 @@ public class DFSSolution3 {
 
         return res;
     }
+
+    // Leetcode problem: 1020
+    /*
+     * Separate the lands reachable from boundary. Then count land from inside.
+     * */
+    public int numEnclaves(int[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+
+        for (int r = 0; r < m; r++) {
+            dfsFromBoundaryLand(r, 0, grid);
+            dfsFromBoundaryLand(r, n - 1, grid);
+        }
+        for (int c = 1; c < n - 1; c++) {
+            dfsFromBoundaryLand(0, c, grid);
+            dfsFromBoundaryLand(m - 1, c, grid);
+        }
+
+        int res = 0;
+        for (int r = 1; r < m - 1; r++) {
+            for (int c = 1; c < n - 1; c++) {
+                if (grid[r][c] == 1)
+                    res += 1;
+            }
+        }
+
+        return res;
+    }
+
+    private void dfsFromBoundaryLand(int r, int c, int[][] grid) {
+        if (r < 0 || r >= grid.length || c < 0 || c >= grid[0].length || grid[r][c] != 1) {
+            return;
+        }
+
+        grid[r][c] = -1;
+
+        dfsFromBoundaryLand(r - 1, c, grid);
+        dfsFromBoundaryLand(r + 1, c, grid);
+        dfsFromBoundaryLand(r, c - 1, grid);
+        dfsFromBoundaryLand(r, c + 1, grid);
+    }
 }
