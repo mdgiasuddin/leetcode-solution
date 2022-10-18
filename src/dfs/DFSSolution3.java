@@ -10,6 +10,13 @@ class Employee {
 
 public class DFSSolution3 {
 
+    public static void main(String[] args) {
+        DFSSolution3 dfsSolution3 = new DFSSolution3();
+
+        int[][] flights = {{0, 1, 100}, {1, 2, 100}, {2, 0, 100}, {1, 3, 600}, {2, 3, 200}};
+        System.out.println(dfsSolution3.findCheapestPrice(4, flights, 0, 3, 1));
+    }
+
     // Leetcode problem: 690
     public int getImportance(List<Employee> employees, int id) {
         Map<Integer, Employee> employeeMap = new HashMap<>();
@@ -155,5 +162,52 @@ public class DFSSolution3 {
         dfsFromBoundaryLand(r + 1, c, grid);
         dfsFromBoundaryLand(r, c - 1, grid);
         dfsFromBoundaryLand(r, c + 1, grid);
+    }
+
+    // Leetcode problem: 787
+    /*
+     * This solution exceeds the time limit.
+     * */
+    public int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {
+        Map<Integer, List<int[]>> edges = new HashMap<>();
+
+        for (int i = 0; i < n; i++) {
+            edges.put(i, new ArrayList<>());
+        }
+
+        for (int[] flight : flights) {
+            edges.get(flight[0]).add(new int[]{flight[1], flight[2]});
+        }
+
+        boolean[] visited = new boolean[n];
+        int[] minCost = {Integer.MAX_VALUE};
+
+        // Number of stops is k. Add src & dst node to it. So total path length = k + 2;
+        findCheapestPrice(src, dst, k + 2, 0, minCost, edges, visited);
+
+        return minCost[0] == Integer.MAX_VALUE ? -1 : minCost[0];
+    }
+
+    private void findCheapestPrice(int src, int dst, int k, int currentTotal, int[] minCost, Map<Integer, List<int[]>> edges, boolean[] visited) {
+        if (k == 0 || visited[src]) {
+            return;
+        }
+
+        // Update minimum cost.
+        if (src == dst) {
+            minCost[0] = Math.min(minCost[0], currentTotal);
+            return;
+        }
+
+        visited[src] = true;
+        for (int[] neighbor : edges.get(src)) {
+
+            // If we get already a minimum path, discard it.
+            if (currentTotal + neighbor[1] < minCost[0]) {
+                findCheapestPrice(neighbor[0], dst, k - 1, currentTotal + neighbor[1], minCost, edges, visited);
+            }
+        }
+
+        visited[src] = false;
     }
 }

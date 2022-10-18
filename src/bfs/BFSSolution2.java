@@ -140,4 +140,46 @@ public class BFSSolution2 {
 
         return max;
     }
+
+    // Leetcode problem: 1926
+    public int nearestExit(char[][] maze, int[] entrance) {
+        int m = maze.length;
+        int n = maze[0].length;
+
+        Queue<int[]> queue = new LinkedList<>();
+        int[][] directions = {
+                {-1, 0}, {1, 0}, {0, -1}, {0, 1}
+        };
+
+        maze[entrance[0]][entrance[1]] = '#';
+        queue.add(entrance);
+        int nearest = 0;
+
+        while (!queue.isEmpty()) {
+            int qSize = queue.size();
+
+            while (qSize-- > 0) {
+                int[] pos = queue.poll();
+
+                // Exit must not be equal to entrance. So skip this. Consider only nearest > 0.
+                if (nearest > 0 && (pos[0] == 0 || pos[0] == m - 1 || pos[1] == 0 || pos[1] == n - 1))
+                    return nearest;
+
+                for (int[] direction : directions) {
+                    int r = pos[0] + direction[0];
+                    int c = pos[1] + direction[1];
+
+                    if (r >= 0 && r < m && c >= 0 && c < n && maze[r][c] == '.') {
+                        maze[r][c] = '#';
+                        queue.add(new int[]{r, c});
+                    }
+                }
+
+            }
+
+            nearest += 1;
+        }
+
+        return -1;
+    }
 }
