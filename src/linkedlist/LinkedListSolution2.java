@@ -242,4 +242,78 @@ public class LinkedListSolution2 {
 
         return fillWithZero(head, lenZero - 1);
     }
+
+    // Leetcode problem: 25
+    public ListNode reverseKGroup(ListNode head, int k) {
+        ListNode current = head;
+        int len = 0;
+
+        while (current != null) {
+            len += 1;
+            current = current.next;
+        }
+
+        int group = len / k;
+
+        current = head;
+        ListNode last;
+        ListNode prevLast;
+
+        last = current;
+
+        int i = 0;
+        while (i < group) {
+
+            // After reverse, first node will be the last node.
+            prevLast = last;
+            last = current;
+
+            // Reverse each group
+            ListNode prev = null;
+            for (int j = 0; j < k; j++) {
+                ListNode next = current.next;
+                current.next = prev;
+                prev = current;
+                current = next;
+            }
+
+            // Current is now the first node of next group. Prev is now the head of the recently reversed group.
+            if (i == 0) {
+                head = prev;
+            } else {
+                prevLast.next = prev;
+            }
+
+            i += 1;
+        }
+
+        // Connect with the last group which is not reversed.
+        last.next = current;
+
+        return head;
+    }
+
+    // Lintcode problem: 904
+    /*
+     * Recursive call for this problem is similar to Leetcode problem: 445
+     * */
+    public ListNode plusOne(ListNode head) {
+        ListNode node = plusOneRec(head);
+
+        return node.val == 0 ? node.next : node;
+    }
+
+    public ListNode plusOneRec(ListNode head) {
+        if (head == null) {
+            return new ListNode(1);
+        }
+
+        ListNode node = plusOneRec(head.next);
+        node.val += head.val;
+        ListNode carryNode = new ListNode(node.val / 10);
+        node.val %= 10;
+
+        carryNode.next = node;
+        return carryNode;
+    }
 }

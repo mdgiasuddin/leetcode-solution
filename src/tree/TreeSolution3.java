@@ -314,4 +314,23 @@ public class TreeSolution3 {
         // Backtrack.
         current.remove(current.size() - 1);
     }
+
+    // Leetcode problem: 671
+    public int findSecondMinimumValue(TreeNode root) {
+        long[] res = {Long.MAX_VALUE};
+        findSecondMinimumValue(root, root.val, res);
+
+        return res[0] == Long.MAX_VALUE ? -1 : (int) res[0];
+    }
+
+    public void findSecondMinimumValue(TreeNode node, int minVal, long[] res) {
+        if (node == null)
+            return;
+
+        if (minVal < node.val && node.val < res[0])
+            res[0] = node.val;
+        findSecondMinimumValue(node.left, minVal, res);
+        findSecondMinimumValue(node.right, minVal, res);
+
+    }
 }
