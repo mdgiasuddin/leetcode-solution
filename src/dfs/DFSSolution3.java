@@ -210,4 +210,41 @@ public class DFSSolution3 {
 
         visited[src] = false;
     }
+
+    // Leetcode problem: 332
+    /*Note::
+     *->The solution is tricky.
+     *->The main idea is to traverse every edge at most once
+     *->And we are starting from JFK airport
+     *->We use Priority Queue to store the adjacent airport in Lexically sorted manner
+     *->We use a topological sort like approach for displaying the result, i.e, we start from an no in-dependency edge to the most in-dependenncy edge
+     *->We are considering the euler path to traverse the graph
+     *->Priority Queue is also helping us keep track of the visited and non-visited edge
+     *->Hash Map is Used like a adjacency list here
+     */
+    public List<String> findItinerary(List<List<String>> tickets) {
+
+        Map<String, PriorityQueue<String>> adjacencyList = new HashMap<>();
+        for (List<String> ticket : tickets) {
+            PriorityQueue<String> pq = adjacencyList.getOrDefault(ticket.get(0), new PriorityQueue<>());
+            pq.add(ticket.get(1));
+            adjacencyList.put(ticket.get(0), pq);
+        }
+
+        LinkedList<String> visited = new LinkedList<>();
+        dfsItinerary("JFK", adjacencyList, visited);
+
+        return visited;
+    }
+
+    private void dfsItinerary(String src, Map<String, PriorityQueue<String>> adjacencyList, LinkedList<String> visited) {
+        PriorityQueue<String> pq = adjacencyList.get(src);
+
+        while (pq != null && !pq.isEmpty()) {
+            String tmp = pq.poll();
+            dfsItinerary(tmp, adjacencyList, visited);
+        }
+
+        visited.addFirst(src);
+    }
 }
