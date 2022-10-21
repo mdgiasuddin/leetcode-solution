@@ -357,4 +357,24 @@ public class TreeSolution3 {
         widthOfBinaryTree(node.left, leftPos, maxWidth, level + 1, 2 * pos + 1);
         widthOfBinaryTree(node.right, leftPos, maxWidth, level + 1, 2 * pos + 2);
     }
+
+    // Leetcode problem: 1325
+    /*
+     * Postorder traversal.
+     * Go to the deepest level & delete the leaves with value = target.
+     * */
+    public TreeNode removeLeafNodes(TreeNode root, int target) {
+        if (root == null) {
+            return null;
+        }
+
+        root.left = removeLeafNodes(root.left, target);
+        root.right = removeLeafNodes(root.right, target);
+
+        if (root.val == target && root.left == null && root.right == null) {
+            return null;
+        }
+
+        return root;
+    }
 }

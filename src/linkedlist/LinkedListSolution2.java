@@ -316,4 +316,5 @@ public class LinkedListSolution2 {
         carryNode.next = node;
         return carryNode;
     }
+
 }

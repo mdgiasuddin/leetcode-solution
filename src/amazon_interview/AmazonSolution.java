@@ -10,4 +10,17 @@ public class AmazonSolution {
        count(n) = |  2, n = m
                   | count(n-1) + count(n-m), m < n
     * */
+
+
+    /*
+     * https://www.geeksforgeeks.org/split-given-array-in-minimum-number-of-subarrays-such-that-rearranging-the-order-of-subarrays-sorts-the-array/
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/flip-binary-tree/
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/search-a-word-in-a-2d-grid-of-characters/
+     * */
 }
