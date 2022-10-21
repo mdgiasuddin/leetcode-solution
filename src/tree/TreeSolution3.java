@@ -333,4 +333,28 @@ public class TreeSolution3 {
         findSecondMinimumValue(node.right, minVal, res);
 
     }
+
+    // Leetcode problem: 662
+    public int widthOfBinaryTree(TreeNode root) {
+        int[] maxWidth = {0};
+        Map<Integer, Integer> leftPos = new HashMap<>();
+
+        widthOfBinaryTree(root, leftPos, maxWidth, 0, 0);
+
+        return maxWidth[0];
+    }
+
+    private void widthOfBinaryTree(TreeNode node, Map<Integer, Integer> leftPos, int[] maxWidth, int level, int pos) {
+        if (node == null)
+            return;
+
+        // Save the first left position for each level.
+        leftPos.putIfAbsent(level, pos);
+
+        // Compute the maximum width.
+        maxWidth[0] = Math.max(maxWidth[0], pos - leftPos.get(level) + 1);
+
+        widthOfBinaryTree(node.left, leftPos, maxWidth, level + 1, 2 * pos + 1);
+        widthOfBinaryTree(node.right, leftPos, maxWidth, level + 1, 2 * pos + 2);
+    }
 }

@@ -7,7 +7,39 @@ public class TreeTest {
     public static void main(String[] args) {
         TreeTest treeTest = new TreeTest();
 
-        treeTest.burningTreeTest();
+        treeTest.boundaryTraversal();
+    }
+
+    public TreeNode buildUpTree() {
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+
+        TreeNode node1 = new TreeNode(4);
+        node1.right = new TreeNode(8);
+
+        TreeNode node2 = new TreeNode(5);
+        node2.left = new TreeNode(9);
+        node2.left.left = new TreeNode(13);
+        node2.left.right = new TreeNode(14);
+
+        root.left.left = node1;
+        root.left.right = node2;
+
+        TreeNode node3 = new TreeNode(6);
+        node3.right = new TreeNode(10);
+        node3.right.left = new TreeNode(15);
+        node3.right.right = new TreeNode(16);
+
+        TreeNode node4 = new TreeNode(7);
+        node4.left = new TreeNode(11);
+        node4.right = new TreeNode(12);
+        node4.right.left = new TreeNode(17);
+
+        root.right.left = node3;
+        root.right.right = node4;
+
+        return root;
     }
 
     /*
@@ -83,20 +115,12 @@ public class TreeTest {
     }
 
     public void burningTreeTest() {
-        TreeNode root = new TreeNode(3);
-        root.left = new TreeNode(5);
-        root.right = new TreeNode(1);
-        root.left.left = new TreeNode(6);
-        root.left.right = new TreeNode(2);
-        root.right.left = new TreeNode(0);
-        root.right.right = new TreeNode(8);
-        root.left.right.left = new TreeNode(7);
-        root.left.right.right = new TreeNode(4);
+        TreeNode root = buildUpTree();
 
         Queue<TreeNode> queue = new LinkedList<>();
         List<List<Integer>> result = new ArrayList<>();
 
-        burningTree(root, queue, result, new ArrayList<>(), 1);
+        burningTree(root, queue, result, new ArrayList<>(), 6);
 
         while (!queue.isEmpty()) {
             List<Integer> row = new ArrayList<>();
@@ -132,4 +156,61 @@ public class TreeTest {
         return str;
     }
 
+    private void traverseLeftBoundary(TreeNode node, List<Integer> list) {
+        if (node == null)
+            return;
+
+        if (node.left != null) {
+            list.add(node.val);
+            traverseLeftBoundary(node.left, list);
+        } else if (node.right != null) {
+            list.add(node.val);
+            traverseLeftBoundary(node.right, list);
+        }
+    }
+
+    private void traverseRightBoundary(TreeNode node, List<Integer> list) {
+        if (node == null)
+            return;
+
+        if (node.right != null) {
+            traverseRightBoundary(node.right, list);
+            list.add(node.val);
+        } else if (node.left != null) {
+            traverseRightBoundary(node.left, list);
+            list.add(node.val);
+        }
+    }
+
+    private void traverseLeafNodes(TreeNode node, List<Integer> list) {
+        if (node == null)
+            return;
+
+        if (node.left == null && node.right == null) {
+            list.add(node.val);
+            return;
+        }
+
+        traverseLeafNodes(node.left, list);
+        traverseLeafNodes(node.right, list);
+    }
+
+    /*
+     * Traverse tree anti clock-wise boundary.
+     * root to left boundary, leaf nodes then right boundary from bottom to top.
+     * Amazon interview question.
+     * Source: https://www.geeksforgeeks.org/boundary-traversal-of-binary-tree/
+     * */
+    public void boundaryTraversal() {
+        TreeNode root = buildUpTree();
+
+        List<Integer> result = new ArrayList<>();
+        result.add(root.val);
+
+        traverseLeftBoundary(root.left, result);
+        traverseLeafNodes(root, result);
+        traverseRightBoundary(root.right, result);
+
+        System.out.println(result);
+    }
 }
