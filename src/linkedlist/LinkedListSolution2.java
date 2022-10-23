@@ -226,13 +226,13 @@ public class LinkedListSolution2 {
         return carryNode;
     }
 
-    private int getLength(ListNode head) {
+    public int getLength(ListNode head) {
         if (head == null)
             return 0;
         return 1 + getLength(head.next);
     }
 
-    private ListNode fillWithZero(ListNode head, int lenZero) {
+    public ListNode fillWithZero(ListNode head, int lenZero) {
         if (lenZero == 0)
             return head;
 

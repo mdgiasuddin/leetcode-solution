@@ -23,4 +23,9 @@ public class AmazonSolution {
     /*
      * https://www.geeksforgeeks.org/search-a-word-in-a-2d-grid-of-characters/
      * */
+
+    /*
+     * https://www.geeksforgeeks.org/check-if-a-given-binary-tree-is-sumtree/
+     * Already understood the solution.
+     * */
 }

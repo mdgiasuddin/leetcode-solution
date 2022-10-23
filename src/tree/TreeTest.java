@@ -7,7 +7,7 @@ public class TreeTest {
     public static void main(String[] args) {
         TreeTest treeTest = new TreeTest();
 
-        treeTest.boundaryTraversal();
+        treeTest.validateTreeAsSumTree();
     }
 
     public TreeNode buildUpTree() {
@@ -211,6 +211,85 @@ public class TreeTest {
         traverseLeafNodes(root, result);
         traverseRightBoundary(root.right, result);
 
-        System.out.println(result);
+    }
+
+    /*
+     * Path from root to a target node.
+     * Amazon interview question.
+     * Code source: https://www.geeksforgeeks.org/print-path-root-given-node-binary-tree/
+     * */
+    public void pathRootToNode() {
+        TreeNode root = buildUpTree();
+        List<String> result = new ArrayList<>();
+
+        if (pathRootToNode(root, 20, result)) {
+            System.out.println("Path: " + String.join("->", result));
+        } else {
+            System.out.println("No valid path!");
+        }
+    }
+
+    public boolean pathRootToNode(TreeNode node, int target, List<String> result) {
+        if (node == null) {
+            return false;
+        }
+
+        result.add(String.valueOf(node.val));
+        if (node.val == target) {
+            return true;
+        }
+
+        if (pathRootToNode(node.left, target, result) ||
+                pathRootToNode(node.right, target, result)) {
+            return true;
+        }
+
+        result.remove(result.size() - 1);
+        return false;
+    }
+
+    /*
+     * Amazon interview question.
+     * Code source: https://www.geeksforgeeks.org/check-if-a-given-binary-tree-is-sumtree/
+     * */
+    public void validateTreeAsSumTree() {
+        TreeNode root = new TreeNode(40);
+        root.left = new TreeNode(10);
+        root.right = new TreeNode(10);
+        root.left.left = new TreeNode(4);
+        root.left.right = new TreeNode(6);
+        root.right.left = new TreeNode(3);
+        root.right.right = new TreeNode(7);
+
+        System.out.println(validateTreeAsSumTree(root));
+
+    }
+
+    private boolean validateTreeAsSumTree(TreeNode root) {
+        if (root == null || (root.left == null && root.right == null)) {
+            return true;
+        }
+
+        if (validateTreeAsSumTree(root.left) && validateTreeAsSumTree(root.right)) {
+            int left;
+            if (root.left == null)
+                left = 0;
+            else if (root.left.left == null && root.left.right == null)
+                left = root.left.val;
+            else
+                left = 2 * root.left.val;
+
+            int right;
+            if (root.right == null)
+                right = 0;
+            else if (root.right.left == null && root.right.right == null)
+                right = root.right.val;
+            else
+                right = 2 * root.right.val;
+
+            return root.val == left + right;
+        }
+
+        return false;
     }
 }
