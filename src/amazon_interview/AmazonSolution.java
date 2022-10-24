@@ -28,4 +28,12 @@ public class AmazonSolution {
      * https://www.geeksforgeeks.org/check-if-a-given-binary-tree-is-sumtree/
      * Already understood the solution.
      * */
+
+    /*
+     * https://www.geeksforgeeks.org/sort-linked-list-already-sorted-absolute-values/
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/counting-inversions/
+     * */
 }

@@ -377,4 +377,41 @@ public class TreeSolution3 {
 
         return root;
     }
+
+    // Leetcode problem: 99
+
+    /*
+     * Inorder traversal.
+     * Find in which node the increasing order violates.
+     * */
+    public void recoverTree(TreeNode root) {
+        TreeNode[] prev = {null};
+        TreeNode[] first = {null};
+        TreeNode[] second = {null};
+
+        recoverTree(root, prev, first, second);
+        int tmp = first[0].val;
+        first[0].val = second[0].val;
+        second[0].val = tmp;
+    }
+
+    public void recoverTree(TreeNode node, TreeNode[] prev, TreeNode[] first, TreeNode[] second) {
+        if (node == null) {
+            return;
+        }
+
+        recoverTree(node.left, prev, first, second);
+
+        if (prev[0] != null && prev[0].val > node.val) {
+            if (first[0] == null) {
+                first[0] = prev[0];
+            }
+            second[0] = node;
+        }
+        prev[0] = node;
+
+        recoverTree(node.right, prev, first, second);
+    }
+
+
 }
