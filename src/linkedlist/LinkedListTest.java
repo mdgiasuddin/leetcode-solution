@@ -19,7 +19,7 @@ public class LinkedListTest {
 
 //        ListNode result = test.minusList(head1, head2);
 
-        test.sortListWithAbsoluteValueSorted();
+        test.deleteEveryKthNode();
     }
 
     public ListNode minusList(ListNode head1, ListNode head2) {
@@ -106,5 +106,28 @@ public class LinkedListTest {
         }
 
         printList(head);
+    }
+
+    public void deleteEveryKthNode() {
+        ListNode head = createList(Arrays.asList(1, 2, 3, 4, 5, 6, 7));
+        int k = 4;
+
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+
+        ListNode current = dummy;
+        int i = 1;
+
+        while (current != null && current.next != null) {
+            if (i % k == 0) {
+                current.next = current.next.next;
+                i += 1;
+            }
+
+            current = current.next;
+            i += 1;
+        }
+
+        printList(dummy.next);
     }
 }

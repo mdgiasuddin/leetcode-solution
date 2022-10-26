@@ -68,4 +68,20 @@ public class AmazonSolution {
     /*
      * https://www.geeksforgeeks.org/bottom-view-binary-tree/
      * */
+
+    /*
+     * https://www.geeksforgeeks.org/minimize-cash-flow-among-given-set-friends-borrowed-money/
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/in-place-convert-a-given-binary-tree-to-doubly-linked-list/
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/count-of-locations-between-x-and-y-having-rainfall-more-than-k-cms-for-q-queries/
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/expression-contains-redundant-bracket-not/
+     * */
 }
