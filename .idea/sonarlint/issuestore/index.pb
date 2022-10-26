@@ -45,3 +45,5 @@ I
 src/dfs/DFSSolution2.java,5\8\58e1560c74291e42beb3da3198a47fcd72e67e09
 F
 src/tree/TreeNode.java,7\1\71eaed7d6cd0e4bad71a2ba7173efcfb7af50130
+I
+src/dfs/DFSSolution3.java,9\0\901a96c467a481d14f81eb7114a8394f4bb3ea42

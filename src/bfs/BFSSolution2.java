@@ -182,4 +182,55 @@ public class BFSSolution2 {
 
         return -1;
     }
+
+    // Leetcode problem: 1293
+    /*
+     * Shortest Path in a Grid with Obstacles Elimination.
+     * Track how many obstacles still can be removed.
+     * Visited array will be 3 dimensional. Add extra layer of obstacles remove capacity.
+     * */
+    public int shortestPath(int[][] grid, int k) {
+        int m = grid.length;
+        int n = grid[0].length;
+
+        Queue<int[]> queue = new LinkedList<>();
+        boolean[][][] visited = new boolean[m][n][k + 1];
+        int[][] directions = {
+                {-1, 0}, {1, 0}, {0, -1}, {0, 1}
+        };
+
+        queue.add(new int[]{0, 0, k});
+        visited[0][0][k] = true;
+        int res = 0;
+
+        while (!queue.isEmpty()) {
+            int qSize = queue.size();
+
+            while (qSize-- > 0) {
+                int[] pos = queue.poll();
+                if (pos[0] == m - 1 && pos[1] == n - 1)
+                    return res;
+
+                for (int[] direction : directions) {
+                    int r = pos[0] + direction[0];
+                    int c = pos[1] + direction[1];
+
+                    if (r < 0 || r >= m || c < 0 || c >= n)
+                        continue;
+
+                    if (grid[r][c] == 0 && !visited[r][c][pos[2]]) {
+                        queue.add(new int[]{r, c, pos[2]});
+                        visited[r][c][pos[2]] = true;
+                    } else if (grid[r][c] == 1 && pos[2] > 0 && !visited[r][c][pos[2] - 1]) {
+                        queue.add(new int[]{r, c, pos[2] - 1});
+                        visited[r][c][pos[2] - 1] = true;
+                    }
+                }
+            }
+
+            res += 1;
+        }
+
+        return -1;
+    }
 }

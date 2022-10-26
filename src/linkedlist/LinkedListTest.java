@@ -17,8 +17,9 @@ public class LinkedListTest {
 
         head2 = solution2.fillWithZero(head2, len1 - len2);
 
-        ListNode result = test.minusList(head1, head2);
-        test.printList(result.next);
+//        ListNode result = test.minusList(head1, head2);
+
+        test.sortListWithAbsoluteValueSorted();
     }
 
     public ListNode minusList(ListNode head1, ListNode head2) {
@@ -55,5 +56,55 @@ public class LinkedListTest {
             System.out.print(current.val + " -> ");
             current = current.next;
         }
+    }
+
+    /*
+     * Merge 2 lists alternatively. 1->3->5->7 & 2->4->6 => 1->2->3->4->5->6->7
+     * Amazon interview question.
+     * */
+    public void mergeLinkedList() {
+        ListNode head1 = createList(Arrays.asList(1, 3, 5, 7, 9, 11));
+        ListNode head2 = createList(Arrays.asList(2, 4, 6));
+
+        ListNode first = head1;
+        ListNode second = head2;
+
+        while (first != null && second != null) {
+            ListNode fNext = first.next;
+            ListNode sNext = second.next;
+
+            first.next = second;
+            second.next = fNext;
+
+            first = fNext;
+            second = sNext;
+        }
+
+        printList(head1);
+    }
+
+    /*
+     * Sort linked list which is already sorted by absolute value.
+     * Amazon interview question.
+     * For every negative value send it to the head position.
+     * */
+    public void sortListWithAbsoluteValueSorted() {
+        ListNode head = createList(Arrays.asList(1, -2, -3, -4, 5, -6, 7, -8, 9));
+
+        ListNode current = head.next;
+        ListNode prev = head;
+        while (current != null) {
+            if (current.val < 0) {
+                prev.next = current.next;
+                current.next = head;
+                head = current;
+                current = prev.next;
+            } else {
+                prev = current;
+                current = current.next;
+            }
+        }
+
+        printList(head);
     }
 }

@@ -36,4 +36,36 @@ public class AmazonSolution {
     /*
      * https://www.geeksforgeeks.org/counting-inversions/
      * */
+
+    /*
+     * https://www.geeksforgeeks.org/multiply-two-numbers-represented-linked-lists/
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/java-program-to-rotate-matrix-elements-2/
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/rotate-ring-matrix-anticlockwise-k-elements/
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/check-two-nodes-cousins-binary-tree/
+     * Level order traversal.
+     * */
+    /*
+     * https://www.geeksforgeeks.org/find-value-k-in-given-complete-binary-tree-with-values-indexed-from-1-to-n/
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/find-the-maximum-element-in-an-array-which-is-first-increasing-and-then-decreasing/
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/java-program-for-sorting-a-linked-list-that-is-sorted-alternating-ascending-and-descending-orders/
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/bottom-view-binary-tree/
+     * */
 }

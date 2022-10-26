@@ -7,7 +7,7 @@ public class TreeTest {
     public static void main(String[] args) {
         TreeTest treeTest = new TreeTest();
 
-        treeTest.validateTreeAsSumTree();
+        treeTest.pathRootToLeafTest();
     }
 
     public TreeNode buildUpTree() {
@@ -291,5 +291,71 @@ public class TreeTest {
         }
 
         return false;
+    }
+
+    public TreeNode buildSimpleTree() {
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.left = new TreeNode(4);
+        root.left.right = new TreeNode(5);
+        root.right.left = new TreeNode(6);
+        root.right.right = new TreeNode(7);
+        root.right.right.right = new TreeNode(8);
+
+        return root;
+    }
+
+    /*
+     * Print binary tree in vertical order.
+     * Amazon interview question.
+     * Use tree set & add the element in each vertical level.
+     * */
+    public void printVerticalOrderTest() {
+        TreeNode root = buildSimpleTree();
+
+        Map<Integer, List<Integer>> map = new TreeMap<>();
+        printVerticalOrder(root, 0, map);
+
+        System.out.println(map);
+    }
+
+    private void printVerticalOrder(TreeNode node, int level, Map<Integer, List<Integer>> map) {
+        if (node == null)
+            return;
+
+        map.putIfAbsent(level, new ArrayList<>());
+        map.get(level).add(node.val);
+
+        printVerticalOrder(node.left, level - 1, map);
+        printVerticalOrder(node.right, level + 1, map);
+    }
+
+    public void pathRootToLeafTest() {
+        TreeNode root = buildSimpleTree();
+        List<String> result = new ArrayList<>();
+
+        pathRootToLeaf(root, result, new ArrayList<>());
+
+        System.out.println(result);
+    }
+
+    public void pathRootToLeaf(TreeNode node, List<String> result, List<String> current) {
+        if (node == null) {
+            return;
+        }
+
+        current.add(String.valueOf(node.val));
+        if (node.left == null && node.right == null) {
+            result.add(String.join("->", current));
+
+            // Do not use return statement here. If used then cannot remove the last element added.
+        }
+
+        pathRootToLeaf(node.left, result, current);
+        pathRootToLeaf(node.right, result, current);
+
+        // Backtrack.
+        current.remove(current.size() - 1);
     }
 }

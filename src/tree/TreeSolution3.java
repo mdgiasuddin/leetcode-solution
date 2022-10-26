@@ -354,6 +354,7 @@ public class TreeSolution3 {
         // Compute the maximum width.
         maxWidth[0] = Math.max(maxWidth[0], pos - leftPos.get(level) + 1);
 
+        // Next pos for left & right is very important.
         widthOfBinaryTree(node.left, leftPos, maxWidth, level + 1, 2 * pos + 1);
         widthOfBinaryTree(node.right, leftPos, maxWidth, level + 1, 2 * pos + 2);
     }
