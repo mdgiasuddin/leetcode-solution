@@ -13,8 +13,6 @@ M
 src/array/ArraySolution2.java,d\0\d0d258dc925ec30eb665551b4ac0c75c9aaabc01
 M
 src/array/ArraySolution5.java,5\a\5ad5a4835bf69bb4d73e94a3da4028f009d9c443
-M
-src/array/ArraySolution6.java,5\3\53b14ed3c73247ea990e467ad9702b6d72db6191
 N
 src/binary_search/TimeMap.java,1\d\1d2ae5ac7edf2204ccd1314ba55fabf35aa09996
 E
@@ -33,8 +31,6 @@ H
 src/array/NumMatrix.java,7\2\72bfcec0d4a4d54bf94240a9a99f036b96e50338
 H
 src/bfs/BFSSolution.java,c\5\c5a523222dbe9b3d407e9715523d86b2ed98faf4
-I
-src/trie/TrieNodeNew.java,e\4\e4a0c6231b333f0d9ad712d0d8617f72381062cd
 E
 src/heap/Point2D.java,3\d\3dfa1efdbc476e2799877dca114d67acc0c21a53
 C

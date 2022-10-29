@@ -11,6 +11,10 @@ public class AmazonSolution {
                   | count(n-1) + count(n-m), m < n
     * */
 
+    /*
+     * https://www.amazon.jobs/en/landing_pages/in-person-interview
+     * */
+
 
     /*
      * https://www.geeksforgeeks.org/split-given-array-in-minimum-number-of-subarrays-such-that-rearranging-the-order-of-subarrays-sorts-the-array/
@@ -83,5 +87,120 @@ public class AmazonSolution {
 
     /*
      * https://www.geeksforgeeks.org/expression-contains-redundant-bracket-not/
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/lowest-common-ancestor-binary-tree-set-1/
+     * Previously did this for binary search tree.
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/stepping-numbers/
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/count-of-unique-pairs-arri-arrj-such-that-i-j/
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/maximize-partitions-such-that-no-two-substrings-have-any-common-character/
+     * */
+
+    /*
+     * https://practice.geeksforgeeks.org/explore?page=24&company[]=Amazon&sortBy=submissions
+     * */
+
+    /*
+     * Behavioral section.
+     * https://interviewgenie.com/blog-1/interviewing-at-amazon-behavioral-interview-questions
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/print-all-subarrays-with-0-sum/
+     * Maintain a map of sum & the position of the sum found.
+     * Then return the result when same sum found more than once.
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/find-a-peak-in-a-given-array/
+     * Binary search.
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/count-number-of-substrings-with-exactly-k-distinct-characters/
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/value-to-be-subtracted-from-array-elements-to-make-sum-of-all-elements-equals-k/
+     * Maybe easy.
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/place-k-elements-such-that-minimum-distance-is-maximized/
+     * Maybe easy.
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/maximum-tip-calculator-2/
+     * Can do with O(nlog(n)) solution. But it can be done O(n) solution.
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/find-instances-at-end-of-time-frame-after-auto-scaling/
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/maximum-count-of-0s-between-two-1s-in-given-range-for-q-queries/
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/count-pairs-array-whose-sum-divisible-4/
+     * Easy. Understood this.
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/even-numbers-even-index-odd-numbers-odd-index/
+     * Understood.
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/minimum-sprinkers-required-to-be-turned-on-to-water-the-plants/
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/maximum-adjacent-difference-array-sorted-form/
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/multiply-large-integers-under-large-modulo/
+     * Understood.
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/find-distance-between-two-nodes-of-a-binary-tree/
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/print-nodes-distance-k-given-node-binary-tree/
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/maximum-length-of-all-possible-k-equal-length-ropes-generated-by-cutting-n-ropes/
+     * Understood.
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/smallest-subset-of-maximum-sum-possible-by-splitting-array-into-two-subsets/
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/check-if-array-can-be-sorted-with-one-swap/
+     * Understood.
+     * Find how many disorder found.
+     * Swap where disorder found. Then check are the elements are sorted now.
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/allocate-minimum-number-pages/
      * */
 }
