@@ -358,4 +358,25 @@ public class TreeTest {
         // Backtrack.
         current.remove(current.size() - 1);
     }
+
+    /*
+     * Convert to sum tree.
+     * Amazon interview question.
+     * */
+    public void toSumTree(Node root) {
+        toSumTreeRec(root);
+
+    }
+
+    public int toSumTreeRec(Node node) {
+        if (node == null) {
+            return 0;
+        }
+
+        int sum = toSumTreeRec(node.left) + toSumTreeRec(node.right);
+        sum += node.val;
+        node.val = sum - node.val;
+
+        return sum;
+    }
 }

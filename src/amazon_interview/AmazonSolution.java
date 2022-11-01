@@ -12,6 +12,11 @@ public class AmazonSolution {
     * */
 
     /*
+     * Code source: https://www.geeksforgeeks.org/count-derangements-permutation-such-that-no-element-appears-in-its-original-position/
+     * countDer(n) = (n - 1) * [countDer(n - 1) + countDer(n - 2)]
+     * */
+
+    /*
      * https://www.amazon.jobs/en/landing_pages/in-person-interview
      * */
 
@@ -71,6 +76,8 @@ public class AmazonSolution {
 
     /*
      * https://www.geeksforgeeks.org/bottom-view-binary-tree/
+     * https://www.geeksforgeeks.org/print-nodes-top-view-binary-tree/
+     * 2 important problems.
      * */
 
     /*
@@ -202,5 +209,87 @@ public class AmazonSolution {
 
     /*
      * https://www.geeksforgeeks.org/allocate-minimum-number-pages/
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/largest-area-possible-after-removal-of-a-series-of-horizontal-vertical-bars/
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/minimum-number-of-pigs-required-to-find-the-poisonous-bucket/
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/minimum-moves-required-to-come-out-of-a-grid-safely/
+     * Understood. Use 2 queues. Run bfs both for person & fire.
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/sum-nodes-maximum-depth-binary-tree/
+     * Understood.
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/anti-clockwise-spiral-traversal-of-a-binary-tree/
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/queue-based-approach-for-first-non-repeating-character-in-a-stream/
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/a-linked-list-with-next-and-arbit-pointer/
+     * Observe the constant space solution.
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/write-an-efficient-c-function-to-convert-a-tree-into-its-mirror-tree/
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/minimum-number-of-rabbits-that-must-be-present-in-the-forest/
+     * Could not understand the problem.
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/maximum-difference-between-node-and-its-ancestor-in-binary-tree/
+     * */
+
+    /*
+     * Given a matrix filled with 0 and 1, 0 representing empty land and 1 representing an office building, find the optimal position to build a house such that the sum of the distance to all the offices is minimum.
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/find-the-farthest-smaller-number-in-the-right-side/
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/convert-ternary-expression-binary-tree/
+     * Easier code source: https://www.youtube.com/watch?v=RvQHnh4y8zg
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/maximum-profit-by-buying-and-selling-a-share-at-most-k-times/
+     * Leetcode problem: 188
+     * */
+
+    /*
+     * https://leetcode.com/problems/critical-connections-in-a-network/
+     * Leetcode problem: 1192
+     * https://www.geeksforgeeks.org/bridge-in-a-graph/
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/check-if-a-given-binary-tree-is-heap/
+     * Check whether the tree is complete.
+     * Then check whether all children have less value than parents.
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/probability-of-collision-between-two-trucks/
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/generate-bitonic-sequence-of-length-n-from-integers-in-a-given-range/
      * */
 }

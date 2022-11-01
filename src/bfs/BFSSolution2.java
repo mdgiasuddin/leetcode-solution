@@ -233,4 +233,45 @@ public class BFSSolution2 {
 
         return -1;
     }
+
+    // Leetcode problem: 542
+    public int[][] updateMatrix(int[][] mat) {
+        int m = mat.length;
+        int n = mat[0].length;
+
+        boolean[][] visited = new boolean[m][n];
+        Queue<int[]> queue = new LinkedList<>();
+
+        for (int r = 0; r < m; r++) {
+            for (int c = 0; c < n; c++) {
+                if (mat[r][c] == 0) {
+                    queue.add(new int[]{r, c});
+                }
+            }
+        }
+
+        int dist = 1;
+        int[][] directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+        while (!queue.isEmpty()) {
+            int qSize = queue.size();
+
+            while (qSize-- > 0) {
+                int[] pos = queue.poll();
+                for (int[] dir : directions) {
+                    int r = pos[0] + dir[0];
+                    int c = pos[1] + dir[1];
+
+                    if (r >= 0 && r < m && c >= 0 && c < n && mat[r][c] != 0 && !visited[r][c]) {
+                        mat[r][c] = dist;
+                        visited[r][c] = true;
+                        queue.add(new int[]{r, c});
+                    }
+                }
+            }
+
+            dist += 1;
+        }
+
+        return mat;
+    }
 }
