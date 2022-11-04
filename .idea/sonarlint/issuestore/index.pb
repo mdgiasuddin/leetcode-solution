@@ -47,14 +47,10 @@ I
 src/trie/TrieNodeNew.java,e\4\e4a0c6231b333f0d9ad712d0d8617f72381062cd
 L
 src/trie/TrieNodePrefix.java,f\8\f8e59b8f2e6fbf4f623eedebbb06381aebbc4b29
-K
-src/tree/TreeSolution4.java,2\5\2586d001ca9857cc1d4992d70d3298d83bb50406
 M
 src/array/ArraySolution6.java,5\3\53b14ed3c73247ea990e467ad9702b6d72db6191
 I
 src/bfs/BFSSolution2.java,d\2\d2620dce3e2e630e30d3b5ad8270deec14b8977e
-O
-src/graph/tarjans_algorithm.txt,e\c\ec925c92f6d6ab8e85029e323be65e70081d363a
 N
 src/stack/StackWithMiddle.java,d\3\d3dc8427e57e8a88e817f2b8a980515fe894dae9
 T

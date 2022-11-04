@@ -73,4 +73,57 @@ public class TreeSolution4 {
 
         return sum;
     }
+
+    // Leetcode problem: 236
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null || root.val == p.val || root.val == q.val) {
+            return root;
+        }
+
+        if (root.left == null && root.right == null) {
+            return null;
+        }
+
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+        TreeNode right = lowestCommonAncestor(root.right, p, q);
+
+        if (left != null && right != null) {
+            return root;
+        }
+
+        return left == null ? right : left;
+    }
+
+    // Leetcode problem: 993
+    public boolean isCousins(TreeNode root, int x, int y) {
+        if (root.val == x || root.val == y) {
+            return false;
+        }
+
+        int[] xParent = {Integer.MIN_VALUE};
+        int[] yParent = {Integer.MIN_VALUE};
+
+        int xHeight = findHeightAndParent(root, x, 0, xParent);
+        int yHeight = findHeightAndParent(root, y, 0, yParent);
+        return xHeight == yHeight && xParent[0] != yParent[0];
+    }
+
+    public int findHeightAndParent(TreeNode node, int val, int height, int[] parent) {
+        if (node == null) {
+            return -1;
+        }
+        if (node.val == val) {
+            return height;
+        }
+        parent[0] = node.val;
+        int lHeight = findHeightAndParent(node.left, val, height + 1, parent);
+        if (lHeight != -1) {
+            return lHeight;
+        }
+
+        // Must restore. Because it got update in previous recursive call.
+        parent[0] = node.val;
+        return findHeightAndParent(node.right, val, height + 1, parent);
+
+    }
 }

@@ -60,6 +60,7 @@ public class AmazonSolution {
     /*
      * https://www.geeksforgeeks.org/check-two-nodes-cousins-binary-tree/
      * Level order traversal.
+     * Tech Dose: https://www.youtube.com/watch?v=UyxnGWMvxwc
      * */
     /*
      * https://www.geeksforgeeks.org/find-value-k-in-given-complete-binary-tree-with-values-indexed-from-1-to-n/
@@ -98,6 +99,7 @@ public class AmazonSolution {
     /*
      * https://www.geeksforgeeks.org/lowest-common-ancestor-binary-tree-set-1/
      * Previously did this for binary search tree.
+     * Tech Dose: https://www.youtube.com/watch?v=KobQcxdaZKY
      * */
 
     /*
