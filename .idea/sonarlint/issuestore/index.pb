@@ -5,8 +5,6 @@ O
 src/string/StringSolution3.java,6/b/6b676f7b4f8b81f1058528a5ef80ede30463afc4
 R
 "src/lintcode/LintCodeSolution.java,9\1\915c612460b35f4a608e7c88715ff0b2d17f77bf
-V
-&src/sliding/SlidingWindowSolution.java,6\b\6bdcdec9d0d2c13a2fd868f5b2ff96acc4de4863
 W
 'src/sliding/SlidingWindowSolution2.java,c\0\c0532f120496e6d45d6dab3ff43ed1eb42988318
 M
@@ -43,3 +41,23 @@ F
 src/tree/TreeNode.java,7\1\71eaed7d6cd0e4bad71a2ba7173efcfb7af50130
 I
 src/dfs/DFSSolution3.java,9\0\901a96c467a481d14f81eb7114a8394f4bb3ea42
+R
+"src/linkedlist/LinkedListTest.java,d\8\d801f598349f196f102a6935744ac12566835646
+I
+src/trie/TrieNodeNew.java,e\4\e4a0c6231b333f0d9ad712d0d8617f72381062cd
+L
+src/trie/TrieNodePrefix.java,f\8\f8e59b8f2e6fbf4f623eedebbb06381aebbc4b29
+K
+src/tree/TreeSolution4.java,2\5\2586d001ca9857cc1d4992d70d3298d83bb50406
+M
+src/array/ArraySolution6.java,5\3\53b14ed3c73247ea990e467ad9702b6d72db6191
+I
+src/bfs/BFSSolution2.java,d\2\d2620dce3e2e630e30d3b5ad8270deec14b8977e
+O
+src/graph/tarjans_algorithm.txt,e\c\ec925c92f6d6ab8e85029e323be65e70081d363a
+N
+src/stack/StackWithMiddle.java,d\3\d3dc8427e57e8a88e817f2b8a980515fe894dae9
+T
+$src/amazon_interview/AmazonCode.java,1\b\1b35a59514bbbdfe5aafe209ce002823952e7347
+K
+src/tree/TreeSolution2.java,b\2\b2b75bace0e3f9469b813275811bbb4b41e4c412

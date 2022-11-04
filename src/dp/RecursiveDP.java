@@ -234,4 +234,95 @@ public class RecursiveDP {
         }
         return res;
     }
+
+    // Leetcode problem: 123
+    // Leetcode problem: 188
+    /*
+     * Best Time to Buy and Sell Stock III & IV
+     * Time limit exceeded for recursive solution.
+     * Code source III: https://www.youtube.com/watch?v=37s1_xBiqH0
+     * Code source IV: https://www.youtube.com/watch?v=6928FkPhGUA&t=26s
+     * */
+    public int maxProfit(int k, int[] prices) {
+
+        // Optimized code for III
+        /*
+        int n = prices.length;
+        int [] leftProfit = new int[n];
+        int [] rightProfit = new int[n];
+
+        int leftMin = prices[0];
+        for (int i = 1; i < n; i++) {
+            leftProfit[i] = Math.max(leftProfit[i - 1], prices[i] - leftMin);
+            leftMin = Math.min(leftMin, prices[i]);
+        }
+
+        int rightMax = prices[n - 1];
+        for (int i = n - 2; i >= 0; i--) {
+            rightProfit[i] = Math.max(rightProfit[i + 1], rightMax - prices[i]);
+            rightMax = Math.max(rightMax, prices[i]);
+        }
+
+        int profit = rightProfit[0];
+        for (int i = 1; i < n; i++) {
+            profit = Math.max(profit, leftProfit[i - 1] + rightProfit[i]);
+        }
+
+        return profit;
+        */
+
+        // Optimized code for problem IV
+        /*
+        int [] dp = new int[2 * k];
+
+        for (int i = 0; i < 2 * k; i += 2) {
+            dp[i] = Integer.MIN_VALUE;
+        }
+
+        for (int price : prices) {
+            for (int j = 0; j < 2 * k; j++) {
+                if (j == 0) {
+                    dp[j] = Math.max(dp[j], -price);
+                } else if (j % 2 == 0) {
+                    dp[j] = Math.max(dp[j], dp[j - 1] - price);
+                } else {
+                    dp[j] = Math.max(dp[j], dp[j - 1]  +price);
+                }
+            }
+        }
+
+        return dp[2 * k - 1];
+        */
+
+        int n = prices.length;
+        int[][][] dp = new int[2][k + 1][n];
+
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j <= k; j++) {
+                for (int l = 0; l < n; l++) {
+                    dp[i][j][l] = -1;
+                }
+            }
+        }
+
+        return maxProfit(0, k, 0, prices, dp);
+    }
+
+    public int maxProfit(int bought, int k, int idx, int[] prices, int[][][] dp) {
+        if (idx >= prices.length || k == 0) {
+            return 0;
+        }
+        if (dp[bought][k][idx] != -1) {
+            return dp[bought][k][idx];
+        }
+
+        int profit = maxProfit(bought, k, idx + 1, prices, dp);
+        if (bought == 0) {
+            profit = Math.max(profit, maxProfit(1, k, idx + 1, prices, dp) - prices[idx]);
+        } else {
+            profit = Math.max(profit, maxProfit(0, k - 1, idx + 1, prices, dp) + prices[idx]);
+        }
+
+        return profit;
+    }
 }

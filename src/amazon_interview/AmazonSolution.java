@@ -20,7 +20,6 @@ public class AmazonSolution {
      * https://www.amazon.jobs/en/landing_pages/in-person-interview
      * */
 
-
     /*
      * https://www.geeksforgeeks.org/split-given-array-in-minimum-number-of-subarrays-such-that-rearranging-the-order-of-subarrays-sorts-the-array/
      * */
@@ -291,5 +290,30 @@ public class AmazonSolution {
 
     /*
      * https://www.geeksforgeeks.org/generate-bitonic-sequence-of-length-n-from-integers-in-a-given-range/
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/lexicographically-largest-string-possible-consisting-of-at-most-k-consecutive-similar-characters/
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/count-of-substrings-having-the-most-frequent-character-in-the-string-as-first-character/
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/kth-ancestor-node-binary-tree-set-2/
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/bipartite-graph/
+     * Important.
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/maximize-sum-of-given-array-by-rearranging-array-such-that-the-difference-between-adjacent-elements-is-atmost-1/
+     * */
+
+    /*
+     * https://www.geeksforgeeks.org/count-array-elements-with-rank-not-exceeding-k/
      * */
 }

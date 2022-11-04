@@ -7,7 +7,7 @@ public class TreeTest {
     public static void main(String[] args) {
         TreeTest treeTest = new TreeTest();
 
-        treeTest.pathRootToLeafTest();
+        treeTest.topAndBottomViewOfBinaryTree();
     }
 
     public TreeNode buildUpTree() {
@@ -297,8 +297,9 @@ public class TreeTest {
         TreeNode root = new TreeNode(1);
         root.left = new TreeNode(2);
         root.right = new TreeNode(3);
-        root.left.left = new TreeNode(4);
         root.left.right = new TreeNode(5);
+        root.left.right.left = new TreeNode(9);
+        root.left.right.left.left = new TreeNode(10);
         root.right.left = new TreeNode(6);
         root.right.right = new TreeNode(7);
         root.right.right.right = new TreeNode(8);
@@ -378,5 +379,51 @@ public class TreeTest {
         node.val = sum - node.val;
 
         return sum;
+    }
+
+    int minLeft = 0;
+    int maxRight = 0;
+
+    public void topAndBottomViewOfBinaryTree() {
+        TreeNode root = buildSimpleTree();
+        Map<Integer, Integer> mapTop = new HashMap<>();
+
+//        topViewOfBinaryTree(root, mapTop, 0);
+//        for (int i = minLeft; i <= maxRight; i++) {
+//            System.out.print(mapTop.get(i) + " ");
+//        }
+
+        minLeft = maxRight = 0;
+        Map<Integer, Integer> mapBottom = new HashMap<>();
+        bottomViewOfBinaryTree(root, mapBottom, 0);
+        for (int i = minLeft; i <= maxRight; i++) {
+            System.out.print(mapBottom.get(i) + " ");
+        }
+    }
+
+    private void topViewOfBinaryTree(TreeNode node, Map<Integer, Integer> map, int level) {
+        if (node == null) {
+            return;
+        }
+
+        minLeft = Math.min(minLeft, level);
+        maxRight = Math.max(maxRight, level);
+
+        map.putIfAbsent(level, node.val);
+        topViewOfBinaryTree(node.left, map, level - 1);
+        topViewOfBinaryTree(node.right, map, level + 1);
+    }
+
+    private void bottomViewOfBinaryTree(TreeNode node, Map<Integer, Integer> map, int level) {
+        if (node == null) {
+            return;
+        }
+
+        minLeft = Math.min(minLeft, level);
+        maxRight = Math.max(maxRight, level);
+
+        map.put(level, node.val);
+        bottomViewOfBinaryTree(node.left, map, level - 1);
+        bottomViewOfBinaryTree(node.right, map, level + 1);
     }
 }

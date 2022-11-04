@@ -321,6 +321,43 @@ public class SlidingWindowSolution {
         return minLength == nums.length + 1 ? 0 : minLength;
     }
 
+    // Leetcode prolbem: 862
+    /*
+     * This problem is the extension of Leetcode problem: 209
+     * This problem allows negative numbers.
+     * Use Deque to track the window.
+     * */
+    public int shortestSubarray(int[] nums, int k) {
+        Deque<long[]> deque = new ArrayDeque<>();
+        long shortest = Long.MAX_VALUE;
+
+        long sum = 0;
+        for (int i = 0; i < nums.length; i++) {
+            sum += nums[i];
+
+            if (sum >= k) {
+                shortest = Math.min(shortest, i + 1L);
+            }
+
+            long[] current = {-1, -1};
+            while (!deque.isEmpty() && sum - deque.peekFirst()[1] >= k) {
+                current = deque.pollFirst();
+            }
+
+            if (current[0] != -1) {
+                shortest = Math.min(shortest, i - current[0]);
+            }
+
+            while (!deque.isEmpty() && deque.peekLast()[1] >= sum) {
+                deque.pollLast();
+            }
+
+            deque.offerLast(new long[]{i, sum});
+        }
+
+        return shortest == Long.MAX_VALUE ? -1 : (int) shortest;
+    }
+
     // Leetocde problem: 53
     public int maxSubArray(int[] nums) {
         int result = nums[0];
