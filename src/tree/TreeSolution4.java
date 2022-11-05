@@ -126,4 +126,69 @@ public class TreeSolution4 {
         return findHeightAndParent(node.right, val, height + 1, parent);
 
     }
+
+    // Leetcode problem: 1008
+    public TreeNode bstFromPreorder(int[] preorder) {
+        return bstFromPreorder(preorder, 0, preorder.length - 1);
+    }
+
+    private TreeNode bstFromPreorder(int[] preorder, int left, int right) {
+        if (left > right) {
+            return null;
+        }
+
+        TreeNode root = new TreeNode(preorder[left]);
+        int mid = findLastLeftChild(preorder[left], preorder, left + 1, right);
+
+        root.left = bstFromPreorder(preorder, left + 1, mid);
+        root.right = bstFromPreorder(preorder, mid + 1, right);
+
+        return root;
+    }
+
+    private int findLastLeftChild(int val, int[] preorder, int left, int right) {
+        int ans = left - 1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (preorder[mid] < val) {
+                ans = mid;
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+
+        return ans;
+    }
+
+    // Leetcode problem: 222
+    /*
+     * Code source: Tech Dose
+     * */
+    public int countNodes(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int leftLevel = 1;
+        TreeNode leftNode = root.left;
+        while (leftNode != null) {
+            leftLevel += 1;
+            leftNode = leftNode.left;
+        }
+
+        int rightLevel = 1;
+        TreeNode rightNode = root.right;
+        while (rightNode != null) {
+            rightNode = rightNode.right;
+            rightLevel += 1;
+        }
+
+        if (leftLevel == rightLevel) {
+            return (int) Math.pow(2, leftLevel) - 1;
+        }
+
+        return 1 + countNodes(root.left) + countNodes(root.right);
+    }
 }

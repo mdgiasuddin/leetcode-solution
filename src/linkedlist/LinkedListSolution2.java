@@ -1,8 +1,18 @@
 package linkedlist;
 
+class DoublyNode {
+    char ch;
+    DoublyNode prev, next;
+
+    public DoublyNode(char ch) {
+        this.ch = ch;
+    }
+}
+
 public class LinkedListSolution2 {
     public static void main(String[] args) {
-
+        LinkedListSolution2 solution2 = new LinkedListSolution2();
+        solution2.solve("jyhrcwuengcbnuchctluxjgtxqtfvrebveewgasluuwooupcyxwgl");
     }
 
     // Leetcode problem: 83
@@ -315,6 +325,53 @@ public class LinkedListSolution2 {
 
         carryNode.next = node;
         return carryNode;
+    }
+
+    /*
+     * First non-repeating character in a stream of characters
+     * Amazon interview question.
+     * https://www.interviewbit.com/problems/first-non-repeating-character-in-a-stream-of-characters/
+     * Explanation: Tech Dose
+     * */
+    public String solve(String A) {
+        DoublyNode head = new DoublyNode('#');
+        DoublyNode tail = head;
+
+        DoublyNode[] nodes = new DoublyNode[26];
+        boolean[] repeated = new boolean[26];
+
+        StringBuilder res = new StringBuilder();
+        for (int i = 0; i < A.length(); i++) {
+            char ch = A.charAt(i);
+            if (nodes[ch - 'a'] == null && !repeated[ch - 'a']) {
+                DoublyNode newNode = new DoublyNode(ch);
+                tail.next = newNode;
+                newNode.prev = tail;
+                tail = newNode;
+
+                nodes[ch - 'a'] = newNode;
+            } else if (nodes[ch - 'a'] != null) {
+                DoublyNode node = nodes[ch - 'a'];
+                DoublyNode prevNode = node.prev;
+                prevNode.next = node.next;
+                if (node.next != null) {
+                    node.next.prev = prevNode;
+                } else {
+                    tail = prevNode;
+                }
+
+                nodes[ch - 'a'] = null;
+                repeated[ch - 'a'] = true;
+            }
+
+            if (head.next != null) {
+                res.append(head.next.ch);
+            } else {
+                res.append('#');
+            }
+        }
+
+        return res.toString();
     }
 
 }
