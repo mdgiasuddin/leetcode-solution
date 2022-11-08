@@ -55,4 +55,21 @@ public class BitOperation {
         }
         return (char) xor;
     }
+
+    // Leetcode problem: 201
+    /*
+     * Bitwise AND of Numbers Range
+     * Code source: https://www.youtube.com/watch?v=-qrpJykY2gE&list=PLEJXowNB4kPwCPVjDv6KsAsThtDOCQUok&index=23
+     * */
+    public int rangeBitwiseAnd(int left, int right) {
+        int count = 0;
+        while (left != right) {
+            left >>= 1;
+            right >>= 1;
+
+            count += 1;
+        }
+
+        return left << count;
+    }
 }

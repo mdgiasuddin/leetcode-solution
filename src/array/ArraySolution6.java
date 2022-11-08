@@ -1,11 +1,17 @@
 package array;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class ArraySolution6 {
     public static void main(String[] args) {
         ArraySolution6 arraySolution6 = new ArraySolution6();
 
-        int[] nums = {3, 5, 2, 1, 6, 4};
-        arraySolution6.wiggleSort(nums);
+//        int[] nums = {3, 5, 2, 1, 6, 4};
+//        arraySolution6.wiggleSort(nums);
+
+
+        System.out.println(-10 % 7);
     }
 
     // Leetcode problem: 1899
@@ -89,5 +95,32 @@ public class ArraySolution6 {
 
             i += 1;
         }
+    }
+
+    // Leetcode problem: 525
+    /*
+     * This problem is similar to: Subarray Sum Equals K (Leetcode problem: 560)
+     * */
+    public int findMaxLength(int[] nums) {
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(0, -1);
+
+        int sum = 0;
+        int res = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 1) {
+                sum += 1;
+            } else {
+                sum -= 1;
+            }
+
+            if (map.containsKey(sum)) {
+                res = Math.max(res, i - map.get(sum));
+            } else {
+                map.put(sum, i);
+            }
+        }
+
+        return res;
     }
 }

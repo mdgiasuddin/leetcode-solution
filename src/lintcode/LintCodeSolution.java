@@ -1,12 +1,30 @@
 package lintcode;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class LintCodeSolution {
     public static void main(String[] args) {
 
+        int[] arr = new int[10];
+        arr = new int[20];
+
+        List<Integer> arrayList = new ArrayList<>();
+        List<Integer> linkedList = new LinkedList<>();
+
+        arrayList.add(10);
+        linkedList.add(10);
+
+        LintCodeSolution solution = new LintCodeSolution();
+        solution.doSomething(new LinkedList<>());
     }
+
+    public void doSomething(List<Integer> list) {
+
+    }
+
 
     // Lintcode problem: 919
     // Leetcode problem: 253
