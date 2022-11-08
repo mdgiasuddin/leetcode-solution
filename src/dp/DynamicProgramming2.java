@@ -306,4 +306,104 @@ public class DynamicProgramming2 {
         // Deduct empty string from final result
         return (int) ((dp[strLen] - 1 + MOD) % MOD);
     }
+
+    // Leetcode problem: 221
+    /*
+     * Dynamic programming
+     * Dp[i][j] = if matrix[i][j] == 1 then 1 + min(dp[i-1][j-1], dp[i-1][j], dp[i][j-1]), otherwise 0
+     * Memory can be optimized.
+     * We can save only last 2 rows
+     * */
+    public int maximalSquare(char[][] matrix) {
+        int maxSquareArea = matrix[0][0] - '0';
+
+        int[][] dp = new int[matrix.length][matrix[0].length];
+
+        for (int col = 0; col < matrix[0].length; col++) {
+            if (matrix[0][col] == '1') {
+                dp[0][col] = 1;
+                maxSquareArea = 1;
+            }
+        }
+
+        for (int row = 0; row < matrix.length; row++) {
+            if (matrix[row][0] == '1') {
+                dp[row][0] = 1;
+                maxSquareArea = 1;
+            }
+        }
+
+        for (int row = 1; row < matrix.length; row++) {
+            for (int col = 1; col < matrix[0].length; col++) {
+                if (matrix[row][col] == '1') {
+                    dp[row][col] = 1 + Math.min(dp[row - 1][col - 1], Math.min(dp[row][col - 1], dp[row - 1][col]));
+                    maxSquareArea = Math.max(maxSquareArea, dp[row][col] * dp[row][col]);
+                }
+            }
+        }
+
+        return maxSquareArea;
+    }
+
+    // Leetcode problem: 1277
+    /*
+     * Count Square Submatrices with All Ones.
+     * This problem is similar to Maximal Square (Leetcode problem: 221).
+     * */
+    public int countSquares(int[][] matrix) {
+        int m = matrix.length;
+        int n = matrix[0].length;
+
+        int[][] dp = new int[m][n];
+        dp[0][0] = matrix[0][0];
+        int squares = matrix[0][0];
+
+        for (int c = 1; c < n; c++) {
+            squares += matrix[0][c];
+            dp[0][c] = matrix[0][c];
+        }
+
+        for (int r = 1; r < m; r++) {
+            squares += matrix[r][0];
+            dp[r][0] = matrix[r][0];
+        }
+
+        for (int r = 1; r < m; r++) {
+            for (int c = 1; c < n; c++) {
+
+                if (matrix[r][c] == 1) {
+                    dp[r][c] = 1 + Math.min(Math.min(dp[r - 1][c], dp[r][c - 1]), dp[r - 1][c - 1]);
+                    squares += dp[r][c];
+
+                }
+            }
+        }
+
+        return squares;
+
+    }
+
+    // Leetcode problem: 1035
+    /*
+     * Uncrossed Lines.
+     * Code source: https://www.youtube.com/watch?v=duCx_62nMOA&list=PLEJXowNB4kPwR6C6yq3BzS-Jkyc6XE8kE&index=25
+     * */
+    public int maxUncrossedLines(int[] nums1, int[] nums2) {
+        int m = nums1.length;
+        int n = nums2.length;
+
+        int[][] dp = new int[m + 1][n + 1];
+
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                if (nums1[i - 1] == nums2[j - 1]) {
+                    dp[i][j] = 1 + dp[i - 1][j - 1];
+                } else {
+                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+                }
+            }
+        }
+
+        return dp[m][n];
+    }
 }

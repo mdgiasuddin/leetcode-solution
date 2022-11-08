@@ -247,4 +247,57 @@ public class DFSSolution3 {
 
         visited.addFirst(src);
     }
+
+    // Leetcode problem: 886
+    /*
+     * Possible Bipartition.
+     * A graph is bi-partite if 2-color is possible.
+     * */
+    public boolean possibleBipartition(int n, int[][] dislikes) {
+
+        // Build up the graph by adjacency list.
+        Map<Integer, List<Integer>> adjacent = new HashMap<>();
+        for (int i = 1; i <= n; i++) {
+            adjacent.put(i, new ArrayList<>());
+        }
+
+        for (int[] dislike : dislikes) {
+            adjacent.get(dislike[0]).add(dislike[1]);
+            adjacent.get(dislike[1]).add(dislike[0]);
+        }
+
+        int[] colors = new int[n + 1];
+        Arrays.fill(colors, -1);
+
+        for (int i = 1; i <= n; i++) {
+            if (colors[i] == -1 && !colorVertex(i, 0, colors, adjacent)) {
+                return false;
+            }
+
+        }
+
+        return true;
+    }
+
+    private boolean colorVertex(int u, int color, int[] colors, Map<Integer, List<Integer>> adjacent) {
+
+        // Already colored with same color.
+        if (colors[u] == color) {
+            return true;
+        }
+
+        // Already colored with different color.
+        if (colors[u] == (color + 1) % 2) {
+            return false;
+        }
+
+        colors[u] = color;
+        for (int v : adjacent.get(u)) {
+            if (!colorVertex(v, (color + 1) % 2, colors, adjacent)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }
