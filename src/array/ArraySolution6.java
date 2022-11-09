@@ -1,9 +1,6 @@
 package array;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ArraySolution6 {
     public static void main(String[] args) {
@@ -156,5 +153,35 @@ public class ArraySolution6 {
         }
 
         return result;
+    }
+
+    // Leetcode problem: 406
+    /*
+     * Queue Reconstruction by Height.
+     * Code source: https://www.youtube.com/watch?v=khddrw6Bfyw&list=PLEJXowNB4kPxxaPCDVrZhSvW3NSD6ATaS&index=6
+     * */
+    public int[][] reconstructQueue(int[][] people) {
+        Arrays.sort(people, (a, b) -> a[0] == b[0] ? a[1] - b[1] : a[0] - b[0]);
+        int n = people.length;
+        int[][] result = new int[n][2];
+        for (int i = 0; i < n; i++) {
+            result[i] = new int[]{-1, -1};
+        }
+
+        for (int[] person : people) {
+            int count = person[1];
+
+            for (int j = 0; j < n; j++) {
+                if (result[j][0] == -1 && count == 0) {
+                    result[j] = person;
+                    break;
+                } else if (result[j][0] == -1 || result[j][0] >= person[0]) {
+                    count -= 1;
+                }
+            }
+        }
+
+        return result;
+
     }
 }

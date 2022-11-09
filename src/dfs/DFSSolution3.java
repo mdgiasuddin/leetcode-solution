@@ -256,9 +256,9 @@ public class DFSSolution3 {
     public boolean possibleBipartition(int n, int[][] dislikes) {
 
         // Build up the graph by adjacency list.
-        Map<Integer, List<Integer>> adjacent = new HashMap<>();
-        for (int i = 1; i <= n; i++) {
-            adjacent.put(i, new ArrayList<>());
+        List<List<Integer>> adjacent = new ArrayList<>();
+        for (int i = 0; i <= n; i++) {
+            adjacent.add(new ArrayList<>());
         }
 
         for (int[] dislike : dislikes) {
@@ -279,7 +279,7 @@ public class DFSSolution3 {
         return true;
     }
 
-    private boolean colorVertex(int u, int color, int[] colors, Map<Integer, List<Integer>> adjacent) {
+    private boolean colorVertex(int u, int color, int[] colors, List<List<Integer>> adjacent) {
 
         // Already colored with same color.
         if (colors[u] == color) {

@@ -8,7 +8,7 @@ public class StringSolution7 {
 
         String[] strs = {"eat", "tea", "tan", "ate", "nat", "bat"};
 
-        System.out.println(stringSolution7.groupAnagrams(strs));
+        System.out.println(stringSolution7.longestDupSubstring("nnpxouomcofdjuujloanjimymadkuepightrfodmauhrsy"));
 
     }
 
@@ -399,5 +399,60 @@ public class StringSolution7 {
         }
 
         return res.toString();
+    }
+
+    public String longestDupSubstring(String s) {
+        int len = s.length();
+        int[] roll = new int[len];
+        roll[0] = 1;
+        int mod = 10000007;
+        for (int i = 1; i < len; i++) {
+            roll[i] = (26 * roll[i - 1]) % mod;
+        }
+
+        String repeating = "";
+        int left = 1;
+        int right = len;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            String matched = matchSubstring(s, mid, roll, mod);
+            if (!matched.isEmpty()) {
+                repeating = matched;
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+
+        return repeating;
+    }
+
+    // Leetcode problem: 1044
+    private String matchSubstring(String s, int size, int[] roll, int mod) {
+        Map<Integer, List<Integer>> map = new HashMap<>();
+
+        int hash = 0;
+        for (int i = 0; i < size; i++) {
+            hash = (hash + (roll[size - 1 - i] * (s.charAt(i) - 'a')) % mod) % mod;
+        }
+        map.put(hash, new ArrayList<>());
+        map.get(hash).add(0);
+
+        for (int i = size; i < s.length(); i++) {
+            hash = ((26 * ((hash - ((s.charAt(i - size) - 'a') * roll[size - 1]) % mod + mod) % mod)) % mod + s.charAt(i) - 'a') % mod;
+
+            if (map.containsKey(hash)) {
+                for (int start : map.get(hash)) {
+                    String substring = s.substring(start, start + size);
+                    if (s.substring(i - size + 1, i + 1).equals(substring)) {
+                        return substring;
+                    }
+                }
+            }
+            map.putIfAbsent(hash, new ArrayList<>());
+            map.get(hash).add(i - size + 1);
+        }
+
+        return "";
     }
 }

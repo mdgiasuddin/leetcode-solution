@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Solution {
+public class FirstSolution {
     int maxValue = Integer.MIN_VALUE;
 
     // Leetcode problem: 7
