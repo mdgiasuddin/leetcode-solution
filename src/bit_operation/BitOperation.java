@@ -72,4 +72,23 @@ public class BitOperation {
 
         return left << count;
     }
+
+    // Leetcode problem: 1680
+    /*
+     * Concatenation of Consecutive Binary Numbers.
+     * Explanation: https://www.youtube.com/watch?v=ttlNQ6YrdGs&list=PLEJXowNB4kPwa5VPvdQ1U3B2yaogEGDjX&index=32
+     * */
+    public int concatenatedBinary(int n) {
+        long mod = 1000000007;
+        int shift = 1;
+        long sum = 0;
+        for (int i = 1; i <= n; i++) {
+            sum = ((sum << shift) % mod + i) % mod;
+            if ((i & (i + 1)) == 0) {
+                shift += 1;
+            }
+        }
+
+        return (int) sum;
+    }
 }

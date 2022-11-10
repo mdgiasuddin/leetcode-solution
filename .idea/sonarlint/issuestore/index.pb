@@ -33,8 +33,6 @@ F
 src/tree/TreeNode.java,7\1\71eaed7d6cd0e4bad71a2ba7173efcfb7af50130
 R
 "src/linkedlist/LinkedListTest.java,d\8\d801f598349f196f102a6935744ac12566835646
-I
-src/trie/TrieNodeNew.java,e\4\e4a0c6231b333f0d9ad712d0d8617f72381062cd
 L
 src/trie/TrieNodePrefix.java,f\8\f8e59b8f2e6fbf4f623eedebbb06381aebbc4b29
 I
@@ -47,10 +45,6 @@ K
 src/tree/TreeSolution2.java,b\2\b2b75bace0e3f9469b813275811bbb4b41e4c412
 X
 (src/amazon_interview/AmazonSolution.java,5\f\5fd1479df7dfe33442f439b37793955828809837
-F
-src/tree/TreeTest.java,8\7\871573add4215c2342814c6e67604dd29b78e8db
-K
-src/tree/TreeSolution4.java,2\5\2586d001ca9857cc1d4992d70d3298d83bb50406
 W
 'src/linkedlist/LinkedListSolution2.java,0\6\06f477805279954ec24f99f351b5a361fe6e5f2f
 O
@@ -59,8 +53,6 @@ K
 src/graph/floyd_warshal.txt,6\6\662dc810867b22f33626badcd6fffc4ad4128f01
 J
 src/graph/bellman_ford.txt,3\6\362ffcea91623ab1144ba84faf09193f65124f63
-G
-src/tree/TreeTest2.java,f\a\fac5a5b9ee428ba18994149e87fb28c846eb6755
 R
 "src/lintcode/LintCodeSolution.java,9\1\915c612460b35f4a608e7c88715ff0b2d17f77bf
 M
@@ -69,9 +61,13 @@ V
 &src/sliding/SlidingWindowSolution.java,6\b\6bdcdec9d0d2c13a2fd868f5b2ff96acc4de4863
 G
 src/dp/RecursiveDP.java,2\7\27b5be8f6a344fa5fd5f35a1cec2cfb07b6a67cd
-S
-#src/bit_operation/BitOperation.java,4\6\46f66f5b3e200517881203aa809c062c4e45bdd7
 [
 +src/binary_search/BinarySearchSolution.java,d\d\ddb25a37922b7471d8933add896ce1256f17e1ac
 L
 src/lintcode/DataStream.java,7\5\75217c75400a7beded3a86129803a79072cd7e25
+O
+src/dp/DynamicProgramming2.java,5\5\5526a3d23baac2d3eddce0cc3d60d849cbb011d7
+I
+src/dfs/DFSSolution2.java,5\8\58e1560c74291e42beb3da3198a47fcd72e67e09
+I
+src/dfs/DFSSolution3.java,9\0\901a96c467a481d14f81eb7114a8394f4bb3ea42

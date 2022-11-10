@@ -1,9 +1,6 @@
 package tree;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class TreeSolution4 {
 
@@ -190,5 +187,60 @@ public class TreeSolution4 {
         }
 
         return 1 + countNodes(root.left) + countNodes(root.right);
+    }
+
+    public List<List<Integer>> verticalTraversal(TreeNode root) {
+        Map<Integer, PriorityQueue<TraversalNode>> map = new HashMap<>();
+        int[] width = {0, 0};
+
+        verticalTraversal(root, 0, 0, map, width);
+
+        List<List<Integer>> result = new ArrayList<>();
+        for (int i = width[0]; i <= width[1]; i++) {
+            List<Integer> list = new ArrayList<>();
+            PriorityQueue<TraversalNode> nodes = map.get(i);
+
+            while (!nodes.isEmpty()) {
+                list.add(nodes.poll().value);
+            }
+
+            result.add(list);
+        }
+
+        return result;
+    }
+
+    private void verticalTraversal(TreeNode node, int vLevel, int hLevel, Map<Integer, PriorityQueue<TraversalNode>> map, int[] width) {
+        if (node == null) {
+            return;
+        }
+
+        width[0] = Math.min(width[0], vLevel);
+        width[1] = Math.max(width[1], vLevel);
+
+        map.putIfAbsent(vLevel, new PriorityQueue<>());
+        map.get(vLevel).add(new TraversalNode(node.val, hLevel));
+
+        verticalTraversal(node.left, vLevel - 1, hLevel + 1, map, width);
+        verticalTraversal(node.right, vLevel + 1, hLevel + 1, map, width);
+    }
+}
+
+class TraversalNode implements Comparable<TraversalNode> {
+    int value;
+    int hLevel;
+
+    public TraversalNode(int value, int hLevel) {
+        this.value = value;
+        this.hLevel = hLevel;
+    }
+
+    @Override
+    public int compareTo(TraversalNode o) {
+        if (hLevel == o.hLevel) {
+            return this.value - o.value;
+        }
+
+        return hLevel - o.hLevel;
     }
 }
