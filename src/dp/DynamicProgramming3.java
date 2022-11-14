@@ -55,4 +55,93 @@ public class DynamicProgramming3 {
         int zeroPower = (int) Math.pow(2, zeroCount);
         return dp[n][target] * zeroPower;
     }
+
+    // Leetcode problem: 1143
+    public int longestCommonSubsequence(String text1, String text2) {
+        int n1 = text1.length();
+        int n2 = text2.length();
+        int[][] dp = new int[n1 + 1][n2 + 1];
+
+        for (int i = 1; i <= n1; i++) {
+            for (int j = 1; j <= n2; j++) {
+                if (text1.charAt(i - 1) == text2.charAt(j - 1)) {
+                    dp[i][j] = 1 + dp[i - 1][j - 1];
+                } else {
+                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+                }
+            }
+        }
+
+        return dp[n1][n2];
+    }
+
+    // Leetcode problem: 1092
+    /*
+     * This problem is the extended version of the Longest Common Subsequence (Leetcode problem: 1143).
+     * Explanation: https://www.youtube.com/watch?v=pHXntFeu6f8&list=PLEJXowNB4kPxBwaXtRO1qFLpCzF75DYrS&index=20
+     * */
+    public String shortestCommonSupersequence(String str1, String str2) {
+        int m = str1.length();
+        int n = str2.length();
+
+        int[][] dp = new int[m + 1][n + 1];
+
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                if (str1.charAt(i - 1) == str2.charAt(j - 1)) {
+                    dp[i][j] = 1 + dp[i - 1][j - 1];
+                } else {
+                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+                }
+            }
+        }
+
+        // Find the LCS String.
+        StringBuilder lcs = new StringBuilder();
+        int i = m;
+        int j = n;
+        while (i > 0 && j > 0) {
+            if (str1.charAt(i - 1) == str2.charAt(j - 1)) {
+                lcs.insert(0, str1.charAt(i - 1));
+
+                i -= 1;
+                j -= 1;
+            } else if (dp[i][j] == dp[i - 1][j]) {
+                i -= 1;
+            } else {
+                j -= 1;
+            }
+        }
+
+        // Build up the SCS String.
+        i = 0;
+        j = 0;
+        int k = 0;
+        StringBuilder scs = new StringBuilder();
+        while (i < str1.length() && j < str2.length() && k < lcs.length()) {
+            while (str1.charAt(i) != lcs.charAt(k)) {
+                scs.append(str1.charAt(i));
+                i += 1;
+            }
+            while (str2.charAt(j) != lcs.charAt(k)) {
+                scs.append(str2.charAt(j));
+                j += 1;
+            }
+            scs.append(lcs.charAt(k));
+            k += 1;
+            i += 1;
+            j += 1;
+        }
+
+        while (i < str1.length()) {
+            scs.append(str1.charAt(i));
+            i += 1;
+        }
+        while (j < str2.length()) {
+            scs.append(str2.charAt(j));
+            j += 1;
+        }
+
+        return scs.toString();
+    }
 }
