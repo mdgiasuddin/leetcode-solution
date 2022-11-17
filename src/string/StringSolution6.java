@@ -286,4 +286,35 @@ public class StringSolution6 {
         return (currentX == 0 && currentY == 0) || currentDir != 0;
     }
 
+    // Leetcode problem: 763
+    /*
+     * Partition Labels.
+     * */
+    public List<Integer> partitionLabels(String s) {
+        Map<Character, Integer> map = new HashMap<>();
+
+        // Find out the last index for every character.
+        for (int i = 0; i < s.length(); i++) {
+            map.put(s.charAt(i), i);
+        }
+
+        List<Integer> result = new ArrayList<>();
+        int i = 0;
+        while (i < s.length()) {
+
+            // Check any character inside the window lies outside. Then expand the current window.
+            int currentMax = map.get(s.charAt(i));
+            int j = i + 1;
+            while (j < currentMax) {
+                currentMax = Math.max(currentMax, map.get(s.charAt(j)));
+                j += 1;
+            }
+
+            result.add(currentMax - i + 1);
+            i = currentMax + 1;
+        }
+
+        return result;
+    }
+
 }

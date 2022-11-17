@@ -1,5 +1,8 @@
 package dp;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 public class DynamicProgramming3 {
 
     // Leetcode problem: 494
@@ -143,5 +146,102 @@ public class DynamicProgramming3 {
         }
 
         return scs.toString();
+    }
+
+    /*
+     * Box Stacking.
+     * Practice: https://practice.geeksforgeeks.org/problems/box-stacking/1
+     * Explanation: https://www.youtube.com/watch?v=kLucR6-Q0GA&list=PLEJXowNB4kPxBwaXtRO1qFLpCzF75DYrS&index=25
+     * Similar to the Longest Increasing Subsequence.
+     * */
+    public int maxHeight(int[] height, int[] width, int[] length, int n) {
+        // Code here
+
+        int len = n * 3;
+        int[][] boxes = new int[len][3];
+
+        // Create boxes by rotating.
+        for (int i = 0; i < n; i++) {
+            boxes[3 * i][0] = height[i];
+            boxes[3 * i][1] = Math.max(width[i], length[i]);
+            boxes[3 * i][2] = Math.min(width[i], length[i]);
+
+            boxes[3 * i + 1][0] = width[i];
+            boxes[3 * i + 1][1] = Math.max(height[i], length[i]);
+            boxes[3 * i + 1][2] = Math.min(height[i], length[i]);
+
+            boxes[3 * i + 2][0] = length[i];
+            boxes[3 * i + 2][1] = Math.max(height[i], width[i]);
+            boxes[3 * i + 2][2] = Math.min(height[i], width[i]);
+        }
+
+        // Sort based on the base area descending order.
+        Arrays.sort(boxes, Comparator.comparingInt(a -> -a[1] * a[2]));
+
+        int ans = 0;
+        int[] lis = new int[len];
+        for (int i = 0; i < len; i++) {
+            lis[i] = boxes[i][0];
+
+            for (int j = i - 1; j >= 0; j--) {
+                if (boxes[j][1] > boxes[i][1] && boxes[j][2] > boxes[i][2]) {
+                    lis[i] = Math.max(lis[i], boxes[i][0] + lis[j]);
+                }
+            }
+
+            ans = Math.max(ans, lis[i]);
+        }
+
+        return ans;
+    }
+
+    // Leetcode problem: 354
+    /*
+     * Russian Doll Envelopes.
+     * This is a variation of the Longest Increasing Subsequence.
+     * */
+    public int maxEnvelopes(int[][] envelopes) {
+        Arrays.sort(envelopes, Comparator.comparingInt(a -> a[0] * a[1]));
+        int n = envelopes.length;
+        int[] lis = new int[n];
+
+        int ans = 0;
+        for (int i = 0; i < n; i++) {
+            lis[i] = 1;
+
+            for (int j = i - 1; j >= 0; j--) {
+                if (envelopes[i][0] > envelopes[j][0] && envelopes[i][1] > envelopes[j][1]) {
+                    lis[i] = Math.max(lis[i], 1 + lis[j]);
+                }
+            }
+
+            ans = Math.max(ans, lis[i]);
+        }
+
+        return ans;
+    }
+
+    /*
+     * Maximum sum increasing subsequence.
+     * Practice: https://practice.geeksforgeeks.org/problems/maximum-sum-increasing-subsequence4749/1
+     * This is a variation of the Longest Increasing Subsequence.
+     * */
+    public int maxSumIS(int[] arr, int n) {
+        int[] msis = new int[n];
+
+        int ans = 0;
+        for (int i = 0; i < n; i++) {
+            msis[i] = arr[i];
+
+            for (int j = i - 1; j >= 0; j--) {
+                if (arr[i] > arr[j]) {
+                    msis[i] = Math.max(msis[i], arr[i] + msis[j]);
+                }
+            }
+
+            ans = Math.max(ans, msis[i]);
+        }
+
+        return ans;
     }
 }

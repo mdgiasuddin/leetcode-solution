@@ -134,4 +134,45 @@ public class RecursiveDP2 {
         map.put(list, res);
         return res;
     }
+
+    // Leetcode problem: 1335
+    /*
+     * Minimum Difficulty of a Job Schedule.
+     * Code source: https://www.youtube.com/watch?v=pmQAtRZ3CuE
+     * */
+    public int minDifficulty(int[] jobDifficulty, int d) {
+        int n = jobDifficulty.length;
+        if (n < d) {
+            return -1;
+        }
+        int[][] dp = new int[d + 1][n];
+        for (int[] p : dp) {
+            Arrays.fill(p, -1);
+        }
+
+        return dfsDifficulty(0, jobDifficulty, d, dp);
+    }
+
+    public int dfsDifficulty(int idx, int[] jobDifficulty, int d, int[][] dp) {
+        if (d == 1) {
+            int max = 0;
+            while (idx < jobDifficulty.length) {
+                max = Math.max(max, jobDifficulty[idx++]);
+            }
+
+            return max;
+        }
+        if (dp[d][idx] != -1) {
+            return dp[d][idx];
+        }
+
+        int max = 0;
+        int result = Integer.MAX_VALUE;
+        for (int i = idx; i < jobDifficulty.length - d + 1; i++) {
+            max = Math.max(max, jobDifficulty[i]);
+            result = Math.min(result, max + dfsDifficulty(i + 1, jobDifficulty, d - 1, dp));
+        }
+
+        return dp[d][idx] = result;
+    }
 }
