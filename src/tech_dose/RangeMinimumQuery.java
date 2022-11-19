@@ -55,7 +55,7 @@ public class RangeMinimumQuery {
         if (qLeft <= sLeft && sRight <= qRight)
             return segmentArray[sIndex];
 
-        if (sRight < qLeft || sLeft > qRight)
+        if (qLeft > sRight || sLeft > qRight)
             return Integer.MAX_VALUE;
 
         int mid = sLeft + (sRight - sLeft) / 2;

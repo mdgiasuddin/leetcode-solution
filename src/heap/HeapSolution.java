@@ -287,4 +287,32 @@ public class HeapSolution {
         return time;
     }
 
+    /*
+     * Nearly sorted.
+     * Practice: https://practice.geeksforgeeks.org/problems/nearly-sorted-1587115620/1
+     * Explanation: https://www.youtube.com/watch?v=tJK7vjNKdLY&list=PLEJXowNB4kPyP2PdMhOUlTY6GrRIITx28&index=12
+     * */
+    ArrayList<Integer> nearlySorted(int arr[], int num, int k) {
+        // your code here
+
+        PriorityQueue<Integer> queue = new PriorityQueue<>();
+        for (int i = 0; i <= k && i < num; i++) {
+            queue.add(arr[i]);
+        }
+
+        ArrayList<Integer> res = new ArrayList<>();
+        ;
+
+        for (int i = k + 1; i < num; i++) {
+            res.add(queue.poll());
+            queue.add(arr[i]);
+        }
+
+        while (!queue.isEmpty()) {
+            res.add(queue.poll());
+        }
+
+        return res;
+    }
+
 }

@@ -62,10 +62,10 @@ public class NumArray {
     }
 
     public int sumRange(int[] segmentArray, int sLeft, int sRight, int qLeft, int qRight, int idx) {
-        if (qLeft <= sLeft && qRight >= sRight)
+        if (qLeft <= sLeft && sRight <= qRight)
             return segmentArray[idx];
 
-        if (sRight < qLeft || sLeft > qRight)
+        if (qLeft > sRight || sLeft > qRight)
             return 0;
 
         int mid = sLeft + (sRight - sLeft) / 2;

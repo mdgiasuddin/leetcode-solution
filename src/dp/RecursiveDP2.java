@@ -154,6 +154,12 @@ public class RecursiveDP2 {
     }
 
     public int dfsDifficulty(int idx, int[] jobDifficulty, int d, int[][] dp) {
+        if (idx == jobDifficulty.length) {
+            return 0;
+        }
+        if (dp[d][idx] != -1) {
+            return dp[d][idx];
+        }
         if (d == 1) {
             int max = 0;
             while (idx < jobDifficulty.length) {
@@ -161,9 +167,6 @@ public class RecursiveDP2 {
             }
 
             return max;
-        }
-        if (dp[d][idx] != -1) {
-            return dp[d][idx];
         }
 
         int max = 0;

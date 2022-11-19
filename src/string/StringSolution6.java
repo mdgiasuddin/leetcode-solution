@@ -317,4 +317,77 @@ public class StringSolution6 {
         return result;
     }
 
+    // Leetcode problem: 819
+    /*
+     *  Most Common Word.
+     * */
+    public String mostCommonWord(String paragraph, String[] banned) {
+        String[] splitted = paragraph.toLowerCase().split("[\\s!?',;.]+");
+
+        Set<String> bannedSet = new HashSet<>(Arrays.asList(banned));
+
+        Map<String, Integer> countMap = new HashMap<>();
+        String ans = "";
+        int max = 0;
+        for (String str : splitted) {
+            if (!bannedSet.contains(str)) {
+                int count = countMap.getOrDefault(str, 0) + 1;
+                countMap.put(str, count);
+
+                if (count > max) {
+                    max = count;
+                    ans = str;
+                }
+            }
+        }
+
+        return ans;
+    }
+
+    // Leetcode problem:692
+    /*
+     *  Top K Frequent Words
+     * */
+    public List<String> topKFrequent(String[] words, int k) {
+        Map<String, Integer> countMap = new HashMap<>();
+
+        for (String word : words) {
+            int count = countMap.getOrDefault(word, 0) + 1;
+            countMap.put(word, count);
+        }
+
+        List<WordCount> list = new ArrayList<>();
+        for (Map.Entry<String, Integer> entry : countMap.entrySet()) {
+            list.add(new WordCount(entry.getKey(), entry.getValue()));
+        }
+
+        PriorityQueue<WordCount> queue = new PriorityQueue<>(list);
+        List<String> result = new ArrayList<>();
+
+        for (int i = 0; i < k; i++) {
+            result.add(queue.poll().word);
+        }
+
+        return result;
+    }
+
+}
+
+class WordCount implements Comparable<WordCount> {
+    String word;
+    int count;
+
+    public WordCount(String word, int count) {
+        this.word = word;
+        this.count = count;
+    }
+
+    @Override
+    public int compareTo(WordCount wc) {
+        if (this.count == wc.count) {
+            return this.word.compareTo(wc.word);
+        }
+
+        return wc.count - this.count;
+    }
 }

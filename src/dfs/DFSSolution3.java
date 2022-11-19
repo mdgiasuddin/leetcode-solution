@@ -300,4 +300,36 @@ public class DFSSolution3 {
 
         return true;
     }
+
+    // Leetcode problem: 419
+    /*
+     * Battleships in a Board.
+     * The problem is completely same as: Number of Islands (Leetcode problem: 200)
+     * */
+    public int countBattleships(char[][] board) {
+
+        int res = 0;
+        for (int r = 0; r < board.length; r++) {
+            for (int c = 0; c < board[0].length; c++) {
+                if (board[r][c] == 'X') {
+                    res += 1;
+                    countBattleships(r, c, board);
+                }
+            }
+        }
+
+        return res;
+    }
+
+    public void countBattleships(int r, int c, char[][] board) {
+        if (r < 0 || r >= board.length || c < 0 || c >= board[0].length || board[r][c] != 'X') {
+            return;
+        }
+
+        board[r][c] = '*';
+        countBattleships(r - 1, c, board);
+        countBattleships(r + 1, c, board);
+        countBattleships(r, c - 1, board);
+        countBattleships(r, c + 1, board);
+    }
 }

@@ -274,4 +274,54 @@ public class BFSSolution2 {
 
         return mat;
     }
+
+    // Leetcode problem: 838
+    /*
+     * Push Dominoes.
+     * */
+    public String pushDominoes(String dominoes) {
+        Queue<DominoPair> queue = new ArrayDeque<>();
+        char[] dominoArray = dominoes.toCharArray();
+        int n = dominoes.length();
+
+        for (int i = 0; i < n; i++) {
+            char ch = dominoes.charAt(i);
+
+            if (ch != '.') {
+                queue.add(new DominoPair(ch, i));
+            }
+        }
+
+        while (!queue.isEmpty()) {
+            DominoPair p = queue.poll();
+
+            if (p.domino == 'L' && p.index > 0 && dominoArray[p.index - 1] == '.') {
+                // Don't need to check previous 'R'. If 'R' exists then 'L' will already minimized.
+                dominoArray[p.index - 1] = 'L';
+                queue.add(new DominoPair('L', p.index - 1));
+            } else if (p.domino == 'R') {
+                if (p.index + 1 < n && dominoArray[p.index + 1] == '.') {
+                    if (p.index + 2 < n && dominoArray[p.index + 2] == 'L') {
+                        // The effect or 'R' is minimized by 'L'.
+                        queue.poll();
+                    } else {
+                        dominoArray[p.index + 1] = 'R';
+                        queue.add(new DominoPair('R', p.index + 1));
+                    }
+                }
+            }
+        }
+
+        return String.valueOf(dominoArray);
+    }
+}
+
+class DominoPair {
+    char domino;
+    int index;
+
+    public DominoPair(char domino, int index) {
+        this.domino = domino;
+        this.index = index;
+    }
 }

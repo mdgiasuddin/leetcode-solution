@@ -184,4 +184,94 @@ public class ArraySolution6 {
         return result;
 
     }
+
+    // Leetcode problem: 1010
+    /*
+     * Pairs of Songs With Total Durations Divisible by 60.
+     * */
+    public int numPairsDivisibleBy60(int[] time) {
+        Map<Integer, Long> countMap = new HashMap<>();
+
+        for (int t : time) {
+            long count = countMap.getOrDefault(t % 60, 0L);
+            countMap.put(t % 60, count + 1);
+        }
+
+        long zeroCount = countMap.getOrDefault(0, 0L);
+        long thirtyCount = countMap.getOrDefault(30, 0L);
+        long res = (zeroCount * (zeroCount - 1)) / 2;
+        res += (thirtyCount * (thirtyCount - 1)) / 2;
+
+        countMap.remove(0);
+        countMap.remove(30);
+
+        for (Map.Entry<Integer, Long> entry : countMap.entrySet()) {
+            if (entry.getKey() < 30 && countMap.containsKey(60 - entry.getKey())) {
+                res += entry.getValue() * countMap.get(60 - entry.getKey());
+            }
+        }
+
+        return (int) res;
+    }
+
+    public int[] prisonAfterNDays(int[] cells, int n) {
+        List<List<Integer>> states = new ArrayList<>();
+
+        int[] tmp = new int[8];
+        while (n-- > 0) {
+            tmp[0] = tmp[7] = 0;
+            for (int i = 1; i <= 6; i++) {
+                tmp[i] = cells[i - 1] == cells[i + 1] ? 1 : 0;
+            }
+
+            List<Integer> tmpList = Arrays.stream(tmp).boxed().toList();
+
+            if (!states.isEmpty() && states.get(0).equals(tmpList)) {
+                return states.get(n % states.size()).stream().mapToInt(i -> i).toArray();
+            }
+            states.add(tmpList);
+            System.arraycopy(tmp, 0, cells, 0, tmp.length);
+        }
+
+        return tmp;
+
+    }
+
+    // Leetcode problem: 1007
+    /*
+     * Minimum Domino Rotations For Equal Row.
+     * */
+    public int minDominoRotations(int[] tops, int[] bottoms) {
+
+        // Try to transform to the first top row or bottom row value.
+        int[] targets = {tops[0], bottoms[0]};
+
+        int n = tops.length;
+        int res = n + 1;
+        for (int target : targets) {
+            int topRotate = 0;
+            int bottomRotate = 0;
+            int i = 0;
+            for (; i < n; i++) {
+                if (tops[i] != target && bottoms[i] != target) {
+                    // Transformation is not possible.
+                    break;
+                }
+
+                if (tops[i] != target) {
+                    topRotate += 1;
+                }
+                if (bottoms[i] != target) {
+                    bottomRotate += 1;
+                }
+            }
+
+            // If transformation is possible.
+            if (i == n) {
+                res = Math.min(res, Math.min(topRotate, bottomRotate));
+            }
+        }
+
+        return (res == n + 1) ? -1 : res;
+    }
 }
