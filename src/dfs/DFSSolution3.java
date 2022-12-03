@@ -332,4 +332,82 @@ public class DFSSolution3 {
         countBattleships(r, c - 1, board);
         countBattleships(r, c + 1, board);
     }
+
+    // Leetcode problem: 1319
+    /*
+     * Number of Operations to Make Network Connected
+     * */
+    public int makeConnected(int n, int[][] connections) {
+
+        // To connect all the nodes in a single network, there must have n-1 edges.
+        if (n > connections.length + 1) {
+            return -1;
+        }
+
+        List<List<Integer>> graph = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            graph.add(new ArrayList<>());
+        }
+
+        for (int[] connection : connections) {
+            graph.get(connection[0]).add(connection[1]);
+            graph.get(connection[1]).add(connection[0]);
+        }
+
+        // Count the number of connected components.
+        boolean[] visited = new boolean[n];
+        int components = 0;
+        for (int i = 0; i < n; i++) {
+            if (!visited[i]) {
+                makeConnected(i, graph, visited);
+                components += 1;
+            }
+        }
+
+        // Add cables between the networks.
+        return components - 1;
+    }
+
+    public void makeConnected(int u, List<List<Integer>> graph, boolean[] visited) {
+        if (visited[u]) {
+            return;
+        }
+
+        visited[u] = true;
+        for (int v : graph.get(u)) {
+            makeConnected(v, graph, visited);
+        }
+    }
+
+    // Leetcode problem: 174
+    /*
+     * Dungeon Game.
+     * Code source: https://www.youtube.com/watch?v=4uUGxZXoR5o&t=250s
+     * Solve by bottom-up approach for bottom-right cell.
+     * Positive value in DP means we can reach to bottom-right cell with 0 power.
+     * So make it 0.
+     * */
+    public int calculateMinimumHP(int[][] dungeon) {
+        int m = dungeon.length;
+        int n = dungeon[0].length;
+
+        int[][] dp = new int[m][n];
+        dp[m - 1][n - 1] = Math.min(0, dungeon[m - 1][n - 1]);
+
+        for (int r = m - 2; r >= 0; r--) {
+            dp[r][n - 1] = Math.min(0, dungeon[r][n - 1] + dp[r + 1][n - 1]);
+        }
+
+        for (int c = n - 2; c >= 0; c--) {
+            dp[m - 1][c] = Math.min(0, dungeon[m - 1][c] + dp[m - 1][c + 1]);
+        }
+
+        for (int r = m - 2; r >= 0; r--) {
+            for (int c = n - 2; c >= 0; c--) {
+                dp[r][c] = Math.min(0, dungeon[r][c] + Math.max(dp[r][c + 1], dp[r + 1][c]));
+            }
+        }
+
+        return 1 + Math.abs(dp[0][0]);
+    }
 }

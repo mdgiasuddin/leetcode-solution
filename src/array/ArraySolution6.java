@@ -274,4 +274,56 @@ public class ArraySolution6 {
 
         return (res == n + 1) ? -1 : res;
     }
+
+    // Leetcode problem: 163
+    // Lintcode problem: 641
+    /*
+     * Missing Ranges.
+     * */
+    public List<String> findMissingRanges(int[] nums, int lower, int upper) {
+        List<String> missingRanges = new ArrayList<>();
+
+        int n = nums.length;
+        if (nums.length == 0 || upper < nums[0] || lower > nums[n - 1]) {
+            if (upper > lower) {
+                missingRanges.add(lower + "->" + upper);
+            } else {
+                missingRanges.add(lower + "");
+            }
+            return missingRanges;
+        }
+
+        int i = 0;
+        while (nums[i] < lower) {
+            i += 1;
+        }
+
+        if (lower < nums[i]) {
+            if (nums[0] - 1 > lower) {
+                missingRanges.add(lower + "->" + (nums[i] - 1));
+            } else {
+                missingRanges.add(lower + "");
+            }
+        }
+        while (i + 1 < nums.length && nums[i] < upper) {
+            if (nums[i + 1] > nums[i] + 1) {
+                if (nums[i + 1] - 1 > nums[i] + 1) {
+                    missingRanges.add((nums[i] + 1) + "->" + (Math.min(upper, nums[i + 1]) - 1));
+                } else {
+                    missingRanges.add(nums[i] + 1 + "");
+                }
+            }
+            i += 1;
+        }
+
+        if (nums[i] < upper) {
+            if (nums[i] + 1 < upper) {
+                missingRanges.add((nums[i] + 1) + "->" + upper);
+            } else {
+                missingRanges.add(upper + "");
+            }
+        }
+
+        return missingRanges;
+    }
 }

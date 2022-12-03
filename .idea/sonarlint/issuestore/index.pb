@@ -19,7 +19,7 @@ I
 src/trie/TrieNodeNew.java,e\4\e4a0c6231b333f0d9ad712d0d8617f72381062cd
 N
 src/trie/TrieAutoComplete.java,4\4\444946113825bcc5672cd15c7d1849c025e34d37
-O
-src/string/StringSolution7.java,5\c\5cd589b5cb745b51ec743cf4ae5dc6de0f38b9f2
 T
 $src/tech_dose/RangeMinimumQuery.java,6\f\6fb380b719f3d2a8b0b932b19ee8905bbfd4dfa4
+I
+src/bfs/BFSSolution2.java,d\2\d2620dce3e2e630e30d3b5ad8270deec14b8977e
