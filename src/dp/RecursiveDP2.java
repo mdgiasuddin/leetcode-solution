@@ -178,4 +178,49 @@ public class RecursiveDP2 {
 
         return dp[d][idx] = result;
     }
+
+    // Leetcode problem: 741
+    /*
+     * Cherry Pickup.
+     * Explanation: https://www.youtube.com/watch?v=ZV0sUzfA7Eg
+     * */
+    public int cherryPickup(int[][] grid) {
+        int n = grid.length;
+        int[][][] dp = new int[n][n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                for (int k = 0; k < n; k++) {
+                    dp[i][j][k] = -1;
+                }
+            }
+        }
+
+        return Math.max(0, cherryPickup(0, 0, 0, grid, dp));
+    }
+
+    private int cherryPickup(int r1, int c1, int r2, int[][] grid, int[][][] dp) {
+        int c2 = r1 + c1 - r2;
+        if (r1 >= grid.length || c1 >= grid[0].length || r2 >= grid.length || c2 >= grid[0].length || grid[r1][c1] == -1 || grid[r2][c2] == -1) {
+            return Integer.MIN_VALUE;
+        }
+
+        if (r1 == grid.length - 1 && c1 == grid[0].length - 1) {
+            return grid[r1][c1];
+        }
+
+        if (dp[r1][c1][r2] != -1) {
+            return dp[r1][c1][r2];
+        }
+
+        int cherries = (r1 == r2 && c1 == c2) ? grid[r1][c1] : grid[r1][c1] + grid[r2][c2];
+        int hh = cherryPickup(r1, c1 + 1, r2, grid, dp);
+        int hv = cherryPickup(r1, c1 + 1, r2 + 1, grid, dp);
+        int vh = cherryPickup(r1 + 1, c1, r2, grid, dp);
+        int vv = cherryPickup(r1 + 1, c1, r2 + 1, grid, dp);
+
+        cherries += Math.max(Math.max(hh, hv), Math.max(vh, vv));
+        dp[r1][c1][r2] = cherries;
+
+        return cherries;
+    }
 }

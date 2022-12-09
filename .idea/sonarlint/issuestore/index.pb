@@ -23,3 +23,5 @@ T
 $src/tech_dose/RangeMinimumQuery.java,6\f\6fb380b719f3d2a8b0b932b19ee8905bbfd4dfa4
 I
 src/bfs/BFSSolution2.java,d\2\d2620dce3e2e630e30d3b5ad8270deec14b8977e
+I
+src/dfs/DFSSolution3.java,9\0\901a96c467a481d14f81eb7114a8394f4bb3ea42
