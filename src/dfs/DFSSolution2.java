@@ -150,6 +150,7 @@ public class DFSSolution2 {
         return copy;
     }
 
+    // Leetcode problem: 261
     // Lintcode problem: 178
     public boolean validTree(int n, int[][] edges) {
 

@@ -1,0 +1,34 @@
+
+d
+java:S1192Ö"HDefine a constant instead of duplicating this literal "Hundred" 4 times.(ºÎ“ÿÿÿÿÿ
+z
+java:S4165Ë"cRemove this useless assignment; "minus" already holds the assigned value along all execution paths.(Ã›Í¤
+@
+java:S1659"%Declare "prevRev" on a separate line.(ã³ùÿÿÿÿ
+]
+java:S1659)"BDeclare "power" and all following declarations on a separate line.(Ç’²áûÿÿÿÿ
+5
+java:S1659G"Declare "j" on a separate line.(ü™î
+]
+java:S1659g"BDeclare "right" and all following declarations on a separate line.(»Ö½¢ûÿÿÿÿ
+;
+java:S1659ˆ"Declare "x" on a separate line.(ƒ¿üÍùÿÿÿÿ
+^
+java:S1659Ì"BDeclare "ugly3" and all following declarations on a separate line.(«Ôªıÿÿÿÿ
+W
+java:S1659í"@Declare "end" and all following declarations on a separate line.(ıõÆÂ
+Q
+java:S1854€"5Remove this useless assignment to local variable "n".(ùòË™üÿÿÿÿ
+B
+java:S1481€"&Remove this unused "n" local variable.(ùòË™üÿÿÿÿ
+?
+java:S1659"#Declare "right" on a separate line.(÷™¡…şÿÿÿÿ
+A
+java:S1659û"%Declare "subQuot" on a separate line.(»ú—ûÿÿÿÿ
+W	java:S125ş"<This block of commented-out lines of code should be removed.(…¢½“úÿÿÿÿ
+T	java:S106"9Replace this use of System.out or System.err by a logger.(“Ê‡¿ûÿÿÿÿ
+T	java:S106„"9Replace this use of System.out or System.err by a logger.(øÊÎÇûÿÿÿÿ
+T	java:S106†"9Replace this use of System.out or System.err by a logger.(ÌùÆ‡ÿÿÿÿÿ
+T	java:S106ˆ"9Replace this use of System.out or System.err by a logger.(ñåßşÿÿÿÿ
+6
+java:S1659Ã"Declare "i" on a separate line.(ÆãÎÄ

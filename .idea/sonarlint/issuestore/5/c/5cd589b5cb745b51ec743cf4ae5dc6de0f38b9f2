@@ -1,0 +1,16 @@
+
+M
+java:S1854	"8Remove this useless assignment to local variable "strs".(µ·Ô
+>
+java:S1481	")Remove this unused "strs" local variable.(µ·Ô
+N	java:S106"9Replace this use of System.out or System.err by a logger.(ïÄÀŒ
+_
+java:S1659Y"DDeclare "closing" and all following declarations on a separate line.(ÿè˜øÿÿÿÿ
+E
+java:S1659°")Declare "domainFound" on a separate line.(üÃœöüÿÿÿÿ
+W	java:S125ª"<This block of commented-out lines of code should be removed.(·ÃÉşÿÿÿÿ
+W	java:S125ª"<This block of commented-out lines of code should be removed.(·ÃÉşÿÿÿÿ
+3
+java:S1116Á"Remove this empty statement.(‹¥°ğ
+;
+java:S1659À"Declare "j" on a separate line.(á”æåşÿÿÿÿ

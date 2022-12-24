@@ -1,0 +1,13 @@
+
+h
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(ùþë‹
+=
+java:S1659"""Declare "high" on a separate line.(žºŠÈûÿÿÿÿ
+>
+java:S1659x"#Declare "right" on a separate line.(’Æ¯Ïûÿÿÿÿ
+D
+java:S1659Œ"(Declare "currentSum" on a separate line.(µÐÉïúÿÿÿÿ
+U
+java:S1659±">Declare "n" and all following declarations on a separate line.(š‰šê
+n
+java:S3776Â"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(ÕÞÄÆþÿÿÿÿ

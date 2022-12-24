@@ -1,12 +1,6 @@
 
-S
-#src/bit_operation/BitOperation.java,4\6\46f66f5b3e200517881203aa809c062c4e45bdd7
-O
-src/dp/DynamicProgramming3.java,6\8\68d851db80677477cca4b757d44a8b9f7e5966b6
 G
 src/tree/TreeTest2.java,f\a\fac5a5b9ee428ba18994149e87fb28c846eb6755
-F
-src/tree/TreeTest.java,8\7\871573add4215c2342814c6e67604dd29b78e8db
 J
 src/math/MathSolution.java,2\b\2b069312f33aa97eae54a4d3e38404b4a3ca092f
 O
@@ -22,6 +16,36 @@ N
 T
 $src/tech_dose/RangeMinimumQuery.java,6\f\6fb380b719f3d2a8b0b932b19ee8905bbfd4dfa4
 I
-src/bfs/BFSSolution2.java,d\2\d2620dce3e2e630e30d3b5ad8270deec14b8977e
-I
 src/dfs/DFSSolution3.java,9\0\901a96c467a481d14f81eb7114a8394f4bb3ea42
+H
+src/bfs/BFSSolution.java,c\5\c5a523222dbe9b3d407e9715523d86b2ed98faf4
+[
++src/binary_search/BinarySearchSolution.java,d\d\ddb25a37922b7471d8933add896ce1256f17e1ac
+O
+src/string/StringSolution2.java,f\6\f60aa37a1381221cbdb29e305deafd2979e72aa6
+J
+src/heap/HeapSolution.java,7\6\7628927ef928478bd4d4ab97042e91d355fe7cb5
+Q
+!src/indefinite/FirstSolution.java,c\4\c47c70749129586793c84671ef203ae6644938f1
+G
+src/array/Solution.java,5\3\536ed8b87582edacfc5e371aadb1351eb1cc633d
+I
+src/dfs/DFSSolution2.java,5\8\58e1560c74291e42beb3da3198a47fcd72e67e09
+I
+src/bfs/BFSSolution2.java,d\2\d2620dce3e2e630e30d3b5ad8270deec14b8977e
+O
+src/string/StringSolution7.java,5\c\5cd589b5cb745b51ec743cf4ae5dc6de0f38b9f2
+H
+src/dp/RecursiveDP2.java,a\9\a93249217621d3ccf585bf8fdc376affde6b17e8
+O
+src/graph/tarjans_algorithm.txt,e\c\ec925c92f6d6ab8e85029e323be65e70081d363a
+S
+#src/bit_operation/BitOperation.java,4\6\46f66f5b3e200517881203aa809c062c4e45bdd7
+C
+src/tree/Codec.java,a\f\af890bdee3a78ed1247fe61713d09a762d96a778
+R
+"src/lintcode/LintCodeSolution.java,9\1\915c612460b35f4a608e7c88715ff0b2d17f77bf
+B
+src/tree/Node.java,e\b\eb08431c9a1d4132e58b7fc55b94fc9950410e4f
+I
+src/tree/TreeBalance.java,b\e\be28c578ebc19e8a4d61a8c74a219b143e8100e0

@@ -10,7 +10,7 @@ void DFS_BRIDGES(int u,vector<int>& disc,vector<int>& low,vector<int>& parent,ve
 		if(disc[v]==-1)	//If v is not visited
 		{
 			parent[v] = u;
-			DFS(v,disc,low,parent,bridge);
+			DFS_BRIDGES(v,disc,low,parent,bridge);
 			low[u] = min(low[u],low[v]);
 
 			if(low[v] > disc[u])
@@ -20,6 +20,7 @@ void DFS_BRIDGES(int u,vector<int>& disc,vector<int>& low,vector<int>& parent,ve
 			low[u] = min(low[u],disc[v]);
 	}
 }
+
 
 // Explanation: https://www.youtube.com/watch?v=64KK9K4RpKE&t=32s
 void DFS_AP(int u,vector<int>& disc,vector<int>& low,vector<int>& parent,vector<bool>& articulation_Point)
@@ -35,7 +36,7 @@ void DFS_AP(int u,vector<int>& disc,vector<int>& low,vector<int>& parent,vector<
 		{
 			children += 1;
 			parent[v] = u;
-			DFS(v,disc,low,parent,articulation_Point);
+			DFS_AP(v,disc,low,parent,articulation_Point);
 			low[u] = min(low[u],low[v]);
 
 			if(parent[u]==-1 and children>1)	//Case-1: U is root
@@ -62,7 +63,7 @@ void DFS_SCC(int u,vector<int>& disc,vector<int>& low,stack<int>& mystack,vector
 	{
 		if(disc[v]==-1)	//If v is not visited
 		{
-			DFS(v,disc,low,mystack,presentInStack);
+			DFS_SCC(v,disc,low,mystack,presentInStack);
 			low[u] = min(low[u],low[v]);
 		}
 		//Differentiate back-edge and cross-edge

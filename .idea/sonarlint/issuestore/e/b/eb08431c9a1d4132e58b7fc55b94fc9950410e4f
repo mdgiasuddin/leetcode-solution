@@ -1,0 +1,16 @@
+
+f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(àÛÀ¼
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(îÈ×óþÿÿÿÿ
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(îÈ×óþÿÿÿÿ
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(îÈ×óþÿÿÿÿ
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(îÈ×óþÿÿÿÿ
+e
+java:S1104"OMake val a static final constant or non-public and provide accessors if needed.(Ô¸úÏ
+f
+java:S1104"PMake left a static final constant or non-public and provide accessors if needed.(ó÷ÔÄ
+g
+java:S1104"QMake right a static final constant or non-public and provide accessors if needed.(Ö¢è¥
+k
+java:S1104"PMake next a static final constant or non-public and provide accessors if needed.(±±èÃøÿÿÿÿ
+7
+java:S1116"Remove this empty statement.(ôŸŽìúÿÿÿÿ

@@ -100,4 +100,43 @@ public class GraphSolution {
 
         return visited.size() == n ? t : -1;
     }
+
+    // Leetcode problem: 1584
+    /*
+     * Min Cost to Connect All Points.
+     * Minimum spanning tree (Prim's Algorithm).
+     * */
+    public int minCostConnectPoints(int[][] points) {
+        int n = points.length;
+
+        // Build up adjacency matrix to calculate distance between each pair.
+        int[][] matrix = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                int dist = Math.abs(points[i][0] - points[j][0]) + Math.abs(points[i][1] - points[j][1]);
+                matrix[i][j] = matrix[j][i] = dist;
+            }
+        }
+
+        PriorityQueue<int[]> queue = new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));
+        queue.add(new int[]{0, 0});
+
+        int res = 0;
+        boolean[] visited = new boolean[n];
+        while (!queue.isEmpty()) {
+            int[] point = queue.poll();
+
+            if (!visited[point[1]]) {
+                res += point[0];
+                visited[point[1]] = true;
+                for (int i = 0; i < n; i++) {
+                    if (!visited[i]) {
+                        queue.add(new int[]{matrix[point[1]][i], i});
+                    }
+                }
+            }
+        }
+
+        return res;
+    }
 }

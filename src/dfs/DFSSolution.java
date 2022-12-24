@@ -393,6 +393,8 @@ public class DFSSolution {
         visited[r][c] = true;
         boolean subIsland = grid1[r][c] != 0;
 
+        // subIsland = subIsland && dfsCountIsland(...) cannot be written.
+        // It will take previously saved value of subIsland & give the wrong answer.
         subIsland &= dfsCountIsland(r - 1, c, grid1, grid2, visited);
         subIsland &= dfsCountIsland(r + 1, c, grid1, grid2, visited);
         subIsland &= dfsCountIsland(r, c - 1, grid1, grid2, visited);

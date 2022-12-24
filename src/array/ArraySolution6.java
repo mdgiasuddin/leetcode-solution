@@ -326,4 +326,27 @@ public class ArraySolution6 {
 
         return missingRanges;
     }
+
+    // Leetcode problem: 1968
+    /*
+     * Array With Elements Not Equal to Average of Neighbors.
+     * */
+    public int[] rearrangeArray(int[] nums) {
+        Arrays.sort(nums);
+        int n = nums.length;
+        int l = 0;
+        int r = n - 1;
+        int idx = 0;
+        int[] res = new int[n];
+
+        while (idx < n) {
+            res[idx++] = nums[l++];
+
+            if (l <= r) {
+                res[idx++] = nums[r--];
+            }
+        }
+
+        return res;
+    }
 }

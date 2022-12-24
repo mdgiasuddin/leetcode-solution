@@ -1,0 +1,25 @@
+
+m	java:S127~"XRefactor the code in order to not assign to this loop counter from within the loop body.(Ì‚ˆÌ
+n	java:S127„"XRefactor the code in order to not assign to this loop counter from within the loop body.(Ì‚ˆÌ
+V
+java:S1854";Remove this useless assignment to local variable "numbers".(ÎÚÕ«üÿÿÿÿ
+Q	java:S125
+"<This block of commented-out lines of code should be removed.(°ñ³
+G
+java:S1481",Remove this unused "numbers" local variable.(ÎÚÕ«üÿÿÿÿ
+N	java:S106"9Replace this use of System.out or System.err by a logger.(£¶æ®
+V	java:S125"<This block of commented-out lines of code should be removed.(¿ŠÊ£ùÿÿÿÿ
+A
+java:S1659$"&Declare "operator" on a separate line.(žì¦©úÿÿÿÿ
+O
+java:S1117z"9Rename "index" which hides the field declared at line 33.(ìüà·
+:
+java:S1659¾"#Declare "right" on a separate line.(•±¾¯
+h
+java:S3776½"RRefactor this method to reduce its Cognitive Complexity from 35 to the 15 allowed.(¿ç—[
+e
+java:S1659¾"IDeclare "xCoefficient" and all following declarations on a separate line.(Ï¥ô·ÿÿÿÿÿ
+8
+java:S1659Ì"!Declare "num" on a separate line.(—ŒêÈ
+8
+java:S1659è"!Declare "num" on a separate line.(—ŒêÈ

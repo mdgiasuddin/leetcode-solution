@@ -1,0 +1,11 @@
+
+V
+java:S1854	"@Remove this useless assignment to local variable "heapSolution".(éªÀÏ
+G
+java:S1481	"1Remove this unused "heapSolution" local variable.(éªÀÏ
+5
+java:S1659X"Declare "t" on a separate line.(­Ç÷¯
+A
+java:S1197§"*Move the array designators [] to the type.(–ÇÂ§
+8
+java:S1116°"Remove this empty statement.(Åñ­õþÿÿÿÿ
