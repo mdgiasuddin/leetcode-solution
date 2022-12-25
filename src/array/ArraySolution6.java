@@ -349,4 +349,55 @@ public class ArraySolution6 {
 
         return res;
     }
+
+    // Leetcode problem: 454
+    /*
+     * 4Sum II.
+     * */
+    public int fourSumCount(int[] nums1, int[] nums2, int[] nums3, int[] nums4) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int n3 : nums3) {
+            for (int n4 : nums4) {
+                int count = map.getOrDefault(n3 + n4, 0);
+                map.put(n3 + n4, count + 1);
+            }
+        }
+
+        int count = 0;
+        for (int n1 : nums1) {
+            for (int n2 : nums2) {
+                count += map.getOrDefault(-(n1 + n2), 0);
+            }
+        }
+
+        return count;
+    }
+
+    // Leetcode problem: 350
+    /*
+     * Intersection of Two Arrays II.
+     * */
+    public int[] intersect(int[] nums1, int[] nums2) {
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for (int n : nums1) {
+            int count = map.getOrDefault(n, 0);
+            map.put(n, count + 1);
+        }
+
+        List<Integer> result = new ArrayList<>();
+        for (int n : nums2) {
+            if (map.containsKey(n)) {
+                result.add(n);
+                int count = map.get(n);
+                if (count == 1) {
+                    map.remove(n);
+                } else {
+                    map.replace(n, count - 1);
+                }
+            }
+        }
+
+        return result.stream().mapToInt(i -> i).toArray();
+    }
 }

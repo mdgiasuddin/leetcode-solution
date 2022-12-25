@@ -49,3 +49,11 @@ B
 src/tree/Node.java,e\b\eb08431c9a1d4132e58b7fc55b94fc9950410e4f
 I
 src/tree/TreeBalance.java,b\e\be28c578ebc19e8a4d61a8c74a219b143e8100e0
+F
+src/tree/TreeNode.java,7\1\71eaed7d6cd0e4bad71a2ba7173efcfb7af50130
+J
+src/tree/TreeSolution.java,1\7\1724e8f0c5ae3c3e513da450dfd5fc57f152e4d6
+K
+src/tree/TreeSolution2.java,b\2\b2b75bace0e3f9469b813275811bbb4b41e4c412
+K
+src/tree/TreeSolution3.java,0\1\01a7eb720b7413a5f292a913e65ec86d58e1e6bb
