@@ -19,8 +19,6 @@ I
 src/dfs/DFSSolution3.java,9\0\901a96c467a481d14f81eb7114a8394f4bb3ea42
 H
 src/bfs/BFSSolution.java,c\5\c5a523222dbe9b3d407e9715523d86b2ed98faf4
-[
-+src/binary_search/BinarySearchSolution.java,d\d\ddb25a37922b7471d8933add896ce1256f17e1ac
 O
 src/string/StringSolution2.java,f\6\f60aa37a1381221cbdb29e305deafd2979e72aa6
 J
@@ -57,3 +55,5 @@ K
 src/tree/TreeSolution2.java,b\2\b2b75bace0e3f9469b813275811bbb4b41e4c412
 K
 src/tree/TreeSolution3.java,0\1\01a7eb720b7413a5f292a913e65ec86d58e1e6bb
+F
+src/tree/TreeTest.java,8\7\871573add4215c2342814c6e67604dd29b78e8db

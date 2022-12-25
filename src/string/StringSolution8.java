@@ -108,4 +108,38 @@ public class StringSolution8 {
 
         return result.size();
     }
+
+    // Leetcode problem: 38
+    /*
+     * Count and Say.
+     * */
+    public String countAndSay(int n) {
+        String result = "1";
+
+        for (int i = 2; i <= n; i++) {
+            result = countAndSay(result);
+        }
+
+        return result;
+    }
+
+    private String countAndSay(String str) {
+        StringBuilder builder = new StringBuilder();
+        int count = 1;
+        int n = str.length();
+        for (int i = 1; i < n; i++) {
+            if (str.charAt(i) != str.charAt(i - 1)) {
+                builder.append(count);
+                builder.append(str.charAt(i - 1));
+                count = 1;
+            } else {
+                count += 1;
+            }
+        }
+
+        builder.append(count);
+        builder.append(str.charAt(n - 1));
+
+        return builder.toString();
+    }
 }

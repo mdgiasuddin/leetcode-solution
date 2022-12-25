@@ -350,4 +350,50 @@ public class BinarySearchSolution {
         return -1;
     }
 
+    // Leetcode problem: 378
+    /*
+     * Kth Smallest Element in a Sorted Matrix.
+     * */
+    public int kthSmallest(int[][] matrix, int k) {
+        int n = matrix.length;
+        int low = matrix[0][0];
+        int high = matrix[n - 1][n - 1];
+
+        // When low == high, we will get the exact element.
+        while (low < high) {
+            int mid = low + (high - low) / 2;
+            int rank = lessEqual(matrix, mid);
+            if (rank < k) {
+                low = mid + 1;
+            } else {
+                high = mid;
+            }
+        }
+
+        return low;
+    }
+
+    /*
+     * Count how many numbers are <= to the target number.
+     * */
+    private int lessEqual(int[][] matrix, int target) {
+        int count = 0;
+        int n = matrix.length;
+        int r = 0;
+        int c = n - 1;
+
+        while (r < n && c >= 0) {
+            if (target < matrix[r][c]) {
+                c -= 1;
+            } else {
+                // Go to the next row. So all the elements of current row are <=.
+                // r, c are 0 indexed, so add c + 1.
+                count += (c + 1);
+                r += 1;
+            }
+        }
+
+        return count;
+    }
+
 }
