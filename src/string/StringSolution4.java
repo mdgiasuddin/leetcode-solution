@@ -6,8 +6,6 @@ public class StringSolution4 {
 
     public static void main(String[] args) {
         StringSolution4 stringSolution4 = new StringSolution4();
-
-//        System.out.println(stringSolution4.isValidSerialization("9,3,4,#,#,1,#,#,2,#,6,#,#"));
     }
 
     // Leetcode problem: 301

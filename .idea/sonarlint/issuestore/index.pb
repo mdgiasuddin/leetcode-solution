@@ -3,8 +3,6 @@ G
 src/tree/TreeTest2.java,f\a\fac5a5b9ee428ba18994149e87fb28c846eb6755
 J
 src/math/MathSolution.java,2\b\2b069312f33aa97eae54a4d3e38404b4a3ca092f
-O
-src/dp/DynamicProgramming2.java,5\5\5526a3d23baac2d3eddce0cc3d60d849cbb011d7
 L
 src/trie/TrieNodePrefix.java,f\8\f8e59b8f2e6fbf4f623eedebbb06381aebbc4b29
 B
@@ -57,3 +55,11 @@ K
 src/tree/TreeSolution3.java,0\1\01a7eb720b7413a5f292a913e65ec86d58e1e6bb
 F
 src/tree/TreeTest.java,8\7\871573add4215c2342814c6e67604dd29b78e8db
+T
+$src/amazon_interview/AmazonCode.java,1\b\1b35a59514bbbdfe5aafe209ce002823952e7347
+X
+(src/amazon_interview/AmazonSolution.java,5\f\5fd1479df7dfe33442f439b37793955828809837
+O
+src/dp/DynamicProgramming3.java,6\8\68d851db80677477cca4b757d44a8b9f7e5966b6
+O
+src/string/StringSolution8.java,f\e\fe3791e146ac3f52a0a74a7378fe0222657453ad

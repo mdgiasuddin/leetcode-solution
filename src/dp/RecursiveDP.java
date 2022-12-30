@@ -181,6 +181,10 @@ public class RecursiveDP {
     }
 
     // Leetcode problem: 691
+    /*
+     * Stickers to Spell Word.
+     * This issue is tricky.
+     * */
     public int minStickers(String[] stickers, String target) {
         List<Map<Character, Integer>> stickCounts = new ArrayList<>();
 
