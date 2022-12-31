@@ -1,13 +1,14 @@
 package string;
 
 import java.util.*;
+import java.util.regex.Pattern;
 
 public class StringSolution8 {
 
     public static void main(String[] args) {
         StringSolution8 stringSolution8 = new StringSolution8();
 
-        System.out.println(stringSolution8.findStrobogrammatic(3));
+        System.out.println(stringSolution8.validIPAddress("172.16.254.1"));
     }
 
     // Leetcode problem: 246
@@ -141,5 +142,26 @@ public class StringSolution8 {
         builder.append(str.charAt(n - 1));
 
         return builder.toString();
+    }
+
+    // Leetcode problem: 468
+    /*
+     * Validate IP Address.
+     * \\d => [0-9]
+     * Explanation: https://www.youtube.com/watch?v=EB5FAwHqpm4&list=PLEJXowNB4kPxxaPCDVrZhSvW3NSD6ATaS&index=16
+     * */
+    public String validIPAddress(String queryIP) {
+        String regexIPv4 = "((\\d|[1-9]\\d|1\\d\\d|2[0-4]\\d|25[0-5])\\.){3}" +
+                "(\\d|[1-9]\\d|1\\d\\d|2[0-4]\\d|25[0-5])";
+
+        String regexIPv6 = "(([\\da-fA-F]{1,4}):){7}([\\da-fA-F]{1,4})";
+
+        if (Pattern.matches(regexIPv4, queryIP)) {
+            return "IPv4";
+        } else if (Pattern.matches(regexIPv6, queryIP)) {
+            return "IPv6";
+        }
+
+        return "Neither";
     }
 }

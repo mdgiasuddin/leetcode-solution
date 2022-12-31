@@ -1,11 +1,9 @@
 package dp;
 
 import pair.Pair;
+import tree.TreeNode;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class RecursiveDP {
     public static void main(String[] args) {
@@ -328,5 +326,82 @@ public class RecursiveDP {
         }
 
         return profit;
+    }
+
+    // Leetcode problem: 894
+    /*
+     * All Possible Full Binary Trees.
+     * */
+    public List<TreeNode> allPossibleFBT(int n) {
+        Map<Integer, List<TreeNode>> dp = new HashMap<>();
+        dp.put(1, Collections.singletonList(new TreeNode(0)));
+
+        return allPossibleFBT(n, dp);
+    }
+
+    public List<TreeNode> allPossibleFBT(int n, Map<Integer, List<TreeNode>> dp) {
+        if (dp.containsKey(n)) {
+            return dp.get(n);
+        }
+
+        List<TreeNode> res = new ArrayList<>();
+
+        // 1 ... n-2
+        for (int i = 1; i < n - 1; i++) {
+            List<TreeNode> leftTrees = allPossibleFBT(i, dp);
+            List<TreeNode> rightTrees = allPossibleFBT(n - 1 - i, dp);
+
+            for (TreeNode t1 : leftTrees) {
+                for (TreeNode t2 : rightTrees) {
+                    res.add(new TreeNode(0, t1, t2));
+                }
+            }
+        }
+
+        dp.put(n, res);
+        return res;
+    }
+
+    // Leetcode problem: 368
+    /*
+     * Largest Divisible Subset.
+     * This issue is similar to the longest increasing subsequence.
+     * Explanation: https://www.youtube.com/watch?v=Wv6DlL0Sawg&list=PLEJXowNB4kPxxaPCDVrZhSvW3NSD6ATaS&index=13+++
+     * */
+    public List<Integer> largestDivisibleSubset(int[] nums) {
+        Arrays.sort(nums);
+        int n = nums.length;
+        int[] lis = new int[n];
+        int[] parent = new int[n];
+        Arrays.fill(lis, 1);
+        Arrays.fill(parent, -1);
+
+        int max = 1;
+        for (int i = 1; i < n; i++) {
+            for (int j = i - 1; j >= 0; j--) {
+                if (nums[i] % nums[j] == 0) {
+                    if (1 + lis[j] <= lis[i]) {
+                        continue;
+                    }
+                    lis[i] = 1 + lis[j];
+                    parent[i] = j;
+                    max = Math.max(max, lis[i]);
+                }
+            }
+        }
+
+        int idx = n - 1;
+        while (lis[idx] != max) {
+            idx -= 1;
+        }
+
+        List<Integer> res = new ArrayList<>();
+        while (idx != -1) {
+            res.add(nums[idx]);
+            idx = parent[idx];
+        }
+
+        return res;
+
     }
 }
