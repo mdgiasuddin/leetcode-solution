@@ -11,8 +11,6 @@ I
 src/trie/TrieNodeNew.java,e\4\e4a0c6231b333f0d9ad712d0d8617f72381062cd
 N
 src/trie/TrieAutoComplete.java,4\4\444946113825bcc5672cd15c7d1849c025e34d37
-T
-$src/tech_dose/RangeMinimumQuery.java,6\f\6fb380b719f3d2a8b0b932b19ee8905bbfd4dfa4
 I
 src/dfs/DFSSolution3.java,9\0\901a96c467a481d14f81eb7114a8394f4bb3ea42
 H
@@ -57,13 +55,27 @@ T
 $src/amazon_interview/AmazonCode.java,1\b\1b35a59514bbbdfe5aafe209ce002823952e7347
 X
 (src/amazon_interview/AmazonSolution.java,5\f\5fd1479df7dfe33442f439b37793955828809837
-O
-src/dp/DynamicProgramming3.java,6\8\68d851db80677477cca4b757d44a8b9f7e5966b6
 X
 (src/recursion/BacktrackingSolution2.java,b\c\bcd49dc5a94f05e2eeb3dae5324dd947f5faa799
-M
-src/array/ArraySolution6.java,5\3\53b14ed3c73247ea990e467ad9702b6d72db6191
 K
 src/array/ShuffleArray.java,a\b\abc7e199ea16a243c261be5813f128b9127850f3
 E
 src/dp/BitmaskDP.java,6\3\633dd4cf773b4632c746b1dee558ec172d44af0a
+O
+src/dp/DynamicProgramming2.java,5\5\5526a3d23baac2d3eddce0cc3d60d849cbb011d7
+G
+src/dp/RecursiveDP.java,2\7\27b5be8f6a344fa5fd5f35a1cec2cfb07b6a67cd
+F
+src/tree/TreeNode.java,7\1\71eaed7d6cd0e4bad71a2ba7173efcfb7af50130
+O
+src/string/StringSolution8.java,f\e\fe3791e146ac3f52a0a74a7378fe0222657453ad
+N
+src/string/StringSolution.java,d\a\da2015293ef84e82849876617d3963bfab053055
+L
+src/stack/StackSolution.java,b\d\bd25789f5d2a9e65481486828b8060f5373369c0
+R
+"src/codility/CodilitySolution.java,6\4\643fb5171b514f63820b3ecbe3a031b13241fe96
+T
+$src/tech_dose/RangeMinimumQuery.java,6\f\6fb380b719f3d2a8b0b932b19ee8905bbfd4dfa4
+W
+'src/recursion/BacktrackingSolution.java,2\0\209c2701d4308b74cdc3110b337a657696ce56b9

@@ -400,4 +400,31 @@ public class ArraySolution6 {
 
         return result.stream().mapToInt(i -> i).toArray();
     }
+
+    // Leetcode problem: 918
+    /*
+     * Maximum Sum Circular Subarray.
+     * Explanation: https://www.youtube.com/watch?v=Q1TYVUEr-wY&list=PLEJXowNB4kPwR6C6yq3BzS-Jkyc6XE8kE&index=15
+     * */
+    public int maxSubarraySumCircular(int[] nums) {
+        int maxStraightSum = Integer.MIN_VALUE;
+        int tempMax = 0;
+        int arraySum = 0;
+        int minStraightSum = Integer.MAX_VALUE;
+        int tempMin = 0;
+
+        for (int num : nums) {
+            tempMax += num;
+            tempMin += num;
+            arraySum += num;
+
+            maxStraightSum = Math.max(maxStraightSum, tempMax);
+            minStraightSum = Math.min(minStraightSum, tempMin);
+
+            tempMax = Math.max(0, tempMax);
+            tempMin = Math.min(0, tempMin);
+        }
+
+        return arraySum == minStraightSum ? maxStraightSum : Math.max(maxStraightSum, arraySum - minStraightSum);
+    }
 }

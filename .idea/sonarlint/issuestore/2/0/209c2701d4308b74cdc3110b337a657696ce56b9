@@ -1,0 +1,21 @@
+
+l	java:S117»"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹ª“àúÿÿÿÿ
+l	java:S117»"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹ª“àúÿÿÿÿ
+Z
+java:S1854
+"ERemove this useless assignment to local variable "recursionSolution".(ø¨Ê"
+K
+java:S1481
+"6Remove this unused "recursionSolution" local variable.(ø¨Ê"
+@
+java:S5413“")Verify that "remove()" is used correctly.(ï×Ó¾
+E
+java:S5413Î")Verify that "remove()" is used correctly.(àÐ“ìùÿÿÿÿ
+=
+java:S1659Ô"!Declare "col" on a separate line.(¥™€ªûÿÿÿÿ
+E
+java:S5413¥")Verify that "remove()" is used correctly.(àÐ“ìùÿÿÿÿ
+>
+java:S1659»""Declare "COLS" on a separate line.(¹ª“àúÿÿÿÿ
+6
+java:S1659…"Declare "c" on a separate line.(ñ’ðë
