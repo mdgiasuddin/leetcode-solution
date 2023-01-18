@@ -1,8 +1,6 @@
 
 G
 src/tree/TreeTest2.java,f\a\fac5a5b9ee428ba18994149e87fb28c846eb6755
-J
-src/math/MathSolution.java,2\b\2b069312f33aa97eae54a4d3e38404b4a3ca092f
 L
 src/trie/TrieNodePrefix.java,f\8\f8e59b8f2e6fbf4f623eedebbb06381aebbc4b29
 B
@@ -11,8 +9,6 @@ I
 src/trie/TrieNodeNew.java,e\4\e4a0c6231b333f0d9ad712d0d8617f72381062cd
 N
 src/trie/TrieAutoComplete.java,4\4\444946113825bcc5672cd15c7d1849c025e34d37
-I
-src/dfs/DFSSolution3.java,9\0\901a96c467a481d14f81eb7114a8394f4bb3ea42
 H
 src/bfs/BFSSolution.java,c\5\c5a523222dbe9b3d407e9715523d86b2ed98faf4
 O
@@ -79,3 +75,13 @@ T
 $src/tech_dose/RangeMinimumQuery.java,6\f\6fb380b719f3d2a8b0b932b19ee8905bbfd4dfa4
 W
 'src/recursion/BacktrackingSolution.java,2\0\209c2701d4308b74cdc3110b337a657696ce56b9
+O
+src/dp/DynamicProgramming3.java,6\8\68d851db80677477cca4b757d44a8b9f7e5966b6
+M
+src/array/ArraySolution6.java,5\3\53b14ed3c73247ea990e467ad9702b6d72db6191
+M
+src/stack/StackSolution2.java,2\1\2151c7a08c259ad71f4779f2d892833feaf39ec5
+M
+src/array/ArraySolution7.java,7\b\7be05820cbac99ddfae2de5f9cd570c545b904a7
+I
+src/dfs/DFSSolution3.java,9\0\901a96c467a481d14f81eb7114a8394f4bb3ea42
