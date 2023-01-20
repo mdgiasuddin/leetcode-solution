@@ -1,0 +1,184 @@
+package hackerrank;
+
+import java.util.*;
+
+public class HackerRankSolution2 {
+
+    public static void main(String[] args) {
+        List<Integer> list1 = Arrays.asList(3, 2, 1, 1, 1);
+        List<Integer> list2 = Arrays.asList(4, 3, 2);
+        List<Integer> list3 = Arrays.asList(1, 1, 4, 1);
+        System.out.println(equalStacks(list1, list2, list3));
+    }
+
+    /*
+     * https://www.hackerrank.com/challenges/equal-stacks/problem?isFullScreen=true
+     * */
+    public static int equalStacks(List<Integer> h1, List<Integer> h2, List<Integer> h3) {
+
+        int totalHeight1 = 0;
+        int totalHeight2 = 0;
+        int totalHeight3 = 0;
+
+        for (int height1 : h1) {
+            totalHeight1 += height1;
+        }
+
+        for (int height2 : h2) {
+            totalHeight2 += height2;
+        }
+
+        for (int height3 : h3) {
+            totalHeight3 += height3;
+        }
+
+        int i = 0;
+        int j = 0;
+        int k = 0;
+
+        while (i < h1.size() && j < h2.size() && k < h3.size()) {
+            if (totalHeight1 == totalHeight2 && totalHeight1 == totalHeight3) {
+                return totalHeight3;
+            }
+
+            if (totalHeight1 >= totalHeight2 && totalHeight1 >= totalHeight3) {
+                totalHeight1 -= h1.get(i);
+                i += 1;
+            } else if (totalHeight2 >= totalHeight1 && totalHeight2 >= totalHeight3) {
+                totalHeight2 -= h2.get(j);
+                j += 1;
+            } else {
+                totalHeight3 -= h3.get(k);
+                k += 1;
+            }
+
+        }
+
+        return 0;
+    }
+
+    /*
+     * Hacker Rank: https://www.hackerrank.com/challenges/castle-on-the-grid/problem?h_r=internal-search
+     * Explanation: https://www.youtube.com/watch?v=oL7Hpzoo1CA&list=PL_8jNcohs27XFAHGaWEf90O-cCcOfF8Kd&index=9
+     * */
+    public static int minimumMoves(List<String> grid, int startX, int startY, int goalX, int goalY) {
+        int n = grid.size();
+        boolean[][] visited = new boolean[n][n];
+
+        Queue<int[]> queue = new LinkedList<>();
+        int[][] directions = {
+                {0, -1}, {0, 1}, {-1, 0}, {1, 0}
+        };
+
+        queue.add(new int[]{startX, startY});
+        visited[startX][startY] = true;
+
+        int moves = 0;
+        while (!queue.isEmpty()) {
+            int qSize = queue.size();
+
+            while (qSize-- > 0) {
+                int[] posXY = queue.poll();
+                if (posXY[0] == goalX && posXY[1] == goalY) {
+                    return moves;
+                }
+
+                for (int[] direction : directions) {
+                    int x = posXY[0] + direction[0];
+                    int y = posXY[1] + direction[1];
+
+                    while (x >= 0 && x < n && y >= 0 && y < n && grid.get(x).charAt(y) == '.') {
+                        if (!visited[x][y]) {
+                            visited[x][y] = true;
+                            queue.add(new int[]{x, y});
+                        }
+
+                        x += direction[0];
+                        y += direction[1];
+                    }
+
+                }
+
+            }
+
+            moves += 1;
+        }
+
+        return -1;
+    }
+
+    /*
+     * Hacker Rank: https://www.hackerrank.com/challenges/poisonous-plants/problem?h_r=internal-search
+     * Explanation: https://www.youtube.com/watch?v=QKkShXV-2cY&list=PL_8jNcohs27XFAHGaWEf90O-cCcOfF8Kd&index=11
+     * */
+    public static int poisonousPlants(List<Integer> p) {
+        int maxDay = 0;
+        Stack<int[]> stack = new Stack<>();
+
+        for (int ps : p) {
+            int day = 0;
+
+            // All the greater left values will be ignored.
+            while (!stack.isEmpty() && stack.peek()[0] >= ps) {
+                day = Math.max(day, stack.pop()[1]);
+            }
+
+            // If any other less value left, it will take 1 more day to die.
+            // Otherwise, it will be reset.
+            if (stack.isEmpty()) {
+                day = 0;
+            } else {
+                day += 1;
+            }
+
+            maxDay = Math.max(maxDay, day);
+            stack.push(new int[]{ps, day});
+        }
+
+        return maxDay;
+
+    }
+
+    /*
+     * Hacker Rank: https://www.hackerrank.com/challenges/icecream-parlor/problem?h_r=internal-search
+     * 2-sum problem.
+     * */
+    public static List<Integer> icecreamParlor(int m, List<Integer> arr) {
+
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < arr.size(); i++) {
+            if (map.containsKey(m - arr.get(i))) {
+                return Arrays.asList(map.get(m - arr.get(i)), i + 1);
+            }
+
+            map.put(arr.get(i), i + 1);
+        }
+
+        return new ArrayList<>();
+
+    }
+
+    /*
+     * Hacker Rank: https://www.hackerrank.com/challenges/pairs/problem?h_r=internal-search
+     * Variation of 2-sum problem.
+     * */
+    public static int pairs(int k, List<Integer> arr) {
+        Map<Integer, Integer> countMap = new HashMap<>();
+
+        for (int a : arr) {
+            int count = countMap.getOrDefault(a, 0);
+            countMap.put(a, count + 1);
+        }
+
+        int res = 0;
+        for (Map.Entry<Integer, Integer> entry : countMap.entrySet()) {
+            if (entry.getKey() > k && countMap.containsKey(entry.getKey() - k)) {
+                res += entry.getValue() * countMap.get(entry.getKey() - k);
+            }
+        }
+
+        return res;
+
+    }
+}
