@@ -139,4 +139,36 @@ public class GraphSolution {
 
         return res;
     }
+
+    // Leetcode problem: 2359
+    public int closestMeetingNode(int[] edges, int node1, int node2) {
+        Map<Integer, Integer> map1 = new HashMap<>();
+        Map<Integer, Integer> map2 = new HashMap<>();
+
+        bfs(node1, edges, map1);
+        bfs(node2, edges, map2);
+
+        int res = Integer.MAX_VALUE;
+        int maxDistance = Integer.MAX_VALUE;
+        for (Map.Entry<Integer, Integer> entry : map1.entrySet()) {
+            if (map2.containsKey(entry.getKey())) {
+                int distance = Math.max(entry.getValue(), map2.get(entry.getKey()));
+                if (distance < maxDistance || (distance == maxDistance && entry.getKey() < res)) {
+                    res = entry.getKey();
+                    maxDistance = distance;
+                }
+            }
+        }
+
+        return res == Integer.MAX_VALUE ? -1 : res;
+    }
+
+    private void bfs(int node, int[] edges, Map<Integer, Integer> map) {
+        int distance = 0;
+        while (node != -1 && !map.containsKey(node)) {
+            map.put(node, distance);
+            node = edges[node];
+            distance += 1;
+        }
+    }
 }

@@ -2,6 +2,7 @@ package string;
 
 import java.util.*;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class StringSolution8 {
 
@@ -164,4 +165,43 @@ public class StringSolution8 {
 
         return "Neither";
     }
+
+    // Leetcode problem: 2512
+    /*
+     * Reward Top K Students.
+     * */
+    public List<Integer> topStudents(String[] positive_feedback, String[] negative_feedback, String[] report, int[] student_id, int k) {
+        PriorityQueue<int[]> scores = new PriorityQueue<>((a, b) -> a[1] == b[1] ? a[0] - b[0] : b[1] - a[1]);
+
+        Set<String> positiveSet = Arrays.stream(positive_feedback).collect(Collectors.toSet());
+        Set<String> negativeSet = Arrays.stream(negative_feedback).collect(Collectors.toSet());
+
+        for (int i = 0; i < report.length; i++) {
+            int score = getScore(report[i], positiveSet, negativeSet);
+            scores.add(new int[]{student_id[i], score});
+        }
+
+        List<Integer> result = new ArrayList<>();
+        while (k-- > 0) {
+            result.add(scores.poll()[0]);
+        }
+
+        return result;
+    }
+
+    private int getScore(String report, Set<String> positiveSet, Set<String> negativeSet) {
+        int score = 0;
+
+        String[] reportArray = report.split(" ");
+        for (String word : reportArray) {
+            if (positiveSet.contains(word)) {
+                score += 3;
+            } else if (negativeSet.contains(word)) {
+                score -= 1;
+            }
+        }
+
+        return score;
+    }
+
 }

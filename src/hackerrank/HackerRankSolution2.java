@@ -5,10 +5,6 @@ import java.util.*;
 public class HackerRankSolution2 {
 
     public static void main(String[] args) {
-        List<Integer> list1 = Arrays.asList(3, 2, 1, 1, 1);
-        List<Integer> list2 = Arrays.asList(4, 3, 2);
-        List<Integer> list3 = Arrays.asList(1, 1, 4, 1);
-        System.out.println(equalStacks(list1, list2, list3));
     }
 
     /*
@@ -181,4 +177,38 @@ public class HackerRankSolution2 {
         return res;
 
     }
+
+    public static List<Integer> rotateLeft(int d, List<Integer> arr) {
+        List<Integer> newList = arr.subList(d, arr.size());
+        newList.addAll(arr.subList(0, d));
+
+        return newList;
+    }
+
+    /*
+     * Hacker Rank: https://www.hackerrank.com/challenges/sherlock-and-cost/problem?h_r=internal-search
+     * Explanation: https://www.youtube.com/watch?v=coH3k4DhLCM
+     * */
+    public static int cost(List<Integer> B) {
+        int prev1 = 0;
+        int prev2 = 0;
+        int max1 = 0;
+        int max2 = 0;
+
+        for (int i = 1; i < B.size(); i++) {
+            // max1 indicates B[i] is selected.
+            max1 = Math.max(prev1 + Math.abs(B.get(i) - B.get(i - 1))
+                    , prev2 + Math.abs(1 - B.get(i)));
+            // 1 is selected. => Math.max(prev1 + Math.abs(1 - B.get(i - 1)), prev2 + (1 - 1))
+            max2 = prev1 + Math.abs(1 - B.get(i - 1));
+
+            prev1 = max1;
+            prev2 = max2;
+        }
+
+        return Math.max(max1, max2);
+
+    }
+
+
 }
