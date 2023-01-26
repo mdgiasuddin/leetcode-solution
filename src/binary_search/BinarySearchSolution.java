@@ -396,4 +396,50 @@ public class BinarySearchSolution {
         return count;
     }
 
+    // Leetcode problem: 2517
+    /*
+     * Maximum Tastiness of Candy Basket.
+     * Explanation: https://www.youtube.com/watch?v=uHGWEGMCKm4
+     * */
+    public int maximumTastiness(int[] price, int k) {
+        Arrays.sort(price);
+        int left = 0;
+        int right = 0;
+
+        for (int p : price) {
+            right = Math.max(right, p);
+        }
+
+        int ans = 0;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            if (isSatisfy(price, mid, k)) {
+                ans = mid;
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+
+        return ans;
+    }
+
+    private boolean isSatisfy(int[] prices, int taste, int k) {
+        int prev = prices[0];
+        int found = 1;
+        int i = 1;
+
+        while (i < prices.length && found < k) {
+            if (prices[i] - prev >= taste) {
+                prev = prices[i];
+                found += 1;
+            }
+
+            i += 1;
+        }
+
+        return found == k;
+    }
+
 }

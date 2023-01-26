@@ -210,5 +210,29 @@ public class HackerRankSolution2 {
 
     }
 
+    /*
+     * Hacker Rank: https://www.hackerrank.com/challenges/sam-and-substrings/problem?h_r=internal-search
+     * Explanation: https://www.youtube.com/watch?v=1azkxwT_WZc
+     * */
+    public static int substrings(String n) {
+        long prev = 0;
+        long mod = 1000000007L;
+        long total = 0;
 
+        for (int i = 0; i < n.length(); i++) {
+            int digit = n.charAt(i) - '0';
+
+            /*
+             * "123"
+             * prev = 0 * 10 + 1 * 1 = 1 total = 1 ("1")
+             * prev = 1 * 10 + 2 * 2 = 14 (2 * 2 => 12 & 2) total = 15 ("12")
+             * prev = 14 * 10 + 3 * 3 = 149 (3 * 3 => 123, 23 & 3) total = 149
+             * */
+            prev = (prev * 10 + (long) digit * (i + 1)) % mod;
+            total = (total + prev) % mod;
+        }
+
+        return (int) total;
+
+    }
 }

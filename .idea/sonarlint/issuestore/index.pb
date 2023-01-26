@@ -13,8 +13,6 @@ H
 src/bfs/BFSSolution.java,c\5\c5a523222dbe9b3d407e9715523d86b2ed98faf4
 O
 src/string/StringSolution2.java,f\6\f60aa37a1381221cbdb29e305deafd2979e72aa6
-J
-src/heap/HeapSolution.java,7\6\7628927ef928478bd4d4ab97042e91d355fe7cb5
 Q
 !src/indefinite/FirstSolution.java,c\4\c47c70749129586793c84671ef203ae6644938f1
 G
