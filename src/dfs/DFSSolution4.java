@@ -1,7 +1,7 @@
 package dfs;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class DFSSolution4 {
 
@@ -39,5 +39,43 @@ public class DFSSolution4 {
         }
 
         return res;
+    }
+
+    // Leetcode problem: 472
+    /*
+     * Concatenated Words.
+     * Explanation: https://www.youtube.com/watch?v=iHp7fjw1R28
+     * */
+    public List<String> findAllConcatenatedWordsInADict(String[] words) {
+        Set<String> wordSet = Arrays.stream(words).collect(Collectors.toSet());
+
+        Map<String, Boolean> map = new HashMap<>();
+        List<String> result = new ArrayList<>();
+        for (String word : words) {
+            if (dfsWord(word, wordSet, map)) {
+                result.add(word);
+            }
+        }
+
+        return result;
+    }
+
+    private boolean dfsWord(String word, Set<String> words, Map<String, Boolean> map) {
+        if (map.containsKey(word)) {
+            return map.get(word);
+        }
+
+        for (int i = 1; i <= word.length(); i++) {
+            String prefix = word.substring(0, i);
+            String suffix = word.substring(i);
+
+            if ((words.contains(prefix) && words.contains(suffix)) || (words.contains(prefix) && dfsWord(suffix, words, map))) {
+                map.put(word, true);
+                return true;
+            }
+        }
+
+        map.put(word, false);
+        return false;
     }
 }
