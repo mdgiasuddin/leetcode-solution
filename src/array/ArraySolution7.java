@@ -78,4 +78,23 @@ public class ArraySolution7 {
 
         return res;
     }
+
+    // Leetcode problem: 2515
+    /*
+     * Shortest Distance to Target String in a Circular Array.
+     * */
+    public int closetTarget(String[] words, String target, int startIndex) {
+        int n = words.length;
+        int ans = n;
+
+        for (int i = 0; i < n; i++) {
+            if (words[i].equals(target)) {
+
+                // Minimum difference lies in either side. Array is circular. So take the %.
+                ans = Math.min(ans, Math.min((i - startIndex + n) % n, (startIndex - i + n) % n));
+            }
+        }
+
+        return ans == n ? -1 : ans;
+    }
 }

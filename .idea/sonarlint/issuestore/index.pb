@@ -15,8 +15,6 @@ O
 src/string/StringSolution2.java,f\6\f60aa37a1381221cbdb29e305deafd2979e72aa6
 Q
 !src/indefinite/FirstSolution.java,c\4\c47c70749129586793c84671ef203ae6644938f1
-G
-src/array/Solution.java,5\3\536ed8b87582edacfc5e371aadb1351eb1cc633d
 I
 src/dfs/DFSSolution2.java,5\8\58e1560c74291e42beb3da3198a47fcd72e67e09
 I
@@ -77,12 +75,8 @@ M
 src/array/ArraySolution6.java,5\3\53b14ed3c73247ea990e467ad9702b6d72db6191
 M
 src/stack/StackSolution2.java,2\1\2151c7a08c259ad71f4779f2d892833feaf39ec5
-M
-src/array/ArraySolution7.java,7\b\7be05820cbac99ddfae2de5f9cd570c545b904a7
 I
 src/dfs/DFSSolution3.java,9\0\901a96c467a481d14f81eb7114a8394f4bb3ea42
-J
-src/math/MathSolution.java,2\b\2b069312f33aa97eae54a4d3e38404b4a3ca092f
 L
 src/string/EncodeDecode.java,6\b\6b9ddd7b6064d2fcec5811810ac256162373cf33
 R

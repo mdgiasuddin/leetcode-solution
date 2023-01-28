@@ -139,4 +139,39 @@ public class SlidingWindowSolution2 {
 
         return res;
     }
+
+    // Leetcode problem: 2516
+    /*
+     * Take K of Each Character From Left and Right.
+     * Explanation: https://www.youtube.com/watch?v=fbe3R7Bd-LE&t=777s
+     * Calculate the maximum length of substring without which each character occurs k times.
+     * */
+    public int takeCharacters(String s, int k) {
+        int[] count = new int[3];
+
+        for (int i = 0; i < s.length(); i++) {
+            count[s.charAt(i) - 'a'] += 1;
+        }
+
+        if (count[0] < k || count[1] < k || count[2] < k) {
+            return -1;
+        }
+
+        int l = 0;
+        int r = 0;
+
+        int max = 0;
+        while (r < s.length()) {
+            count[s.charAt(r) - 'a'] -= 1;
+
+            while (l <= r && (count[0] < k || count[1] < k || count[2] < k)) {
+                count[s.charAt(l++) - 'a'] += 1;
+            }
+
+            r += 1;
+            max = Math.max(max, r - l);
+        }
+
+        return s.length() - max;
+    }
 }

@@ -1,5 +1,8 @@
 package math;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MathSolution {
 
     // Leetcode problem: 279
@@ -30,5 +33,42 @@ public class MathSolution {
         }
 
         return 3;
+    }
+
+    public int countAnagrams(String s) {
+        int n = s.length();
+        long[] factorials = new long[n + 1];
+        long mod = 1000000007;
+        factorials[0] = 1;
+        for (int i = 1; i <= n; i++) {
+            factorials[i] = (factorials[i - 1] * i) % mod;
+        }
+
+        String[] splitted = s.split(" ");
+        long ans = 1;
+
+        for (String word : splitted) {
+            ans = (ans * countPermutation(word, factorials, mod)) % mod;
+        }
+
+        return (int) ans;
+    }
+
+    private long countPermutation(String word, long[] factorials, long mod) {
+        int n = word.length();
+        long ans = factorials[n];
+
+        Map<Character, Integer> countMap = new HashMap<>();
+        for (int i = 0; i < word.length(); i++) {
+            char ch = word.charAt(i);
+            int count = countMap.getOrDefault(ch, 0);
+            countMap.put(ch, count + 1);
+        }
+
+        for (Map.Entry<Character, Integer> entry : countMap.entrySet()) {
+            ans = (ans / factorials[entry.getValue()]) % mod;
+        }
+
+        return mod;
     }
 }
