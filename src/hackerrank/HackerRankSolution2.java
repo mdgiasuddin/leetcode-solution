@@ -235,4 +235,35 @@ public class HackerRankSolution2 {
         return (int) total;
 
     }
+
+    /*
+     * https://www.hackerrank.com/challenges/abbr/problem?h_r=internal-search
+     * Dynamic Programming.
+     * */
+    public static String abbreviation(String a, String b) {
+        int m = a.length();
+        int n = b.length();
+        boolean[][] dp = new boolean[m + 1][n + 1];
+
+        dp[0][0] = true;
+        for (int r = 1; r <= m; r++) {
+            dp[r][0] = dp[r - 1][0] && Character.isLowerCase(a.charAt(r - 1));
+        }
+
+        for (int r = 1; r <= m; r++) {
+            for (int c = 1; c <= n; c++) {
+                // If lowercase then try to remove it.
+                if (Character.isLowerCase(a.charAt(r - 1))) {
+                    dp[r][c] = dp[r - 1][c];
+                }
+
+                // If 2 characters are equal, try to match other parts.
+                if (Character.toUpperCase(a.charAt(r - 1)) == b.charAt(c - 1)) {
+                    dp[r][c] |= dp[r - 1][c - 1];
+                }
+            }
+        }
+
+        return dp[m][n] ? "YES" : "NO";
+    }
 }
