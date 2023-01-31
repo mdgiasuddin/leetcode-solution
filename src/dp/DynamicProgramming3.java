@@ -244,4 +244,69 @@ public class DynamicProgramming3 {
 
         return ans;
     }
+
+    // Leetcode problem: 2518
+    /*
+     * Explanation: https://www.youtube.com/watch?v=CQtLbU8x_vI
+     * */
+    public int countPartitions(int[] nums, int k) {
+        int n = nums.length;
+        long mod = 1000000007;
+
+        long[][] dp = new long[n + 1][k + 1];
+
+        for (int c = 1; c <= k; c++) {
+            dp[0][c] = 1;
+        }
+
+        for (int r = 1; r <= n; r++) {
+            for (int c = 1; c <= k; c++) {
+                dp[r][c] = dp[r - 1][c];
+
+                if (c - nums[r - 1] >= 0) {
+                    dp[r][c] = (dp[r][c] + dp[r - 1][c - nums[r - 1]]) % mod;
+                }
+            }
+        }
+
+        long total = 1;
+        for (int i = 1; i <= n; i++) {
+            total = (total * 2) % mod;
+        }
+
+        long lestThanK = (2 * dp[n][k]) % mod;
+
+        return Math.max((int) ((total - lestThanK) % mod), 0);
+    }
+
+    // Leetcode problem: 1626
+    /*
+     * Best Team With No Conflicts.
+     * LIS
+     * Explanation: https://www.youtube.com/watch?v=7kURH3btcV4
+     * */
+    public int bestTeamScore(int[] scores, int[] ages) {
+        int n = scores.length;
+        int[][] scoreAges = new int[n][2];
+
+        for (int i = 0; i < n; i++) {
+            scoreAges[i][0] = scores[i];
+            scoreAges[i][1] = ages[i];
+        }
+
+        Arrays.sort(scoreAges, (a, b) -> a[0] == b[0] ? a[1] - b[1] : a[0] - b[0]);
+
+        int res = scoreAges[0][0];
+        for (int i = 1; i < n; i++) {
+            int score = scoreAges[i][0];
+            for (int j = i - 1; j >= 0; j--) {
+                if (scoreAges[i][1] >= scoreAges[j][1]) {
+                    scoreAges[i][0] = Math.max(scoreAges[i][0], score + scoreAges[j][0]);
+                    res = Math.max(res, scoreAges[i][0]);
+                }
+            }
+        }
+
+        return res;
+    }
 }

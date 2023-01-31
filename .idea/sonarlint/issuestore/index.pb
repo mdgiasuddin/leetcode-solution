@@ -65,19 +65,17 @@ L
 src/stack/StackSolution.java,b\d\bd25789f5d2a9e65481486828b8060f5373369c0
 R
 "src/codility/CodilitySolution.java,6\4\643fb5171b514f63820b3ecbe3a031b13241fe96
-T
-$src/tech_dose/RangeMinimumQuery.java,6\f\6fb380b719f3d2a8b0b932b19ee8905bbfd4dfa4
 W
 'src/recursion/BacktrackingSolution.java,2\0\209c2701d4308b74cdc3110b337a657696ce56b9
-O
-src/dp/DynamicProgramming3.java,6\8\68d851db80677477cca4b757d44a8b9f7e5966b6
 M
 src/array/ArraySolution6.java,5\3\53b14ed3c73247ea990e467ad9702b6d72db6191
 M
 src/stack/StackSolution2.java,2\1\2151c7a08c259ad71f4779f2d892833feaf39ec5
 I
 src/dfs/DFSSolution3.java,9\0\901a96c467a481d14f81eb7114a8394f4bb3ea42
-L
-src/string/EncodeDecode.java,6\b\6b9ddd7b6064d2fcec5811810ac256162373cf33
 R
 "src/linkedlist/BrowserHistory.java,a\e\ae425c569d9b2039ebf46d890b1643047deae723
+V
+&src/hackerrank/HackerRankSolution.java,0\c\0cdf38fc94b051f037c864d9407e696c3e578572
+W
+'src/hackerrank/HackerRankSolution2.java,2\b\2bc77e34930dccdb9aaf2b3e32b02e04d8c8315a
