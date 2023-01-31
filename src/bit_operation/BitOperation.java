@@ -91,4 +91,46 @@ public class BitOperation {
 
         return (int) sum;
     }
+
+    // Leetcode problem: 2433
+    /*
+     * Find The Original Array of Prefix Xor.
+     * pref[i] = original[0] ^ original[1] ^ ... ^ original[i]
+     * To get back original[i] XOR pref[i] with original[0] ^ original[1] ^ ... ^ original[i - 1]
+     * original[0] ^ original[1] ^ ... ^ original[i - 1] part will be eliminated.
+     * */
+    public int[] findArray(int[] pref) {
+        int prev = pref[0];
+        for (int i = 1; i < pref.length; i++) {
+            pref[i] ^= prev;
+            prev ^= pref[i];
+        }
+        return pref;
+    }
+
+    // Leetcode problem: 2457
+    /*
+     * Minimum Addition to Make Integer Beautiful.
+     * Explanation: https://www.youtube.com/watch?v=WnYxU-fDNe0&list=PLy38cn8b_xMfO7CGsUDIsYGps37yKaQ9X&index=13
+     * */
+    public long makeIntegerBeautiful(long n, int target) {
+        long original = n;
+        long count = 0;
+        while (sumOfDigits(n) > target) {
+            n = n / 10 + 1;
+            count += 1;
+        }
+
+        return n * ((long) Math.pow(10, count)) - original;
+    }
+
+    private long sumOfDigits(long n) {
+        long sum = 0;
+        while (n > 0) {
+            sum += n % 10;
+            n /= 10;
+        }
+
+        return sum;
+    }
 }

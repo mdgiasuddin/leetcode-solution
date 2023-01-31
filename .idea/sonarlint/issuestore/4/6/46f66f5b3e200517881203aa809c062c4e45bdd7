@@ -1,13 +1,0 @@
-
-N
-java:S1854
-"8Remove this useless assignment to local variable "nums".(¥Äñ»
-V
-java:S1854"@Remove this useless assignment to local variable "bitOperation".(ùÚ™È
-G
-java:S1481"1Remove this unused "bitOperation" local variable.(ùÚ™È
-Q	java:S125	"<This block of commented-out lines of code should be removed.(„ý¿
-?
-java:S1481
-")Remove this unused "nums" local variable.(¥Äñ»
-S	java:S106"9Replace this use of System.out or System.err by a logger.(ªÓ¼áþÿÿÿÿ

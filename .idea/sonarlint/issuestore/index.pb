@@ -23,8 +23,6 @@ H
 src/dp/RecursiveDP2.java,a\9\a93249217621d3ccf585bf8fdc376affde6b17e8
 O
 src/graph/tarjans_algorithm.txt,e\c\ec925c92f6d6ab8e85029e323be65e70081d363a
-S
-#src/bit_operation/BitOperation.java,4\6\46f66f5b3e200517881203aa809c062c4e45bdd7
 C
 src/tree/Codec.java,a\f\af890bdee3a78ed1247fe61713d09a762d96a778
 R
