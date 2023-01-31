@@ -71,4 +71,49 @@ public class MathSolution {
 
         return mod;
     }
+
+    // Leetcode problem: 29
+    /*
+     * Divide Two Integers.
+     * Explanation: https://www.youtube.com/watch?v=xefkgtd44hg&list=PLy38cn8b_xMfO7CGsUDIsYGps37yKaQ9X&index=11
+     * Edge cases are very important.
+     * */
+    public int divide(int dividend, int divisor) {
+        if ((dividend == 2147483647 && divisor == 1) || (dividend == -2147483648 && divisor == -1)) {
+            return 2147483647;
+        }
+        if (dividend == -2147483648 && divisor == 1) {
+            return -2147483648;
+        }
+        if (divisor == -2147483648 && dividend != -2147483648) {
+            return 0;
+        }
+
+        boolean negative = (dividend > 0 && divisor < 0) || (dividend < 0 && divisor > 0);
+        int dd = dividend == -2147483648 ? 2147483647 : Math.abs(dividend);
+        int ds = divisor == -2147483648 ? 2147483647 : Math.abs(divisor);
+
+        int quotient = 0;
+        while (dd >= ds) {
+            int counter = 1;
+            int decrement = ds;
+
+            while (dd >= decrement && decrement > 0) {
+                dd -= decrement;
+                quotient += counter;
+                counter += counter;
+                decrement += decrement;
+
+            }
+        }
+
+        if (dividend == -2147483648 && dd + 1 >= ds) {
+            quotient += 1;
+        }
+        if (negative) {
+            quotient = -quotient;
+        }
+
+        return quotient;
+    }
 }

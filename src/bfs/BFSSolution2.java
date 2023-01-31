@@ -314,6 +314,64 @@ public class BFSSolution2 {
 
         return String.valueOf(dominoArray);
     }
+
+    // Leetcode problem: 834
+    /*
+     * Sum of Distances in Tree.
+     * Explanation: https://www.youtube.com/watch?v=T81Bpx2OmS4
+     * */
+    public int[] sumOfDistancesInTree(int n, int[][] edges) {
+
+        List<List<Integer>> graph = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            graph.add(new ArrayList<>());
+        }
+        for (int[] edge : edges) {
+            graph.get(edge[0]).add(edge[1]);
+            graph.get(edge[1]).add(edge[0]);
+        }
+
+        int[] parents = new int[n];
+        int[] subtree = new int[n];
+        Arrays.fill(parents, -1);
+
+        int[] res = new int[n];
+        dfsNode(0, -1, graph, parents, subtree, res, 0);
+
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(0);
+        while (!queue.isEmpty()) {
+            int node = queue.poll();
+
+            for (int child : graph.get(node)) {
+                if (parents[child] == node) {
+                    queue.add(child);
+                    // This formula is important.
+                    res[child] = res[node] - 2 * subtree[child] + n;
+                }
+            }
+        }
+
+        return res;
+
+    }
+
+    /*
+     * Calculate distance for the root node (0) & number of nodes rooted at all nodes.
+     * */
+    private int dfsNode(int node, int parent, List<List<Integer>> graph, int[] parents, int[] subtree, int[] res, int depth) {
+        int total = 1;
+        res[0] += depth;
+        for (int child : graph.get(node)) {
+            if (child != parent) {
+                parents[child] = node;
+                total += dfsNode(child, node, graph, parents, subtree, res, depth + 1);
+            }
+        }
+
+        subtree[node] = total;
+        return total;
+    }
 }
 
 class DominoPair {

@@ -204,4 +204,21 @@ public class StringSolution8 {
         return score;
     }
 
+    // Leetcode problem: 2446
+    /*
+     * Determine if Two Events Have Conflict.
+     * */
+    public boolean haveConflict(String[] event1, String[] event2) {
+        // This logic is important.
+        return getMin(event1[1], event2[1]).compareTo(getMax(event1[0], event2[0])) >= 0;
+    }
+
+    private String getMin(String str1, String str2) {
+        return str1.compareTo(str2) < 0 ? str1 : str2;
+    }
+
+    private String getMax(String str1, String str2) {
+        return str1.compareTo(str2) > 0 ? str1 : str2;
+    }
+
 }

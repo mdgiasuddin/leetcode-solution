@@ -17,8 +17,6 @@ Q
 !src/indefinite/FirstSolution.java,c\4\c47c70749129586793c84671ef203ae6644938f1
 I
 src/dfs/DFSSolution2.java,5\8\58e1560c74291e42beb3da3198a47fcd72e67e09
-I
-src/bfs/BFSSolution2.java,d\2\d2620dce3e2e630e30d3b5ad8270deec14b8977e
 O
 src/string/StringSolution7.java,5\c\5cd589b5cb745b51ec743cf4ae5dc6de0f38b9f2
 H
@@ -79,3 +77,7 @@ V
 &src/hackerrank/HackerRankSolution.java,0\c\0cdf38fc94b051f037c864d9407e696c3e578572
 W
 'src/hackerrank/HackerRankSolution2.java,2\b\2bc77e34930dccdb9aaf2b3e32b02e04d8c8315a
+H
+src/array/Allocator.java,6\6\66a16c90b9583f6e7ec19c7c7184833209dec91d
+N
+src/binary_search/TimeMap.java,1\d\1d2ae5ac7edf2204ccd1314ba55fabf35aa09996
