@@ -270,4 +270,67 @@ public class StackSolution2 {
         return stack1.equals(stack2);
     }
 
+    // Leetcode problem: 1249
+    /*
+     * Minimum Remove to Make Valid Parentheses.
+     * */
+    public String minRemoveToMakeValid(String s) {
+        int n = s.length();
+        boolean[] remove = new boolean[n];
+        Stack<Integer> stack = new Stack<>();
+
+        for (int i = 0; i < n; i++) {
+            char ch = s.charAt(i);
+            if (ch == '(') {
+                stack.push(i);
+            } else if (ch == ')') {
+                if (stack.isEmpty()) {
+                    remove[i] = true;
+                } else {
+                    stack.pop();
+                }
+            }
+        }
+
+        while (!stack.isEmpty()) {
+            remove[stack.pop()] = true;
+        }
+
+        StringBuilder res = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            if (!remove[i]) {
+                res.append(s.charAt(i));
+            }
+        }
+
+        return res.toString();
+    }
+
+    // Leetcode problem: 907
+    /*
+     * Sum of Subarray Minimums.
+     * Monotonically increasing stack.
+     * Explanation: https://www.youtube.com/watch?v=BqrO3lMwfRM&list=PLy38cn8b_xMfO7CGsUDIsYGps37yKaQ9X&index=16
+     * */
+    public int sumSubarrayMins(int[] arr) {
+        long[] newArray = new long[arr.length + 2];
+        newArray[0] = newArray[newArray.length - 1] = 0;
+        for (int i = 0; i < arr.length; i++) {
+            newArray[i + 1] = arr[i];
+        }
+        Stack<Integer> stack = new Stack<>();
+        long mod = 1000000007;
+        long res = 0;
+        for (int i = 0; i < newArray.length; i++) {
+            while (!stack.isEmpty() && newArray[stack.peek()] > newArray[i]) {
+                int idx = stack.pop();
+                res = (res + newArray[idx] * (idx - stack.peek()) * (i - idx)) % mod;
+            }
+
+            stack.push(i);
+        }
+
+        return (int) res;
+    }
+
 }

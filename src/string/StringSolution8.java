@@ -221,4 +221,31 @@ public class StringSolution8 {
         return str1.compareTo(str2) > 0 ? str1 : str2;
     }
 
+
+    // Leetcode problem: 1071
+    /*
+     * Greatest Common Divisor of Strings.
+     * */
+    public String gcdOfStrings(String str1, String str2) {
+
+        int n1 = str1.length();
+        int n2 = str2.length();
+
+        String res = "";
+        for (int i = 0; i < Math.min(n1, n2); i++) {
+            if (str1.charAt(i) != str2.charAt(i)) {
+                break;
+            }
+
+            if (n1 % (i + 1) == 0 && (n2 % (i + 1) == 0)) {
+                String substr = str1.substring(0, i + 1);
+                if (substr.repeat(n1 / (i + 1)).equals(str1) && substr.repeat(n2 / (i + 1)).equals(str2)) {
+                    res = substr;
+                }
+            }
+        }
+
+        return res;
+    }
+
 }

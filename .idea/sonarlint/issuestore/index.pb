@@ -65,8 +65,6 @@ W
 'src/recursion/BacktrackingSolution.java,2\0\209c2701d4308b74cdc3110b337a657696ce56b9
 M
 src/array/ArraySolution6.java,5\3\53b14ed3c73247ea990e467ad9702b6d72db6191
-M
-src/stack/StackSolution2.java,2\1\2151c7a08c259ad71f4779f2d892833feaf39ec5
 I
 src/dfs/DFSSolution3.java,9\0\901a96c467a481d14f81eb7114a8394f4bb3ea42
 R
@@ -79,3 +77,9 @@ H
 src/array/Allocator.java,6\6\66a16c90b9583f6e7ec19c7c7184833209dec91d
 N
 src/binary_search/TimeMap.java,1\d\1d2ae5ac7edf2204ccd1314ba55fabf35aa09996
+[
++src/binary_search/BinarySearchSolution.java,d\d\ddb25a37922b7471d8933add896ce1256f17e1ac
+\
+,src/binary_search/BinarySearchSolution2.java,8\1\81b45aa4cb92554b3d20211e8c98de0308910094
+I
+src/bfs/BFSSolution2.java,d\2\d2620dce3e2e630e30d3b5ad8270deec14b8977e
