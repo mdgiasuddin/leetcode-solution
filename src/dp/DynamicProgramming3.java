@@ -336,4 +336,35 @@ public class DynamicProgramming3 {
         // The glass may be full or partially filled.
         return Math.min(1, dp[0][query_glass]);
     }
+
+    // Leetcode problem: 931
+    /*
+     * Minimum Falling Path Sum.
+     * This problem is similar to paint house (Leetcode problem: 256).
+     * */
+    public int minFallingPathSum(int[][] matrix) {
+        int n = matrix.length;
+        int[][] dp = new int[2][n];
+
+        System.arraycopy(matrix[0], 0, dp[0], 0, n);
+
+        for (int i = 1; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                int leftDiagonal = j == 0 ? Integer.MAX_VALUE : dp[0][j - 1];
+                int rightDiagonal = j == n - 1 ? Integer.MAX_VALUE : dp[0][j + 1];
+
+                dp[1][j] = matrix[i][j] + Math.min(dp[0][j], Math.min(leftDiagonal, rightDiagonal));
+            }
+
+            System.arraycopy(dp[1], 0, dp[0], 0, n);
+        }
+
+        int res = dp[0][0];
+        for (int val : dp[0]) {
+            res = Math.min(res, val);
+        }
+
+        return res;
+    }
+
 }

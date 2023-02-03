@@ -1,16 +1,0 @@
-
-l	java:S117™"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(öä•¯şÿÿÿÿ
-l	java:S117ü"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ªûÔúÿÿÿÿ
-l	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(öä•¯şÿÿÿÿ
-—
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Çµí‘
-C
-java:S1659$"(Declare "currentMin" on a separate line.(îÛ±­ÿÿÿÿÿ
-:
-java:S1659D"$Declare "second" on a separate line.(Ùã•
-?
-java:S2201Z"*The return value of "values" must be used.(Ú°ü
-:
-java:S1659€"$Declare "sumOdd" on a separate line.(µ¯Œ)
->
-java:S1659§""Declare "len2" on a separate line.(ôøşïıÿÿÿÿ

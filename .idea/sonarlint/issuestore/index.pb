@@ -43,8 +43,6 @@ K
 src/array/ShuffleArray.java,a\b\abc7e199ea16a243c261be5813f128b9127850f3
 E
 src/dp/BitmaskDP.java,6\3\633dd4cf773b4632c746b1dee558ec172d44af0a
-O
-src/dp/DynamicProgramming2.java,5\5\5526a3d23baac2d3eddce0cc3d60d849cbb011d7
 G
 src/dp/RecursiveDP.java,2\7\27b5be8f6a344fa5fd5f35a1cec2cfb07b6a67cd
 F
@@ -81,3 +79,11 @@ O
 src/string/StringSolution8.java,f\e\fe3791e146ac3f52a0a74a7378fe0222657453ad
 M
 src/stack/StackSolution2.java,2\1\2151c7a08c259ad71f4779f2d892833feaf39ec5
+I
+src/bfs/BFSSolution2.java,d\2\d2620dce3e2e630e30d3b5ad8270deec14b8977e
+S
+#src/bit_operation/BitOperation.java,4\6\46f66f5b3e200517881203aa809c062c4e45bdd7
+T
+$src/tech_dose/RangeMinimumQuery.java,6\f\6fb380b719f3d2a8b0b932b19ee8905bbfd4dfa4
+G
+src/array/NumArray.java,c\4\c4b806ffe844e5b78e95e1bbeee9319232fe2ea3
