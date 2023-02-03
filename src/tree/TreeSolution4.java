@@ -224,6 +224,79 @@ public class TreeSolution4 {
         verticalTraversal(node.left, vLevel - 1, hLevel + 1, map, width);
         verticalTraversal(node.right, vLevel + 1, hLevel + 1, map, width);
     }
+
+    // Leetcode problem: 2471
+    /*
+     * Minimum Number of Operations to Sort a Binary Tree by Level.
+     * This solution is Tricky.
+     * Explanation: https://www.youtube.com/watch?v=4XzEifpXNjU&list=PLy38cn8b_xMfO7CGsUDIsYGps37yKaQ9X&index=27
+     * */
+    public int minimumOperations(TreeNode root) {
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        int res = 0;
+
+        while (!queue.isEmpty()) {
+            int qSize = queue.size();
+            List<Integer> row = new ArrayList<>();
+            while (qSize-- > 0) {
+                TreeNode node = queue.poll();
+                row.add(node.val);
+
+                if (node.left != null) {
+                    queue.add(node.left);
+                }
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
+            }
+
+            List<Integer> sortedRow = row.stream().sorted().toList();
+            Map<Integer, Integer> posMap = new HashMap<>();
+            Set<Integer> visited = new HashSet<>();
+
+            for (int i = 0; i < sortedRow.size(); i++) {
+                posMap.put(sortedRow.get(i), i);
+            }
+
+            for (int i = 0; i < row.size(); i++) {
+                int index = i;
+                int count = 0;
+
+                while (!visited.contains(index) && posMap.get(row.get(index)) != index) {
+                    visited.add(index);
+                    count += 1;
+                    index = posMap.get(row.get(index));
+                }
+
+                res += Math.max(0, count - 1);
+            }
+        }
+
+        return res;
+    }
+
+    // Leetcode problem: 1026
+    /*
+     * Maximum Difference Between Node and Ancestor.
+     * Explanation: https://www.youtube.com/watch?v=I7AbFkrBhdE&list=PLy38cn8b_xMfO7CGsUDIsYGps37yKaQ9X&index=32
+     * Keep track & update maximum & minimum value along the path.
+     * When a leaf node is reached return the difference.
+     * */
+    public int maxAncestorDiff(TreeNode root) {
+        return maxAncestorDiff(root, Integer.MAX_VALUE, 0);
+    }
+
+    public int maxAncestorDiff(TreeNode node, int min, int max) {
+        if (node == null) {
+            return max - min;
+        }
+
+        min = Math.min(min, node.val);
+        max = Math.max(max, node.val);
+
+        return Math.max(maxAncestorDiff(node.left, min, max), maxAncestorDiff(node.right, min, max));
+    }
 }
 
 class TraversalNode implements Comparable<TraversalNode> {

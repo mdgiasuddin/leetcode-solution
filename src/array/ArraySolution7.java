@@ -1,9 +1,6 @@
 package array;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ArraySolution7 {
 
@@ -96,5 +93,110 @@ public class ArraySolution7 {
         }
 
         return ans == n ? -1 : ans;
+    }
+
+    // Leetcode problem: 498
+    /*
+     * Diagonal Traverse.
+     * Explanation: https://www.youtube.com/watch?v=Njt7aZYq0wA&list=PLy38cn8b_xMfO7CGsUDIsYGps37yKaQ9X&index=18
+     * For all the diagonal element (i + j) is the same.
+     * For (i + j) is even then down-left to up-right & for odd then up-right to down-left.
+     * */
+    public int[] findDiagonalOrder(int[][] mat) {
+        Map<Integer, List<Integer>> map = new HashMap<>();
+        int m = mat.length;
+        int n = mat[0].length;
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                List<Integer> list = map.getOrDefault(i + j, new ArrayList<>());
+                list.add(mat[i][j]);
+                map.put(i + j, list);
+            }
+        }
+
+        int[] res = new int[m * n];
+        int k = 0;
+        for (int i = 0; i <= m + n - 2; i++) {
+            List<Integer> list = map.get(i);
+
+            if (i % 2 == 1) {
+                // Same order.
+                for (int num : list) {
+                    res[k++] = num;
+                }
+            } else {
+                // Reverse order.
+                for (int j = list.size() - 1; j >= 0; j--) {
+                    res[k++] = list.get(j);
+                }
+            }
+        }
+
+        return res;
+    }
+
+    // Leetcode problem: 974
+    /*
+     * Subarray Sums Divisible by K.
+     * This is similar to: Subarray Sum Equals K (Leetcode problem: 560).
+     * Challenging part is to avoid negative reminder.
+     * */
+    public int subarraysDivByK(int[] nums, int k) {
+        Map<Integer, Integer> map = new HashMap<>();
+        int res = 0;
+        map.put(0, 1);
+        int currentSum = 0;
+
+        for (int num : nums) {
+            currentSum = ((currentSum + num % k) % k + k) % k;
+            int count = map.getOrDefault(currentSum, 0);
+            res += count;
+            map.put(currentSum, count + 1);
+        }
+
+        return res;
+    }
+
+    // Leetcode problem: 896
+    /*
+     * Monotonic Array.
+     * Explanation: https://www.youtube.com/watch?v=BYH6dreENEA&list=PLy38cn8b_xMfO7CGsUDIsYGps37yKaQ9X&index=21
+     * */
+    public boolean isMonotonic(int[] nums) {
+        boolean increasing = false;
+        boolean decreasing = false;
+
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] > nums[i - 1]) {
+                increasing = true;
+            } else if (nums[i] < nums[i - 1]) {
+                decreasing = true;
+            }
+
+            if (increasing && decreasing) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    // Leetcode problem: 462
+    /*
+     * Minimum Moves to Equal Array Elements II.
+     * Distance from the median is always minimum.
+     * */
+    public int minMoves2(int[] nums) {
+        Arrays.sort(nums);
+
+        int median = nums[nums.length / 2];
+        int res = 0;
+
+        for (int num : nums) {
+            res += Math.abs(num - median);
+        }
+
+        return res;
     }
 }

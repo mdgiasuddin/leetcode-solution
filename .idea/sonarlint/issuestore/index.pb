@@ -1,6 +1,4 @@
 
-G
-src/tree/TreeTest2.java,f\a\fac5a5b9ee428ba18994149e87fb28c846eb6755
 L
 src/trie/TrieNodePrefix.java,f\8\f8e59b8f2e6fbf4f623eedebbb06381aebbc4b29
 B
@@ -33,10 +31,6 @@ I
 src/tree/TreeBalance.java,b\e\be28c578ebc19e8a4d61a8c74a219b143e8100e0
 J
 src/tree/TreeSolution.java,1\7\1724e8f0c5ae3c3e513da450dfd5fc57f152e4d6
-K
-src/tree/TreeSolution2.java,b\2\b2b75bace0e3f9469b813275811bbb4b41e4c412
-K
-src/tree/TreeSolution3.java,0\1\01a7eb720b7413a5f292a913e65ec86d58e1e6bb
 F
 src/tree/TreeTest.java,8\7\871573add4215c2342814c6e67604dd29b78e8db
 T
@@ -81,5 +75,9 @@ N
 +src/binary_search/BinarySearchSolution.java,d\d\ddb25a37922b7471d8933add896ce1256f17e1ac
 \
 ,src/binary_search/BinarySearchSolution2.java,8\1\81b45aa4cb92554b3d20211e8c98de0308910094
-I
-src/bfs/BFSSolution2.java,d\2\d2620dce3e2e630e30d3b5ad8270deec14b8977e
+J
+src/math/MathSolution.java,2\b\2b069312f33aa97eae54a4d3e38404b4a3ca092f
+O
+src/string/StringSolution8.java,f\e\fe3791e146ac3f52a0a74a7378fe0222657453ad
+M
+src/stack/StackSolution2.java,2\1\2151c7a08c259ad71f4779f2d892833feaf39ec5

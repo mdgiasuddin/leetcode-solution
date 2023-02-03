@@ -333,4 +333,43 @@ public class StackSolution2 {
         return (int) res;
     }
 
+    // Leetcode problem: 2434
+    /*
+     * Using a Robot to Print the Lexicographically Smallest String.
+     * */
+    public String robotWithString(String s) {
+        int[] count = new int[26];
+        for (int i = 0; i < s.length(); i++) {
+            count[s.charAt(i) - 'a'] += 1;
+        }
+
+        Stack<Character> stack = new Stack<>();
+        StringBuilder res = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            count[ch - 'a'] -= 1;
+            stack.push(ch);
+
+            while (!stack.isEmpty()) {
+                if (hasSmaller(stack.peek(), count)) {
+                    break;
+                }
+
+                res.append(stack.pop());
+            }
+        }
+
+        return res.toString();
+    }
+
+    private boolean hasSmaller(char ch, int[] count) {
+        for (int i = 0; i < ch - 'a'; i++) {
+            if (count[i] > 0) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }

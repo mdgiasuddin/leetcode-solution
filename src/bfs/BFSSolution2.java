@@ -372,6 +372,53 @@ public class BFSSolution2 {
         subtree[node] = total;
         return total;
     }
+
+    // Leetcode problem: 1091
+    /*
+     * Shortest Path in Binary Matrix.
+     * */
+    public int shortestPathBinaryMatrix(int[][] grid) {
+        int n = grid.length;
+        if (grid[0][0] == 1 || grid[n - 1][n - 1] == 1) {
+            return -1;
+        }
+
+        int[][] directions = {
+                {-1, 0}, {1, 0}, {0, -1}, {0, 1}, {-1, -1}, {-1, 1}, {1, -1}, {1, 1}
+        };
+
+        boolean[][] visited = new boolean[n][n];
+        Queue<int[]> queue = new LinkedList<>();
+        queue.add(new int[]{0, 0});
+        visited[0][0] = true;
+        int pathLen = 1;
+
+        while (!queue.isEmpty()) {
+            int qSize = queue.size();
+
+            while (qSize-- > 0) {
+                int[] xy = queue.poll();
+                if (xy[0] == n - 1 && xy[1] == n - 1) {
+                    return pathLen;
+                }
+
+                for (int[] direction : directions) {
+                    int x = xy[0] + direction[0];
+                    int y = xy[1] + direction[1];
+
+                    if (x >= 0 && x < n && y >= 0 && y < n && !visited[x][y] && grid[x][y] == 0) {
+                        queue.add(new int[]{x, y});
+                        visited[x][y] = true;
+                    }
+                }
+            }
+
+            pathLen += 1;
+        }
+
+        return -1;
+
+    }
 }
 
 class DominoPair {
