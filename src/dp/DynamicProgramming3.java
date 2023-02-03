@@ -309,4 +309,31 @@ public class DynamicProgramming3 {
 
         return res;
     }
+
+    // Leetcode problem: 799
+    /*
+     * Champagne Tower.
+     * Explanation: https://www.youtube.com/watch?v=tRzHC-nkJr4&list=PLy38cn8b_xMfO7CGsUDIsYGps37yKaQ9X&index=35
+     * */
+    public double champagneTower(int poured, int query_row, int query_glass) {
+        double[][] dp = new double[2][query_row + 1];
+        dp[0][0] = poured;
+
+        for (int i = 1; i <= query_row; i++) {
+            // The leftmost glass will get only from the leftmost glass of previous row.
+            dp[1][0] = Math.max(0, (dp[0][0] - 1) / 2);
+
+            // The rightmost glass will get only from the rightmost glass of previous row.
+            dp[1][i] = Math.max(0, (dp[0][i - 1] - 1) / 2);
+
+            // All the middle glass get from both left & right glass of the previous row.
+            for (int j = 1; j < i; j++) {
+                dp[1][j] = Math.max(0, (dp[0][j - 1] - 1) / 2) + Math.max(0, (dp[0][j] - 1) / 2);
+            }
+            System.arraycopy(dp[1], 0, dp[0], 0, i + 1);
+        }
+
+        // The glass may be full or partially filled.
+        return Math.min(1, dp[0][query_glass]);
+    }
 }
