@@ -87,3 +87,7 @@ T
 $src/tech_dose/RangeMinimumQuery.java,6\f\6fb380b719f3d2a8b0b932b19ee8905bbfd4dfa4
 G
 src/array/NumArray.java,c\4\c4b806ffe844e5b78e95e1bbeee9319232fe2ea3
+G
+src/tree/TreeTest2.java,f\a\fac5a5b9ee428ba18994149e87fb28c846eb6755
+K
+src/tree/TreeSolution2.java,b\2\b2b75bace0e3f9469b813275811bbb4b41e4c412

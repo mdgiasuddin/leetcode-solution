@@ -199,4 +199,76 @@ public class ArraySolution7 {
 
         return res;
     }
+
+    // Leetcode problem: 2498
+    /*
+     * Frog Jump II.
+     * Explanation: https://www.youtube.com/watch?v=7eqGntQ7-Fs&list=PLy38cn8b_xMfO7CGsUDIsYGps37yKaQ9X&index=48
+     * To minimize the jump length, must cover the alternative stones in either forward or backward path.
+     * */
+    public int maxJump(int[] stones) {
+        int n = stones.length;
+        if (n <= 2) {
+            return stones[n - 1];
+        }
+
+        int res = 0;
+        for (int i = 0; i < n - 2; i++) {
+            res = Math.max(res, stones[i + 2] - stones[i]);
+        }
+
+        return res;
+    }
+
+    // Leetcode problem: 2279
+    /*
+     * Maximum Bags With Full Capacity of Rocks.
+     * */
+    public int maximumBags(int[] capacity, int[] rocks, int additionalRocks) {
+        int n = capacity.length;
+        int[] extra = new int[n];
+
+        // Calculate the extra rocks needed to fill each bag.
+        for (int i = 0; i < n; i++) {
+            extra[i] = capacity[i] - rocks[i];
+        }
+
+        // First fill the bag which needs minimum extra stones and so on...
+        Arrays.sort(extra);
+        int res = 0;
+        for (int i = 0; i < n; i++) {
+            if (extra[i] > additionalRocks) {
+                break;
+            }
+
+            additionalRocks -= extra[i];
+            res += 1;
+        }
+
+        return res;
+    }
+
+    // Leetcode problem: 452
+    /*
+     * Minimum Number of Arrows to Burst Balloons.
+     * */
+    public int findMinArrowShots(int[][] points) {
+        // Sort based on ending position of the balloons.
+        Arrays.sort(points, Comparator.comparingInt(p -> p[1]));
+
+        int i = 0;
+        int arrows = 0;
+        while (i < points.length) {
+            arrows += 1;
+            // Throw the arrow at the end of the first balloon.
+            int x = points[i][1];
+
+            // Burst the other balloons that is hit by the arrow.
+            while (i < points.length && points[i][0] <= x) {
+                i += 1;
+            }
+        }
+
+        return arrows;
+    }
 }

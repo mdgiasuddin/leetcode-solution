@@ -171,4 +171,43 @@ public class GraphSolution {
             distance += 1;
         }
     }
+
+    // Leetcode problem: 1061
+    /*
+     * Lexicographically Smallest Equivalent String.
+     * Union find algorithm.
+     * Explanation: https://www.youtube.com/watch?v=HhodaSC-SGc&list=PLy38cn8b_xMfO7CGsUDIsYGps37yKaQ9X&index=46
+     * */
+    public String smallestEquivalentString(String s1, String s2, String baseStr) {
+        Map<Character, Character> parent = new HashMap<>();
+        for (char ch = 'a'; ch <= 'z'; ch++) {
+            parent.put(ch, ch);
+        }
+
+        for (int i = 0; i < s1.length(); i++) {
+            char p1 = findParent(s1.charAt(i), parent);
+            char p2 = findParent(s2.charAt(i), parent);
+
+            if (p1 < p2) {
+                parent.put(p2, p1);
+            } else {
+                parent.put(p1, p2);
+            }
+        }
+
+        StringBuilder res = new StringBuilder();
+        for (int i = 0; i < baseStr.length(); i++) {
+            res.append(findParent(baseStr.charAt(i), parent));
+        }
+
+        return res.toString();
+    }
+
+    private char findParent(char ch, Map<Character, Character> parent) {
+        while (ch != parent.get(ch)) {
+            ch = parent.get(ch);
+        }
+
+        return ch;
+    }
 }

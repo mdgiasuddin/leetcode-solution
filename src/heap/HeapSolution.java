@@ -315,4 +315,62 @@ public class HeapSolution {
         return res;
     }
 
+    // Leetcode problem: 2530
+    /*
+     * Maximal Score After Applying K Operations.
+     * */
+    public long maxKelements(int[] nums, int k) {
+        PriorityQueue<Integer> queue = new PriorityQueue<>(Comparator.comparingInt(a -> -a));
+        for (int num : nums) {
+            queue.add(num);
+        }
+
+        long score = 0;
+        while (k-- > 0) {
+            int num = queue.poll();
+            score += num;
+            queue.add((num + 2) / 3); // Ceiling after / by 3.
+        }
+
+        return score;
+    }
+
+    // Leetcode problem: 2542
+    /*
+     * Maximum Subsequence Score.
+     * This problem is similar to: Maximum Performance of a Team (Leetcode problem: 1383).
+     * Explanation: https://www.youtube.com/watch?v=N8oNUI6JM0I&list=PLy38cn8b_xMfO7CGsUDIsYGps37yKaQ9X&index=50
+     * */
+    public long maxScore(int[] nums1, int[] nums2, int k) {
+        int n = nums1.length;
+        int[][] combined = new int[n][2];
+
+        for (int i = 0; i < n; i++) {
+            combined[i][0] = nums1[i];
+            combined[i][1] = nums2[i];
+        }
+
+        Arrays.sort(combined, Comparator.comparingInt(a -> -a[1]));
+        long prefix = 0;
+        int i = 0;
+        PriorityQueue<Integer> queue = new PriorityQueue<>();
+        while (i < k) {
+            prefix += combined[i][0];
+            queue.add(combined[i][0]);
+            i += 1;
+        }
+
+        long res = prefix * combined[k - 1][1];
+        while (i < n) {
+            prefix -= queue.poll();
+            prefix += combined[i][0];
+            queue.add(combined[i][0]);
+            res = Math.max(res, prefix * combined[i][1]);
+
+            i += 1;
+        }
+
+        return res;
+    }
+
 }
