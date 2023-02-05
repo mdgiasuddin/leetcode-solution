@@ -152,4 +152,82 @@ public class DFSSolution4 {
         }
         return people;
     }
+
+    // Leetcode problem: 2492
+    /*
+     * Minimum Score of a Path Between Two Cities.
+     * Since 1 & n lies in the same connected component, visit all the path from 1 and find the minimum path.
+     * */
+    public int minScore(int n, int[][] roads) {
+        Map<Integer, List<int[]>> graph = new HashMap<>();
+        for (int i = 1; i <= n; i++) {
+            graph.put(i, new ArrayList<>());
+        }
+
+        for (int[] road : roads) {
+            graph.get(road[0]).add(new int[]{road[1], road[2]});
+            graph.get(road[1]).add(new int[]{road[0], road[2]});
+        }
+
+        int[] res = {Integer.MAX_VALUE};
+        Set<Integer> visited = new HashSet<>();
+        visited.add(1);
+        dfsAllRoad(1, graph, visited, res);
+        return res[0];
+    }
+
+    private void dfsAllRoad(int node, Map<Integer, List<int[]>> graph, Set<Integer> visited, int[] res) {
+        for (int[] road : graph.get(node)) {
+            res[0] = Math.min(res[0], road[1]);
+            if (!visited.contains(road[0])) {
+                visited.add(road[0]);
+                dfsAllRoad(road[0], graph, visited, res);
+            }
+        }
+    }
+
+    // Leetcode problem: 2246
+    /*
+     * Longest Path With Different Adjacent Characters.
+     * This problem is similar to:  Diameter of Binary Tree (Leetcode problem: 543),
+     * Binary Tree Maximum Path Sum (Leetcode problem: 124).
+     * */
+    public int longestPath(int[] parent, String s) {
+        List<List<Integer>> graph = new ArrayList<>();
+        for (int i = 0; i < parent.length; i++) {
+            graph.add(new ArrayList<>());
+        }
+        for (int i = 1; i < parent.length; i++) {
+            graph.add(new ArrayList<>());
+            graph.get(parent[i]).add(i);
+        }
+
+        int[] res = {1};
+        dfsPath(0, graph, s, res);
+        return res[0];
+    }
+
+    private PathCounter dfsPath(int node, List<List<Integer>> graph, String s, int[] res) {
+        PathCounter counter = new PathCounter(s.charAt(node), 1);
+        for (int child : graph.get(node)) {
+            PathCounter childCounter = dfsPath(child, graph, s, res);
+            if (childCounter.ch != counter.ch) {
+                res[0] = Math.max(res[0], counter.depth + childCounter.depth);
+                counter.depth = Math.max(counter.depth, 1 + childCounter.depth);
+            }
+        }
+
+        return counter;
+    }
 }
+
+class PathCounter {
+    char ch;
+    int depth;
+
+    public PathCounter(char ch, int depth) {
+        this.ch = ch;
+        this.depth = depth;
+    }
+}
+
