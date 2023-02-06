@@ -81,8 +81,6 @@ M
 src/stack/StackSolution2.java,2\1\2151c7a08c259ad71f4779f2d892833feaf39ec5
 I
 src/bfs/BFSSolution2.java,d\2\d2620dce3e2e630e30d3b5ad8270deec14b8977e
-S
-#src/bit_operation/BitOperation.java,4\6\46f66f5b3e200517881203aa809c062c4e45bdd7
 T
 $src/tech_dose/RangeMinimumQuery.java,6\f\6fb380b719f3d2a8b0b932b19ee8905bbfd4dfa4
 G
@@ -93,5 +91,5 @@ K
 src/tree/TreeSolution2.java,b\2\b2b75bace0e3f9469b813275811bbb4b41e4c412
 K
 src/tree/TreeSolution3.java,0\1\01a7eb720b7413a5f292a913e65ec86d58e1e6bb
-K
-src/tree/TreeSolution4.java,2\5\2586d001ca9857cc1d4992d70d3298d83bb50406
+H
+src/dfs/DFSSolution.java,7\c\7c87c4fda1e59e184239f30c7ba88e85e8c90027

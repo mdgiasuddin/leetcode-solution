@@ -271,4 +271,68 @@ public class ArraySolution7 {
 
         return arrows;
     }
+
+    // Leetcode problem: 2475
+    /*
+     * Number of Unequal Triplets in Array.
+     * Explanation: https://www.youtube.com/watch?v=d_CHEvI9gQU&list=PLy38cn8b_xMfazoeC_WDCO80hr_pXU4MA&index=7
+     * Result is the sum of the multiplication of the frequency of all distinct triplet.
+     * */
+    public int unequalTriplets(int[] nums) {
+        Map<Integer, Integer> countMap = new HashMap<>();
+        for (int num : nums) {
+            int count = countMap.getOrDefault(num, 0);
+            countMap.put(num, count + 1);
+        }
+
+        int left = 0;
+        int right = nums.length;
+        int res = 0;
+        for (Map.Entry<Integer, Integer> entry : countMap.entrySet()) {
+            right -= entry.getValue();
+            res += left * entry.getValue() * right;
+            left += entry.getValue();
+        }
+
+        return res;
+    }
+
+    // Leetcode problem: 2488
+    /*
+     * Count Subarrays With Median K.
+     * Explanation: https://www.youtube.com/watch?v=oLEKpPXUgm4&list=PLy38cn8b_xMfazoeC_WDCO80hr_pXU4MA&index=9
+     * */
+    public int countSubarrays(int[] nums, int k) {
+        int index = -1;
+        int n = nums.length;
+
+        // Find the index of k.
+        for (int i = 0; i < n; i++) {
+            if (nums[i] == k) {
+                index = i;
+                break;
+            }
+        }
+
+        Map<Integer, Integer> countMap = new HashMap<>();
+        countMap.put(0, 1);
+        int balance = 0;
+
+        // count(num > k) - count(num < k).
+        for (int i = index + 1; i < n; i++) {
+            balance += nums[i] > k ? 1 : -1;
+            int count = countMap.getOrDefault(balance, 0);
+            countMap.put(balance, count + 1);
+        }
+
+        // 0 => odd number sub-array, 1 => even number sub-array.
+        int res = countMap.get(0) + countMap.getOrDefault(1, 0);
+        balance = 0;
+        for (int i = index - 1; i >= 0; i--) {
+            balance += nums[i] > k ? 1 : -1;
+            res += countMap.getOrDefault(-balance, 0) + countMap.getOrDefault(-balance + 1, 0);
+        }
+
+        return res;
+    }
 }

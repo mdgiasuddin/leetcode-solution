@@ -133,4 +133,28 @@ public class BitOperation {
 
         return sum;
     }
+
+    // Leetcode problem: 1470
+    /*
+     * Shuffle the Array.
+     * Explanation:
+     * This problem can easily be solved using extra space.
+     * Since the elements of the array <= 1000 (Needs 10 bits), we can store both x & y in a same position.
+     * */
+    public int[] shuffle(int[] nums, int n) {
+        for (int i = 0; i < n; i++) {
+            nums[i] = (nums[i] << 10) | nums[i + n];
+        }
+
+        int j = 2 * n - 1;
+        int mask = (1 << 10) - 1;
+        for (int i = n - 1; i >= 0; i--) {
+            nums[j] = nums[i] & mask;
+            nums[j - 1] = nums[i] >> 10;
+
+            j -= 2;
+        }
+
+        return nums;
+    }
 }

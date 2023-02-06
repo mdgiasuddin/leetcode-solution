@@ -297,6 +297,39 @@ public class TreeSolution4 {
 
         return Math.max(maxAncestorDiff(node.left, min, max), maxAncestorDiff(node.right, min, max));
     }
+
+    // Leetcode problem: 2509
+    /*
+     * Cycle Length Queries in a Tree.
+     * Explanation: https://www.youtube.com/watch?v=VPRzdxjtuDc&list=PLy38cn8b_xMcndJK8oK6Wmk_JPvnIrGFT&index=7
+     * Determine the path length from the nodes to the lowest common ancestor.
+     * */
+    public int[] cycleLengthQueries(int n, int[][] queries) {
+        int[] result = new int[queries.length];
+
+        int i = 0;
+        for (int[] query : queries) {
+            int a = query[0];
+            int b = query[1];
+
+            int res = 1;
+            while (a != b) {
+                if (a > b) {
+                    // Move a to its parent.
+                    a >>= 1;
+                } else {
+                    // Move b to its parent.
+                    b >>= 1;
+                }
+
+                res += 1;
+            }
+
+            result[i++] = res;
+        }
+
+        return result;
+    }
 }
 
 class TraversalNode implements Comparable<TraversalNode> {

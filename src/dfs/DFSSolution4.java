@@ -219,6 +219,60 @@ public class DFSSolution4 {
 
         return counter;
     }
+
+    // Leetcode problem: 2503
+    /*
+     * Maximum Number of Points From Grid Queries.
+     * Explanation: https://www.youtube.com/watch?v=zZWSZM7fboI&list=PLy38cn8b_xMenERa6pKdmc2hfQHKBUfZP&index=8
+     * */
+    public int[] maxPoints(int[][] grid, int[] queries) {
+
+        int[][] sorted = new int[queries.length][2];
+        for (int i = 0; i < queries.length; i++) {
+            sorted[i][0] = queries[i];
+            sorted[i][1] = i;
+        }
+        Arrays.sort(sorted, Comparator.comparingInt(a -> a[0]));
+        int[] result = new int[queries.length];
+
+        int m = grid.length;
+        int n = grid[0].length;
+        PriorityQueue<int[]> queue = new PriorityQueue<>(Comparator.comparingInt(a -> a[2]));
+        boolean[][] visited = new boolean[m][n];
+        int[][] directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+        queue.add(new int[]{0, 0, grid[0][0]});
+
+        visited[0][0] = true;
+        List<Integer> list = new ArrayList<>();
+
+        while (!queue.isEmpty()) {
+            int[] rc = queue.poll();
+            list.add(rc[2]);
+            for (int[] direction : directions) {
+                int r = rc[0] + direction[0];
+                int c = rc[1] + direction[1];
+
+                if (r >= 0 && r < m && c >= 0 && c < n && !visited[r][c]) {
+                    visited[r][c] = true;
+                    queue.add(new int[]{r, c, Math.max(rc[2], grid[r][c])});
+                }
+            }
+        }
+
+        int i = 0;
+        int j = 0;
+        while (i < queries.length) {
+            while (j < list.size() && list.get(j) < sorted[i][0]) {
+                j += 1;
+            }
+
+            result[sorted[i][1]] = j;
+            i += 1;
+        }
+
+        return result;
+    }
+
 }
 
 class PathCounter {
