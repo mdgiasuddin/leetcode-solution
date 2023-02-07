@@ -159,45 +159,6 @@ public class FourthSolution {
         return reverse;
     }
 
-    public int minJumps(int[] arr) {
-        if (arr.length == 1)
-            return 0;
-
-        List<List<Integer>> graph = new ArrayList<>();
-        for (int i = 0; i < arr.length; i++) {
-            graph.add(new ArrayList<>());
-        }
-
-        for (int i = 0; i < arr.length - 1; i++) {
-            for (int j = i + 1; j < arr.length; j++) {
-                if (j == i + 1 || arr[j] == arr[i]) {
-                    graph.get(i).add(j);
-                    graph.get(j).add(i);
-                }
-            }
-        }
-
-        Queue<Integer> queue = new LinkedList<>();
-        boolean[] visited = new boolean[arr.length];
-        int[] distance = new int[arr.length];
-        queue.add(0);
-        visited[0] = true;
-        while (!queue.isEmpty()) {
-            int u = queue.poll();
-            for (int v : graph.get(u)) {
-                if (!visited[v]) {
-                    queue.add(v);
-                    distance[v] = 1 + distance[u];
-                    visited[v] = true;
-                    if (v == arr.length - 1)
-                        return distance[v];
-                }
-            }
-        }
-
-        return distance[distance.length - 1];
-    }
-
     public boolean PredictTheWinner(int[] nums) {
         Pair[][] dp = new Pair[nums.length][nums.length];
         for (int i = 0; i < nums.length; i++) {
