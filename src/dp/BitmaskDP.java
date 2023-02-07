@@ -54,4 +54,50 @@ public class BitmaskDP {
 
         return true;
     }
+
+    // Leetcode problem: 2151
+    /*
+     * Maximum Good People Based on Statements.
+     * Explanation: https://www.youtube.com/watch?v=v7sr-1Zbh6k&list=PLy38cn8b_xMcjNmLdBfY0D8mByFzbpX9Z
+     * */
+    public int maximumGood(int[][] statements) {
+        int n = statements.length;
+        int res = 0;
+
+        for (int i = 1; i < (1 << n); i++) {
+            if (isValid(i, statements)) {
+                res = Math.max(res, countOneBits(i));
+            }
+        }
+
+        return res;
+    }
+
+    private boolean isValid(int mask, int[][] statements) {
+        int n = statements.length;
+        for (int i = 0; i < n; i++) {
+            if (isGoodPerson(mask, i)) {
+                for (int j = 0; j < n; j++) {
+                    if ((statements[i][j] == 0 && isGoodPerson(mask, j)) || (statements[i][j] == 1 && !isGoodPerson(mask, j))) {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return true;
+    }
+
+    private boolean isGoodPerson(int mask, int person) {
+        return (mask & (1 << person)) != 0;
+    }
+
+    private int countOneBits(int num) {
+        int res = 0;
+        while (num > 0) {
+            res += num & 1;
+            num >>= 1;
+        }
+        return res;
+    }
 }

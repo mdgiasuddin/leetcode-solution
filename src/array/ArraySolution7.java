@@ -335,4 +335,36 @@ public class ArraySolution7 {
 
         return res;
     }
+
+    // Leetcode problem: 2444
+    /*
+     * Count Subarrays With Fixed Bounds.
+     * Explanation: https://www.youtube.com/watch?v=Rbu8pl4NnfQ&list=PLy38cn8b_xMcjNmLdBfY0D8mByFzbpX9Z&index=2
+     * */
+    public long countSubarrays(int[] nums, int minK, int maxK) {
+        int badIdx = -1;
+        int minIdx = -1;
+        int maxIdx = -1;
+        long res = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] < minK || nums[i] > maxK) {
+                badIdx = i;
+            }
+
+            if (nums[i] == minK) {
+                minIdx = i;
+            }
+            if (nums[i] == maxK) {
+                maxIdx = i;
+            }
+
+            int startIdx = Math.min(minIdx, maxIdx);
+            if (startIdx > badIdx) {
+                res += startIdx - badIdx;
+            }
+        }
+
+        return res;
+    }
 }

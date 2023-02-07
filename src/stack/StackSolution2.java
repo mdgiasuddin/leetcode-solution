@@ -3,6 +3,8 @@ package stack;
 import pair.Pair;
 import string.CharCounter;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
 public class StackSolution2 {
@@ -370,6 +372,39 @@ public class StackSolution2 {
         }
 
         return false;
+    }
+
+    // Leetcode problem: 904
+    /*
+     * Fruit Into Baskets.
+     * Explanation: https://www.youtube.com/watch?v=yYtaV0G3mWQ
+     * */
+    public int totalFruit(int[] fruits) {
+        Map<Integer, Integer> countMap = new HashMap<>();
+        int l = 0;
+        int r = 0;
+        int res = 0;
+
+        while (r < fruits.length) {
+            int count = countMap.getOrDefault(fruits[r], 0);
+            countMap.put(fruits[r], count + 1);
+
+            while (countMap.size() > 2) {
+                count = countMap.get(fruits[l]);
+                if (count == 1) {
+                    countMap.remove(fruits[l]);
+                } else {
+                    countMap.put(fruits[l], count - 1);
+                }
+
+                l += 1;
+            }
+
+            res = Math.max(res, r - l + 1);
+            r += 1;
+        }
+
+        return res;
     }
 
 }

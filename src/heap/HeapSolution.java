@@ -373,4 +373,42 @@ public class HeapSolution {
         return res;
     }
 
+    // Leetcode problem: 2454
+    /*
+     * Next Greater Element IV.
+     * Explanation: https://www.youtube.com/watch?v=YZrQrQehM64&list=PLy38cn8b_xMeo28nZcPQTV-z3-DcaQOaY&index=2
+     * First find the next greater, then find the second greater element.
+     * */
+    public int[] secondGreaterElement(int[] nums) {
+        List<List<Integer>> nextGreater = new ArrayList<>();
+        int n = nums.length;
+        for (int i = 0; i < n; i++) {
+            nextGreater.add(new ArrayList<>());
+        }
+        Stack<Integer> stack = new Stack<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            while (!stack.isEmpty() && nums[stack.peek()] < nums[i]) {
+                nextGreater.get(i).add(stack.pop());
+            }
+
+            stack.push(i);
+        }
+
+        PriorityQueue<int[]> queue = new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));
+        int[] res = new int[n];
+        Arrays.fill(res, -1);
+        for (int i = 0; i < n; i++) {
+            while (!queue.isEmpty() && nums[i] > queue.peek()[0]) {
+                res[queue.poll()[1]] = nums[i];
+            }
+
+            for (int idx : nextGreater.get(i)) {
+                queue.add(new int[]{nums[idx], idx});
+            }
+        }
+
+        return res;
+    }
+
 }
