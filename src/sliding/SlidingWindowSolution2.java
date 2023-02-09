@@ -1,5 +1,6 @@
 package sliding;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -173,5 +174,59 @@ public class SlidingWindowSolution2 {
         }
 
         return s.length() - max;
+    }
+
+    // Leetcode problem: 1343
+    /*
+     * Number of Sub-arrays of Size K and Average Greater than or Equal to Threshold.
+     * */
+    public int numOfSubarrays(int[] arr, int k, int threshold) {
+        int expected = threshold * k;
+        int current = 0;
+        int i = 0;
+        while (i < k) {
+            current += arr[i];
+            i += 1;
+        }
+
+        int res = current >= expected ? 1 : 0;
+        while (i < arr.length) {
+            current += arr[i] - arr[i - k];
+            if (current >= expected) {
+                res += 1;
+            }
+            i += 1;
+        }
+        return res;
+    }
+
+    // Leetcode problem: 2090
+    /*
+     * K Radius Subarray Averages.
+     * */
+    public int[] getAverages(int[] nums, int k) {
+        int n = nums.length;
+        int[] res = new int[n];
+        Arrays.fill(res, -1);
+        int groupSize = 2 * k + 1;
+        if (n < groupSize) {
+            return res;
+        }
+
+        int i = 0;
+        long current = 0;
+        while (i < groupSize) {
+            current += nums[i];
+            i += 1;
+        }
+
+        res[k] = (int) (current / groupSize);
+        while (i < n) {
+            current += nums[i] - nums[i - groupSize];
+            res[i - k] = (int) (current / groupSize);
+            i += 1;
+        }
+
+        return res;
     }
 }

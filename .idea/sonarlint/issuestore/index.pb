@@ -71,8 +71,6 @@ N
 ,src/binary_search/BinarySearchSolution2.java,8\1\81b45aa4cb92554b3d20211e8c98de0308910094
 J
 src/math/MathSolution.java,2\b\2b069312f33aa97eae54a4d3e38404b4a3ca092f
-O
-src/string/StringSolution8.java,f\e\fe3791e146ac3f52a0a74a7378fe0222657453ad
 T
 $src/tech_dose/RangeMinimumQuery.java,6\f\6fb380b719f3d2a8b0b932b19ee8905bbfd4dfa4
 G
@@ -95,3 +93,13 @@ I
 src/dfs/DFSSolution4.java,e\1\e15ff937e803d4f96da150a7e5262c2ee06adf6a
 L
 src/array/ArraySolution.java,d\e\dee861a874825ba474d3d375a2113442ef61e9d1
+M
+src/stack/StackSolution2.java,2\1\2151c7a08c259ad71f4779f2d892833feaf39ec5
+S
+#src/bit_operation/BitOperation.java,4\6\46f66f5b3e200517881203aa809c062c4e45bdd7
+M
+src/array/ArraySolution7.java,7\b\7be05820cbac99ddfae2de5f9cd570c545b904a7
+E
+src/dp/BitmaskDP.java,6\3\633dd4cf773b4632c746b1dee558ec172d44af0a
+K
+src/tree/TreeSolution4.java,2\5\2586d001ca9857cc1d4992d70d3298d83bb50406

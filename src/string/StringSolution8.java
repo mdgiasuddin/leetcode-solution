@@ -248,4 +248,43 @@ public class StringSolution8 {
         return res;
     }
 
+    // Leetcode problem: 2306
+    /*
+     * Naming a Company.
+     * Explanation: https://www.youtube.com/watch?v=NrHpgTScOcY.
+     * */
+    public long distinctNames(String[] ideas) {
+        Map<Character, Set<String>> suffixMap = new HashMap<>();
+
+        for (String idea : ideas) {
+            Set<String> suffixes = suffixMap.getOrDefault(idea.charAt(0), new HashSet<>());
+            suffixes.add(idea.substring(1));
+            suffixMap.put(idea.charAt(0), suffixes);
+        }
+
+        long res = 0;
+        Set<String> visited = new HashSet<>();
+        for (Map.Entry<Character, Set<String>> entry1 : suffixMap.entrySet()) {
+            for (Map.Entry<Character, Set<String>> entry2 : suffixMap.entrySet()) {
+                if (Objects.equals(entry1.getKey(), entry2.getKey()) || visited.contains(entry1.getKey() + "" + entry2.getKey())) {
+                    continue;
+                }
+
+                visited.add(entry1.getKey() + "" + entry2.getKey());
+                visited.add(entry2.getKey() + "" + entry1.getKey());
+
+                int intersect = 0;
+                for (String suffix : entry1.getValue()) {
+                    if (entry2.getValue().contains(suffix)) {
+                        intersect += 1;
+                    }
+                }
+
+                res += 2L * (entry1.getValue().size() - intersect) * (entry2.getValue().size() - intersect);
+            }
+        }
+
+        return res;
+    }
+
 }
