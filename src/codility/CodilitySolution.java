@@ -1,9 +1,6 @@
 package codility;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 public class CodilitySolution {
 
@@ -295,5 +292,128 @@ public class CodilitySolution {
         }
 
         return flag <= 0;
+    }
+
+    /*
+     * NailingPlanks.
+     * https://app.codility.com/programmers/lessons/14-binary_search_algorithm/nailing_planks/
+     * */
+    public int solution9(int[] A, int[] B, int[] C) {
+        int n = A.length;
+        int m = C.length;
+        int[][] sortedNail = new int[m][2];
+        for (int i = 0; i < m; i++) {
+            sortedNail[i][0] = C[i];
+            sortedNail[i][1] = i;
+        }
+        Arrays.sort(sortedNail, Comparator.comparingInt(a -> a[0]));
+
+        int res = 0;
+        for (int i = 0; i < n; i++) {
+            int minIdx = getMinNailIndex(A[i], B[i], sortedNail);
+            if (minIdx == -1) {
+                return -1;
+            }
+
+            res = Math.max(res, minIdx);
+        }
+
+        return res;
+    }
+
+    private int getMinNailIndex(int start, int end, int[][] nails) {
+        int res = -1;
+
+        int l = 0;
+        int h = nails.length - 1;
+
+        while (l <= h) {
+            int m = l + (h - l) / 2;
+
+            if (nails[m][0] < start) {
+                l = m + 1;
+            } else if (nails[m][0] > end) {
+                h = m - 1;
+            } else {
+                res = m;
+                h = m - 1;
+            }
+        }
+
+        if (res == -1) {
+            return -1;
+        }
+
+        int i = res + 1;
+        int min = nails[res][1];
+        while (i < nails.length && nails[i][0] <= end) {
+            min = Math.min(min, nails[i][1]);
+            i += 1;
+        }
+
+        return min + 1;
+    }
+
+    /*
+     * CountDistinctSlices.
+     * https://app.codility.com/programmers/lessons/15-caterpillar_method/count_distinct_slices/
+     * */
+    public int solution10(int M, int[] A) {
+        Set<Integer> set = new HashSet<>();
+        int l = 0;
+        int r = 0;
+        long res = 0;
+
+        while (r < A.length) {
+            while (set.contains(A[r])) {
+                set.remove(A[l++]);
+            }
+
+            set.add(A[r]);
+            res += (r - l + 1);
+            r += 1;
+        }
+
+        return (int) Math.min(res, 1000000000);
+    }
+
+    /*
+     * TieRopes.
+     * https://app.codility.com/programmers/lessons/16-greedy_algorithms/tie_ropes/
+     * */
+    public int solution11(int K, int[] A) {
+        int res = 0;
+        int i = 0;
+        int current = 0;
+        while (i < A.length) {
+            current += A[i];
+            if (current >= K) {
+                current = 0;
+                res += 1;
+            }
+
+            i += 1;
+        }
+
+        return res;
+    }
+
+    /*
+     * NumberSolitaire.
+     * https://app.codility.com/programmers/lessons/17-dynamic_programming/number_solitaire/
+     * */
+    public int solution12(int[] A) {
+        int n = A.length;
+        int[] dp = new int[n];
+        dp[0] = A[0];
+
+        for (int i = 1; i < n; i++) {
+            dp[i] = Integer.MIN_VALUE;
+            for (int j = 1; j <= 6 && i - j >= 0; j++) {
+                dp[i] = Math.max(dp[i], A[i] + dp[i - j]);
+            }
+        }
+
+        return dp[n - 1];
     }
 }
