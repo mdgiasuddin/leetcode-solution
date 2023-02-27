@@ -416,4 +416,128 @@ public class CodilitySolution {
 
         return dp[n - 1];
     }
+
+    /*
+     * FibFrog.
+     * https://app.codility.com/programmers/lessons/13-fibonacci_numbers/fib_frog/
+     * */
+    public int solution13(int[] A) {
+        int n = A.length;
+
+        // n <= 1,00,000, 25 fibonacci numbers cover 1,00,000.
+        int fCount = 25;
+        int[] fib = new int[fCount];
+        // Skip 0 & 1.
+        fib[0] = 1;
+        fib[1] = 2;
+
+        for (int i = 2; i < fCount; i++) {
+            fib[i] = fib[i - 1] + fib[i - 2];
+        }
+
+
+        int[] dp = new int[n + 1];
+
+        for (int i = 0; i <= n; i++) {
+            dp[i] = Integer.MAX_VALUE;
+            if (i == n || A[i] == 1) {
+                for (int j = 0; j < fCount && i - fib[j] >= -1; j++) {
+                    if (i - fib[j] == -1) {
+                        dp[i] = 1;
+                    } else if (dp[i - fib[j]] < Integer.MAX_VALUE && 1 + dp[i - fib[j]] < dp[i]) {
+                        dp[i] = 1 + dp[i - fib[j]];
+                    }
+                }
+            }
+        }
+
+        return dp[n] == Integer.MAX_VALUE ? -1 : dp[n];
+    }
+
+    /*
+     * Ladder.
+     * https://app.codility.com/programmers/lessons/13-fibonacci_numbers/ladder/
+     * Generate all Fibonacci numbers [1, 50,000] & return as required.
+     * */
+    public int[] solution14(int[] A, int[] B) {
+        int mod = (1 << 30) - 1;
+        int maxFib = 50000;
+
+        int[] dp = new int[maxFib];
+        dp[0] = 1;
+        dp[1] = 2;
+
+        for (int i = 2; i < maxFib; i++) {
+            dp[i] = (dp[i - 1] + dp[i - 2]) & mod;
+        }
+
+        int n = A.length;
+        int[] res = new int[n];
+        for (int i = 0; i < n; i++) {
+            mod = (1 << B[i]) - 1;
+            res[i] = dp[A[i] - 1] & mod;
+        }
+
+        return res;
+    }
+
+    /*
+     * CommonPrimeDivisors.
+     * https://app.codility.com/programmers/lessons/12-euclidean_algorithm/common_prime_divisors/
+     * Explanation: https://www.youtube.com/watch?v=F_th-1Rza_s&t=539s
+     * */
+    public int solution15(int[] A, int[] B) {
+        int res = 0;
+        for (int i = 0; i < A.length; i++) {
+            int a = A[i];
+            int b = B[i];
+            int d = gcd(a, b);
+            int e;
+
+            while ((e = gcd(a, d)) != 1) {
+                a /= e;
+            }
+            while ((e = gcd(b, d)) != 1) {
+                b /= e;
+            }
+
+            // If they have same prime factor, value of both will be 1.
+            if (a == b) {
+                res += 1;
+            }
+        }
+
+        return res;
+    }
+
+    /*
+     * ChocolatesByNumbers.
+     * https://app.codility.com/programmers/lessons/12-euclidean_algorithm/chocolates_by_numbers/
+     * They will meet their LCM.
+     * */
+    public int solution16(int N, int M) {
+        int d = gcd(N, M);
+        long m = 1;
+        m = m * N * M;
+        long l = m / d;
+
+        return (int) (l / M);
+    }
+
+    private int gcd(int a, int b) {
+        if (a < b) {
+            int t = a;
+            a = b;
+            b = t;
+        }
+
+        while (b != 0) {
+            int t = a % b;
+            a = b;
+            b = t;
+        }
+
+        return a;
+    }
+
 }
