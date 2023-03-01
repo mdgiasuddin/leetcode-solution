@@ -29,10 +29,6 @@ I
 src/tree/TreeBalance.java,b\e\be28c578ebc19e8a4d61a8c74a219b143e8100e0
 J
 src/tree/TreeSolution.java,1\7\1724e8f0c5ae3c3e513da450dfd5fc57f152e4d6
-F
-src/tree/TreeTest.java,8\7\871573add4215c2342814c6e67604dd29b78e8db
-T
-$src/amazon_interview/AmazonCode.java,1\b\1b35a59514bbbdfe5aafe209ce002823952e7347
 X
 (src/amazon_interview/AmazonSolution.java,5\f\5fd1479df7dfe33442f439b37793955828809837
 X
@@ -73,8 +69,6 @@ T
 $src/tech_dose/RangeMinimumQuery.java,6\f\6fb380b719f3d2a8b0b932b19ee8905bbfd4dfa4
 G
 src/array/NumArray.java,c\4\c4b806ffe844e5b78e95e1bbeee9319232fe2ea3
-G
-src/tree/TreeTest2.java,f\a\fac5a5b9ee428ba18994149e87fb28c846eb6755
 K
 src/tree/TreeSolution2.java,b\2\b2b75bace0e3f9469b813275811bbb4b41e4c412
 K
@@ -99,9 +93,11 @@ M
 src/array/ArraySolution7.java,7\b\7be05820cbac99ddfae2de5f9cd570c545b904a7
 E
 src/dp/BitmaskDP.java,6\3\633dd4cf773b4632c746b1dee558ec172d44af0a
-K
-src/tree/TreeSolution4.java,2\5\2586d001ca9857cc1d4992d70d3298d83bb50406
 H
 src/dp/RecursiveDP2.java,a\9\a93249217621d3ccf585bf8fdc376affde6b17e8
 R
 "src/indefinite/FourthSolution.java,b\7\b71a9b8d1044919de5b0c6016a6587f0c3da9368
+I
+src/bfs/BFSSolution2.java,d\2\d2620dce3e2e630e30d3b5ad8270deec14b8977e
+I
+src/bfs/BFSSolution3.java,c\f\cf59a66f73494d3d4be3335d4303fe48994f6447

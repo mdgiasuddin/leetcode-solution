@@ -330,6 +330,37 @@ public class TreeSolution4 {
 
         return result;
     }
+
+    // Leetcode problem: 652
+    /*
+     * Find Duplicate Subtrees.
+     * */
+    public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
+        List<TreeNode> result = new ArrayList<>();
+        inorderDuplicateSubtrees(root, new HashMap<>(), result);
+        return result;
+    }
+
+    private String inorderDuplicateSubtrees(TreeNode node, Map<String, Integer> subTreeCount, List<TreeNode> result) {
+
+        if (node == null) {
+            return "";
+        }
+
+        String str = "(";
+        str += inorderDuplicateSubtrees(node.left, subTreeCount, result);
+        str += node.val;
+        str += inorderDuplicateSubtrees(node.right, subTreeCount, result);
+        str += ")";
+
+        int count = subTreeCount.getOrDefault(str, 0);
+        if (count == 1) {
+            result.add(node);
+        }
+        subTreeCount.put(str, count + 1);
+
+        return str;
+    }
 }
 
 class TraversalNode implements Comparable<TraversalNode> {
