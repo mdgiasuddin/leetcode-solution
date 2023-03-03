@@ -59,10 +59,6 @@ H
 src/array/Allocator.java,6\6\66a16c90b9583f6e7ec19c7c7184833209dec91d
 N
 src/binary_search/TimeMap.java,1\d\1d2ae5ac7edf2204ccd1314ba55fabf35aa09996
-[
-+src/binary_search/BinarySearchSolution.java,d\d\ddb25a37922b7471d8933add896ce1256f17e1ac
-\
-,src/binary_search/BinarySearchSolution2.java,8\1\81b45aa4cb92554b3d20211e8c98de0308910094
 J
 src/math/MathSolution.java,2\b\2b069312f33aa97eae54a4d3e38404b4a3ca092f
 T
@@ -93,11 +89,17 @@ M
 src/array/ArraySolution7.java,7\b\7be05820cbac99ddfae2de5f9cd570c545b904a7
 E
 src/dp/BitmaskDP.java,6\3\633dd4cf773b4632c746b1dee558ec172d44af0a
-H
-src/dp/RecursiveDP2.java,a\9\a93249217621d3ccf585bf8fdc376affde6b17e8
 R
 "src/indefinite/FourthSolution.java,b\7\b71a9b8d1044919de5b0c6016a6587f0c3da9368
 I
 src/bfs/BFSSolution2.java,d\2\d2620dce3e2e630e30d3b5ad8270deec14b8977e
 I
 src/bfs/BFSSolution3.java,c\f\cf59a66f73494d3d4be3335d4303fe48994f6447
+J
+src/heap/HeapSolution.java,7\6\7628927ef928478bd4d4ab97042e91d355fe7cb5
+O
+src/dp/DynamicProgramming2.java,5\5\5526a3d23baac2d3eddce0cc3d60d849cbb011d7
+N
+src/dp/DynamicProgramming.java,4\7\47311726c9ef62b30cee5fcc5a330436bcef78aa
+W
+'src/sliding/SlidingWindowSolution2.java,c\0\c0532f120496e6d45d6dab3ff43ed1eb42988318

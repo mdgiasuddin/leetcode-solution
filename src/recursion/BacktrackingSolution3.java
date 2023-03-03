@@ -1,7 +1,6 @@
 package recursion;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class BacktrackingSolution3 {
 
@@ -104,5 +103,35 @@ public class BacktrackingSolution3 {
             splitIntoFibonacci(num, i + 1, result, current);
             current.remove(current.size() - 1);
         }
+    }
+
+    // Leetcode problem: 1049
+    /*
+     * Last Stone Weight II.
+     * Explanation: https://www.youtube.com/watch?v=gdXkkmzvR3c
+     * */
+    public int lastStoneWeightII(int[] stones) {
+        int total = 0;
+        for (int stone : stones) {
+            total += stone;
+        }
+
+        return lastStoneWeightII(stones, 0, 0, (total + 1) / 2, total, new HashMap<>());
+    }
+
+    public int lastStoneWeightII(int[] stones, int idx, int current, int target, int total, Map<List<Integer>, Integer> map) {
+        if (current >= target || idx >= stones.length) {
+            return Math.abs(current - (total - current));
+        }
+
+        List<Integer> list = Arrays.asList(idx, current);
+        if (map.containsKey(list)) {
+            return map.get(list);
+        }
+
+        int res = Math.min(lastStoneWeightII(stones, idx + 1, current + stones[idx], target, total, map),
+                lastStoneWeightII(stones, idx + 1, current, target, total, map));
+        map.put(list, res);
+        return res;
     }
 }

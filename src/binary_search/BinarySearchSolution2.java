@@ -74,4 +74,50 @@ public class BinarySearchSolution2 {
 
         return true;
     }
+
+    // Leetcode problem: 1011
+    /*
+     * Capacity To Ship Packages Within D Days.
+     * This problem is similar to Maximum Tastiness of Candy Basket (Leetcode problem: 2517).
+     * */
+    public int shipWithinDays(int[] weights, int days) {
+        int sum = 0;
+        int max = weights[0];
+
+        for (int weight : weights) {
+            max = Math.max(max, weight);
+            sum += weight;
+        }
+
+        int l = max;
+        int h = sum;
+        int capacity = sum;
+
+        while (l <= h) {
+            int m = l + (h - l) / 2;
+            if (canShipAll(weights, m, days)) {
+                capacity = m;
+                h = m - 1;
+            } else {
+                l = m + 1;
+            }
+        }
+
+        return capacity;
+    }
+
+    private boolean canShipAll(int[] weights, int capacity, int days) {
+        int current = 0;
+        int currentDays = 1;
+
+        for (int i = 0; i < weights.length; i++) {
+            current += weights[i];
+            if (current > capacity) {
+                current = weights[i];
+                currentDays += 1;
+            }
+        }
+
+        return currentDays <= days;
+    }
 }

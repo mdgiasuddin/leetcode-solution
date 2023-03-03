@@ -223,4 +223,44 @@ public class RecursiveDP2 {
 
         return cherries;
     }
+
+    public int findMaxForm(String[] strs, int m, int n) {
+        return findMaxForm(strs, m, n, 0, new HashMap<>());
+    }
+
+    // Leetcode problem: 474
+    /*
+     * Ones and Zeroes.
+     * Explanation: https://www.youtube.com/watch?v=miZ3qV04b1g
+     * */
+    private int findMaxForm(String[] strs, int m, int n, int idx, Map<String, Integer> dp) {
+        if (idx >= strs.length) {
+            return 0;
+        }
+
+        String key = m + ":" + n + ":" + idx;
+        if (dp.containsKey(key)) {
+            return dp.get(key);
+        }
+
+        int res = findMaxForm(strs, m, n, idx + 1, dp);
+        int[] count = countZeroAndOne(strs[idx]);
+        if (count[0] <= m && count[1] <= n) {
+            res = Math.max(res, 1 + findMaxForm(strs, m - count[0], n - count[1], idx + 1, dp));
+        }
+
+        dp.put(key, res);
+        return res;
+
+    }
+
+    private int[] countZeroAndOne(String str) {
+        int[] count = new int[2];
+
+        for (int i = 0; i < str.length(); i++) {
+            count[str.charAt(i) - '0'] += 1;
+        }
+
+        return count;
+    }
 }
