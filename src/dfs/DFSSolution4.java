@@ -273,6 +273,49 @@ public class DFSSolution4 {
         return result;
     }
 
+    // Leetcode problem: 1462
+    /*
+     * Course Schedule IV.
+     * Explanation: https://www.youtube.com/watch?v=cEW05ofxhn0&t=29s
+     * */
+    public List<Boolean> checkIfPrerequisite(int numCourses, int[][] prerequisites, int[][] queries) {
+        List<List<Integer>> graph = new ArrayList<>();
+        for (int i = 0; i < numCourses; i++) {
+            graph.add(new ArrayList<>());
+        }
+
+        for (int[] prereq : prerequisites) {
+            graph.get(prereq[1]).add(prereq[0]);
+        }
+
+        Map<Integer, Set<Integer>> reqMap = new HashMap<>();
+        for (int i = 0; i < numCourses; i++) {
+            findAllPreRequisites(i, graph, reqMap);
+        }
+
+        List<Boolean> result = new ArrayList<>();
+        for (int[] query : queries) {
+            result.add(reqMap.get(query[1]).contains(query[0]));
+        }
+
+        return result;
+    }
+
+    public Set<Integer> findAllPreRequisites(int node, List<List<Integer>> graph, Map<Integer, Set<Integer>> reqMap) {
+        if (reqMap.containsKey(node)) {
+            return reqMap.get(node);
+        }
+
+        Set<Integer> req = new HashSet<>();
+        for (int child : graph.get(node)) {
+            req.add(child);
+            req.addAll(findAllPreRequisites(child, graph, reqMap));
+        }
+
+        reqMap.put(node, req);
+        return req;
+    }
+
 }
 
 class PathCounter {
