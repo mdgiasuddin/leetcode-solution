@@ -7,6 +7,11 @@ import java.util.Map;
 
 public class GraphSolution2 {
 
+    // Leetcode problem: 721
+    /*
+     * Accounts Merge.
+     * Union Find algorithm.
+     * */
     public List<List<String>> accountsMerge(List<List<String>> accounts) {
         int n = accounts.size();
         int[] parent = new int[n];
