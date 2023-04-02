@@ -367,4 +367,25 @@ public class ArraySolution7 {
 
         return res;
     }
+
+    // Leetcode problem: 2348
+    /*
+     * Number of Zero-Filled Subarrays.
+     * For a sub-array: [0, 0, 0], there are six options 1 + 2 + 3 =>
+     * [0, 0, 0], {[0, 0], [0, 0]}, {[0], [0], [0]}
+     * */
+    public long zeroFilledSubarray(int[] nums) {
+        long res = 0;
+        int current = 0;
+        for (int num : nums) {
+            if (num == 0) {
+                current += 1;
+                res += current;
+            } else {
+                current = 0;
+            }
+        }
+
+        return res;
+    }
 }
