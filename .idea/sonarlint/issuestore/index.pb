@@ -89,3 +89,5 @@ N
 src/dp/DynamicProgramming.java,4\7\47311726c9ef62b30cee5fcc5a330436bcef78aa
 O
 src/string/StringSolution8.java,f\e\fe3791e146ac3f52a0a74a7378fe0222657453ad
+[
++src/binary_search/BinarySearchSolution.java,d/d/ddb25a37922b7471d8933add896ce1256f17e1ac

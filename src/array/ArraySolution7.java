@@ -388,4 +388,43 @@ public class ArraySolution7 {
 
         return res;
     }
+
+    // Leetcode problem: 1074
+    /*
+     * Number of Submatrices That Sum to Target.
+     * This problem is the extension of the target sum of 1D-array.
+     * */
+    public int numSubmatrixSumTarget(int[][] matrix, int target) {
+        int m = matrix.length;
+        int n = matrix[0].length;
+
+        for (int j = 0; j < n; j++) {
+            for (int i = 1; i < m; i++) {
+                matrix[i][j] += matrix[i - 1][j];
+            }
+        }
+
+        int res = 0;
+        for (int sr = 0; sr < m; sr++) {
+            for (int er = sr; er < m; er++) {
+                Map<Integer, Integer> countMap = new HashMap<>();
+                countMap.put(0, 1);
+                int current = 0;
+
+                for (int i = 0; i < n; i++) {
+                    current += matrix[er][i];
+                    if (sr > 0) {
+                        current -= matrix[sr - 1][i];
+                    }
+
+                    res += countMap.getOrDefault(current - target, 0);
+
+                    int c = countMap.getOrDefault(current, 0);
+                    countMap.put(current, c + 1);
+                }
+            }
+        }
+
+        return res;
+    }
 }
