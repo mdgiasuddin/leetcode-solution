@@ -427,4 +427,21 @@ public class ArraySolution7 {
 
         return res;
     }
+
+    // Leetcode problem: 2439
+    /*
+     * Minimize Maximum of Array.
+     * Explanation: https://www.youtube.com/watch?v=AeHMvcKuR0Y
+     * */
+    public int minimizeArrayValue(int[] nums) {
+        long res = nums[0];
+        long total = nums[0];
+
+        for (int i = 1; i < nums.length; i++) {
+            total += nums[i];
+            res = Math.max(res, (total + i) / (i + 1));
+        }
+
+        return (int) res;
+    }
 }
