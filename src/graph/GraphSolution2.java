@@ -1,9 +1,6 @@
 package graph;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class GraphSolution2 {
 
@@ -81,5 +78,78 @@ public class GraphSolution2 {
         }
 
         return true;
+    }
+
+    // Leetcode problem: 827
+    /*
+     * Making A Large Island.
+     * Explanation: https://www.youtube.com/watch?v=JKRJUE74fm8&list=PLEvw47Ps6OBA3ysUO1XOho_6bFsqQ9NQ8
+     * Union find algorithm.
+     * */
+    public int largestIsland(int[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+
+        // Initialize parent & rank.
+        int[] parent = new int[m * n];
+        int[] rank = new int[m * n];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                int idx = i * n + j;
+                parent[idx] = idx;
+                rank[idx] = grid[i][j];
+            }
+        }
+
+        // Union left<-->right in each row.
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n - 1; j++) {
+                if (grid[i][j] == 1 && grid[i][j + 1] == 1) {
+                    union(i * n + j, i * n + j + 1, parent, rank);
+                }
+            }
+        }
+
+        // Union up<-->down in each column.
+        for (int j = 0; j < n; j++) {
+            for (int i = 0; i < m - 1; i++) {
+                if (grid[i][j] == 1 && grid[i + 1][j] == 1) {
+                    union(i * n + j, (i + 1) * n + j, parent, rank);
+                }
+            }
+        }
+
+        int res = 0;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] == 1) {
+                    int parentIdx = findParent(i * n + j, parent);
+                    res = Math.max(res, rank[parentIdx]);
+                    continue;
+                }
+
+                Set<Integer> set = new HashSet<>();
+                if (i - 1 >= 0 && grid[i - 1][j] == 1) {
+                    set.add(findParent((i - 1) * n + j, parent));
+                }
+                if (i + 1 < m && grid[i + 1][j] == 1) {
+                    set.add(findParent((i + 1) * n + j, parent));
+                }
+                if (j - 1 >= 0 && grid[i][j - 1] == 1) {
+                    set.add(findParent(i * n + j - 1, parent));
+                }
+                if (j + 1 < n && grid[i][j + 1] == 1) {
+                    set.add(findParent(i * n + j + 1, parent));
+                }
+                int islandSize = 1;
+                for (int parentIdx : set) {
+                    islandSize += rank[parentIdx];
+                }
+                res = Math.max(res, islandSize);
+
+            }
+        }
+
+        return res;
     }
 }
