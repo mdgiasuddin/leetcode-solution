@@ -407,4 +407,30 @@ public class StackSolution2 {
         return res;
     }
 
+    // Leetcode problem 946
+    /*
+     * Validate Stack Sequences.
+     * */
+    public boolean validateStackSequences(int[] pushed, int[] popped) {
+        int i = 0;
+        int j = 0;
+        int n = pushed.length;
+        Stack<Integer> stack = new Stack<>();
+
+        while (i < n || j < n) {
+            // If pop is possible the pop.
+            if (!stack.isEmpty() && j < n && stack.peek() == popped[j]) {
+                j += 1;
+                stack.pop();
+            } else if (i < n) { // Else try to push.
+                stack.push(pushed[i]);
+                i += 1;
+            } else { // If push/pop is possible return false.
+                break;
+            }
+        }
+
+        return j == n;
+    }
+
 }

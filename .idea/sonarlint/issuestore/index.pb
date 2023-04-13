@@ -73,8 +73,6 @@ O
 src/dp/DynamicProgramming3.java,6\8\68d851db80677477cca4b757d44a8b9f7e5966b6
 L
 src/array/ArraySolution.java,d\e\dee861a874825ba474d3d375a2113442ef61e9d1
-M
-src/stack/StackSolution2.java,2\1\2151c7a08c259ad71f4779f2d892833feaf39ec5
 S
 #src/bit_operation/BitOperation.java,4\6\46f66f5b3e200517881203aa809c062c4e45bdd7
 E
