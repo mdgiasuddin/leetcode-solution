@@ -374,4 +374,35 @@ public class LinkedListSolution2 {
         return res.toString();
     }
 
+    // Leetcode problem: 2130
+    /*
+     * Maximum Twin Sum of a Linked List.
+     * Code source: https://www.youtube.com/watch?v=doj95MelfSA
+     * */
+    public int pairSum(ListNode head) {
+
+        // slow & fast both should start at head for this problem.
+        ListNode slow = head;
+        ListNode fast = head;
+        ListNode prev = null;
+
+        // Reverse the first half.
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            ListNode tmp = slow.next;
+            slow.next = prev;
+            prev = slow;
+            slow = tmp;
+        }
+
+        int res = 0;
+        while (slow != null) {
+            res = Math.max(res, slow.val + prev.val);
+            slow = slow.next;
+            prev = prev.next;
+        }
+
+        return res;
+    }
+
 }

@@ -44,4 +44,42 @@ public class HeapSolution2 {
 
         return w;
     }
+
+    // Leetcode problem: 1675
+    /*
+     * Minimize Deviation in Array.
+     * Explanation: https://www.youtube.com/watch?v=boHNFptxo2A&t=3s
+     * The maximum deviation is the difference between the highest & the lowest value.
+     * */
+    public int minimumDeviation(int[] nums) {
+        PriorityQueue<int[]> queue = new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));
+        int maxVal = 0;
+
+        // First insert the lowest possible value & track the highest value it can be.
+        for (int num : nums) {
+            int tmp = num;
+            while (tmp % 2 == 0) {
+                tmp /= 2;
+            }
+
+            maxVal = Math.max(maxVal, tmp);
+            queue.add(new int[]{tmp, Math.max(2 * tmp, num)});
+        }
+
+        int res = Integer.MAX_VALUE;
+
+        // Run until any other option is possible.
+        while (queue.size() == nums.length) {
+            int[] num = queue.poll();
+            res = Math.min(res, maxVal - num[0]);
+
+            // If any greater value can be taken, take it.
+            if (num[1] > num[0]) {
+                maxVal = Math.max(maxVal, num[0] * 2);
+                queue.add(new int[]{2 * num[0], num[1]});
+            }
+        }
+
+        return res;
+    }
 }

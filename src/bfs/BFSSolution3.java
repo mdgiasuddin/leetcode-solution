@@ -99,7 +99,7 @@ public class BFSSolution3 {
 
     // Leetcode problem: 1129
     /*
-     * Shortest Path with Alternating Colors
+     * Shortest Path with Alternating Colors.
      * */
     public int[] shortestAlternatingPaths(int n, int[][] redEdges, int[][] blueEdges) {
         List<List<int[]>> graph = new ArrayList<>();
