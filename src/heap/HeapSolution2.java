@@ -82,4 +82,35 @@ public class HeapSolution2 {
 
         return res;
     }
+
+    // Leetcode problem: 1338
+    /*
+     * Reduce Array Size to The Half.
+     * Count the occurrences of each element.
+     * Remove the elements with greater count one by one to reduce the size into half.
+     * */
+    public int minSetSize(int[] arr) {
+        Arrays.sort(arr);
+
+        int removal = (arr.length + 1) / 2;
+        PriorityQueue<Integer> queue = new PriorityQueue<>(Comparator.comparingInt(a -> -a));
+        int count = 1;
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] != arr[i - 1]) {
+                queue.add(count);
+                count = 1;
+            } else {
+                count += 1;
+            }
+        }
+        queue.add(count);
+
+        int res = 0;
+        while (removal > 0) {
+            res += 1;
+            removal -= queue.poll();
+        }
+
+        return res;
+    }
 }

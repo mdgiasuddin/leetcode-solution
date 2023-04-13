@@ -316,6 +316,74 @@ public class DFSSolution4 {
         return req;
     }
 
+    // Leetcode problem: 1857
+    /*
+     * Largest Color Value in a Directed Graph.
+     * Explanation: https://www.youtube.com/watch?v=xLoDjKczUSk
+     * */
+    public int largestPathValue(String colors, int[][] edges) {
+        int n = colors.length();
+        List<List<Integer>> graph = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            graph.add(new ArrayList<>());
+        }
+
+        for (int[] edge : edges) {
+            graph.get(edge[0]).add(edge[1]);
+        }
+
+        Set<Integer> visited = new HashSet<>();
+        Set<Integer> path = new HashSet<>();
+        int[][] count = new int[n][26];
+
+        int res = 0;
+        for (int node = 0; node < n; node++) {
+            res = Math.max(res, dfsPathValue(node, graph, colors, visited, path, count));
+        }
+
+        return res == Integer.MAX_VALUE ? -1 : res;
+
+    }
+
+    private int dfsPathValue(int node, List<List<Integer>> graph, String colors, Set<Integer> visited, Set<Integer> path, int[][] count) {
+
+        // If a loop is created.
+        if (path.contains(node)) {
+            return Integer.MAX_VALUE;
+        }
+
+        // If already visited, skip this. No effect of return value.
+        if (visited.contains(node)) {
+            return 0;
+        }
+
+        visited.add(node);
+        path.add(node);
+        int colorIdx = colors.charAt(node) - 'a';
+        count[node][colorIdx] = 1;
+
+        for (int nei : graph.get(node)) {
+            if (dfsPathValue(nei, graph, colors, visited, path, count) == Integer.MAX_VALUE) {
+                return Integer.MAX_VALUE;
+            }
+
+            for (int c = 0; c < 26; c++) {
+                count[node][c] = Math.max(
+                        count[node][c],
+                        (c == colorIdx ? 1 : 0) + count[nei][c]
+                );
+            }
+        }
+
+        int res = 0;
+        for (int c = 0; c < 26; c++) {
+            res = Math.max(res, count[node][c]);
+        }
+
+        path.remove(node);
+        return res;
+    }
+
 }
 
 class PathCounter {

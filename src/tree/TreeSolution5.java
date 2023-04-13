@@ -34,6 +34,32 @@ public class TreeSolution5 {
 
         return new QuadNode(false, false, topLeft, topRight, bottomLeft, bottomRight);
     }
+
+    // Leetcode problem: 1339
+    /*
+     * Maximum Product of Splitted Binary Tree.
+     * */
+    public int maxProduct(TreeNode root) {
+        long[] ans = {0};
+
+        // Calculate the total sum. ans will not be modified.
+        long sum = dfsTree(root, 0, ans);
+        dfsTree(root, sum, ans);
+        return (int) (ans[0] % 1000000007);
+    }
+
+    private long dfsTree(TreeNode root, long sum, long[] ans) {
+        if (root == null) {
+            return 0;
+        }
+
+        long current = root.val + dfsTree(root.left, sum, ans) + dfsTree(root.right, sum, ans);
+
+        // For the first call, sum is 0. So current * (sum - current) < 0.
+        // So ans will not be modified.
+        ans[0] = Math.max(ans[0], current * (sum - current));
+        return current;
+    }
 }
 
 class QuadNode {

@@ -120,4 +120,40 @@ public class BinarySearchSolution2 {
 
         return currentDays <= days;
     }
+
+    // Leetcode problem: 2300
+    /*
+     * Successful Pairs of Spells and Potions.
+     * */
+    public int[] successfulPairs(int[] spells, int[] potions, long success) {
+        Arrays.sort(potions);
+        int n = spells.length;
+        int[] res = new int[n];
+        for (int i = 0; i < n; i++) {
+            res[i] = countSuccess(potions, spells[i], success);
+        }
+
+        return res;
+
+    }
+
+    private int countSuccess(int[] potions, long spell, long success) {
+
+        int l = 0;
+        int r = potions.length - 1;
+        int ans = 0;
+
+        while (l <= r) {
+            int m = l + (r - l) / 2;
+
+            if (spell * potions[m] >= success) {
+                ans = potions.length - m;
+                r = m - 1;
+            } else {
+                l = m + 1;
+            }
+        }
+
+        return ans;
+    }
 }
