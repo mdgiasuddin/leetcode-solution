@@ -229,4 +229,31 @@ public class SlidingWindowSolution2 {
 
         return res;
     }
+
+    /*
+     * Leetcode problem: 1456
+     * Maximum Number of Vowels in a Substring of Given Length.
+     * */
+    public int maxVowels(String s, int k) {
+        int max = 0;
+        int current = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+
+            if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
+                current += 1;
+                max = Math.max(max, current);
+            }
+
+            if (i + 1 >= k) {
+                ch = s.charAt(i - k + 1);
+                if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
+                    current -= 1;
+                }
+            }
+        }
+
+        return max;
+    }
 }
