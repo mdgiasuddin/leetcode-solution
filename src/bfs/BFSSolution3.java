@@ -156,6 +156,62 @@ public class BFSSolution3 {
 
         return distance;
     }
+
+    // Leetcode problem: 399
+    /*
+     * Evaluate Division.
+     * Explanation: https://www.youtube.com/watch?v=Uei1fwDoyKk&t=1s
+     * */
+    public double[] calcEquation(List<List<String>> equations, double[] values, List<List<String>> queries) {
+
+        Map<String, List<Variable>> graph = new HashMap<>();
+        int i = 0;
+        for (List<String> equation : equations) {
+            List<Variable> list1 = graph.getOrDefault(equation.get(0), new ArrayList<>());
+            list1.add(new Variable(equation.get(1), values[i]));
+            graph.put(equation.get(0), list1);
+
+            List<Variable> list2 = graph.getOrDefault(equation.get(1), new ArrayList<>());
+            list2.add(new Variable(equation.get(0), 1 / values[i]));
+            graph.put(equation.get(1), list2);
+
+            i += 1;
+        }
+
+        double[] res = new double[queries.size()];
+        for (i = 0; i < queries.size(); i++) {
+            res[i] = bfsEquation(queries.get(i).get(0), queries.get(i).get(1), graph);
+        }
+
+        return res;
+    }
+
+    private double bfsEquation(String src, String dst, Map<String, List<Variable>> graph) {
+        if (!graph.containsKey(src) || !graph.containsKey(dst)) {
+            return -1;
+        }
+
+        Queue<Variable> queue = new LinkedList<>();
+        Set<String> visited = new HashSet<>();
+        queue.add(new Variable(src, 1));
+        visited.add(src);
+
+        while (!queue.isEmpty()) {
+            Variable u = queue.poll();
+            if (u.name.equals(dst)) {
+                return u.value;
+            }
+
+            for (Variable v : graph.get(u.name)) {
+                if (!visited.contains(v.name)) {
+                    visited.add(v.name);
+                    queue.add(new Variable(v.name, u.value * v.value));
+                }
+            }
+        }
+
+        return -1;
+    }
 }
 
 class NodeProbability {
@@ -173,5 +229,15 @@ class NodeProbability {
 
     public double getProbability() {
         return probability;
+    }
+}
+
+class Variable {
+    String name;
+    double value;
+
+    public Variable(String name, double value) {
+        this.name = name;
+        this.value = value;
     }
 }
