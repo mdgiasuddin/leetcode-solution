@@ -263,4 +263,40 @@ public class RecursiveDP2 {
 
         return count;
     }
+
+    // Leetcode problem: 2218
+    /*
+     * Maximum Value of K Coins From Piles.
+     * Explanation: https://www.youtube.com/watch?v=ZRdEd_eun8g
+     * */
+    public int maxValueOfCoins(List<List<Integer>> piles, int k) {
+        int n = piles.size();
+        int[][] dp = new int[n][k + 1];
+
+        for (int[] arr : dp) {
+            Arrays.fill(arr, -1);
+        }
+
+        return dfsCoins(0, k, piles, dp);
+
+    }
+
+    private int dfsCoins(int idx, int coins, List<List<Integer>> piles, int[][] dp) {
+        if (idx >= piles.size()) {
+            return 0;
+        }
+
+        if (dp[idx][coins] != -1) {
+            return dp[idx][coins];
+        }
+
+        dp[idx][coins] = dfsCoins(idx + 1, coins, piles, dp);
+        int current = 0;
+        for (int i = 0; i < Math.min(coins, piles.get(idx).size()); i++) {
+            current += piles.get(idx).get(i);
+            dp[idx][coins] = Math.max(dp[idx][coins], current + dfsCoins(idx + 1, coins - i - 1, piles, dp));
+        }
+
+        return dp[idx][coins];
+    }
 }
