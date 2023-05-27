@@ -299,4 +299,33 @@ public class RecursiveDP2 {
 
         return dp[idx][coins];
     }
+
+    // Leetcode problem: 879
+    /*
+     * Profitable Schemes.
+     * Explanation: https://www.youtube.com/watch?v=CcLKQLKvOl8&t=514s
+     * Recursive solution exceeds the time limit.
+     * */
+    public int profitableSchemes(int n, int minProfit, int[] group, int[] profit) {
+        return dfsSchemes(0, n, 0, minProfit, group, profit, new HashMap<>());
+    }
+
+    public int dfsSchemes(int idx, int person, int current, int minProfit, int[] group, int[] profit, Map<String, Integer> dp) {
+        if (idx == profit.length) {
+            return current >= minProfit ? 1 : 0;
+        }
+
+        String key = idx + ":" + person + ":" + current;
+        if (dp.containsKey(key)) {
+            return dp.get(key);
+        }
+
+        int res = dfsSchemes(idx + 1, person, current, minProfit, group, profit, dp);
+        if (group[idx] <= person) {
+            res = (res + dfsSchemes(idx + 1, person - group[idx], current + profit[idx], minProfit, group, profit, dp)) % 1_000_000_007;
+        }
+
+        dp.put(key, res);
+        return res;
+    }
 }

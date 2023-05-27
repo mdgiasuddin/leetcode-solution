@@ -1,6 +1,12 @@
 package graph;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class GraphSolution2 {
 
@@ -151,5 +157,88 @@ public class GraphSolution2 {
         }
 
         return res;
+    }
+
+    // Leetcode problem: 1579
+    /*
+     * Remove Max Number of Edges to Keep Graph Fully Traversable.
+     * Explanation: https://www.youtube.com/watch?v=booGwg5wYm4
+     * */
+    public int maxNumEdgesToRemove(int n, int[][] edges) {
+        UnionFind alice = new UnionFind(n);
+        UnionFind bob = new UnionFind(n);
+
+        int requiredEdge = 0;
+
+        for (int[] edge : edges) {
+            if (edge[0] == 3) {
+                requiredEdge += (alice.union(edge[1] - 1, edge[2] - 1)
+                        | bob.union(edge[1] - 1, edge[2] - 1));
+            }
+        }
+
+        for (int[] edge : edges) {
+            if (edge[0] == 1) {
+                requiredEdge += alice.union(edge[1] - 1, edge[2] - 1);
+            } else if (edge[0] == 2) {
+                requiredEdge += bob.union(edge[1] - 1, edge[2] - 1);
+            }
+        }
+
+        if (alice.getComponents() > 1 || bob.getComponents() > 1) {
+            return -1;
+        }
+
+        return edges.length - requiredEdge;
+    }
+}
+
+class UnionFind {
+    private int components;
+    private final int[] parent;
+    private final int[] rank;
+
+    public UnionFind(int nodes) {
+        this.components = nodes;
+        this.parent = new int[nodes];
+        this.rank = new int[nodes];
+
+        Arrays.fill(rank, 1);
+        for (int i = 0; i < nodes; i++) {
+            parent[i] = i;
+        }
+    }
+
+    public int getComponents() {
+        return components;
+    }
+
+    private int findParent(int u) {
+        while (parent[u] != u) {
+            u = parent[u];
+        }
+
+        return u;
+    }
+
+    public int union(int u, int v) {
+        int pu = findParent(u);
+        int pv = findParent(v);
+
+        if (pu == pv) {
+            return 0;
+        }
+
+        if (rank[pu] >= rank[pv]) {
+            parent[pv] = pu;
+            rank[pu] += rank[pv];
+        } else {
+            parent[pu] = pv;
+            rank[pv] += rank[pu];
+        }
+
+        this.components -= 1;
+
+        return 1;
     }
 }
