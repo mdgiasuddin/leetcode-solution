@@ -384,6 +384,44 @@ public class DFSSolution4 {
         return res;
     }
 
+    // Leetcode problem: 785
+    /*
+     * Is Graph Bipartite?
+     * */
+    public boolean isBipartite(int[][] graph) {
+        int n = graph.length;
+        int[] colors = new int[n];
+        Arrays.fill(colors, -1);
+
+        for (int i = 0; i < n; i++) {
+            if (colors[i] == -1 && !dfsGraph(i, 0, colors, graph)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private boolean dfsGraph(int node, int c, int[] colors, int[][] graph) {
+
+        if (colors[node] == c) {
+            return true;
+        }
+
+        if (colors[node] != -1 && colors[node] != c) {
+            return false;
+        }
+
+        colors[node] = c;
+        for (int nei : graph[node]) {
+            if (!dfsGraph(nei, (c + 1) % 2, colors, graph)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
 }
 
 class PathCounter {
