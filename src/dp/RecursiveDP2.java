@@ -328,4 +328,39 @@ public class RecursiveDP2 {
         dp.put(key, res);
         return res;
     }
+
+    // Leetcode problem: 1547
+    /*
+     * Minimum Cost to Cut a Stick.
+     * Explanation: https://www.youtube.com/watch?v=EVxTO5I0d7w
+     * */
+    public int minCost(int n, int[] cuts) {
+        return dfsCut(0, n, cuts, new HashMap<>());
+    }
+
+    private int dfsCut(int l, int r, int[] cuts, Map<String, Integer> dp) {
+        if (r - l == 1) {
+            return 0;
+        }
+
+        String key = l + ":" + r;
+        if (dp.containsKey(key)) {
+            return dp.get(key);
+        }
+
+        int res = Integer.MAX_VALUE;
+        for (int cut : cuts) {
+            if (l < cut && cut < r) {
+                res = Math.min(res, r - l + dfsCut(l, cut, cuts, dp) + dfsCut(cut, r, cuts, dp));
+            }
+        }
+
+        if (res == Integer.MAX_VALUE) {
+            res = 0;
+        }
+
+        dp.put(key, res);
+        return res;
+
+    }
 }
