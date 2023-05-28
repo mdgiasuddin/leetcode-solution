@@ -367,4 +367,36 @@ public class DynamicProgramming3 {
         return res;
     }
 
+    // Leetcode problem: 2466
+    /*
+     * Count Ways To Build Good Strings.
+     * Explanation: https://leetcode.com/problems/count-ways-to-build-good-strings/description/
+     * */
+    public int countGoodStrings(int low, int high, int zero, int one) {
+        long[] dp = new long[high + 1];
+        dp[0] = 1;
+        long mod = 1_000_000_007;
+
+        for (int i = 1; i <= high; i++) {
+
+            // If '0' can be placed in the last zero places.
+            if (i - zero >= 0) {
+                dp[i] = dp[i - zero];
+            }
+
+            // If '1' can be placed in the last one places.
+            if (i - one >= 0) {
+                dp[i] = (dp[i] + dp[i - one]) % mod;
+            }
+        }
+
+        // Add all the combinations from low to high.
+        long res = 0;
+        for (int i = low; i <= high; i++) {
+            res = (res + dp[i]) % mod;
+        }
+
+        return (int) res;
+    }
+
 }
