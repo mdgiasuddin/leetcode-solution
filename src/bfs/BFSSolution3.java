@@ -212,6 +212,40 @@ public class BFSSolution3 {
 
         return -1;
     }
+
+    // Leetcode problem: 1376
+    /*
+     * Time Needed to Inform All Employees
+     * */
+    public int numOfMinutes(int n, int headID, int[] manager, int[] informTime) {
+        List<List<int[]>> graph = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            graph.add(new ArrayList<>());
+        }
+
+        for (int i = 0; i < n; i++) {
+            if (manager[i] == -1) {
+                continue;
+            }
+
+            graph.get(manager[i]).add(new int[]{i, informTime[manager[i]]});
+        }
+
+        Queue<int[]> queue = new LinkedList<>();
+        queue.add(new int[]{headID, 0});
+        int time = 0;
+
+        while (!queue.isEmpty()) {
+            int[] node = queue.poll();
+            time = Math.max(time, node[1]);
+
+            for (int[] nei : graph.get(node[0])) {
+                queue.add(new int[]{nei[0], node[1] + nei[1]});
+            }
+        }
+
+        return time;
+    }
 }
 
 class NodeProbability {
