@@ -156,4 +156,78 @@ public class BinarySearchSolution2 {
 
         return ans;
     }
+
+    // Leetcode problem: 2513
+    /*
+     * Minimize the Maximum of Two Arrays
+     * Explanation: https://www.youtube.com/watch?v=7gyZXnU3KGw&list=PLEvw47Ps6OBC_kTW44HAFBBCiDOk9E4Rs&index=3
+     * */
+    public int minimizeSet(int divisor1, int divisor2, int uniqueCnt1, int uniqueCnt2) {
+        long d1 = divisor1;
+        long d2 = divisor2;
+
+        long lcm = lcm(d1, d2);
+
+        long l = 1;
+        long r = 10000000000L;
+
+        long ans = r;
+        while (l <= r) {
+            long m = l + (r - l) / 2;
+
+            // If divisors are same exclude the numbers divided by d1
+            if (d1 == d2) {
+                if (m - m / d1 >= uniqueCnt1 + uniqueCnt2) {
+                    ans = m;
+                    r = m - 1;
+                } else {
+                    l = m + 1;
+                }
+            } else {
+                long com = m / lcm;
+                long div1 = m / d1;
+                long div2 = m / d2;
+
+                // Numbers only divisible by d1 can be put into second array.
+                // Numbers only divisible by d2 can be put into first array.
+                long z1 = div2 - com;
+                long z2 = div1 - com;
+
+                // Numbers neither divisible by d1 nor d2.
+                long z3 = m - (div1 + div2 - com);
+
+                // Count the remaining numbers needs in the first & second array.
+                long req1 = Math.max(0, uniqueCnt1 - z1);
+                long req2 = Math.max(0, uniqueCnt2 - z2);
+                if (z3 >= req1 + req2) {
+                    ans = m;
+                    r = m - 1;
+                } else {
+                    l = m + 1;
+                }
+            }
+        }
+
+        return (int) ans;
+    }
+
+    private long gcd(long a, long b) {
+        if (a < b) {
+            long tmp = a;
+            a = b;
+            b = tmp;
+        }
+
+        while (b != 0) {
+            long tmp = a % b;
+            a = b;
+            b = tmp;
+        }
+
+        return a;
+    }
+
+    private long lcm(long a, long b) {
+        return (a * b) / gcd(a, b);
+    }
 }
