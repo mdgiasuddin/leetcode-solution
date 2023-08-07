@@ -1,5 +1,8 @@
 package dp;
 
+import tree.TreeNode;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -129,7 +132,8 @@ public class RecursiveDP2 {
             return map.get(list);
         }
 
-        int res = Math.min(minOperations(nums, x - nums[left], count + 1, left + 1, right, map), minOperations(nums, x - nums[right], count + 1, left, right - 1, map));
+        int res = Math.min(minOperations(nums, x - nums[left], count + 1, left + 1, right, map),
+            minOperations(nums, x - nums[right], count + 1, left, right - 1, map));
 
         map.put(list, res);
         return res;
@@ -200,7 +204,8 @@ public class RecursiveDP2 {
 
     private int cherryPickup(int r1, int c1, int r2, int[][] grid, int[][][] dp) {
         int c2 = r1 + c1 - r2;
-        if (r1 >= grid.length || c1 >= grid[0].length || r2 >= grid.length || c2 >= grid[0].length || grid[r1][c1] == -1 || grid[r2][c2] == -1) {
+        if (r1 >= grid.length || c1 >= grid[0].length || r2 >= grid.length || c2 >= grid[0].length ||
+            grid[r1][c1] == -1 || grid[r2][c2] == -1) {
             return Integer.MIN_VALUE;
         }
 
@@ -310,7 +315,8 @@ public class RecursiveDP2 {
         return dfsSchemes(0, n, 0, minProfit, group, profit, new HashMap<>());
     }
 
-    public int dfsSchemes(int idx, int person, int current, int minProfit, int[] group, int[] profit, Map<String, Integer> dp) {
+    public int dfsSchemes(int idx, int person, int current, int minProfit, int[] group, int[] profit,
+                          Map<String, Integer> dp) {
         if (idx == profit.length) {
             return current >= minProfit ? 1 : 0;
         }
@@ -322,7 +328,9 @@ public class RecursiveDP2 {
 
         int res = dfsSchemes(idx + 1, person, current, minProfit, group, profit, dp);
         if (group[idx] <= person) {
-            res = (res + dfsSchemes(idx + 1, person - group[idx], current + profit[idx], minProfit, group, profit, dp)) % 1_000_000_007;
+            res =
+                (res + dfsSchemes(idx + 1, person - group[idx], current + profit[idx], minProfit, group, profit, dp)) %
+                    1_000_000_007;
         }
 
         dp.put(key, res);
@@ -362,5 +370,36 @@ public class RecursiveDP2 {
         dp.put(key, res);
         return res;
 
+    }
+
+    // Leetcode solution: 95
+    /*
+     * Unique Binary Search Trees II
+     * Explanation: https://www.youtube.com/watch?v=m907FlQa2Yc
+     * */
+    public List<TreeNode> generateTrees(int n) {
+        return generateTrees(1, n);
+    }
+
+    private List<TreeNode> generateTrees(int left, int right) {
+        if (left == right) {
+            return List.of(new TreeNode(left));
+        }
+        if (left > right) {
+            return List.of(new TreeNode(-1));
+        }
+
+        List<TreeNode> res = new ArrayList<>();
+        for (int i = left; i <= right; i++) {
+            for (TreeNode leftTree : generateTrees(left, i - 1)) {
+                for (TreeNode rightTree : generateTrees(i + 1, right)) {
+                    TreeNode lTree = leftTree.val == -1 ? null : leftTree;
+                    TreeNode rTree = rightTree.val == -1 ? null : rightTree;
+                    res.add(new TreeNode(i, lTree, rTree));
+                }
+            }
+        }
+
+        return res;
     }
 }
