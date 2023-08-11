@@ -230,4 +230,44 @@ public class BinarySearchSolution2 {
     private long lcm(long a, long b) {
         return (a * b) / gcd(a, b);
     }
+
+    // Leetcode problem: 2616
+    /*
+     * Minimize the Maximum Difference of Pairs.
+     * Explanation: https://www.youtube.com/watch?v=lf1Pxg7IrzQ
+     * */
+    public int minimizeMax(int[] nums, int p) {
+        Arrays.sort(nums);
+        int n = nums.length;
+        int l = 0;
+        int r = nums[n - 1];
+        int ans = r;
+
+        while (l <= r) {
+            int m = l + (r - l) / 2;
+            if (isPossible(nums, p, m)) {
+                ans = m;
+                r = m - 1;
+            } else {
+                l = m + 1;
+            }
+        }
+
+        return ans;
+    }
+
+    private boolean isPossible(int[] nums, int p, int diff) {
+        int i = 0;
+        int valid = 0;
+        while (i < nums.length - 1) {
+            if (nums[i + 1] - nums[i] <= diff) {
+                valid += 1;
+                i += 2;
+            } else {
+                i += 1;
+            }
+        }
+
+        return valid >= p;
+    }
 }
