@@ -338,6 +338,7 @@ public class StackSolution2 {
     // Leetcode problem: 2434
     /*
      * Using a Robot to Print the Lexicographically Smallest String.
+     * Explanation: https://www.youtube.com/watch?v=StJfCW4vHVU
      * */
     public String robotWithString(String s) {
         int[] count = new int[26];
