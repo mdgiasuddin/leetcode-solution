@@ -71,8 +71,6 @@ L
 src/string/EncodeDecode.java,6\b\6b9ddd7b6064d2fcec5811810ac256162373cf33
 L
 src/array/ArraySolution.java,d\e\dee861a874825ba474d3d375a2113442ef61e9d1
-S
-#src/bit_operation/BitOperation.java,4\6\46f66f5b3e200517881203aa809c062c4e45bdd7
 E
 src/dp/BitmaskDP.java,6\3\633dd4cf773b4632c746b1dee558ec172d44af0a
 R
@@ -83,9 +81,11 @@ O
 src/dp/DynamicProgramming2.java,5\5\5526a3d23baac2d3eddce0cc3d60d849cbb011d7
 N
 src/dp/DynamicProgramming.java,4\7\47311726c9ef62b30cee5fcc5a330436bcef78aa
-O
-src/string/StringSolution8.java,f\e\fe3791e146ac3f52a0a74a7378fe0222657453ad
 V
 &src/hackerrank/HackerRankSolution.java,0/c/0cdf38fc94b051f037c864d9407e696c3e578572
 L
 src/graph/GraphSolution.java,1/7/170bf0b9b2b49fa4db63852616f9c37a0d821ee5
+]
+-.idea/sonarlint/securityhotspotstore/index.pb,8/8/88a9255124c95bdc913197c120a8d560edc59c8e
+W
+'src/sliding/SlidingWindowSolution2.java,c/0/c0532f120496e6d45d6dab3ff43ed1eb42988318
