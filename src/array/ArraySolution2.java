@@ -68,10 +68,12 @@ public class ArraySolution2 {
      * */
     public boolean canJump(int[] nums) {
 
-        if (nums.length == 1)
+        if (nums.length == 1) {
             return true;
-        if (nums[0] == 0)
+        }
+        if (nums[0] == 0) {
             return false;
+        }
         int last = nums.length - 1;
         for (int i = nums.length - 2; i >= 0; i--) {
 
@@ -125,7 +127,7 @@ public class ArraySolution2 {
 
             if (absNum - 1 >= 0 && absNum - 1 < len) {
                 nums[absNum - 1] = nums[absNum - 1] > 0 ? -nums[absNum - 1] :
-                        (nums[absNum - 1] == 0 ? -(len + 1) : nums[absNum - 1]);
+                    (nums[absNum - 1] == 0 ? -(len + 1) : nums[absNum - 1]);
             }
         }
 
@@ -256,6 +258,28 @@ public class ArraySolution2 {
         return result.toArray(new int[result.size()][]);
     }
 
+    // Leetcode problem: 646
+    /*
+     * Maximum Length of Pair Chain.
+     * Find the overlapped pair and delete them.
+     * */
+    public int findLongestChain(int[][] pairs) {
+        Arrays.sort(pairs, Comparator.comparingInt(a -> a[0]));
+
+        int deleted = 0;
+        int prevRight = pairs[0][1];
+        for (int i = 1; i < pairs.length; i++) {
+            if (pairs[i][0] <= prevRight) {
+                deleted += 1;
+                prevRight = Math.min(pairs[i][1], prevRight);
+            } else {
+                prevRight = pairs[i][1];
+            }
+        }
+
+        return pairs.length - deleted;
+    }
+
     // Leetcode problem: 260
     /*
      * Find XOR of all numbers
@@ -274,10 +298,11 @@ public class ArraySolution2 {
         xor &= -xor;
 
         for (int num : nums) {
-            if ((xor & num) == 0)
+            if ((xor & num) == 0) {
                 result[0] ^= num;
-            else
+            } else {
                 result[1] ^= num;
+            }
         }
 
         return result;
@@ -293,8 +318,9 @@ public class ArraySolution2 {
     public int trap(int[] height) {
         int max = 0, n = height.length;
         for (int i = 1; i < n; i++) {
-            if (height[i] > height[max])
+            if (height[i] > height[max]) {
                 max = i;
+            }
         }
         int leftMax = 0;
         int totalWater = 0;
@@ -303,8 +329,9 @@ public class ArraySolution2 {
         for (int i = 1; i < max; i++) {
 
             // Update the left boundary
-            if (height[i] > height[leftMax])
+            if (height[i] > height[leftMax]) {
                 leftMax = i;
+            }
 
             totalWater += Math.min(height[max], height[leftMax]) - height[i];
         }
@@ -312,8 +339,9 @@ public class ArraySolution2 {
         int rightMax = n - 1;
         // Rightmost pilar cannot trap water, so start with index n-2
         for (int i = n - 2; i > max; i--) {
-            if (height[i] > height[rightMax])
+            if (height[i] > height[rightMax]) {
                 rightMax = i;
+            }
             totalWater += Math.min(height[max], height[rightMax]) - height[i];
         }
         return totalWater;

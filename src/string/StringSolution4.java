@@ -215,7 +215,8 @@ public class StringSolution4 {
         return dp[t.length()][s.length()];
     }
 
-    // Leetcode problem: 424
+    // Leetcode problem:
+    // 424
     /*
      * Build up a counter of each character.
      * Update the maximum character count.

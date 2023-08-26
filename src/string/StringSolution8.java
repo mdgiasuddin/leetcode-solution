@@ -103,7 +103,7 @@ public class StringSolution8 {
         for (int i = 1; i < n - 1; i++) {
             for (char ch = 'a'; ch <= 'z'; ch++) {
                 if (left[ch - 'a'] != -1 && left[ch - 'a'] < i && right[ch - 'a'] > i) {
-                    result.add(ch + "" + s.charAt(i) + "" + ch);
+                    result.add(ch + "" + s.charAt(i) + ch);
                 }
             }
         }

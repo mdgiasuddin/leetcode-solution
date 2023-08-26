@@ -24,8 +24,9 @@ public class ArraySolution3 {
     int index;
 
     public TreeNode buildTree(int[] inorder, int[] postorder, int left, int right, Map<Integer, Integer> map) {
-        if (left > right)
+        if (left > right) {
             return null;
+        }
 
         TreeNode root = new TreeNode(postorder[index]);
         int inorderIndex = map.get(postorder[index]);
@@ -74,8 +75,9 @@ public class ArraySolution3 {
         return dp[m - 1][n - 1];
     }
 
-    // Leetcode problem
+    // Leetcode problem: 73
     /*
+     * Set Matrix Zeroes
      * Take 2 arrays to save the rowZero and colZero
      * Then make the position to
      * Memory optimization can be possible
@@ -292,15 +294,16 @@ public class ArraySolution3 {
     public int numIslands(char[][] grid) {
         int m = grid.length, n = grid[0].length;
 
-        if (m == 0 && n == 0)
+        if (m == 0 && n == 0) {
             return 0;
+        }
 
         boolean[][] visited = new boolean[m][n];
         int[][] directions = {
-                {0, 1},
-                {0, -1},
-                {1, 0},
-                {-1, 0}
+            {0, 1},
+            {0, -1},
+            {1, 0},
+            {-1, 0}
         };
 
         int island = 0;
@@ -344,8 +347,9 @@ public class ArraySolution3 {
      * */
     public int robI(int[] nums) {
 
-        if (nums.length == 1)
+        if (nums.length == 1) {
             return nums[0];
+        }
 
         int first = nums[0], second = Math.max(nums[0], nums[1]);
 
@@ -366,18 +370,21 @@ public class ArraySolution3 {
      * Then return the maximum of this two
      * */
     public int rob(int[] nums) {
-        if (nums.length == 1)
+        if (nums.length == 1) {
             return nums[0];
+        }
 
         return Math.max(rob(nums, 0, nums.length - 2), rob(nums, 1, nums.length - 1));
     }
 
     public int rob(int[] nums, int left, int right) {
-        if (right - left + 1 == 1)
+        if (right - left + 1 == 1) {
             return nums[left];
+        }
 
-        if (right - left + 1 == 2)
+        if (right - left + 1 == 2) {
             return Math.max(nums[left], nums[right]);
+        }
 
         int first = nums[left], second = Math.max(nums[left], nums[left + 1]);
 

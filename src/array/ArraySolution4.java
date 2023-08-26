@@ -158,13 +158,12 @@ public class ArraySolution4 {
         for (int i = 1; i < nums.length; i++) {
             // Search the element which is less than i'th index element
             for (int j = i - 1; j >= 0; j--) {
-                if (nums[i] > nums[j]) {
-                    if (1 + dp[j] > dp[i]) {
+                if (nums[i] > nums[j] && (1 + dp[j] > dp[i])) {
                         dp[i] = 1 + dp[j];
 
                         // Make parent[i] to j
                         seqIdx[i] = j;
-                    }
+
                 }
             }
 
