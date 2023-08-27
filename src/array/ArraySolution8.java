@@ -48,4 +48,54 @@ public class ArraySolution8 {
 
         return res;
     }
+
+    // Leetcode problem: 31
+    /*
+     * Next Permutation.
+     * Explanation: https://www.youtube.com/watch?v=6qXO72FkqwM
+     * */
+    public void nextPermutation(int[] nums) {
+        int n = nums.length;
+        int i = n - 1;
+
+        while (i > 0) {
+            if (nums[i] > nums[i - 1]) {
+                break;
+            }
+
+            i -= 1;
+        }
+
+        // No peek found. Reverse the array.
+        if (i == 0) {
+            reverseArray(nums, 0, n - 1);
+            return;
+        }
+
+        /*
+         * Smaller element is in the index (i - 1). Find the greater element than [i - 1] on the right side.
+         * Swap with [i - 1]
+         * Reverse the right side of i - 1 so that it will be ascending order.
+         * */
+        for (int j = n - 1; j >= i; j--) {
+            if (nums[j] > nums[i - 1]) {
+                int tmp = nums[i - 1];
+                nums[i - 1] = nums[j];
+                nums[j] = tmp;
+                break;
+            }
+        }
+        reverseArray(nums, i, n - 1);
+    }
+
+    private void reverseArray(int[] array, int l, int r) {
+        while (l < r) {
+            int tmp = array[l];
+            array[l] = array[r];
+            array[r] = tmp;
+
+            l += 1;
+            r -= 1;
+        }
+    }
 }

@@ -1,5 +1,10 @@
 package dp;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class DynamicProgramming4 {
 
     // Leetcode problem: 2140
@@ -13,11 +18,43 @@ public class DynamicProgramming4 {
 
         for (int i = n - 1; i >= 0; i--) {
             dp[i] = Math.max(
-                    dp[i + 1], // Skip ith question
-                    questions[i][0] + (i + questions[i][1] + 1 > n ? 0 : dp[i + questions[i][1] + 1] // Solve ith question
-                    ));
+                dp[i + 1], // Skip ith question
+                questions[i][0] + (i + questions[i][1] + 1 > n ? 0 : dp[i + questions[i][1] + 1] // Solve ith question
+                ));
         }
 
         return dp[0];
+    }
+
+    // Leetcode problem: 446
+    /*
+     * Arithmetic Slices II - Subsequence
+     * Explanation: https://www.youtube.com/watch?v=YiQYhXorMAI
+     * */
+    public int numberOfArithmeticSlices(int[] nums) {
+        int n = nums.length;
+        List<Map<Integer, Integer>> dp = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            dp.add(new HashMap<>());
+        }
+
+        int res = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = i - 1; j >= 0; j--) {
+                long diff = nums[i];
+                diff -= nums[j];
+
+                if (diff < Integer.MIN_VALUE || diff > Integer.MAX_VALUE) {
+                    continue;
+                }
+
+                int count1 = dp.get(i).getOrDefault((int) diff, 0);
+                int count2 = dp.get(j).getOrDefault((int) diff, 0);
+                dp.get(i).put((int) diff, count1 + count2 + 1);
+                res += count2;
+            }
+        }
+
+        return res;
     }
 }
