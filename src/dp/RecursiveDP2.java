@@ -4,15 +4,38 @@ import tree.TreeNode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class RecursiveDP2 {
     public static void main(String[] args) {
-        RecursiveDP2 recursiveDP2 = new RecursiveDP2();
-        int[] nums = {8828, 9581, 49, 9818, 9974, 9869, 9991, 10000, 10000, 10000, 9999, 9993, 9904, 8819, 1231, 6309};
-        System.out.println(recursiveDP2.minOperations(nums, 134365));
+
+//        TreeSet<Integer> set = new TreeSet<>();
+//        set.add(10);
+//        set.add(2);
+//        set.add(5);
+//        set.add(12);
+//
+//        Integer lower = set.lower(2);
+//        System.out.println("Lower: " + lower);
+
+        TreeSet<int[]> set = new TreeSet<>((a, b) -> a[0] == b[0] ? a[1] - b[1] : a[0] - b[0]);
+        set.add(new int[] {5, 10});
+        set.add(new int[] {10, 13});
+        set.add(new int[] {2, 4});
+        set.add(new int[] {5, 12});
+
+        int[] lower = set.lower(new int[] {14, 20});
+        System.out.println("Lower: " + Arrays.toString(lower));
+
+        for (int[] e : set) {
+            System.out.println(Arrays.toString(e));
+        }
     }
 
     // Leetcode problem: 309

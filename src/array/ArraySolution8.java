@@ -98,4 +98,30 @@ public class ArraySolution8 {
             r -= 1;
         }
     }
+
+    // Leetcode problem: 2483
+    /*
+     * Minimum Penalty for a Shop.
+     * */
+    public int bestClosingTime(String customers) {
+        int n = customers.length();
+        int[] prefix = new int[n + 1];
+
+        for (int i = 1; i <= n; i++) {
+            prefix[i] += prefix[i - 1] + (customers.charAt(i - 1) == 'Y' ? 1 : 0);
+        }
+
+        int res = n;
+        int minPenalty = n;
+        for (int i = 0; i <= n; i++) {
+            // Number of 'N' in the left = i - prefix[i], Number of 'Y' in the right = prefix[n] - prefix[i].
+            int penalty = i - prefix[i] + prefix[n] - prefix[i];
+            if (penalty < minPenalty) {
+                minPenalty = penalty;
+                res = i;
+            }
+        }
+
+        return res;
+    }
 }
