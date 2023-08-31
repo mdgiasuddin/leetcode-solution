@@ -124,4 +124,28 @@ public class ArraySolution8 {
 
         return res;
     }
+
+    // Leetcode problem: 2366
+    /*
+     * Minimum Replacements to Sort the Array
+     * Explanation: https://www.youtube.com/watch?v=UCgbJzoSaSQ&t=1s
+     * */
+    public long minimumReplacement(int[] nums) {
+        int n = nums.length;
+        int right = nums[n - 1];
+        long split = 0;
+
+        for (int i = n - 2; i >= 0; i--) {
+            int left = nums[i];
+            if (left > right) {
+                int parts = (left + right - 1) / right;
+                split += parts - 1;
+                right = left / parts;
+            } else {
+                right = left;
+            }
+        }
+
+        return split;
+    }
 }
