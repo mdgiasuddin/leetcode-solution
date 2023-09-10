@@ -1,0 +1,20 @@
+
+l	java:S117Ğ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ğè–òüÿÿÿÿ
+^
+java:S2259­"BA "NullPointerException" could be thrown; "last" is nullable here.(½ğÂÜúÿÿÿÿ
+^
+java:S2259"BA "NullPointerException" could be thrown; "prev" is nullable here.(¾“şÂıÿÿÿÿ
+7
+java:S1659""Declare "next" on a separate line.(ùw
+8
+java:S1659G""Declare "fast" on a separate line.(ÄÅµÉ
+=
+java:S1659U""Declare "fast" on a separate line.(À§‹Éøÿÿÿÿ
+=
+java:S1659h""Declare "fast" on a separate line.(ö¯ˆ¯şÿÿÿÿ
+A
+java:S1659"%Declare "current" on a separate line.(Ï‡Ó¿ûÿÿÿÿ
+:
+java:S1659 "#Declare "tEven" on a separate line.(×ˆ¸
+Z
+java:S1659º"CDeclare "slower" and all following declarations on a separate line.(¤Öœí

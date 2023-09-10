@@ -116,4 +116,26 @@ public class MathSolution {
 
         return quotient;
     }
+
+    // Leetcode problem: 1359
+    /*
+     * Count All Valid Pickup and Delivery Options.
+     * Explanation: https://www.youtube.com/watch?v=OpgslsirW8s
+     * There are total 2 * n slots.
+     * For the first order, all slots are empty. Place 2 (P1, D1) to slots => slots * (slots - 1).
+     * It will place P1 & D1 randomly. for any (P1, D1) position, there will be 2 permutations. => (P1, D1), (D1, P1).
+     * One of them is valid. So, divide by 2.
+     * */
+    public int countOrders(int n) {
+        long mod = 1000000007;
+        long result = 1;
+
+        long slots = n * 2L;
+        while (slots > 0) {
+            result = (result * (slots * (slots - 1)) / 2) % mod;
+            slots -= 2;
+        }
+
+        return (int) result;
+    }
 }
