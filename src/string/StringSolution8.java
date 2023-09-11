@@ -9,7 +9,9 @@ public class StringSolution8 {
     public static void main(String[] args) {
         StringSolution8 stringSolution8 = new StringSolution8();
 
-        System.out.println(stringSolution8.validIPAddress("172.16.254.1"));
+        String str = "Hello    world! how are you? I am fine. my    ";
+        String[] split = str.trim().split("[ .,!?]+");
+        System.out.println(Arrays.toString(split));
     }
 
     // Leetcode problem: 246
@@ -73,7 +75,7 @@ public class StringSolution8 {
                 continue;
             }
             findStrobogrammatic(n - 2, entry.getKey() + current + entry.getValue()
-                    , result, mirrors);
+                , result, mirrors);
 
         }
     }
@@ -153,7 +155,7 @@ public class StringSolution8 {
      * */
     public String validIPAddress(String queryIP) {
         String regexIPv4 = "((\\d|[1-9]\\d|1\\d\\d|2[0-4]\\d|25[0-5])\\.){3}" +
-                "(\\d|[1-9]\\d|1\\d\\d|2[0-4]\\d|25[0-5])";
+            "(\\d|[1-9]\\d|1\\d\\d|2[0-4]\\d|25[0-5])";
 
         String regexIPv6 = "(([\\da-fA-F]{1,4}):){7}([\\da-fA-F]{1,4})";
 
@@ -170,7 +172,8 @@ public class StringSolution8 {
     /*
      * Reward Top K Students.
      * */
-    public List<Integer> topStudents(String[] positive_feedback, String[] negative_feedback, String[] report, int[] student_id, int k) {
+    public List<Integer> topStudents(String[] positive_feedback, String[] negative_feedback, String[] report,
+                                     int[] student_id, int k) {
         PriorityQueue<int[]> scores = new PriorityQueue<>((a, b) -> a[1] == b[1] ? a[0] - b[0] : b[1] - a[1]);
 
         Set<String> positiveSet = Arrays.stream(positive_feedback).collect(Collectors.toSet());
@@ -178,7 +181,7 @@ public class StringSolution8 {
 
         for (int i = 0; i < report.length; i++) {
             int score = getScore(report[i], positiveSet, negativeSet);
-            scores.add(new int[]{student_id[i], score});
+            scores.add(new int[] {student_id[i], score});
         }
 
         List<Integer> result = new ArrayList<>();
@@ -266,7 +269,8 @@ public class StringSolution8 {
         Set<String> visited = new HashSet<>();
         for (Map.Entry<Character, Set<String>> entry1 : suffixMap.entrySet()) {
             for (Map.Entry<Character, Set<String>> entry2 : suffixMap.entrySet()) {
-                if (Objects.equals(entry1.getKey(), entry2.getKey()) || visited.contains(entry1.getKey() + "" + entry2.getKey())) {
+                if (Objects.equals(entry1.getKey(), entry2.getKey()) ||
+                    visited.contains(entry1.getKey() + "" + entry2.getKey())) {
                     continue;
                 }
 
@@ -285,6 +289,31 @@ public class StringSolution8 {
         }
 
         return res;
+    }
+
+    // Leetcode problem: 151
+    /*
+     * Reverse Words in a String
+     * */
+    public String reverseWords(String s) {
+        String[] words = s.trim().split("\\s+");
+        int l = 0;
+        int r = words.length - 1;
+
+        while (l < r) {
+            String tmp = words[l];
+            words[l] = words[r];
+            words[r] = tmp;
+            l += 1;
+            r -= 1;
+        }
+
+        StringBuilder res = new StringBuilder();
+        for (int i = 0; i < words.length - 1; i++) {
+            res.append(words[i]).append(" ");
+        }
+        res.append(words[words.length - 1]);
+        return res.toString();
     }
 
 }

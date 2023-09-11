@@ -89,4 +89,30 @@ public class DFSSolution5 {
         visited[k] = true;
         return dfsArray(nums[k], count + 1, nums, visited);
     }
+
+    // Leetcode problem: 797
+    /*
+     * All Paths From Source to Target
+     * */
+    public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
+
+        List<List<Integer>> result = new ArrayList<>();
+        List<Integer> current = new ArrayList<>();
+        current.add(0);
+        dfsGraph(0, graph, result, current);
+        return result;
+    }
+
+    private void dfsGraph(int node, int[][] graph, List<List<Integer>> result, List<Integer> current) {
+        if (node == graph.length - 1) {
+            result.add(new ArrayList<>(current));
+            return;
+        }
+
+        for (int nei : graph[node]) {
+            current.add(nei);
+            dfsGraph(nei, graph, result, current);
+            current.remove(current.size() - 1);
+        }
+    }
 }
