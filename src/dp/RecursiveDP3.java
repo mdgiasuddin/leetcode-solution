@@ -1,5 +1,7 @@
 package dp;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,5 +43,41 @@ public class RecursiveDP3 {
 
         map.put(key, false);
         return false;
+    }
+
+    // Leetcode problem: 1048
+    /*
+     * Longest String Chain.
+     * Explanation: https://www.youtube.com/watch?v=7b0V1gT_TIk
+     * */
+    public int longestStrChain(String[] words) {
+        Arrays.sort(words, Comparator.comparingInt(String::length));
+        Map<String, Integer> idxMap = new HashMap<>();
+        int n = words.length;
+        for (int i = 0; i < n; i++) {
+            idxMap.put(words[i], i);
+        }
+        Map<Integer, Integer> dp = new HashMap<>();
+        int res = 0;
+        for (int i = 0; i < n; i++) {
+            res = Math.max(res, dfsWordChain(i, words, idxMap, dp));
+        }
+        return res;
+    }
+
+    private int dfsWordChain(int idx, String[] words, Map<String, Integer> idxMap, Map<Integer, Integer> dp) {
+        if (dp.containsKey(idx)) {
+            return dp.get(idx);
+        }
+
+        int res = 1;
+        for (int i = 0; i < words[idx].length(); i++) {
+            String substr = words[idx].substring(0, i) + words[idx].substring(i + 1);
+            if (idxMap.containsKey(substr)) {
+                res = Math.max(res, 1 + dfsWordChain(idxMap.get(substr), words, idxMap, dp));
+            }
+        }
+        dp.put(idx, res);
+        return res;
     }
 }
