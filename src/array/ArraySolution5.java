@@ -37,8 +37,9 @@ public class ArraySolution5 {
             result.append(str);
         }
 
-        if (result.toString().startsWith("0"))
+        if (result.toString().startsWith("0")) {
             return "0";
+        }
         return result.toString();
     }
 
@@ -90,14 +91,15 @@ public class ArraySolution5 {
 
     // Leetcode problem: 605
     public boolean canPlaceFlowers(int[] flowerbed, int n) {
-        if (n == 0)
+        if (n == 0) {
             return true;
+        }
 
         for (int i = 0; i < flowerbed.length; i++) {
 
             // Check if a flower can be placed.
             if (flowerbed[i] == 0 && (i == 0 || flowerbed[i - 1] == 0)
-                    && (i == flowerbed.length - 1 || flowerbed[i + 1] == 0)) {
+                && (i == flowerbed.length - 1 || flowerbed[i + 1] == 0)) {
                 flowerbed[i] = 1;
                 n--;
             }
@@ -117,8 +119,9 @@ public class ArraySolution5 {
         for (int num : nums) {
             int index = Math.abs(num) - 1;
 
-            if (nums[index] > 0)
+            if (nums[index] > 0) {
                 nums[index] = -nums[index];
+            }
         }
 
         for (int i = 0; i < nums.length; i++) {
@@ -191,6 +194,10 @@ public class ArraySolution5 {
     }
 
     // Leetcode problem: 135
+    /*
+     * Candy.
+     * Memory optimized version is tricky.
+     * */
     public int candy(int[] ratings) {
         /*int[] result = new int[ratings.length];
         Arrays.fill(result, 1);
@@ -304,7 +311,7 @@ public class ArraySolution5 {
 
         int r = rStart, c = cStart;
         int dr = 0, dc = 1, currentStep = 1;
-        result[index++] = new int[]{r, c};
+        result[index++] = new int[] {r, c};
 
         while (index < rows * cols) {
             iteration += 1;
@@ -312,16 +319,18 @@ public class ArraySolution5 {
                 r += dr;
                 c += dc;
 
-                if (r >= 0 && r < rows && c >= 0 && c < cols)
-                    result[index++] = new int[]{r, c};
+                if (r >= 0 && r < rows && c >= 0 && c < cols) {
+                    result[index++] = new int[] {r, c};
+                }
             }
 
             int tmp = dr;
             dr = dc;
             dc = -tmp;
 
-            if (iteration % 2 == 0)
+            if (iteration % 2 == 0) {
                 currentStep += 1;
+            }
 
         }
 
@@ -343,8 +352,9 @@ public class ArraySolution5 {
         for (int minute = 1; minute <= n; minute += 1) {
 
             // If the monster reaches before destroying, then loss the game.
-            if (minuteReaches[minute - 1] < minute)
+            if (minuteReaches[minute - 1] < minute) {
                 return res;
+            }
 
             // Destroy 1 monster every 1 minute.
             res += 1;
@@ -363,7 +373,7 @@ public class ArraySolution5 {
         int n = board[0].length;
 
         int[][] directions = {
-                {-1, 0}, {1, 0}, {0, -1}, {0, 1}, {-1, -1}, {-1, 1}, {1, -1}, {1, 1}
+            {-1, 0}, {1, 0}, {0, -1}, {0, 1}, {-1, -1}, {-1, 1}, {1, -1}, {1, 1}
         };
 
         for (int[] direction : directions) {
@@ -373,8 +383,9 @@ public class ArraySolution5 {
             while (isValid(r, c, m, n) && board[r][c] != color) {
 
                 // If blank cell found in the line, it is invalid.
-                if (board[r][c] == '.')
+                if (board[r][c] == '.') {
                     break;
+                }
 
                 r += direction[0];
                 c += direction[1];

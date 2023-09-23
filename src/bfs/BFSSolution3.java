@@ -64,7 +64,8 @@ public class BFSSolution3 {
      * Explanation: https://www.youtube.com/watch?v=kPsDTGcrzGM
      * */
     public double maxProbability(int n, int[][] edges, double[] succProb, int start, int end) {
-        PriorityQueue<NodeProbability> queue = new PriorityQueue<>(Comparator.comparingDouble(a -> -a.getProbability()));
+        PriorityQueue<NodeProbability> queue =
+            new PriorityQueue<>(Comparator.comparingDouble(a -> -a.getProbability()));
 
         List<List<NodeProbability>> graph = new ArrayList<>();
         for (int i = 0; i < n; i++) {
@@ -108,11 +109,11 @@ public class BFSSolution3 {
         }
 
         for (int[] red : redEdges) {
-            graph.get(red[0]).add(new int[]{red[1], 0});
+            graph.get(red[0]).add(new int[] {red[1], 0});
         }
 
         for (int[] blue : blueEdges) {
-            graph.get(blue[0]).add(new int[]{blue[1], 1});
+            graph.get(blue[0]).add(new int[] {blue[1], 1});
         }
 
         // Track the visited node with specified color.
@@ -121,7 +122,7 @@ public class BFSSolution3 {
         visited.add(new HashSet<>());
 
         Queue<int[]> queue = new LinkedList<>();
-        queue.add(new int[]{0, -1});
+        queue.add(new int[] {0, -1});
         int[] distance = new int[n];
         Arrays.fill(distance, Integer.MAX_VALUE);
         distance[0] = 0;
@@ -137,7 +138,7 @@ public class BFSSolution3 {
                     // & child node is not already visited with the same color
                     if (child[1] != node[1] && !visited.get(child[1]).contains(child[0])) {
                         visited.get(child[1]).add(child[0]);
-                        queue.add(new int[]{child[0], child[1]});
+                        queue.add(new int[] {child[0], child[1]});
 
                         // Shortest distance may already be found.
                         distance[child[0]] = Math.min(distance[child[0]], d);
@@ -228,11 +229,11 @@ public class BFSSolution3 {
                 continue;
             }
 
-            graph.get(manager[i]).add(new int[]{i, informTime[manager[i]]});
+            graph.get(manager[i]).add(new int[] {i, informTime[manager[i]]});
         }
 
         Queue<int[]> queue = new LinkedList<>();
-        queue.add(new int[]{headID, 0});
+        queue.add(new int[] {headID, 0});
         int time = 0;
 
         while (!queue.isEmpty()) {
@@ -240,7 +241,7 @@ public class BFSSolution3 {
             time = Math.max(time, node[1]);
 
             for (int[] nei : graph.get(node[0])) {
-                queue.add(new int[]{nei[0], node[1] + nei[1]});
+                queue.add(new int[] {nei[0], node[1] + nei[1]});
             }
         }
 
@@ -263,6 +264,42 @@ class NodeProbability {
 
     public double getProbability() {
         return probability;
+    }
+
+    // Leetcode problem: 1631
+    /*
+     * Path with Minimum Effort.
+     * Dijkstra Algorithm.
+     * Explanation: https://www.youtube.com/watch?v=XQlxCCx2vI4
+     * */
+    public int minimumEffortPath(int[][] heights) {
+        int m = heights.length;
+        int n = heights[0].length;
+
+        boolean[][] visited = new boolean[m][n];
+        PriorityQueue<int[]> queue = new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));
+        queue.add(new int[] {0, 0, 0});
+        int[][] directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+
+        while (!queue.isEmpty()) {
+            int[] xy = queue.poll();
+            if (xy[1] == m - 1 && xy[2] == n - 1) {
+                return xy[0];
+            }
+
+            if (!visited[xy[1]][xy[2]]) {
+                visited[xy[1]][xy[2]] = true;
+                for (int[] dir : directions) {
+                    int x = xy[1] + dir[0];
+                    int y = xy[2] + dir[1];
+                    if (x >= 0 && x < m && y >= 0 && y < n && !visited[x][y]) {
+                        queue.add(new int[] {Math.max(xy[0], Math.abs(heights[x][y] - heights[xy[1]][xy[2]])), x, y});
+                    }
+                }
+            }
+        }
+
+        return -1;
     }
 }
 
