@@ -316,4 +316,31 @@ public class StringSolution8 {
         return res.toString();
     }
 
+    // Leetcode problem: 1647
+    /*
+     * Minimum Deletion to Make Character Frequencies Unique
+     * Explanation: https://www.youtube.com/watch?v=h8AZEN49gTc
+     * */
+    public int minDeletions(String s) {
+        Map<Character, Integer> countMap = new HashMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            int count = countMap.getOrDefault(ch, 0);
+            countMap.put(ch, count + 1);
+        }
+
+        Set<Integer> usedFreq = new HashSet<>();
+        int result = 0;
+        for (Map.Entry<Character, Integer> entry : countMap.entrySet()) {
+            int freq = entry.getValue();
+            while (freq > 0 && usedFreq.contains(freq)) {
+                freq -= 1;
+                result += 1;
+            }
+            usedFreq.add(freq);
+        }
+
+        return result;
+    }
+
 }
