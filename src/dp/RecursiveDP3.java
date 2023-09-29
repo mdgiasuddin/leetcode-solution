@@ -51,7 +51,7 @@ public class RecursiveDP3 {
      * Explanation: https://www.youtube.com/watch?v=7b0V1gT_TIk
      * */
     public int longestStrChain(String[] words) {
-        Arrays.sort(words, Comparator.comparingInt(String::length));
+        Arrays.sort(words, Comparator.comparingInt(String::length).reversed());
         Map<String, Integer> idxMap = new HashMap<>();
         int n = words.length;
         for (int i = 0; i < n; i++) {

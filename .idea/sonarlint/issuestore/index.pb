@@ -49,3 +49,5 @@ G.idea/sonarlint/issuestore/8/1/81407168915f35a3acd6d819a0fee7c7141e1f72,5/c/5c
 Q.idea/sonarlint/securityhotspotstore/1/b/1b36988b5984fc0127a22c0816ede5fcf2ac6fc2,f/8/f8c7c1b9bead2230c946862c9a9ac9882ef58b90
 Å
 Q.idea/sonarlint/securityhotspotstore/b/6/b6cd12637748e7ccad46a8408c578bd595991330,e/6/e66c4d5ed4c683cba0eaacc17e59678cbc9d1359
+J
+src/math/MathSolution.java,2/b/2b069312f33aa97eae54a4d3e38404b4a3ca092f

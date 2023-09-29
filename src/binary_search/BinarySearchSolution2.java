@@ -256,6 +256,34 @@ public class BinarySearchSolution2 {
         return ans;
     }
 
+    // Leetcode problem: 1539
+    /*
+     * Kth Missing Positive Number.
+     * Explanation: https://www.youtube.com/watch?v=88k8xa-pSrM
+     * */
+    public int findKthPositive(int[] arr, int k) {
+        int n = arr.length;
+        int left = 0;
+        int right = n - 1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            int missing = arr[mid] - (mid + 1);
+            if (missing >= k) {
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        }
+
+        /*
+         * right = -1 => All the missing number lies behind arr[0].
+         * otherwise, result = arr[right] + count of the rest of the missing numbers.
+         * */
+        return right == -1 ? k : arr[right] + (k - (arr[right] - (right + 1)));
+
+    }
+
     private boolean isPossible(int[] nums, int p, int diff) {
         int i = 0;
         int valid = 0;
