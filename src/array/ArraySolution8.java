@@ -1,5 +1,8 @@
 package array;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ArraySolution8 {
 
     // Leetcode problem: 764
@@ -171,5 +174,88 @@ public class ArraySolution8 {
         }
 
         return res;
+    }
+
+    // Leetcode problem: 315
+    /*
+     * Count of Smaller Numbers After Self.
+     * Merge sort algorithm (reverse order).
+     * */
+    public List<Integer> countSmaller(int[] nums) {
+        int n = nums.length;
+
+        // Build up a array with num & index.
+        int[][] arr = new int[n][2];
+        for (int i = 0; i < n; i++) {
+            arr[i][0] = nums[i];
+            arr[i][1] = i;
+        }
+
+        int[] count = new int[n];
+        mergeSort(arr, 0, n - 1, count);
+
+        List<Integer> countList = new ArrayList<>();
+        for (int c : count) {
+            countList.add(c);
+        }
+        return countList;
+
+    }
+
+    private void mergeSort(int[][] arr, int l, int r, int[] count) {
+        if (l < r) {
+            int m = l + (r - l) / 2;
+            mergeSort(arr, l, m, count);
+            mergeSort(arr, m + 1, r, count);
+            merge(arr, l, m, r, count);
+        }
+    }
+
+    private void merge(int[][] arr, int l, int m, int r, int[] count) {
+        int[][] tmp = new int[r - l + 1][2];
+        for (int i = l; i <= r; i++) {
+            tmp[i - l][0] = arr[i][0];
+            tmp[i - l][1] = arr[i][1];
+        }
+
+        int i = 0;
+        int j = m + 1 - l;
+        int k = l;
+
+        while (i <= m - l && j <= r - l) {
+
+            // Firs half contains greater number. So all the numbers in the right half >= jth index are smaller than the ith number.
+            // So increase the count of ith number.
+            if (tmp[i][0] > tmp[j][0]) {
+                count[tmp[i][1]] += (r - l) - j + 1;
+                arr[k][0] = tmp[i][0];
+                arr[k][1] = tmp[i][1];
+
+                i += 1;
+            } else {
+                arr[k][0] = tmp[j][0];
+                arr[k][1] = tmp[j][1];
+
+                j += 1;
+            }
+
+            k += 1;
+        }
+
+        while (i <= m - l) {
+            arr[k][0] = tmp[i][0];
+            arr[k][1] = tmp[i][1];
+
+            i += 1;
+            k += 1;
+        }
+
+        while (j <= r - l) {
+            arr[k][0] = tmp[j][0];
+            arr[k][1] = tmp[j][1];
+
+            j += 1;
+            k += 1;
+        }
     }
 }
