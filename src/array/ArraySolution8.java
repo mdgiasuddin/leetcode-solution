@@ -148,4 +148,28 @@ public class ArraySolution8 {
 
         return split;
     }
+
+    // Leetcode problem: 1351
+    /*
+     * Count Negative Numbers in a Sorted Matrix.
+     * This problem is similar to => Leetcode problem: 240
+     * */
+    public int countNegatives(int[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+
+        int r = 0;
+        int c = n - 1;
+        int res = 0;
+        while (r < m && c >= 0) {
+            if (grid[r][c] < 0) {
+                res += (m - r);
+                c -= 1;
+            } else {
+                r += 1;
+            }
+        }
+
+        return res;
+    }
 }
