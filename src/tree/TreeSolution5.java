@@ -60,6 +60,59 @@ public class TreeSolution5 {
         ans[0] = Math.max(ans[0], current * (sum - current));
         return current;
     }
+
+    // Leetcode problem: 117
+    /*
+     * Populating Next Right Pointers II.
+     * Explanation: https://www.youtube.com/watch?v=yl-fdkyQD8A
+     * */
+    public Node connect(Node root) {
+        Node head = root;
+
+        while (head != null) {
+            Node dummy = new Node(0);
+            Node tmp = dummy;
+
+            while (head != null) {
+                if (head.left != null) {
+                    tmp.next = head.left;
+                    tmp = tmp.next;
+                }
+                if (head.right != null) {
+                    tmp.next = head.right;
+                    tmp = tmp.next;
+                }
+                head = head.next;
+            }
+            head = dummy.next;
+        }
+
+        return root;
+    }
+
+    // Leetcode problem: 979
+    /*
+     * Distribute Coins in Binary Tree.
+     * DFS.
+     * Explanation: https://www.youtube.com/watch?v=yYcKQdGEdDY + (Description).
+     * */
+    public int distributeCoins(TreeNode root) {
+        int[] res = {0};
+        distributeCoins(root, res);
+        return res[0];
+    }
+
+    private int distributeCoins(TreeNode node, int[] res) {
+        if (node == null) {
+            return 0;
+        }
+
+        int leftCoin = distributeCoins(node.left, res);
+        int rightCoin = distributeCoins(node.right, res);
+
+        res[0] += Math.abs(leftCoin) + Math.abs(rightCoin);
+        return node.val + leftCoin + rightCoin - 1;
+    }
 }
 
 class QuadNode {
@@ -89,7 +142,8 @@ class QuadNode {
         this.bottomRight = null;
     }
 
-    public QuadNode(boolean val, boolean isLeaf, QuadNode topLeft, QuadNode topRight, QuadNode bottomLeft, QuadNode bottomRight) {
+    public QuadNode(boolean val, boolean isLeaf, QuadNode topLeft, QuadNode topRight, QuadNode bottomLeft,
+                    QuadNode bottomRight) {
         this.val = val;
         this.isLeaf = isLeaf;
         this.topLeft = topLeft;
