@@ -258,4 +258,36 @@ public class ArraySolution8 {
             k += 1;
         }
     }
+
+    // Leetcode problem: 581
+    /*
+     * Shortest Unsorted Continuous Subarray.
+     * Explanation: https://www.youtube.com/watch?v=YUt72nsLAIc
+     * */
+    public int findUnsortedSubarray(int[] nums) {
+        int n = nums.length;
+        int leftMax = nums[0];
+        int rightMin = nums[n - 1];
+
+        int leftIdx = -1;
+        int rightIdx = -1;
+
+        // Find the rightmost index of which there exist at least one element in the left > arr[index].
+        for (int i = 0; i < n; i++) {
+            leftMax = Math.max(leftMax, nums[i]);
+            if (leftMax > nums[i]) {
+                rightIdx = i;
+            }
+        }
+
+        // Find the leftmost index of which there exist at least one element in the right < arr[index].
+        for (int i = n - 1; i >= 0; i--) {
+            rightMin = Math.min(rightMin, nums[i]);
+            if (rightMin < nums[i]) {
+                leftIdx = i;
+            }
+        }
+
+        return leftIdx == -1 ? 0 : rightIdx - leftIdx + 1;
+    }
 }
