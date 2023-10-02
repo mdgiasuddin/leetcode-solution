@@ -13,8 +13,9 @@ public class SlidingWindowSolution2 {
 
     // Leetcode problem: 76
     public String minWindow(String s, String t) {
-        if (s.isEmpty() || t.isEmpty())
+        if (s.isEmpty() || t.isEmpty()) {
             return "";
+        }
 
         Map<Character, Integer> tCount = new HashMap<>();
 
@@ -35,8 +36,9 @@ public class SlidingWindowSolution2 {
                 tCount.put(ch, c - 1);
 
                 // If character is required now. If extra then no need to increase matched.
-                if (c > 0)
+                if (c > 0) {
                     matched++;
+                }
 
                 // If all characters matched then try to slide left pointer.
                 while (matched == t.length()) {
@@ -51,8 +53,9 @@ public class SlidingWindowSolution2 {
                         int lc = tCount.get(cl);
                         tCount.put(cl, lc + 1);
 
-                        if (lc >= 0)
+                        if (lc >= 0) {
                             matched--;
+                        }
                     }
 
                     left++;
@@ -255,5 +258,31 @@ public class SlidingWindowSolution2 {
         }
 
         return max;
+    }
+
+    // Leetcode problem: 713
+    /*
+     * Subarray Product Less Than K.
+     * Explanation: https://www.youtube.com/watch?v=7rGxOMEBWKE
+     * */
+    public int numSubarrayProductLessThanK(int[] nums, int k) {
+        int count = 0;
+        int product = 1;
+        int left = 0;
+        int right = 0;
+
+        while (right < nums.length) {
+            product *= nums[right];
+
+            while (left <= right && product >= k) {
+                product /= nums[left];
+                left += 1;
+            }
+
+            count += right - left + 1;
+            right += 1;
+        }
+
+        return count;
     }
 }
