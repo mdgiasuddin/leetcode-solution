@@ -113,6 +113,32 @@ public class TreeSolution5 {
         res[0] += Math.abs(leftCoin) + Math.abs(rightCoin);
         return node.val + leftCoin + rightCoin - 1;
     }
+
+    // Leetcode problem: 437
+    /*
+     * Path Sum III.
+     * Explanation: https://www.youtube.com/watch?v=Vam9gldRapY
+     * 2 Cases => Include the root, exclude the root.
+     * */
+    public int pathSum(TreeNode root, long targetSum) {
+        if (root == null) {
+            return 0;
+        }
+
+        return pathSum(root.left, targetSum) + pathSum(root.right, targetSum) // Exclude the root.
+            + pathSumInc(root, targetSum); // Include the root.
+    }
+
+    private int pathSumInc(TreeNode root, long targetSum) {
+        if (root == null) {
+            return 0;
+        }
+
+        int res = root.val == targetSum ? 1 : 0; // If target sum is reached increase the res.
+        res += pathSumInc(root.left, targetSum - root.val) + pathSumInc(root.right, targetSum - root.val);
+
+        return res;
+    }
 }
 
 class QuadNode {
