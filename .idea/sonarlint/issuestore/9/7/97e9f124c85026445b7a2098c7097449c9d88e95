@@ -1,0 +1,29 @@
+
+S	java:S106"9Replace this use of System.out or System.err by a logger.(¼¶èáüÿÿÿÿ
+:
+java:S16598"Declare "n" on a separate line.(¼©æşÿÿÿÿ
+m
+java:S3776W"RRefactor this method to reduce its Cognitive Complexity from 25 to the 15 allowed.(¡Íè÷ûÿÿÿÿ
+_
+java:S1659Y"DDeclare "colZero" and all following declarations on a separate line.(Ü‚Ñ¶ûÿÿÿÿ
+;
+java:S1659”"Declare "n" on a separate line.(½ªÌ•ÿÿÿÿÿ
+[
+java:S1659™"DDeclare "lastRow" and all following declarations on a separate line.(ä¿’¢
+:
+java:S1659¦"#Declare "right" on a separate line.(µÁ¹’
+W
+java:S1659Ö"@Declare "mid" and all following declarations on a separate line.(ÿ”†à
+W	java:S125½"<This block of commented-out lines of code should be removed.(ÂÅÕĞıÿÿÿÿ
+W	java:S125½"<This block of commented-out lines of code should be removed.(ÂÅÕĞıÿÿÿÿ
+W	java:S125½"<This block of commented-out lines of code should be removed.(ÂÅÕĞıÿÿÿÿ
+8
+java:S1659î"!Declare "two" on a separate line.(İõÆÉ
+?
+java:S1659ú"#Declare "right" on a separate line.(Ï¶ì„ûÿÿÿÿ
+;
+java:S1659§"Declare "n" on a separate line.(¼©æşÿÿÿÿ
+;
+java:S1659â"$Declare "second" on a separate line.(Õ–æŠ
+@
+java:S1659…"$Declare "second" on a separate line.(Óçµ¸şÿÿÿÿ

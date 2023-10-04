@@ -5,10 +5,13 @@ import java.util.*;
 public class ArraySolution {
 
     public static void main(String[] args) {
-        ArraySolution arraySolution = new ArraySolution();
+        int a = 12;
+        String numStr = Integer.toString(a, 2);
+        System.out.println("String: " + numStr);
+        String str = new StringBuilder().repeat("0", 3).append(numStr).toString();
 
-        int[] nums1 = {1, 2, 3};
-        int[] nums2 = {1};
+        int maxLen = 5;
+        new StringBuilder().repeat("0", maxLen - numStr.length()).append(numStr).toString();
 
     }
 

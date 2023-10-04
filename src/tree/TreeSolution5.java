@@ -119,6 +119,7 @@ public class TreeSolution5 {
      * Path Sum III.
      * Explanation: https://www.youtube.com/watch?v=Vam9gldRapY
      * 2 Cases => Include the root, exclude the root.
+     * => O(n * height)
      * */
     public int pathSum(TreeNode root, long targetSum) {
         if (root == null) {

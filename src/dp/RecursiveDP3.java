@@ -1,5 +1,7 @@
 package dp;
 
+import pair.Pair;
+
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -78,6 +80,47 @@ public class RecursiveDP3 {
             }
         }
         dp.put(idx, res);
+        return res;
+    }
+
+    // Leetcode problem: 1130
+    /*
+     * Minimum Cost Tree From Leaf Values.
+     * Explanation: https://www.youtube.com/watch?v=LDiD9fr28tc
+     * TO-DO => Try to solve by bottom-up approach.
+     * */
+    public int mctFromLeafValues(int[] arr) {
+        int n = arr.length;
+        Map<Pair, Integer> maxIJ = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            maxIJ.put(new Pair(i, i), arr[i]);
+            for (int j = i + 1; j < n; j++) {
+                maxIJ.put(new Pair(i, j), Math.max(arr[j], maxIJ.get(new Pair(i, j - 1))));
+            }
+        }
+        return mctFromLeafValues(arr, 0, arr.length - 1, new HashMap<>(), maxIJ);
+    }
+
+    private int mctFromLeafValues(int[] arr, int left, int right, Map<Pair, Integer> dp, Map<Pair, Integer> maxIJ) {
+        if (left == right) {
+            return 0;
+        }
+
+        Pair key = new Pair(left, right);
+        if (dp.containsKey(key)) {
+            return dp.get(key);
+        }
+
+        int res = Integer.MAX_VALUE;
+        for (int i = left; i < right; i++) {
+            res = Math.min(
+                res,
+                maxIJ.get(new Pair(left, i)) * maxIJ.get(new Pair(i + 1, right)) +
+                    mctFromLeafValues(arr, left, i, dp, maxIJ) + mctFromLeafValues(arr, i + 1, right, dp, maxIJ)
+            );
+        }
+
+        dp.put(key, res);
         return res;
     }
 }
