@@ -1,5 +1,10 @@
 package tree;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class TreeSolution5 {
 
     // Leetcode problem: 427
@@ -139,6 +144,50 @@ public class TreeSolution5 {
         res += pathSumInc(root.left, targetSum - root.val) + pathSumInc(root.right, targetSum - root.val);
 
         return res;
+    }
+
+
+    // Leetcode problem: 1110
+    /*
+     * Delete Nodes And Return Forest.
+     * Explanation: https://www.youtube.com/watch?v=BmpXMtA0oF8
+     * Post order traversal.
+     * */
+    public List<TreeNode> delNodes(TreeNode root, int[] to_delete) {
+        Set<Integer> deleteSet = new HashSet<>();
+        for (int e : to_delete) {
+            deleteSet.add(e);
+        }
+
+        List<TreeNode> result = new ArrayList<>();
+        if (!deleteSet.contains(root.val)) {
+            result.add(root);
+        }
+
+        delNodes(root, deleteSet, result);
+        return result;
+    }
+
+    private TreeNode delNodes(TreeNode root, Set<Integer> deleteSet, List<TreeNode> result) {
+        if (root == null) {
+            return null;
+        }
+
+        root.left = delNodes(root.left, deleteSet, result);
+        root.right = delNodes(root.right, deleteSet, result);
+
+        if (deleteSet.contains(root.val)) {
+            if (root.left != null) {
+                result.add(root.left);
+            }
+            if (root.right != null) {
+                result.add(root.right);
+            }
+
+            return null;
+        }
+
+        return root;
     }
 }
 
