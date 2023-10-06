@@ -290,4 +290,42 @@ public class ArraySolution8 {
 
         return leftIdx == -1 ? 0 : rightIdx - leftIdx + 1;
     }
+
+    // Leetcode problem: 845
+    /*
+     * Longest Mountain in Array.
+     * Explanation: https://www.youtube.com/watch?v=rh2Bkul2zzQ
+     * */
+    public int longestMountain(int[] arr) {
+        int n = arr.length;
+        int ans = 0;
+        int i = 1;
+        while (i < n - 1) {
+
+            // Found a peak point.
+            if (arr[i - 1] < arr[i] && arr[i] > arr[i + 1]) {
+                int count = 1; // Initial value is important.
+                int j = i;
+
+                // Go backward.
+                while (j > 0 && arr[j] > arr[j - 1]) {
+                    j -= 1;
+                    count += 1;
+                }
+
+                // Go forward.
+                while (i < n - 1 && arr[i] > arr[i + 1]) {
+                    i += 1;
+                    count += 1;
+                }
+
+                ans = Math.max(ans, count);
+            } else {
+                i += 1;
+            }
+        }
+
+        return ans;
+
+    }
 }

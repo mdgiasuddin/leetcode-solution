@@ -298,4 +298,29 @@ public class BinarySearchSolution2 {
 
         return valid >= p;
     }
+
+    // Leetcode problem: 852
+    /*
+     * Peak Index in a Mountain Array.
+     * */
+    public int peakIndexInMountainArray(int[] arr) {
+
+        // Initial value is important.
+        int l = 1;
+        int r = arr.length - 2;
+
+        while (l <= r) {
+            int m = l + (r - l);
+
+            if (arr[m - 1] < arr[m] && arr[m] > arr[m + 1]) {
+                return m;
+            } else if (arr[m - 1] > arr[m]) {
+                r = m - 1;
+            } else {
+                l = m + 1;
+            }
+        }
+
+        return -1;
+    }
 }
