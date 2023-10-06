@@ -80,4 +80,37 @@ public class DynamicProgramming4 {
 
         return res;
     }
+
+    // Leetcode problem: 650
+    /*
+     * 2 Keys Keyboard.
+     * */
+    public int minSteps(int n) {
+        if (n == 1) {
+            return 0;
+        }
+        if (n < 4) {
+            return n;
+        }
+
+        int[] dp = new int[n + 1];
+        dp[0] = dp[1] = 0;
+        dp[2] = 2;
+        dp[3] = 3;
+
+        for (int i = 4; i <= n; i++) {
+            dp[i] = i;
+            for (int j = 2; j <= i / 2; j++) {
+                if (i % j == 0) {
+                    // Create j-length string and copy-paste.
+                    // 1 step for copy & (i / j) - 1 step for paste. Total => (i / j)
+                    dp[i] = Math.min(dp[i], dp[j] + (i / j));
+                }
+
+            }
+
+        }
+
+        return dp[n];
+    }
 }
