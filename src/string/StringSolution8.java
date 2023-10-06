@@ -343,4 +343,65 @@ public class StringSolution8 {
         return result;
     }
 
+
+    // Leetcode problem: 792
+    /*
+     * Number of Matching Subsequences.
+     * Explanation: https://www.youtube.com/watch?v=lcPamGx_8v8
+     * */
+    public int numMatchingSubseq(String s, String[] words) {
+        List<List<Integer>> indices = new ArrayList<>(26);
+        for (int i = 0; i < 26; i++) {
+            indices.add(new ArrayList<>());
+        }
+
+        // Store all the indices of each character.
+        for (int i = 0; i < s.length(); i++) {
+            indices.get(s.charAt(i) - 'a').add(i);
+        }
+
+        int result = 0;
+        for (String word : words) {
+            if (isSubsequence(word, indices)) {
+                result += 1;
+            }
+        }
+
+        return result;
+    }
+
+    private boolean isSubsequence(String word, List<List<Integer>> indices) {
+        int prev = -1;
+
+        for (int i = 0; i < word.length(); i++) {
+            // Check if there exist the ith character next to the previous index.
+            int idx = getNextIndices(prev + 1, indices.get(word.charAt(i) - 'a'));
+            if (idx < prev + 1) {
+                return false;
+            }
+
+            prev = idx;
+        }
+
+        return true;
+    }
+
+    private int getNextIndices(int idx, List<Integer> indices) {
+        int l = 0;
+        int r = indices.size() - 1;
+
+        while (l <= r) {
+            int m = l + (r - l) / 2;
+            if (idx == indices.get(m)) {
+                return idx;
+            } else if (idx < indices.get(m)) {
+                r = m - 1;
+            } else {
+                l = m + 1;
+            }
+        }
+
+        return l < indices.size() ? indices.get(l) : -1;
+    }
+
 }

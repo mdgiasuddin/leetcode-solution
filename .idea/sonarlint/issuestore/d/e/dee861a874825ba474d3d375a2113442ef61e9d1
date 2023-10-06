@@ -1,0 +1,27 @@
+
+T
+java:S1854"7Remove this useless assignment to local variable "str".(¦ÅÖ8¡ÈìÊ¯1
+Z	java:S106
+"9Replace this use of System.out or System.err by a logger.(»ı½úÿÿÿÿ8áıëÊ¯1
+E
+java:S1481"(Remove this unused "str" local variable.(¦ÅÖ8¢ÈìÊ¯1
+E
+java:S1659$"#Declare "right" on a separate line.(È±İöüÿÿÿÿ8ãıëÊ¯1
+d
+java:S1659:"BDeclare "right" and all following declarations on a separate line.(§ĞĞµüÿÿÿÿ8îÖÃË¯1
+t
+java:S3776Q"RRefactor this method to reduce its Cognitive Complexity from 28 to the 15 allowed.(“®öÃşÿÿÿÿ8ïÖÃË¯1
+A
+java:S1659Z"Declare "k" on a separate line.(»ÏÖÜùÿÿÿÿ8ğÖÃË¯1
+A
+java:S1659y"$Declare "result" on a separate line.(¬Øæÿ8ñÖÃË¯1
+A
+java:S1659|"Declare "k" on a separate line.(»ÏÖÜùÿÿÿÿ8ñÖÃË¯1
+p
+java:S3776˜"RRefactor this method to reduce its Cognitive Complexity from 41 to the 15 allowed.(ÅÆúœ8òÖÃË¯1
+B
+java:S1659¥"Declare "l" on a separate line.(†ú›ªúÿÿÿÿ8óÖÃË¯1
+u
+java:S3776à"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(ÅÌö‰ÿÿÿÿÿ8õÖÃË¯1
+`
+java:S1659á"BDeclare "right" and all following declarations on a separate line.(§®ÙÛ8õÖÃË¯1
