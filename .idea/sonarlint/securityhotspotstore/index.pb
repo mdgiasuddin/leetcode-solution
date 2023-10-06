@@ -285,8 +285,6 @@ w
 G.idea/sonarlint/issuestore/0/3/03e5b4b789b8ecdaf4fcc0cfe9ffce41f6648dac,b/2/b2191c67dc78bf734a3c090934806f0a109cac3d
 Å
 Q.idea/sonarlint/securityhotspotstore/5/1/5119bd7106c9ad0c3be9faebfb0710dbf3e78a4f,7/a/7aa3f04a7746f2256fa66b4aa294bb3b8e3dacc0
-K
-src/heap/HeapSolution2.java,e/8/e8fee908b3ac5cec2375c196c6251724ff55cde0
 w
 G.idea/sonarlint/issuestore/8/d/8dd068f894e558253fdcae7fe167255d1db64daa,f/f/ff8d0c9818f5ea3f38b12614def7ed7e71d16419
 w

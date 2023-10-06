@@ -154,4 +154,29 @@ public class HeapSolution2 {
         return result;
 
     }
+
+    // Leetcode problem: 630
+    /*
+     * Course Schedule III.
+     * Explanation: https://www.youtube.com/watch?v=ey8FxYsFAMU
+     * */
+    public int scheduleCourse(int[][] courses) {
+        Arrays.sort(courses, (a, b) -> a[1] == b[1] ? Integer.compare(a[0], b[0]) : Integer.compare(a[1], b[1]));
+
+        PriorityQueue<int[]> queue = new PriorityQueue<>(Comparator.comparingInt(a -> -a[0]));
+        int time = 0;
+        for (int[] course : courses) {
+            if (time + course[0] > course[1]) { // Time limit exceeded. Try to replace with longer-duration course.
+                if (!queue.isEmpty() && queue.peek()[0] > course[0]) {
+                    time += course[0] - queue.poll()[0];
+                    queue.add(course);
+                }
+            } else { // Add the course.
+                queue.add(course);
+                time += course[0];
+            }
+        }
+
+        return queue.size();
+    }
 }
