@@ -3,30 +3,29 @@ package tree;
 import java.util.Map;
 import java.util.TreeMap;
 
+// Leetcode problem: 729
+/*
+ * My Calendar I.
+ * Explanation: https://www.youtube.com/watch?v=dg0tCWF2ta8
+ * */
 public class MyCalendar {
 
-    Map<Integer, Integer> map;
+    TreeMap<Integer, Integer> map;
 
     public MyCalendar() {
         map = new TreeMap<>();
     }
 
     public boolean book(int start, int end) {
-        int cs = map.getOrDefault(start, 0);
-        int ce = map.getOrDefault(end, 0);
-        map.put(start, cs + 1);
-        map.put(end, ce - 1);
+        Map.Entry<Integer, Integer> floorEntry = map.floorEntry(start);
+        Map.Entry<Integer, Integer> ceilingEntry = map.ceilingEntry(start);
 
-        int count = 0;
-        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-            count += entry.getValue();
-            if (count > 1) {
-                map.put(start, cs);
-                map.put(end, ce);
-                return false;
-            }
+        if ((floorEntry != null && start < floorEntry.getValue()) ||
+            (ceilingEntry != null && ceilingEntry.getKey() < end)) {
+            return false;
         }
 
+        map.put(start, end);
         return true;
     }
 }

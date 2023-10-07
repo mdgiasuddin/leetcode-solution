@@ -6,19 +6,6 @@ public class DynamicProgramming2 {
 
     public static void main(String[] args) {
 
-        TreeMap<Integer, Integer> map = new TreeMap<>();
-        map.put(10, 1);
-        map.put(20, -1);
-        map.put(25, 1);
-        map.put(40, -1);
-
-        Map.Entry<Integer, Integer> lowerEntry = map.lowerEntry(22);
-        Map.Entry<Integer, Integer> higherEntry = map.higherEntry(45);
-
-        System.out.println(lowerEntry);
-        System.out.println(higherEntry);
-
-
     }
 
     // Leetcode problem 343
