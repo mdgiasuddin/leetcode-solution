@@ -1,8 +1,10 @@
 package tree;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class TreeSolution5 {
@@ -206,6 +208,44 @@ public class TreeSolution5 {
         if (root.left == null && root.right == null && root.val == 0) {
             return null;
         }
+        return root;
+    }
+
+    // Leetcode problem: 889
+    /*
+     * Construct Binary Tree from Preorder and Postorder Traversal.
+     * Explanation: https://www.youtube.com/watch?v=3XYxGKeC_Ew
+     * */
+    public TreeNode constructFromPrePost(int[] preorder, int[] postorder) {
+        int n = postorder.length;
+        Map<Integer, Integer> postIndices = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            postIndices.put(postorder[i], i);
+        }
+
+        return constructFromPrePost(preorder, 0, n - 1, 0, n - 1, postIndices);
+    }
+
+    private TreeNode constructFromPrePost(int[] preorder, int preStart, int preEnd, int postStart,
+                                          int postEnd, Map<Integer, Integer> postIndices) {
+        if (preStart > preEnd) {
+            return null;
+        }
+
+        TreeNode root = new TreeNode(preorder[preStart]);
+        if (preStart == preEnd) {
+            return root;
+        }
+
+        int postIdx = postIndices.get(preorder[preStart + 1]);
+        int len = postIdx - postStart + 1;
+
+        // Recursion ranges (preStart, preEnd, postStart, postEnd) are important.
+        root.left =
+            constructFromPrePost(preorder, preStart + 1, preStart + len, postStart, postIdx, postIndices);
+        root.right = constructFromPrePost(preorder, preStart + len + 1, preEnd, postIdx + 1, postEnd - 1,
+            postIndices);
+
         return root;
     }
 }
