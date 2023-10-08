@@ -1,7 +1,9 @@
 package array;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ArraySolution8 {
 
@@ -327,5 +329,35 @@ public class ArraySolution8 {
 
         return ans;
 
+    }
+
+    // Leetcode problem: 697
+    /*
+     * Degree of an Array.
+     * Explanation: https://www.youtube.com/watch?v=7wT5sFELf7Qo
+     * */
+    public int findShortestSubArray(int[] nums) {
+        Map<Integer, Integer> countMap = new HashMap<>();
+        Map<Integer, Integer> firstSeen = new HashMap<>();
+
+        int minLen = 0;
+        int degree = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            firstSeen.putIfAbsent(nums[i], i);
+            int count = countMap.getOrDefault(nums[i], 0) + 1;
+            countMap.put(nums[i], count);
+
+            if (count > degree) {
+                // In case of new maximum count, update the min len.
+                degree = count;
+                minLen = i - firstSeen.get(nums[i]) + 1;
+            } else if (count == degree) {
+                // For multiple maximum count get the minimum length.
+                minLen = Math.min(minLen, i - firstSeen.get(nums[i]) + 1);
+            }
+        }
+
+        return minLen;
     }
 }
