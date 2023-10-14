@@ -281,6 +281,39 @@ public class TreeSolution5 {
 
         return map.lastEntry().getValue();
     }
+
+    // Leetcode problem: 968
+    /*
+     * Binary Tree Cameras.
+     * Explanation: https://www.youtube.com/watch?v=1OZKcD-JxwQ
+     * Postorder traversal.
+     * Maintain 3 states => COVERED = 1, PLEASE_COVER = 2, HAS_CAMERA = 3.
+     * */
+    public int minCameraCover(TreeNode root) {
+        int[] count = {0};
+
+        int state = minCameraCover(root, count);
+        return state == 2 ? count[0] + 1 : count[0];
+    }
+
+    private int minCameraCover(TreeNode root, int[] count) {
+        if (root == null) {
+            return 1;
+        }
+
+        int left = minCameraCover(root.left, count);
+        int right = minCameraCover(root.right, count);
+
+        if (left == 2 || right == 2) {
+            count[0] += 1;
+            return 3;
+        }
+        if (left == 3 || right == 3) {
+            return 1;
+        }
+
+        return 2;
+    }
 }
 
 class QuadNode {

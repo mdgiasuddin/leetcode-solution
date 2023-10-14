@@ -67,7 +67,7 @@ public class HeapSolution2 {
             }
 
             maxVal = Math.max(maxVal, tmp);
-            queue.add(new int[] {tmp, Math.max(2 * tmp, num)});
+            queue.add(new int[]{tmp, Math.max(2 * tmp, num)});
         }
 
         int res = Integer.MAX_VALUE;
@@ -80,7 +80,7 @@ public class HeapSolution2 {
             // If any greater value can be taken, take it.
             if (num[1] > num[0]) {
                 maxVal = Math.max(maxVal, num[0] * 2);
-                queue.add(new int[] {2 * num[0], num[1]});
+                queue.add(new int[]{2 * num[0], num[1]});
             }
         }
 
@@ -129,7 +129,7 @@ public class HeapSolution2 {
         Set<List<Integer>> visited = new HashSet<>();
 
         // [nums1[0], nums2[0]] will always be selected.
-        queue.add(new long[] {nums1[0] + nums2[0], 0, 0});
+        queue.add(new long[]{nums1[0] + nums2[0], 0, 0});
         visited.add(Arrays.asList(0, 0));
 
         while (k > 0 && !queue.isEmpty()) {
@@ -142,11 +142,11 @@ public class HeapSolution2 {
 
             // Try with the adjacent pair.
             if (i + 1 < nums1.length && !visited.contains(Arrays.asList(i + 1, j))) {
-                queue.add(new long[] {nums1[i + 1] + nums2[j], i + 1, j});
+                queue.add(new long[]{nums1[i + 1] + nums2[j], i + 1, j});
                 visited.add(Arrays.asList(i + 1, j));
             }
             if (j + 1 < nums2.length && !visited.contains(Arrays.asList(i, j + 1))) {
-                queue.add(new long[] {nums1[i] + nums2[j + 1], i, j + 1});
+                queue.add(new long[]{nums1[i] + nums2[j + 1], i, j + 1});
                 visited.add(Arrays.asList(i, j + 1));
             }
         }
@@ -178,5 +178,55 @@ public class HeapSolution2 {
         }
 
         return queue.size();
+    }
+
+    // Leetcode problem: 407
+    /*
+     * Trapping Rain Water II.
+     * Explanation: https://www.youtube.com/watch?v=iOzm4ht8uMQ
+     * BFS from boundary.
+     * */
+    public int trapRainWater(int[][] heightMap) {
+        int m = heightMap.length;
+        int n = heightMap[0].length;
+        boolean[][] visited = new boolean[m][n];
+        PriorityQueue<int[]> queue = new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));
+
+        int res = 0;
+        for (int i = 0; i < m; i++) {
+            queue.add(new int[]{heightMap[i][0], i, 0});
+            queue.add(new int[]{heightMap[i][n - 1], i, n - 1});
+
+            visited[i][0] = true;
+            visited[i][n - 1] = true;
+        }
+
+        for (int i = 1; i < n - 1; i++) {
+            queue.add(new int[]{heightMap[0][i], 0, i});
+            queue.add(new int[]{heightMap[m - 1][i], m - 1, i});
+
+            visited[0][i] = true;
+            visited[m - 1][i] = true;
+        }
+
+        int[][] dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+        while (!queue.isEmpty()) {
+            int[] heightXY = queue.poll();
+
+            for (int[] dir : dirs) {
+                int x = heightXY[1] + dir[0];
+                int y = heightXY[2] + dir[1];
+
+                if (x < 0 || x >= m || y < 0 || y >= n || visited[x][y]) {
+                    continue;
+                }
+
+                res += Math.max(0, heightXY[0] - heightMap[x][y]);
+                queue.add(new int[]{Math.max(heightXY[0], heightMap[x][y]), x, y});
+                visited[x][y] = true;
+            }
+        }
+
+        return res;
     }
 }
