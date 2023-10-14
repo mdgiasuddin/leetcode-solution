@@ -285,4 +285,53 @@ public class SlidingWindowSolution2 {
 
         return count;
     }
+
+    // Leetcode problem: 992
+    /*
+     * Subarray with K Different Integers.
+     * Explanation: https://www.youtube.com/watch?v=akwRFY2eyXs
+     * First find the number of subarray with at most k distinct integers.
+     * */
+    public int subarraysWithKDistinct(int[] nums, int k) {
+        return subarraysWithAtMostKDistinct(nums, k) - subarraysWithAtMostKDistinct(nums, k - 1);
+    }
+
+    private int subarraysWithAtMostKDistinct(int[] nums, int k) {
+        if (k == 0) {
+            return 0;
+        }
+
+        Map<Integer, Integer> countMap = new HashMap<>();
+        int l = 0;
+        int r = 0;
+        int current = 0;
+        int result = 0;
+
+        while (r < nums.length) {
+            int count = countMap.getOrDefault(nums[r], 0);
+            countMap.put(nums[r], count + 1);
+
+            if (count == 0) {
+                current += 1;
+            }
+
+            if (current == k) {
+                result += r - l + 1;
+            } else if (current > 0) {
+                while (current > k) {
+                    count = countMap.get(nums[l]);
+                    countMap.put(nums[l], count - 1);
+                    if (count == 1) {
+                        current -= 1;
+                    }
+                    l += 1;
+                }
+                result += r - l + 1;
+            }
+
+            r += 1;
+        }
+
+        return result;
+    }
 }
