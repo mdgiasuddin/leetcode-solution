@@ -1,11 +1,14 @@
 package tree;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 public class TreeSolution5 {
 
@@ -134,7 +137,7 @@ public class TreeSolution5 {
         }
 
         return pathSum(root.left, targetSum) + pathSum(root.right, targetSum) // Exclude the root.
-            + pathSumInc(root, targetSum); // Include the root.
+                + pathSumInc(root, targetSum); // Include the root.
     }
 
     private int pathSumInc(TreeNode root, long targetSum) {
@@ -226,8 +229,7 @@ public class TreeSolution5 {
         return constructFromPrePost(preorder, 0, n - 1, 0, n - 1, postIndices);
     }
 
-    private TreeNode constructFromPrePost(int[] preorder, int preStart, int preEnd, int postStart,
-                                          int postEnd, Map<Integer, Integer> postIndices) {
+    private TreeNode constructFromPrePost(int[] preorder, int preStart, int preEnd, int postStart, int postEnd, Map<Integer, Integer> postIndices) {
         if (preStart > preEnd) {
             return null;
         }
@@ -241,12 +243,43 @@ public class TreeSolution5 {
         int len = postIdx - postStart + 1;
 
         // Recursion ranges (preStart, preEnd, postStart, postEnd) are important.
-        root.left =
-            constructFromPrePost(preorder, preStart + 1, preStart + len, postStart, postIdx, postIndices);
-        root.right = constructFromPrePost(preorder, preStart + len + 1, preEnd, postIdx + 1, postEnd - 1,
-            postIndices);
+        root.left = constructFromPrePost(preorder, preStart + 1, preStart + len, postStart, postIdx, postIndices);
+        root.right = constructFromPrePost(preorder, preStart + len + 1, preEnd, postIdx + 1, postEnd - 1, postIndices);
 
         return root;
+    }
+
+    // Leetcode problem: 1235
+    /*
+     * Maximum Profit in Job Scheduling.
+     * Explanation: https://www.youtube.com/watch?v=3kU7VYcmffU
+     * */
+    public int jobScheduling(int[] startTime, int[] endTime, int[] profit) {
+        int n = startTime.length;
+        int[][] jobs = new int[n][3];
+
+        for (int i = 0; i < n; i++) {
+            jobs[i][0] = startTime[i];
+            jobs[i][1] = endTime[i];
+            jobs[i][2] = profit[i];
+        }
+
+        Arrays.sort(jobs, Comparator.comparingInt(a -> a[1]));
+        TreeMap<Integer, Integer> map = new TreeMap<>();
+        map.put(0, 0);
+
+        for (int[] job : jobs) {
+
+            // Find the position where the current job is fit.
+            int val = job[2] + map.floorEntry(job[0]).getValue();
+
+            // Check it can give greater output or not.
+            if (val > map.lastEntry().getValue()) {
+                map.put(job[1], val);
+            }
+        }
+
+        return map.lastEntry().getValue();
     }
 }
 
@@ -277,8 +310,7 @@ class QuadNode {
         this.bottomRight = null;
     }
 
-    public QuadNode(boolean val, boolean isLeaf, QuadNode topLeft, QuadNode topRight, QuadNode bottomLeft,
-                    QuadNode bottomRight) {
+    public QuadNode(boolean val, boolean isLeaf, QuadNode topLeft, QuadNode topRight, QuadNode bottomLeft, QuadNode bottomRight) {
         this.val = val;
         this.isLeaf = isLeaf;
         this.topLeft = topLeft;

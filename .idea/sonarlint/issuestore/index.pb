@@ -35,8 +35,6 @@ w
 G.idea/sonarlint/issuestore/8/1/81407168915f35a3acd6d819a0fee7c7141e1f72,5/c/5cb6675f665268124e5027d17317761699f6482b
 Å
 Q.idea/sonarlint/securityhotspotstore/b/6/b6cd12637748e7ccad46a8408c578bd595991330,e/6/e66c4d5ed4c683cba0eaacc17e59678cbc9d1359
-J
-src/math/MathSolution.java,2/b/2b069312f33aa97eae54a4d3e38404b4a3ca092f
 I
 src/dfs/DFSSolution5.java,4/4/4417a249b0f1380c88088d6be1874e151de1e897
 Å
@@ -67,8 +65,6 @@ H
 src/dp/RecursiveDP2.java,a/9/a93249217621d3ccf585bf8fdc376affde6b17e8
 O
 src/dp/DynamicProgramming3.java,6/8/68d851db80677477cca4b757d44a8b9f7e5966b6
-M
-src/graph/GraphSolution2.java,f/9/f9910cdb2949b9a904cb9111a75be5ded5b15a60
 Å
 Q.idea/sonarlint/securityhotspotstore/f/9/f9910cdb2949b9a904cb9111a75be5ded5b15a60,a/d/adcbf1c493c9f5a4d9c52adf6ed0fbfeb26580bc
 Å
@@ -1843,8 +1839,6 @@ w
 G.idea/sonarlint/issuestore/6/7/6788ef119848f86246f94ea8a725c8c240e65bc9,c/2/c2022961788700756fc5c9d8980aaf378ba97307
 Å
 Q.idea/sonarlint/securityhotspotstore/d/8/d8f643a5aabe60a8218fd58e80baa12098d5bcde,4/6/46a63788c270a1b8d27e8b26e768db9cb9a61c1c
-\
-,src/binary_search/BinarySearchSolution2.java,8/1/81b45aa4cb92554b3d20211e8c98de0308910094
 Å
 Q.idea/sonarlint/securityhotspotstore/b/9/b9fe67593af362f313afaf3543b5c42c42e6beb3,9/d/9d9de3f13aff5c76e9331bece4184e409270bd54
 Å
