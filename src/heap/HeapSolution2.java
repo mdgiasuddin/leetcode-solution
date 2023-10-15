@@ -229,4 +229,38 @@ public class HeapSolution2 {
 
         return res;
     }
+
+    // Leetcode problem: 871
+    /*
+     * Minimum Number of Refueling Stops.
+     * Sort the stations based on the start position of the stations.
+     * Add the stations those are reachable in descending. Take fuel from the stations with the highest fuel.
+     * */
+    public int minRefuelStops(int target, int startFuel, int[][] stations) {
+        Arrays.sort(stations, Comparator.comparingInt(a -> a[0]));
+        PriorityQueue<Integer> queue = new PriorityQueue<>(Comparator.comparingInt(a -> -a));
+
+        int n = stations.length;
+        int i = 0;
+        while (i < n && stations[i][0] <= startFuel) {
+            queue.add(stations[i][1]);
+            i += 1;
+        }
+
+        int ans = 0;
+        while (startFuel < target) {
+            if (queue.isEmpty()) {
+                return -1;
+            }
+
+            startFuel += queue.poll();
+            ans += 1;
+            while (i < n && stations[i][0] <= startFuel) {
+                queue.add(stations[i][1]);
+                i += 1;
+            }
+        }
+
+        return ans;
+    }
 }
