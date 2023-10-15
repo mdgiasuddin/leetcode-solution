@@ -28,7 +28,7 @@ public class DFSSolution5 {
         for (int i = 0; i < n - 1; i++) {
             for (int j = i + 1; j < n; j++) {
                 double d = Math.sqrt((1.0 * bombs[i][0] - 1.0 * bombs[j][0]) * (1.0 * bombs[i][0] - 1.0 * bombs[j][0]) +
-                    (1.0 * bombs[i][1] - 1.0 * bombs[j][1]) * (1.0 * bombs[i][1] - 1.0 * bombs[j][1]));
+                        (1.0 * bombs[i][1] - 1.0 * bombs[j][1]) * (1.0 * bombs[i][1] - 1.0 * bombs[j][1]));
 
                 // Center of another bomb lies inside the circle...
                 if (d <= bombs[i][2]) {
@@ -113,6 +113,50 @@ public class DFSSolution5 {
             current.add(nei);
             dfsGraph(nei, graph, result, current);
             current.remove(current.size() - 1);
+        }
+    }
+
+    // Leetcode problem: 947
+    /*
+     * Most Stones Removed with Same Row or Column.
+     * Find the number of connected component. For each connected component only 1 stone will be alive.
+     * 2 Stones are neighbor if they are in same row or column.
+     * */
+    public int removeStones(int[][] stones) {
+        int n = stones.length;
+        List<List<Integer>> graph = new ArrayList<>(n);
+        for (int i = 0; i < n; i++) {
+            graph.add(new ArrayList<>());
+        }
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if (stones[i][0] == stones[j][0] || stones[i][1] == stones[j][1]) {
+                    graph.get(i).add(j);
+                    graph.get(j).add(i);
+                }
+            }
+        }
+
+        boolean[] visited = new boolean[n];
+        int component = 0;
+
+        for (int i = 0; i < n; i++) {
+            if (!visited[i]) {
+                component += 1;
+                dfsStones(i, graph, visited);
+            }
+        }
+
+        return n - component;
+    }
+
+    private void dfsStones(int node, List<List<Integer>> graph, boolean[] visited) {
+        visited[node] = true;
+
+        for (int nei : graph.get(node)) {
+            if (!visited[nei]) {
+                dfsStones(nei, graph, visited);
+            }
         }
     }
 }

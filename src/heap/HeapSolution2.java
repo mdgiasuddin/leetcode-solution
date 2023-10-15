@@ -233,6 +233,7 @@ public class HeapSolution2 {
     // Leetcode problem: 871
     /*
      * Minimum Number of Refueling Stops.
+     * This problem is similar to IPO (Leetcode problem: 502).
      * Sort the stations based on the start position of the stations.
      * Add the stations those are reachable in descending. Take fuel from the stations with the highest fuel.
      * */
