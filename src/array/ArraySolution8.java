@@ -360,4 +360,78 @@ public class ArraySolution8 {
 
         return minLen;
     }
+
+    // Leetcode problem: 493
+    /*
+     * Reverse Pairs.
+     * Explanation: https://www.youtube.com/watch?v=Uf-27aFXhHY
+     * Merge sort.
+     * */
+    public int reversePairs(int[] nums) {
+        return mergeSort(nums, 0, nums.length - 1);
+    }
+
+    private int mergeSort(int[] nums, int l, int r) {
+        int count = 0;
+
+        if (l < r) {
+            int m = l + (r - l) / 2;
+            count += mergeSort(nums, l, m);
+            count += mergeSort(nums, m + 1, r);
+            count += merge(nums, l, m, r);
+        }
+
+        return count;
+    }
+
+    private int merge(int[] nums, int l, int m, int r) {
+        int count = 0;
+
+        int[] tmp = new int[r - l + 1];
+        for (int i = l; i <= r; i++) {
+            tmp[i - l] = nums[i];
+        }
+
+        int i = l;
+        int j = m + 1;
+        int k = l;
+
+        // Do not merge first. Check the reverse condition.
+        while (i <= m && j <= r) {
+            if (tmp[i - l] > (long) 2 * tmp[j - l]) {
+                count += m - i + 1;
+                j += 1;
+            } else {
+                i += 1;
+            }
+        }
+
+        // Merge 2 arrays.
+        i = l;
+        j = m + 1;
+        while (i <= m && j <= r) {
+            if (tmp[i - l] <= tmp[j - l]) {
+                nums[k] = tmp[i - l];
+                i += 1;
+            } else {
+                nums[k] = tmp[j - l];
+                j += 1;
+            }
+            k += 1;
+        }
+
+        while (i <= m) {
+            nums[k] = tmp[i - l];
+            i += 1;
+            k += 1;
+        }
+
+        while (j <= r) {
+            nums[k] = tmp[j - l];
+            j += 1;
+            k += 1;
+        }
+
+        return count;
+    }
 }

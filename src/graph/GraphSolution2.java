@@ -191,6 +191,55 @@ public class GraphSolution2 {
 
         return edges.length - requiredEdge;
     }
+
+    // Leetcode problem: 1192
+    /*
+     * Critical Connections in a Network.
+     * Explanation: https://www.youtube.com/watch?v=Rhxs4k6DyMM
+     * Tarzan's Algorithm.
+     * */
+    int time = 0;
+
+    public List<List<Integer>> criticalConnections(int n, List<List<Integer>> connections) {
+        List<List<Integer>> graph = new ArrayList<>(n);
+        for (int i = 0; i < n; i++) {
+            graph.add(new ArrayList<>());
+        }
+        for (List<Integer> connection : connections) {
+            graph.get(connection.get(0)).add(connection.get(1));
+            graph.get(connection.get(1)).add(connection.get(0));
+        }
+        List<List<Integer>> res = new ArrayList<>();
+        int[] disc = new int[n];
+        int[] low = new int[n];
+        int[] parent = new int[n];
+
+        Arrays.fill(disc, -1);
+        Arrays.fill(low, -1);
+        Arrays.fill(parent, -1);
+        dfsConnection(0, graph, disc, low, parent, res);
+
+        return res;
+    }
+
+    private void dfsConnection(int u, List<List<Integer>> graph, int[] disc, int[] low, int[] parent, List<List<Integer>> res) {
+        disc[u] = low[u] = time;
+        time += 1;
+
+        for (int v : graph.get(u)) {
+            if (disc[v] == -1) {
+                parent[v] = u;
+                dfsConnection(v, graph, disc, low, parent, res);
+                low[u] = Math.min(low[u], low[v]);
+
+                if (low[v] > disc[u]) {
+                    res.add(Arrays.asList(u, v));
+                }
+            } else if (v != parent[u]) {
+                low[u] = Math.min(low[u], disc[v]);
+            }
+        }
+    }
 }
 
 class UnionFind {
