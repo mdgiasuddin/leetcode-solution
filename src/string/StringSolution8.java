@@ -75,7 +75,7 @@ public class StringSolution8 {
                 continue;
             }
             findStrobogrammatic(n - 2, entry.getKey() + current + entry.getValue()
-                , result, mirrors);
+                    , result, mirrors);
 
         }
     }
@@ -155,7 +155,7 @@ public class StringSolution8 {
      * */
     public String validIPAddress(String queryIP) {
         String regexIPv4 = "((\\d|[1-9]\\d|1\\d\\d|2[0-4]\\d|25[0-5])\\.){3}" +
-            "(\\d|[1-9]\\d|1\\d\\d|2[0-4]\\d|25[0-5])";
+                "(\\d|[1-9]\\d|1\\d\\d|2[0-4]\\d|25[0-5])";
 
         String regexIPv6 = "(([\\da-fA-F]{1,4}):){7}([\\da-fA-F]{1,4})";
 
@@ -181,7 +181,7 @@ public class StringSolution8 {
 
         for (int i = 0; i < report.length; i++) {
             int score = getScore(report[i], positiveSet, negativeSet);
-            scores.add(new int[] {student_id[i], score});
+            scores.add(new int[]{student_id[i], score});
         }
 
         List<Integer> result = new ArrayList<>();
@@ -270,7 +270,7 @@ public class StringSolution8 {
         for (Map.Entry<Character, Set<String>> entry1 : suffixMap.entrySet()) {
             for (Map.Entry<Character, Set<String>> entry2 : suffixMap.entrySet()) {
                 if (Objects.equals(entry1.getKey(), entry2.getKey()) ||
-                    visited.contains(entry1.getKey() + "" + entry2.getKey())) {
+                        visited.contains(entry1.getKey() + "" + entry2.getKey())) {
                     continue;
                 }
 
@@ -402,6 +402,36 @@ public class StringSolution8 {
         }
 
         return l < indices.size() ? indices.get(l) : -1;
+    }
+
+    // Leetcode problem: 670
+    /*
+     * Maximum Swap.
+     * */
+    public int maximumSwap(int num) {
+        char[] digits = String.valueOf(num).toCharArray();
+        int len = digits.length;
+
+        // Find the maximum digit in the right position. If a larger digit found, swap and return.
+        for (int i = 0; i < len - 1; i++) {
+            int maxIdx = i + 1;
+            char maxDigit = '0';
+            for (int j = i + 1; j < len; j++) {
+                if (digits[j] >= maxDigit) {
+                    maxIdx = j;
+                    maxDigit = digits[j];
+                }
+            }
+
+            if (maxDigit > digits[i]) {
+                char tmp = digits[i];
+                digits[i] = digits[maxIdx];
+                digits[maxIdx] = tmp;
+                break;
+            }
+        }
+
+        return Integer.parseInt(String.copyValueOf(digits));
     }
 
 }
