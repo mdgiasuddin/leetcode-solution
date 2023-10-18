@@ -33,10 +33,10 @@ public class RecursiveDP3 {
 
         for (int i = 1; i < s1.length(); i++) {
             if (
-                (isScramble(s1.substring(0, i), s2.substring(0, i), map) &&
-                    isScramble(s1.substring(i), s2.substring(i), map)) ||
-                    (isScramble(s1.substring(0, i), s2.substring(s2.length() - i), map) &&
-                        isScramble(s1.substring(i), s2.substring(0, s2.length() - i), map))
+                    (isScramble(s1.substring(0, i), s2.substring(0, i), map) &&
+                            isScramble(s1.substring(i), s2.substring(i), map)) ||
+                            (isScramble(s1.substring(0, i), s2.substring(s2.length() - i), map) &&
+                                    isScramble(s1.substring(i), s2.substring(0, s2.length() - i), map))
             ) {
                 map.put(key, true);
                 return true;
@@ -114,13 +114,46 @@ public class RecursiveDP3 {
         int res = Integer.MAX_VALUE;
         for (int i = left; i < right; i++) {
             res = Math.min(
-                res,
-                maxIJ.get(new Pair(left, i)) * maxIJ.get(new Pair(i + 1, right)) +
-                    mctFromLeafValues(arr, left, i, dp, maxIJ) + mctFromLeafValues(arr, i + 1, right, dp, maxIJ)
+                    res,
+                    maxIJ.get(new Pair(left, i)) * maxIJ.get(new Pair(i + 1, right)) +
+                            mctFromLeafValues(arr, left, i, dp, maxIJ) + mctFromLeafValues(arr, i + 1, right, dp, maxIJ)
             );
         }
 
         dp.put(key, res);
         return res;
+    }
+
+    // Leetcode problem: 1155
+    /*
+     * Number of Dice Rolls with Target Sum.
+     * Explanation: https://www.youtube.com/watch?v=JfRxkDOP7-4
+     * */
+    public int numRollsToTarget(int n, int k, int target) {
+        int[][] dp = new int[n + 1][target + 1];
+        for (int[] row : dp) {
+            Arrays.fill(row, -1);
+        }
+
+        return dfsDice(n, k, target, dp);
+    }
+
+    private int dfsDice(int n, int k, int target, int[][] dp) {
+        if (n < 0) {
+            return 0;
+        }
+        if (n == 0 && target == 0) {
+            return 1;
+        }
+        if (dp[n][target] != -1) {
+            return dp[n][target];
+        }
+
+        int ways = 0;
+        for (int i = 1; i <= Math.min(k, target); i++) { // Try with all possible options of nth Dice.
+            ways = (ways + dfsDice(n - 1, k, target - i, dp)) % 1000000007;
+        }
+        dp[n][target] = ways;
+        return ways;
     }
 }
