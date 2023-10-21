@@ -136,4 +136,35 @@ public class DynamicProgramming4 {
 
         return (m - dp[m][n]) + (n - dp[m][n]);
     }
+
+    // Leetcode problem: 887
+    /*
+     * Super Egg Drop.
+     * Explanation: https://www.geeksforgeeks.org/egg-dropping-puzzle-dp-11/
+     * TO-DO -> Optimize the solution as it exceeds the time limit.
+     * */
+    public int superEggDrop(int k, int n) {
+        int[][] dp = new int[k + 1][n + 1];
+        for (int i = 1; i <= k; i++) {
+            dp[i][1] = 1;
+            dp[i][0] = 0;
+        }
+        for (int i = 1; i <= n; i++) {
+            dp[1][i] = i;
+        }
+
+        for (int i = 2; i <= k; i++) {
+            for (int j = 2; j <= n; j++) {
+                dp[i][j] = Integer.MAX_VALUE;
+                for (int l = 1; l <= j; l++) {
+                    dp[i][j] = Math.min(
+                            dp[i][j],
+                            1 + Math.max(dp[i - 1][l - 1], dp[i][j - l])
+                    );
+                }
+            }
+        }
+
+        return dp[k][n];
+    }
 }
