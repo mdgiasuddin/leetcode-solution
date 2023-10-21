@@ -1,6 +1,10 @@
 package recursion;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class BacktrackingSolution3 {
 
@@ -133,5 +137,40 @@ public class BacktrackingSolution3 {
                 lastStoneWeightII(stones, idx + 1, current, target, total, map));
         map.put(list, res);
         return res;
+    }
+
+    // Leetcode problem: 282
+    /*
+     * Expression Add Operators.
+     * Explanation: https://www.youtube.com/watch?v=WcgjFrZceU8
+     * */
+    public List<String> addOperators(String num, int target) {
+        List<String> result = new ArrayList<>();
+        dfsAddOperators(0, num, "", 0, 0, target, result);
+        return result;
+    }
+
+    private void dfsAddOperators(int idx, String num, String path, long sumSoFar, long prev, int target, List<String> result) {
+        if (idx == num.length()) {
+            if (sumSoFar == target) {
+                result.add(path);
+            }
+            return;
+        }
+
+        for (int i = idx; i < num.length(); i++) {
+            if (i > idx && num.charAt(idx) == '0') {
+                return;
+            }
+            String curStr = num.substring(idx, i + 1);
+            long current = Long.parseLong(curStr);
+            if (idx == 0) {
+                dfsAddOperators(i + 1, num, curStr, current, current, target, result);
+            } else {
+                dfsAddOperators(i + 1, num, path + "+" + curStr, sumSoFar + current, current, target, result);
+                dfsAddOperators(i + 1, num, path + "-" + curStr, sumSoFar - current, -current, target, result);
+                dfsAddOperators(i + 1, num, path + "*" + curStr, sumSoFar - prev + prev * current, prev * current, target, result);
+            }
+        }
     }
 }

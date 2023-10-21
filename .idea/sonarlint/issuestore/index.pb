@@ -3473,3 +3473,7 @@ W
 'src/sliding/SlidingWindowSolution2.java,c/0/c0532f120496e6d45d6dab3ff43ed1eb42988318
 K
 src/heap/HeapSolution2.java,e/8/e8fee908b3ac5cec2375c196c6251724ff55cde0
+M
+src/graph/GraphSolution2.java,f/9/f9910cdb2949b9a904cb9111a75be5ded5b15a60
+O
+src/graph/tarjans_algorithm.txt,e/c/ec925c92f6d6ab8e85029e323be65e70081d363a

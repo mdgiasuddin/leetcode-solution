@@ -18,9 +18,9 @@ public class DynamicProgramming4 {
 
         for (int i = n - 1; i >= 0; i--) {
             dp[i] = Math.max(
-                dp[i + 1], // Skip ith question
-                questions[i][0] + (i + questions[i][1] + 1 > n ? 0 : dp[i + questions[i][1] + 1] // Solve ith question
-                ));
+                    dp[i + 1], // Skip ith question
+                    questions[i][0] + (i + questions[i][1] + 1 > n ? 0 : dp[i + questions[i][1] + 1] // Solve ith question
+                    ));
         }
 
         return dp[0];
@@ -112,5 +112,28 @@ public class DynamicProgramming4 {
         }
 
         return dp[n];
+    }
+
+    // Leetcode problem: 583
+    /*
+     * Delete Operation for Two Strings.
+     * Find the LCS. Then return the sum of deletion from 2 strings.
+     * */
+    public int minDistance(String word1, String word2) {
+        int m = word1.length();
+        int n = word2.length();
+
+        int[][] dp = new int[m + 1][n + 1];
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                if (word1.charAt(i - 1) == word2.charAt(j - 1)) {
+                    dp[i][j] = 1 + dp[i - 1][j - 1];
+                } else {
+                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+                }
+            }
+        }
+
+        return (m - dp[m][n]) + (n - dp[m][n]);
     }
 }
