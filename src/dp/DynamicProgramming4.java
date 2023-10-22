@@ -167,4 +167,49 @@ public class DynamicProgramming4 {
 
         return dp[k][n];
     }
+
+    // Leetcode problem: 688
+    /*
+     * Knight Probability in Chessboard.
+     * Explanation: https://www.youtube.com/watch?v=54nJhM2AZv4
+     * Maintain 2 state => current & next.
+     * */
+    public double knightProbability(int n, int k, int row, int column) {
+        double[][] current = new double[n][n];
+        double[][] next = new double[n][n];
+
+        int[][] dirs = {
+                {-2, -1}, {-1, -2}, {-2, 1}, {-1, 2}, {2, -1}, {1, -2}, {2, 1}, {1, 2}
+        };
+
+        current[row][column] = 1.0;
+
+        for (int i = 0; i < k; i++) {
+            for (int r = 0; r < n; r++) {
+                for (int c = 0; c < n; c++) {
+                    if (current[r][c] != 0) {
+                        for (int[] dir : dirs) {
+                            int x = r + dir[0];
+                            int y = c + dir[1];
+
+                            if (x >= 0 && x < n && y >= 0 && y < n) {
+                                next[x][y] += current[r][c] / 8;
+                            }
+                        }
+                    }
+                }
+            }
+            current = next;
+            next = new double[n][n];
+        }
+
+        double res = 0;
+        for (int r = 0; r < n; r++) {
+            for (int c = 0; c < n; c++) {
+                res += current[r][c];
+            }
+        }
+
+        return res;
+    }
 }
