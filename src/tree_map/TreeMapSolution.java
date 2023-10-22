@@ -1,11 +1,6 @@
 package tree_map;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.TreeMap;
+import java.util.*;
 
 public class TreeMapSolution {
     public static void main(String[] args) {
@@ -55,6 +50,48 @@ public class TreeMapSolution {
                 } else {
                     countMap.put(building.y, count - 1);
                 }
+            }
+        }
+
+        return result;
+    }
+
+    // Leetcode problem: 480
+    /*
+    * Sliding Window Median.
+    * Explanation: https://www.youtube.com/watch?v=NT5Lp5vaMm0
+    * This problem is similar to: Find Median in Data Stream (Leetcode problem: 295).
+    * */
+    public double[] medianSlidingWindow(int[] nums, int k) {
+        Comparator<Integer> comparator = (a, b) -> nums[a] == nums[b]
+                ? Integer.compare(a, b) : Integer.compare(nums[a], nums[b]);
+
+        TreeSet<Integer> maxHeap = new TreeSet<>(comparator.reversed());
+        TreeSet<Integer> minHeap = new TreeSet<>(comparator);
+
+        int n = nums.length;
+        int idx = 0;
+        double[] result = new double[n - k + 1];
+        for (int i = 0; i < n; i++) {
+            // Remove invalid index.
+            if (i >= k) {
+                maxHeap.remove(i - k);
+                minHeap.remove(i - k);
+            }
+
+            maxHeap.add(i);
+            // Balance the heaps.
+            while (maxHeap.size() > minHeap.size() + 1) {
+                minHeap.add(maxHeap.pollFirst());
+            }
+            if (!minHeap.isEmpty() && nums[minHeap.first()] < nums[maxHeap.first()]) {
+                maxHeap.add(minHeap.pollFirst());
+                minHeap.add(maxHeap.pollFirst());
+            }
+
+            if (i >= k - 1) {
+                result[idx++] = k % 2 == 1 ? nums[maxHeap.first()]
+                        : ((double) nums[maxHeap.first()] + (double) nums[minHeap.first()]) / 2;
             }
         }
 
