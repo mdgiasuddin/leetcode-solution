@@ -81,7 +81,7 @@ public class TreeMapSolution {
 
             maxHeap.add(i);
             // Balance the heaps.
-            while (maxHeap.size() > minHeap.size() + 1) {
+            if (maxHeap.size() > minHeap.size() + 1) {
                 minHeap.add(maxHeap.pollFirst());
             }
             if (!minHeap.isEmpty() && nums[minHeap.first()] < nums[maxHeap.first()]) {
