@@ -323,4 +323,46 @@ public class BinarySearchSolution2 {
 
         return -1;
     }
+
+    // Leetcode problem: 719
+    /*
+     * Find K-th Smallest Pair Distance.
+     * Explanation: https://www.youtube.com/watch?v=veu_Q-da6ZY
+     * */
+    public int smallestDistancePair(int[] nums, int k) {
+        Arrays.sort(nums);
+
+        int n = nums.length;
+        int high = nums[n - 1] - nums[0];
+        int low = Integer.MAX_VALUE;
+        for (int i = 0; i < n - 1; i++) {
+            low = Math.min(low, nums[i + 1] - nums[i]);
+        }
+
+        // Conditions are important.
+        while (low < high) {
+            int mid = low + (high - low) / 2;
+            int pair = satisfiedPair(nums, mid);
+            if (pair < k) {
+                low = mid + 1;
+            } else { // Find better solution.
+                high = mid;
+            }
+        }
+
+        return low;
+    }
+
+    private int satisfiedPair(int[] nums, int mid) {
+        int l = 0;
+        int count = 0;
+        for (int r = 1; r < nums.length; r++) {
+            while (nums[r] - nums[l] > mid) {
+                l += 1;
+            }
+
+            count += r - l;
+        }
+        return count;
+    }
 }
