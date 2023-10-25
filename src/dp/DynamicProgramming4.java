@@ -212,4 +212,36 @@ public class DynamicProgramming4 {
 
         return res;
     }
+
+    // Leetcode problem: 1043
+    /*
+     * Partition Array for Maximum Sum.
+     * Explanation: https://www.youtube.com/watch?v=YtOzNodX_aw
+     * This solution is tricky.
+     * */
+    public int maxSumAfterPartitioning(int[] arr, int k) {
+        int n = arr.length;
+        int[] dp = new int[n + 1];
+
+        for (int i = 1; i <= n; i++) {
+            int max = Integer.MIN_VALUE;
+            int best = Integer.MIN_VALUE;
+
+            for (int j = 1; j <= k && i - j >= 0; j++) {
+                /*
+                 * arr = [1,15,7,9,2,5,10], k = 3
+                 * For element 9 => dp[0, 1, 30, 45, ...]
+                 * j = 1 => keep 9 single => dp[i] = 9 + 45.
+                 * j = 2 => (9, 7) => 30 + 2 * 9
+                 * j = 3 => (9, 7, 15) => 1 + 3 * 15
+                 * So, the best result is 9 + 45 = 54.
+                 * */
+                max = Math.max(max, arr[i - j]);
+                best = Math.max(best, dp[i - j] + max * j);
+            }
+            dp[i] = best;
+        }
+
+        return dp[n];
+    }
 }
