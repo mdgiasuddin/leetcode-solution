@@ -75,7 +75,7 @@ public class BFSSolution3 {
      * */
     public double maxProbability(int n, int[][] edges, double[] succProb, int start, int end) {
         PriorityQueue<NodeProbability> queue =
-            new PriorityQueue<>(Comparator.comparingDouble(a -> -a.getProbability()));
+                new PriorityQueue<>(Comparator.comparingDouble(a -> -a.getProbability()));
 
         List<List<NodeProbability>> graph = new ArrayList<>();
         for (int i = 0; i < n; i++) {
@@ -119,11 +119,11 @@ public class BFSSolution3 {
         }
 
         for (int[] red : redEdges) {
-            graph.get(red[0]).add(new int[] {red[1], 0});
+            graph.get(red[0]).add(new int[]{red[1], 0});
         }
 
         for (int[] blue : blueEdges) {
-            graph.get(blue[0]).add(new int[] {blue[1], 1});
+            graph.get(blue[0]).add(new int[]{blue[1], 1});
         }
 
         // Track the visited node with specified color.
@@ -132,7 +132,7 @@ public class BFSSolution3 {
         visited.add(new HashSet<>());
 
         Queue<int[]> queue = new LinkedList<>();
-        queue.add(new int[] {0, -1});
+        queue.add(new int[]{0, -1});
         int[] distance = new int[n];
         Arrays.fill(distance, Integer.MAX_VALUE);
         distance[0] = 0;
@@ -148,7 +148,7 @@ public class BFSSolution3 {
                     // & child node is not already visited with the same color
                     if (child[1] != node[1] && !visited.get(child[1]).contains(child[0])) {
                         visited.get(child[1]).add(child[0]);
-                        queue.add(new int[] {child[0], child[1]});
+                        queue.add(new int[]{child[0], child[1]});
 
                         // Shortest distance may already be found.
                         distance[child[0]] = Math.min(distance[child[0]], d);
@@ -239,11 +239,11 @@ public class BFSSolution3 {
                 continue;
             }
 
-            graph.get(manager[i]).add(new int[] {i, informTime[manager[i]]});
+            graph.get(manager[i]).add(new int[]{i, informTime[manager[i]]});
         }
 
         Queue<int[]> queue = new LinkedList<>();
-        queue.add(new int[] {headID, 0});
+        queue.add(new int[]{headID, 0});
         int time = 0;
 
         while (!queue.isEmpty()) {
@@ -251,11 +251,84 @@ public class BFSSolution3 {
             time = Math.max(time, node[1]);
 
             for (int[] nei : graph.get(node[0])) {
-                queue.add(new int[] {nei[0], node[1] + nei[1]});
+                queue.add(new int[]{nei[0], node[1] + nei[1]});
             }
         }
 
         return time;
+    }
+
+    // Leetcode problem: 815
+    /*
+     * Bus Routes.
+     * Multi-source BFS.
+     * Forming graph is challenging.
+     * */
+    public int numBusesToDestination(int[][] routes, int source, int target) {
+        if (source == target) {
+            return 0;
+        }
+
+        List<Set<Integer>> busRoutes = new ArrayList<>();
+        int n = routes.length;
+
+        // Convert the routes into HashSet for efficient searching.
+        for (int[] route : routes) {
+            Set<Integer> busRoute = new HashSet<>();
+            for (int stoppage : route) {
+                busRoute.add(stoppage);
+            }
+            busRoutes.add(busRoute);
+        }
+
+        List<Set<Integer>> graph = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            graph.add(new HashSet<>());
+        }
+
+        // 2 Routes are neighbors if they have at least 1 common stoppage.
+        for (int i = 0; i < n - 1; i++) {
+            for (int stoppage : busRoutes.get(i)) {
+                for (int j = i + 1; j < n; j++) {
+                    if (busRoutes.get(j).contains(stoppage)) {
+                        graph.get(i).add(j);
+                        graph.get(j).add(i);
+                    }
+                }
+            }
+        }
+
+        Queue<Integer> queue = new LinkedList<>();
+        boolean[] visited = new boolean[n];
+
+        // Add the first bus into the queue.
+        for (int i = 0; i < n; i++) {
+            if (busRoutes.get(i).contains(source)) {
+                visited[i] = true;
+                queue.add(i);
+            }
+        }
+
+        int count = 1;
+        while (!queue.isEmpty()) {
+            int qSize = queue.size();
+            while (qSize-- > 0) {
+                int bus = queue.poll();
+                if (busRoutes.get(bus).contains(target)) {
+                    return count;
+                }
+
+                for (int nei : graph.get(bus)) {
+                    if (!visited[nei]) {
+                        visited[nei] = true;
+                        queue.add(nei);
+                    }
+                }
+            }
+            count += 1;
+        }
+
+        return -1;
     }
 }
 
@@ -288,7 +361,7 @@ class NodeProbability {
 
         boolean[][] visited = new boolean[m][n];
         PriorityQueue<int[]> queue = new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));
-        queue.add(new int[] {0, 0, 0});
+        queue.add(new int[]{0, 0, 0});
         int[][] directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
 
         while (!queue.isEmpty()) {
@@ -303,7 +376,7 @@ class NodeProbability {
                     int x = xy[1] + dir[0];
                     int y = xy[2] + dir[1];
                     if (x >= 0 && x < m && y >= 0 && y < n && !visited[x][y]) {
-                        queue.add(new int[] {Math.max(xy[0], Math.abs(heights[x][y] - heights[xy[1]][xy[2]])), x, y});
+                        queue.add(new int[]{Math.max(xy[0], Math.abs(heights[x][y] - heights[xy[1]][xy[2]])), x, y});
                     }
                 }
             }
