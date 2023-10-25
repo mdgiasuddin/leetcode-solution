@@ -45,4 +45,45 @@ public class ArraySolution9 {
 
         return true;
     }
+
+    // Leetcode problem: 1395
+    /*
+     * Count Number of Teams.
+     * For each player, consider it as middle and count lower & higher rating in the left & right.
+     * Sum up the combinations.
+     * */
+    public int numTeams(int[] rating) {
+        int teams = 0;
+        int n = rating.length;
+        for (int i = 1; i < n - 1; i++) {
+            int j = i - 1;
+            int k = i + 1;
+
+            int lLower = 0;
+            int rHigher = 0;
+            int lHigher = 0;
+            int rLower = 0;
+
+            while (j >= 0) {
+                if (rating[j] < rating[i]) {
+                    lLower += 1;
+                } else if (rating[j] > rating[i]) {
+                    lHigher += 1;
+                }
+                j -= 1;
+            }
+            while (k < n) {
+                if (rating[k] < rating[i]) {
+                    rLower += 1;
+                } else if (rating[k] > rating[i]) {
+                    rHigher += 1;
+                }
+                k += 1;
+            }
+
+            teams += (lLower * rHigher) + (lHigher * rLower);
+        }
+
+        return teams;
+    }
 }
