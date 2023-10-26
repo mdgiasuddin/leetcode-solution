@@ -1,5 +1,7 @@
 package array;
 
+import pair.Pair;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -85,5 +87,32 @@ public class ArraySolution9 {
         }
 
         return teams;
+    }
+
+    // Leetcode problem: 1027
+    /*
+     * Longest Arithmetic Subsequence.
+     * Explanation: https://www.youtube.com/watch?v=sQznNULe2J0
+     * */
+    public int longestArithSeqLength(int[] nums) {
+        Map<Pair, Integer> map = new HashMap<>();
+        int n = nums.length;
+
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = i + 1; j < n; j++) {
+                int diff = nums[j] - nums[i];
+                map.put(
+                        new Pair(j, diff),
+                        // Take the count up to ith index with difference = diff & add jth value with it.
+                        map.getOrDefault(new Pair(i, diff), 1) + 1
+                );
+            }
+        }
+
+        int res = 0;
+        for (Map.Entry<Pair, Integer> entry : map.entrySet()) {
+            res = Math.max(res, entry.getValue());
+        }
+        return res;
     }
 }
