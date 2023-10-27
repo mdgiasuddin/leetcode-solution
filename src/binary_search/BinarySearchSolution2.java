@@ -365,4 +365,29 @@ public class BinarySearchSolution2 {
         }
         return count;
     }
+
+    // Leetcode problem: 154
+    /*
+     * Find Minimum in Rotated Sorted Array II.
+     * Explanation: https://www.youtube.com/watch?v=uTqU_CVNoWw
+     * The conditions are important.
+     * */
+    public int findMin(int[] nums) {
+        int l = 0;
+        int r = nums.length - 1;
+
+        while (l < r) {
+            int m = l + (r - l) / 2;
+
+            if (nums[m] < nums[r]) {
+                r = m;
+            } else if (nums[m] == nums[r]) {
+                r -= 1;
+            } else {
+                l = m + 1;
+            }
+        }
+
+        return nums[l];
+    }
 }
