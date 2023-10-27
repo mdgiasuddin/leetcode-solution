@@ -1,8 +1,6 @@
 package sliding;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class SlidingWindowSolution2 {
     public static void main(String[] args) {
@@ -333,5 +331,53 @@ public class SlidingWindowSolution2 {
         }
 
         return result;
+    }
+
+    // Leetcode problem: 632
+    /*
+     * Smallest Range Covering Elements from K Lists.
+     * Explanation: https://www.youtube.com/watch?v=VIbaPmsRzCs
+     * Take all the nums in a single list.
+     * Sort them and find the smallest window that cover all the list.
+     * */
+    public int[] smallestRange(List<List<Integer>> nums) {
+        int k = nums.size();
+        List<int[]> list = new ArrayList<>();
+        for (int i = 0; i < k; i++) {
+            for (int num : nums.get(i)) {
+                list.add(new int[]{i, num});
+            }
+        }
+
+        list.sort(Comparator.comparingInt(a -> a[1]));
+        Map<Integer, Integer> countMap = new HashMap<>();
+        int minDiff = Integer.MAX_VALUE;
+        int taken = 0;
+        int[] ans = new int[2];
+        int l = 0;
+        for (int[] num : list) {
+            int count = countMap.getOrDefault(num[0], 0);
+            countMap.put(num[0], count + 1);
+            if (count == 0) {
+                taken += 1;
+                while (taken == k) {
+                    if (num[1] - list.get(l)[1] < minDiff) {
+                        ans[0] = list.get(l)[1];
+                        ans[1] = num[1];
+
+                        minDiff = num[1] - list.get(l)[1];
+                    }
+
+                    count = countMap.get(list.get(l)[0]);
+                    countMap.put(list.get(l)[0], count - 1);
+                    if (count == 1) {
+                        taken -= 1;
+                    }
+                    l += 1;
+                }
+            }
+        }
+
+        return ans;
     }
 }
