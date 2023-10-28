@@ -46,4 +46,35 @@ public class StringSolution9 {
 
         return result;
     }
+
+    // Leetcode problem: 890
+    /*
+     * Find and Replace Pattern.
+     * This problem is similar to : Isomorphic Strings (Leetcode problem: 205).
+     * */
+    public List<String> findAndReplacePattern(String[] words, String pattern) {
+        int n = pattern.length();
+        List<String> result = new ArrayList<>();
+        for (String word : words) {
+            Map<Character, Character> w2p = new HashMap<>();
+            Map<Character, Character> p2w = new HashMap<>();
+
+            int i = 0;
+            for (; i < n; i++) {
+                if ((w2p.containsKey(word.charAt(i)) && w2p.get(word.charAt(i)) != pattern.charAt(i)) ||
+                        (p2w.containsKey(pattern.charAt(i)) && p2w.get(pattern.charAt(i)) != word.charAt(i))) {
+                    break;
+                }
+
+                w2p.put(word.charAt(i), pattern.charAt(i));
+                p2w.put(pattern.charAt(i), word.charAt(i));
+            }
+
+            if (i == n) {
+                result.add(word);
+            }
+        }
+
+        return result;
+    }
 }
