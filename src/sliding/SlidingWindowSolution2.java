@@ -380,4 +380,60 @@ public class SlidingWindowSolution2 {
 
         return ans;
     }
+
+    // Leetcode problem: 1438
+    /*
+     * Longest Continuous Subarray with Absolute Diff Less Than or Equal to Limit.
+     * Explanation: https://www.youtube.com/watch?v=LDFZm4iB7tA
+     * Maintain 2 Deque to store the minimum and maximum.
+     * The solution is tricky.
+     * */
+    public int longestSubarray(int[] nums, int limit) {
+        Deque<Integer> minDeque = new ArrayDeque<>();
+        Deque<Integer> maxDeque = new ArrayDeque<>();
+
+        int l = 0;
+        int r = 0;
+        int ans = 0;
+
+        // Handle whether new entry will be added or not.
+        boolean add = true;
+        while (r < nums.length) {
+            if (add) {
+                int num = nums[r];
+
+                while (!minDeque.isEmpty() && nums[minDeque.getLast()] >= num) {
+                    minDeque.pollLast();
+                }
+                while (!maxDeque.isEmpty() && nums[maxDeque.getLast()] <= num) {
+                    maxDeque.pollLast();
+                }
+
+                minDeque.addLast(r);
+                maxDeque.addLast(r);
+            }
+
+            int minI = minDeque.getFirst();
+            int maxI = maxDeque.getFirst();
+
+            if (nums[maxI] - nums[minI] > limit) {
+                l += 1;
+                if (l > minDeque.getFirst()) {
+                    minDeque.pollFirst();
+                }
+                if (l > maxDeque.getFirst()) {
+                    maxDeque.pollFirst();
+                }
+                // If r is not increased, no need to add in the queue.
+                add = false;
+            } else {
+                ans = Math.max(ans, r - l + 1);
+                r += 1;
+                // r increased => add into the queue.
+                add = true;
+            }
+        }
+
+        return ans;
+    }
 }

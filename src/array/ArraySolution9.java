@@ -2,8 +2,7 @@ package array;
 
 import pair.Pair;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class ArraySolution9 {
 
@@ -114,5 +113,35 @@ public class ArraySolution9 {
             res = Math.max(res, entry.getValue());
         }
         return res;
+    }
+
+    // Leetcode problem: 950
+    /*
+    * Reveal Cards in Increasing Order.
+    * Explanation: https://www.youtube.com/watch?v=COiE-PQqf28
+    * */
+    public int[] deckRevealedIncreasing(int[] deck) {
+        int n = deck.length;
+        Arrays.sort(deck);
+        Deque<Integer> deque = new ArrayDeque<>(n);
+        for (int i = 0; i < n; i++) {
+            deque.add(i);
+        }
+
+        int idx = 0;
+        int[] ans = new int[n];
+        boolean reveal = true;
+
+        while (!deque.isEmpty()) {
+            if (reveal) {
+                ans[deque.pollFirst()] = deck[idx];
+                idx += 1;
+            } else {
+                deque.addLast(deque.pollFirst());
+            }
+            reveal = !reveal;
+        }
+
+        return ans;
     }
 }
