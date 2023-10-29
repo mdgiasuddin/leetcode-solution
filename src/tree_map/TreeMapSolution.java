@@ -58,10 +58,10 @@ public class TreeMapSolution {
 
     // Leetcode problem: 480
     /*
-    * Sliding Window Median.
-    * Explanation: https://www.youtube.com/watch?v=NT5Lp5vaMm0
-    * This problem is similar to: Find Median in Data Stream (Leetcode problem: 295).
-    * */
+     * Sliding Window Median.
+     * Explanation: https://www.youtube.com/watch?v=NT5Lp5vaMm0
+     * This problem is similar to: Find Median in Data Stream (Leetcode problem: 295).
+     * */
     public double[] medianSlidingWindow(int[] nums, int k) {
         Comparator<Integer> comparator = (a, b) -> nums[a] == nums[b]
                 ? Integer.compare(a, b) : Integer.compare(nums[a], nums[b]);
@@ -127,6 +127,49 @@ class Building implements Comparable<Building> {
             return this.start ? -1 : 1;
         }
         return Integer.compare(this.x, building.x);
+    }
+
+    // Leetcode problem: 363
+    /*
+     * Max Sum of Rectangle No Larger Than K.
+     * Explanation: https://www.youtube.com/watch?v=VsBXWpBbuig
+     * */
+    public int maxSumSubmatrix(int[][] matrix, int k) {
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+
+        int result = Integer.MIN_VALUE;
+        for (int r = 0; r < rows; r++) {
+            int[] arr = new int[cols];
+
+            for (int i = r; i < rows; i++) {
+                for (int j = 0; j < cols; j++) {
+                    arr[j] += matrix[i][j];
+                }
+
+                result = Math.max(result, findMaxSumSubarray(arr, k));
+            }
+        }
+
+        return result;
+    }
+
+    private int findMaxSumSubarray(int[] arr, int k) {
+        int prefixSum = 0;
+        TreeSet<Integer> set = new TreeSet<>();
+        set.add(0);
+
+        int result = Integer.MIN_VALUE;
+        for (int num : arr) {
+            prefixSum += num;
+            Integer ceiling = set.ceiling(prefixSum - k);
+            if (ceiling != null) {
+                result = Math.max(result, prefixSum - ceiling);
+            }
+            set.add(prefixSum);
+        }
+
+        return result;
     }
 
 }
