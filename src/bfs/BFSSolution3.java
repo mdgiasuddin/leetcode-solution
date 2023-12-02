@@ -384,6 +384,43 @@ class NodeProbability {
 
         return -1;
     }
+
+    // Leetcode problem: 365
+    /*
+     * Water and Jug Problem.
+     * Total value <=> targetCapacity.
+     * Total value will not be changed unless a jug is filled or empty.
+     * */
+    public boolean canMeasureWater(int jug1Capacity, int jug2Capacity, int targetCapacity) {
+        if (jug1Capacity + jug2Capacity < targetCapacity) {
+            return false;
+        }
+
+        int[] values = {jug1Capacity, jug2Capacity, -jug1Capacity, jug2Capacity};
+        Set<Integer> visited = new HashSet<>();
+        Queue<Integer> queue = new LinkedList<>();
+        visited.add(0);
+        queue.add(0);
+
+        while (!queue.isEmpty()) {
+            int capacity = queue.poll();
+            if (capacity == targetCapacity) {
+                return true;
+            }
+
+            for (int value : values) {
+                int total = capacity + value;
+                if (total < 0 || total > jug1Capacity + jug2Capacity || visited.contains(total)) {
+                    continue;
+                }
+
+                visited.add(total);
+                queue.add(total);
+            }
+        }
+
+        return false;
+    }
 }
 
 class Variable {
