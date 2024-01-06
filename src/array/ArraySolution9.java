@@ -117,9 +117,9 @@ public class ArraySolution9 {
 
     // Leetcode problem: 950
     /*
-    * Reveal Cards in Increasing Order.
-    * Explanation: https://www.youtube.com/watch?v=COiE-PQqf28
-    * */
+     * Reveal Cards in Increasing Order.
+     * Explanation: https://www.youtube.com/watch?v=COiE-PQqf28
+     * */
     public int[] deckRevealedIncreasing(int[] deck) {
         int n = deck.length;
         Arrays.sort(deck);
@@ -143,5 +143,38 @@ public class ArraySolution9 {
         }
 
         return ans;
+    }
+
+    // Leetcode problem: 2009
+    /*
+     * Minimum Number of Operations to Make Array Continuous.
+     * Explanation: https://www.youtube.com/watch?v=Dd-yJylrcOY
+     * [1 2 3 4 5 5 5 15]
+     * Sort the array after removing duplicates.
+     * Starting from every smallest value, find out how many numbers lies inside the range => nums[l] + length - 1.
+     * The other number must be replaced with the missing number.
+     * Find the smallest number of replacement.
+     * */
+    public int minOperations(int[] nums) {
+        int len = nums.length;
+        Set<Integer> numSet = new HashSet<>();
+        for (int num : nums) {
+            numSet.add(num);
+        }
+        List<Integer> numList = new ArrayList<>(numSet);
+        numList.sort(Comparator.comparingInt(a -> a));
+
+        int res = len;
+        int r = 0;
+        for (int l = 0; l < numList.size(); l++) {
+            while (r < numList.size() && numList.get(r) < numList.get(l) + len) {
+                r += 1;
+            }
+            // r is not included because it already goes out of bound.
+            int window = r - l;
+            res = Math.min(res, len - window);
+        }
+
+        return res;
     }
 }
