@@ -390,4 +390,72 @@ public class BinarySearchSolution2 {
 
         return nums[l];
     }
+
+    // Leetcode problem: 1095
+    /*
+     * Find in Mountain Array.
+     * First find the peak index.
+     * Both side of the peak index the sub-array is sorted both asc and desc.
+     * Search both the side.
+     * */
+    public int findInMountainArray(int target, MountainArray mountainArr) {
+        int l = 1;
+        int n = mountainArr.length();
+        int r = n - 2;
+        int i = -1;
+
+        while (l <= r) {
+            int m = l + (r - l) / 2;
+            int val = mountainArr.get(m);
+            int prev = mountainArr.get(m - 1);
+            int next = mountainArr.get(m + 1);
+
+            if (prev < val && val > next) {
+                i = m;
+                break;
+            } else if (prev > val) {
+                r = m - 1;
+            } else {
+                l = m + 1;
+            }
+        }
+
+        if (i == -1) {
+            return -1;
+        }
+
+        int leftResult = search(target, mountainArr, 0, i, true);
+        if (leftResult != -1) {
+            return leftResult;
+        }
+
+        return search(target, mountainArr, i + 1, n - 1, false);
+    }
+
+    private int search(int target, MountainArray mountainArr, int l, int r, boolean isAsc) {
+        while (l <= r) {
+            int m = l + (r - l) / 2;
+            int val = mountainArr.get(m);
+
+            if (val == target) {
+                return m;
+            }
+
+            if (isAsc) {
+                if (target < val) {
+                    r = m - 1;
+                } else {
+                    l = m + 1;
+                }
+            } else {
+                if (target < val) {
+                    l = m + 1;
+                } else {
+                    r = m - 1;
+                }
+            }
+        }
+
+        return -1;
+    }
 }
