@@ -177,4 +177,34 @@ public class ArraySolution9 {
 
         return res;
     }
+
+    // Leetcode problem: 2610
+    /*
+     * Convert an Array int a 2D Array with Conditions.
+     * Count all the elements.
+     * The maximum count will be the size of the result array.
+     * Fill each num from the first row up to the count-th row.
+     * */
+    public List<List<Integer>> findMatrix(int[] nums) {
+        Map<Integer, Integer> countMap = new HashMap<>();
+        int maxCount = 0;
+        for (int num : nums) {
+            int count = countMap.getOrDefault(num, 0) + 1;
+            maxCount = Math.max(maxCount, count);
+            countMap.put(num, count);
+        }
+
+        List<List<Integer>> result = new ArrayList<>(maxCount);
+        for (int i = 0; i < maxCount; i++) {
+            result.add(new ArrayList<>());
+        }
+
+        for (Map.Entry<Integer, Integer> entry : countMap.entrySet()) {
+            for (int i = 0; i < entry.getValue(); i++) {
+                result.get(i).add(entry.getKey());
+            }
+        }
+
+        return result;
+    }
 }
