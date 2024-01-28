@@ -7,11 +7,10 @@ import java.util.stream.Collectors;
 public class StringSolution8 {
 
     public static void main(String[] args) {
-        StringSolution8 stringSolution8 = new StringSolution8();
+        String text = "<password> This is a strong password ./ahfi;akuuejk. Thanks/&*($> hello</password>";
+        text = text.replaceAll("<password>.*?</", "<password>sanitized</password>");
+        System.out.println(text);
 
-        String str = "Hello    world! how are you? I am fine. my    ";
-        String[] split = str.trim().split("[ .,!?]+");
-        System.out.println(Arrays.toString(split));
     }
 
     // Leetcode problem: 246

@@ -207,4 +207,32 @@ public class ArraySolution9 {
 
         return result;
     }
+
+    // Leetcode problem: 1578
+    /*
+     * Minimum Time to Make Rope Colorful.
+     * Need to remove the duplicate from the consecutive same color balloon keeping only 1.
+     * Take the sum and keep the balloon with maximum time.
+     * */
+    public int minCost(String colors, int[] neededTime) {
+        int prevIdx = 0;
+        int sum = neededTime[0];
+        int maxTime = sum;
+        int result = 0;
+
+        for (int i = 1; i < colors.length(); i++) {
+
+            if (colors.charAt(i) != colors.charAt(prevIdx)) {
+                result += sum - maxTime;
+                maxTime = sum = neededTime[i];
+                prevIdx = i;
+            } else {
+                sum += neededTime[i];
+                maxTime = Math.max(maxTime, neededTime[i]);
+            }
+        }
+
+        result += sum - maxTime;
+        return result;
+    }
 }
