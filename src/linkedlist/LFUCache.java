@@ -120,6 +120,9 @@ public class LFUCache {
         newList.insertNode(node);
         freqMap.put(node.freq, newList);
         DLList prevList = freqMap.get(freq);
+
+        // After moving the node to next freq, it may become empty.
+        // If it was minFreq previously, update the minFreq.
         if (freq == minFreq && prevList.head.next == prevList.tail) {
             minFreq += 1;
         }
