@@ -264,4 +264,35 @@ public class HeapSolution2 {
 
         return ans;
     }
+
+    // Leetcode problem: 1642
+    /*
+     * Furthest Building You Can Reach.
+     * Explanation: https://www.youtube.com/watch?v=zyTeznvXCtg
+     * Use ladders for the maximum height found so far.
+     * Otherwise, use bricks.
+     * */
+    public int furthestBuilding(int[] heights, int bricks, int ladders) {
+        PriorityQueue<Integer> queue = new PriorityQueue<>(Comparator.comparingInt(a -> -a));
+        int n = heights.length;
+
+        for (int i = 1; i < n; i++) {
+            int diff = heights[i] - heights[i - 1];
+            if (diff <= 0) {
+                continue;
+            }
+
+            queue.add(diff);
+            bricks -= diff;
+            if (bricks < 0) { // Bricks are not enough. Use ladder.
+                if (ladders == 0) {
+                    return i - 1;
+                }
+                ladders -= 1;
+                bricks += queue.poll(); // Use ladder for the highest height.
+            }
+        }
+
+        return n - 1;
+    }
 }
