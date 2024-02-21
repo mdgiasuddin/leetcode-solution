@@ -314,6 +314,34 @@ public class TreeSolution5 {
 
         return 2;
     }
+
+    // Leetcode problem: 1457
+    /*
+     * Pseudo-Palindromic Paths in a Binary Tree.
+     * */
+    public int pseudoPalindromicPaths(TreeNode root) {
+        return pseudoPalindromicPaths(root, new int[9], 0);
+    }
+
+    private int pseudoPalindromicPaths(TreeNode node, int[] count, int oddCount) {
+        count[node.val - 1] += 1;
+        // If new count becomes odd, oddCount will increase otherwise decrease.
+        oddCount += (count[node.val - 1] % 2 == 0) ? -1 : 1;
+        int res = 0;
+        if (node.left == null && node.right == null) {
+            res += oddCount <= 1 ? 1 : 0;
+        }
+        if (node.left != null) {
+            res += pseudoPalindromicPaths(node.left, count, oddCount);
+        }
+        if (node.right != null) {
+            res += pseudoPalindromicPaths(node.right, count, oddCount);
+        }
+
+        // Backtrack.
+        count[node.val - 1] -= 1;
+        return res;
+    }
 }
 
 class QuadNode {
