@@ -74,6 +74,10 @@ public class HeapSolution {
         return resArray;
     }
 
+    // Leetcode problem: 1882
+    /*
+    * Process Tasks Using Servers.
+    * */
     public int[] assignTasks(int[] servers, int[] tasks) {
         PriorityQueue<int[]> available = new PriorityQueue<>((a, b) -> a[0] == b[0] ? a[1] - b[1] : a[0] - b[0]);
 

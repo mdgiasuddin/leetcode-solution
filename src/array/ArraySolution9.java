@@ -235,4 +235,34 @@ public class ArraySolution9 {
         result += sum - maxTime;
         return result;
     }
+
+    // Leetcode problem: 1481
+    /*
+     * Least Number of Unique Integers after K Removals.
+     * */
+    public int findLeastNumOfUniqueInts(int[] arr, int k) {
+        Map<Integer, Integer> countMap = new HashMap<>();
+        for (int num : arr) {
+            countMap.put(num, countMap.getOrDefault(num, 0) + 1);
+        }
+
+        int result = countMap.size();
+
+        // Create a bucket reversely from count map => {count, number of distinct element with the count}
+        Map<Integer, Integer> bucket = new HashMap<>();
+        for (Map.Entry<Integer, Integer> entry : countMap.entrySet()) {
+            bucket.put(entry.getValue(), bucket.getOrDefault(entry.getValue(), 0) + 1);
+        }
+
+        for (int count = 1; count <= arr.length && k / count > 0; count++) {
+            if (bucket.containsKey(count)) {
+                // Count how many distinct numbers can fully be removed.
+                int uniqueRemove = Math.min(bucket.get(count), k / count);
+                k -= uniqueRemove * count;
+                result -= uniqueRemove;
+            }
+        }
+
+        return result;
+    }
 }

@@ -156,4 +156,50 @@ public class RecursiveDP3 {
         dp[n][target] = ways;
         return ways;
     }
+
+    // Leetcode problem: 1665
+    /*
+     * Cherry Pickup II.
+     * Explanation: https://www.youtube.com/watch?v=c1stwk2TbNk
+     * */
+    public int cherryPickup(int[][] grid) {
+        int rows = grid.length;
+        int cols = grid[0].length;
+        int[][][] dp = new int[rows][cols][cols];
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                for (int k = 0; k < cols; k++) {
+                    dp[i][j][k] = -1;
+                }
+            }
+        }
+
+        return dfsCherryPickup(0, 0, cols - 1, grid, dp);
+
+    }
+
+    private int dfsCherryPickup(int r, int c1, int c2, int[][] grid, int[][][] dp) {
+        // We will avoid same column, it can never return maximum value.
+        if (c1 == c2 || c1 < 0 || c2 < 0 || c1 >= grid[0].length || c2 >= grid[0].length) {
+            return 0;
+        }
+
+        if (r == grid.length - 1) {
+            return grid[r][c1] + grid[r][c2];
+        }
+
+        if (dp[r][c1][c2] != -1) {
+            return dp[r][c1][c2];
+        }
+
+        int cherries = 0;
+        for (int dc1 = -1; dc1 <= 1; dc1++) {
+            for (int dc2 = -1; dc2 <= 1; dc2++) {
+                cherries = Math.max(cherries, dfsCherryPickup(r + 1, c1 + dc1, c2 + dc2, grid, dp));
+            }
+        }
+        cherries += grid[r][c1] + grid[r][c2];
+        dp[r][c1][c2] = cherries;
+        return cherries;
+    }
 }
