@@ -244,4 +244,35 @@ public class DynamicProgramming4 {
 
         return dp[n];
     }
+
+    // Leetcode problem: 576
+    /*
+     * Out of Boundary Paths.
+     * Explanation: https://www.youtube.com/watch?v=Bg5CLRqtNmk
+     * */
+    public int findPaths(int m, int n, int maxMove, int startRow, int startColumn) {
+        int[][] dp0 = new int[m][n];
+        int[][] dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+
+        for (int i = 1; i <= maxMove; i++) {
+            int[][] dp1 = new int[m][n];
+
+            for (int r = 0; r < m; r++) {
+                for (int c = 0; c < n; c++) {
+                    for (int[] dir : dirs) {
+                        int r1 = r + dir[0];
+                        int c1 = c + dir[1];
+
+                        // If out of boundary then 1 otherwise the value from method call.
+                        int val = (r1 < 0 || c1 < 0 || r1 == m || c1 == n) ? 1 : dp0[r1][c1];
+                        dp1[r][c] = (dp1[r][c] + val) % 1000000007;
+                    }
+                }
+            }
+
+            dp0 = dp1;
+        }
+
+        return dp0[startRow][startColumn];
+    }
 }
