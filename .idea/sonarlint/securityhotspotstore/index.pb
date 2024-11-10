@@ -3683,3 +3683,7 @@ Q.idea/sonarlint/securityhotspotstore/8/a/8acf6d7b6c640f670feffc40a677c913caed3f
 Q.idea/sonarlint/securityhotspotstore/a/0/a00db7fdc942b24f370b2898692d4d50634d8c4e,1/8/18b4a7cd881f8f0a3d5629ab7f1132a3ef66ecce
 O
 src/dp/DynamicProgramming2.java,5/5/5526a3d23baac2d3eddce0cc3d60d849cbb011d7
+M
+src/tree_map/FoodRatings.java,3/3/3308eb5fe5609be605c9e092f1acce4c852a1bac
+N
+src/greedy/GreedySolution.java,4/3/43ee7f27d93cc50a492d1680f3628d47d11b3d63

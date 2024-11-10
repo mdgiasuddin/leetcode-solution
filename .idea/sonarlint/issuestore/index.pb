@@ -3479,3 +3479,7 @@ O
 src/graph/tarjans_algorithm.txt,e/c/ec925c92f6d6ab8e85029e323be65e70081d363a
 Q
 !src/tree_map/TreeMapSolution.java,8/b/8b2e19e18b8c1abf58a23d32dc8f8dfd9473ea0d
+M
+src/tree_map/FoodRatings.java,3/3/3308eb5fe5609be605c9e092f1acce4c852a1bac
+N
+src/greedy/GreedySolution.java,4/3/43ee7f27d93cc50a492d1680f3628d47d11b3d63
