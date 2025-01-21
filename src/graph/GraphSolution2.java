@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
 
 public class GraphSolution2 {
@@ -240,6 +242,55 @@ public class GraphSolution2 {
             }
         }
     }
+
+    // Leetcode problem: 2290
+    /*
+     * Minimum Obstacle Removal to Reach Corner
+     * Run BFS.
+     * For every node run DFS to find all the nodes in the same level.
+     * */
+    public int minimumObstacles(int[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+
+        int obstacles = grid[0][0];
+        Queue<int[]> queue = new LinkedList<>();
+        boolean[][] visited = new boolean[m][n];
+        dfs(0, 0, true, grid, visited, queue);
+
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+
+            while (size-- > 0) {
+                int[] rc = queue.poll();
+                if (rc[0] == m - 1 && rc[1] == n - 1) {
+                    return obstacles;
+                }
+
+                dfs(rc[0] - 1, rc[1], true, grid, visited, queue);
+                dfs(rc[0] + 1, rc[1], true, grid, visited, queue);
+                dfs(rc[0], rc[1] - 1, true, grid, visited, queue);
+                dfs(rc[0], rc[1] + 1, true, grid, visited, queue);
+            }
+            obstacles += 1;
+        }
+
+        return -1;
+    }
+
+    private void dfs(int r, int c, boolean start, int[][] grid, boolean[][] visited, Queue<int[]> queue) {
+        if (r < 0 || r >= grid.length || c < 0 || c >= grid[0].length || visited[r][c] || (!start && grid[r][c] == 1)) {
+            return;
+        }
+
+        queue.add(new int[]{r, c});
+        visited[r][c] = true;
+        dfs(r - 1, c, false, grid, visited, queue);
+        dfs(r + 1, c, false, grid, visited, queue);
+        dfs(r, c - 1, false, grid, visited, queue);
+        dfs(r, c + 1, false, grid, visited, queue);
+    }
+
 }
 
 class UnionFind {
