@@ -2,7 +2,16 @@ package array;
 
 import pair.Pair;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class ArraySolution9 {
 
@@ -264,5 +273,21 @@ public class ArraySolution9 {
         }
 
         return result;
+    }
+
+    // Leetcode problem: 1014
+    /*
+     * Best Sightseeing Pair.
+     * Explanation: https://www.youtube.com/watch?v=YAYnMfHbjz4
+     * */
+    public int maxScoreSightseeingPair(int[] values) {
+        int currentMax = values[0] - 1;
+        int maxScore = 0;
+        for (int i = 1; i < values.length; i++) {
+            maxScore = Math.max(maxScore, currentMax + values[i]);
+            currentMax = Math.max(currentMax - 1, values[i] - 1);
+        }
+
+        return maxScore;
     }
 }
