@@ -245,7 +245,7 @@ public class GraphSolution2 {
 
     // Leetcode problem: 2290
     /*
-     * Minimum Obstacle Removal to Reach Corner
+     * Minimum Obstacle Removal to Reach Corner.
      * Run BFS.
      * For every node run DFS to find all the nodes in the same level.
      * */
@@ -289,6 +289,64 @@ public class GraphSolution2 {
         dfs(r + 1, c, false, grid, visited, queue);
         dfs(r, c - 1, false, grid, visited, queue);
         dfs(r, c + 1, false, grid, visited, queue);
+    }
+
+    // Leetcode problem: 1368
+    /*
+     * Minimum Cost to Make at Least One Valid Path in a Grid
+     * BFS + DFS
+     * Similar to: Minimum Obstacle Removal to Reach Corner (Leetcode problem: 2290).
+     * */
+    public int minCost(int[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+
+        Queue<int[]> queue = new LinkedList<>();
+        boolean[][] visited = new boolean[m][n];
+        dfsMinCost(0, 0, grid, visited, queue);
+        int cost = 0;
+
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            while (size-- > 0) {
+                int[] rc = queue.poll();
+                if (rc[0] == m - 1 && rc[1] == n - 1) {
+                    return cost;
+                }
+
+                dfsMinCost(rc[0], rc[1] + 1, grid, visited, queue);
+                dfsMinCost(rc[0], rc[1] - 1, grid, visited, queue);
+                dfsMinCost(rc[0] + 1, rc[1], grid, visited, queue);
+                dfsMinCost(rc[0] - 1, rc[1], grid, visited, queue);
+            }
+
+            cost += 1;
+
+        }
+
+        return -1;
+
+    }
+
+    private void dfsMinCost(int r, int c, int[][] grid, boolean[][] visited, Queue<int[]> queue) {
+        if (r < 0 || r >= grid.length || c < 0 || c >= grid[0].length || visited[r][c]) {
+            return;
+        }
+
+        visited[r][c] = true;
+        queue.add(new int[]{r, c});
+        if (grid[r][c] == 1) {
+            dfsMinCost(r, c + 1, grid, visited, queue);
+        }
+        if (grid[r][c] == 2) {
+            dfsMinCost(r, c - 1, grid, visited, queue);
+        }
+        if (grid[r][c] == 3) {
+            dfsMinCost(r + 1, c, grid, visited, queue);
+        }
+        if (grid[r][c] == 4) {
+            dfsMinCost(r - 1, c, grid, visited, queue);
+        }
     }
 
 }
