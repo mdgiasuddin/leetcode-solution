@@ -290,4 +290,87 @@ public class ArraySolution9 {
 
         return maxScore;
     }
+
+    // Leetcode problem: 2948
+    /*
+     * Make Lexicographically Smallest Array by Swapping Elements.
+     * Explanation: https://www.youtube.com/watch?v=-FGl6dzPexY
+     * Sort the array.
+     * Group the adjacent element of which the consecutive difference is <= limit.
+     * For each index of the array, insert the first element of the specific group.
+     * */
+    public int[] lexicographicallySmallestArray(int[] nums, int limit) {
+        int n = nums.length;
+        int[][] sorted = new int[n][2];
+
+        for (int i = 0; i < n; i++) {
+            sorted[i][0] = nums[i];
+            sorted[i][1] = i;
+        }
+
+        Arrays.sort(sorted, Comparator.comparingInt(a -> a[0]));
+
+        Map<Integer, Integer> indices = new HashMap<>();
+        List<Deque<Integer>> list = new ArrayList<>();
+        Deque<Integer> firstQue = new ArrayDeque<>();
+        firstQue.add(sorted[0][0]);
+        list.add(firstQue);
+        indices.put(sorted[0][1], 0);
+
+        for (int i = 1; i < n; i++) {
+            int listIndex = list.size() - 1;
+            Deque<Integer> deque = list.get(listIndex);
+            if (sorted[i][0] - deque.peekLast() <= limit) {
+                deque.add(sorted[i][0]);
+                indices.put(sorted[i][1], listIndex);
+            } else {
+                deque = new ArrayDeque<>();
+                deque.add(sorted[i][0]);
+                list.add(deque);
+                indices.put(sorted[i][1], listIndex + 1);
+            }
+        }
+
+        int[] resArray = new int[n];
+        for (int i = 0; i < n; i++) {
+            resArray[i] = list.get(indices.get(i)).pollFirst();
+        }
+
+        return resArray;
+    }
+
+    // Leetcode problem: 1769
+    /*
+     * Minimum Number of Operations to Move All Balls to Each Box.
+     * Maintain 2 variable leftBall & rightBall.
+     * First calculate the move needed to place all the balls in the first index.
+     * Moving left to right move will be increased for the leftBall & decreased for the rightBall.
+     * */
+    public int[] minOperations(String boxes) {
+        int n = boxes.length();
+        int move = 0;
+        int rightBall = 0;
+
+        for (int i = 1; i < n; i++) {
+            if (boxes.charAt(i) == '1') {
+                rightBall += 1;
+                move += i;
+            }
+        }
+
+        int[] operation = new int[n];
+        operation[0] = move;
+        int leftBall = boxes.charAt(0) - '0';
+
+        for (int i = 1; i < n; i++) {
+            move -= rightBall;
+            move += leftBall;
+            operation[i] = move;
+            leftBall += boxes.charAt(i) - '0';
+            rightBall -= boxes.charAt(i) - '0';
+        }
+
+        return operation;
+    }
+
 }

@@ -77,4 +77,33 @@ public class StringSolution9 {
 
         return result;
     }
+
+    // Leetcode problem: 2381
+    /*
+     * Shifting Letters II.
+     * Explanation: https://www.youtube.com/watch?v=eEUjVY7wK3k
+     * Create a difference array.
+     * For the left index store the difference & right index + 1 the reversed difference.
+     * Sequentially add the difference & apply the shift.
+     * */
+    public String shiftingLetters(String s, int[][] shifts) {
+        int n = s.length();
+        int[] diffs = new int[n + 1];
+
+        for (int[] shift : shifts) {
+            int diff = shift[2] == 1 ? 1 : -1;
+            diffs[shift[0]] += diff;
+            diffs[shift[1] + 1] -= diff;
+        }
+
+        StringBuilder res = new StringBuilder();
+        int diff = 0;
+        for (int i = 0; i < n; i++) {
+            diff += diffs[i];
+            char ch = (char) ('a' + ((s.charAt(i) - 'a' + diff) % 26 + 26) % 26);
+            res.append(ch);
+        }
+
+        return res.toString();
+    }
 }
