@@ -1,6 +1,14 @@
 package string;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.PriorityQueue;
+import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -82,34 +90,28 @@ public class StringSolution8 {
     // Leetcode problem: 1930
     /*
      * Unique Length-3 Palindromic Subsequences.
+     * Explanation: https://www.youtube.com/watch?v=2JG5rLM3vz8
      * */
     public int countPalindromicSubsequence(String s) {
         int n = s.length();
-        int[] left = new int[26];
-        int[] right = new int[26];
-        Arrays.fill(left, -1);
-        Arrays.fill(right, -1);
+        int[] count = new int[26];
+        Set<Character> leftChars = new HashSet<>();
+        Set<String> res = new HashSet<>();
 
         for (int i = 0; i < n; i++) {
-            if (left[s.charAt(i) - 'a'] == -1) {
-                left[s.charAt(i) - 'a'] = i;
-            }
-
-            if (right[s.charAt(n - 1 - i) - 'a'] == -1) {
-                right[s.charAt(n - 1 - i) - 'a'] = n - 1 - i;
-            }
+            count[s.charAt(i) - 'a'] += 1;
         }
 
-        Set<String> result = new HashSet<>();
-        for (int i = 1; i < n - 1; i++) {
-            for (char ch = 'a'; ch <= 'z'; ch++) {
-                if (left[ch - 'a'] != -1 && left[ch - 'a'] < i && right[ch - 'a'] > i) {
-                    result.add(ch + "" + s.charAt(i) + ch);
+        for (int i = 0; i < n; i++) {
+            count[s.charAt(i) - 'a'] -= 1;
+            for (char ch : leftChars) {
+                if (count[ch - 'a'] > 0) {
+                    res.add(s.charAt(i) + "" + ch);
                 }
             }
+            leftChars.add(s.charAt(i));
         }
-
-        return result.size();
+        return res.size();
     }
 
     // Leetcode problem: 38
