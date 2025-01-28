@@ -1,6 +1,12 @@
 package tree;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 public class TreeSolution4 {
 
@@ -228,21 +234,20 @@ public class TreeSolution4 {
     // Leetcode problem: 2471
     /*
      * Minimum Number of Operations to Sort a Binary Tree by Level.
-     * This solution is Tricky.
-     * Explanation: https://www.youtube.com/watch?v=4XzEifpXNjU&list=PLy38cn8b_xMfO7CGsUDIsYGps37yKaQ9X&index=27
+     * Explanation: https://www.youtube.com/watch?v=6mONZ_54rZg
      * */
     public int minimumOperations(TreeNode root) {
+        int swap = 0;
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
-        int res = 0;
 
         while (!queue.isEmpty()) {
             int qSize = queue.size();
-            List<Integer> row = new ArrayList<>();
+            List<Integer> list = new ArrayList<>(qSize);
+            int i = 0;
             while (qSize-- > 0) {
                 TreeNode node = queue.poll();
-                row.add(node.val);
-
+                list.add(node.val);
                 if (node.left != null) {
                     queue.add(node.left);
                 }
@@ -251,29 +256,31 @@ public class TreeSolution4 {
                 }
             }
 
-            List<Integer> sortedRow = row.stream().sorted().toList();
-            Map<Integer, Integer> posMap = new HashMap<>();
-            Set<Integer> visited = new HashSet<>();
+            swap += countSwap(list);
+        }
 
-            for (int i = 0; i < sortedRow.size(); i++) {
-                posMap.put(sortedRow.get(i), i);
-            }
+        return swap;
+    }
 
-            for (int i = 0; i < row.size(); i++) {
-                int index = i;
-                int count = 0;
+    private int countSwap(List<Integer> list) {
+        int n = list.size();
+        Map<Integer, Integer> indexMap = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            indexMap.put(list.get(i), i);
+        }
 
-                while (!visited.contains(index) && posMap.get(row.get(index)) != index) {
-                    visited.add(index);
-                    count += 1;
-                    index = posMap.get(row.get(index));
-                }
-
-                res += Math.max(0, count - 1);
+        int swap = 0;
+        List<Integer> sorted = list.stream().sorted().toList();
+        for (int i = 0; i < n - 1; i++) {
+            if (!list.get(i).equals(sorted.get(i))) {
+                swap += 1;
+                int j = indexMap.get(sorted.get(i));
+                list.set(j, list.get(i));
+                indexMap.put(list.get(j), j);
             }
         }
 
-        return res;
+        return swap;
     }
 
     // Leetcode problem: 1026
