@@ -373,4 +373,25 @@ public class ArraySolution9 {
         return operation;
     }
 
+    // Leetcode problem: 769
+    /*
+     * Max Chunks to Make Sorted.
+     * Explanation: https://www.youtube.com/watch?v=wpHzXTkuVkY
+     * */
+    public int maxChunksToSorted(int[] arr) {
+        int res = 0;
+        int currentMax = -1;
+
+        for (int i = 0; i < arr.length; i++) {
+            currentMax = Math.max(currentMax, arr[i]);
+
+            // If all the numbers up to i are found, this can form a chunk.
+            if (currentMax == i) {
+                res += 1;
+            }
+        }
+
+        return res;
+    }
+
 }
