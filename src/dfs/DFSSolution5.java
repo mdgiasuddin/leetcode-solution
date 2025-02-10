@@ -1,8 +1,10 @@
 package dfs;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class DFSSolution5 {
@@ -158,5 +160,56 @@ public class DFSSolution5 {
                 dfsStones(nei, graph, visited);
             }
         }
+    }
+
+    // Leetcode problem: 2115
+    /*
+     * Find All Possible Recipes from Given Supplies
+     * */
+    public List<String> findAllRecipes(String[] recipes, List<List<String>> ingredients, String[] supplies) {
+        int n = recipes.length;
+        Map<String, List<String>> graph = new HashMap<>();
+
+        for (int i = 0; i < n; i++) {
+            graph.put(recipes[i], new ArrayList<>());
+            for (String ingredient : ingredients.get(i)) {
+                graph.get(recipes[i]).add(ingredient);
+            }
+        }
+
+        Map<String, Boolean> supplyMap = new HashMap<>();
+        for (String supply : supplies) {
+            supplyMap.put(supply, true);
+        }
+
+        List<String> result = new ArrayList<>();
+        for (String recipe : recipes) {
+            if (dfsRecipe(recipe, graph, supplyMap)) {
+                result.add(recipe);
+            }
+        }
+
+        return result;
+    }
+
+    private boolean dfsRecipe(String recipe, Map<String, List<String>> graph, Map<String, Boolean> supplyMap) {
+
+        if (supplyMap.containsKey(recipe)) {
+            return supplyMap.get(recipe);
+        }
+
+        if (!graph.containsKey(recipe)) {
+            return false;
+        }
+
+        supplyMap.put(recipe, false);
+        for (String ingredient : graph.get(recipe)) {
+            if (!dfsRecipe(ingredient, graph, supplyMap)) {
+                return false;
+            }
+        }
+
+        supplyMap.put(recipe, true);
+        return true;
     }
 }

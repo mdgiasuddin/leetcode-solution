@@ -385,7 +385,7 @@ public class ArraySolution9 {
         for (int i = 0; i < arr.length; i++) {
             currentMax = Math.max(currentMax, arr[i]);
 
-            // If all the numbers up to i are found, this can form a chunk.
+            // If all the numbers up to i are found, this can form a new chunk.
             if (currentMax == i) {
                 res += 1;
             }
