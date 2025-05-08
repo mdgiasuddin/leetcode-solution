@@ -14,7 +14,8 @@ public class BinarySearchSolution2 {
     }
 
     // Leetcode problem: 2528
-    /*
+
+    /**
      * Maximize the Minimum Powered City.
      * Explanation: https://www.youtube.com/watch?v=E6aEq7V9TDk
      * */
@@ -76,7 +77,8 @@ public class BinarySearchSolution2 {
     }
 
     // Leetcode problem: 1011
-    /*
+
+    /**
      * Capacity To Ship Packages Within D Days.
      * This problem is similar to Maximum Tastiness of Candy Basket (Leetcode problem: 2517).
      * */
@@ -122,7 +124,8 @@ public class BinarySearchSolution2 {
     }
 
     // Leetcode problem: 2300
-    /*
+
+    /**
      * Successful Pairs of Spells and Potions.
      * */
     public int[] successfulPairs(int[] spells, int[] potions, long success) {
@@ -158,7 +161,8 @@ public class BinarySearchSolution2 {
     }
 
     // Leetcode problem: 2513
-    /*
+
+    /**
      * Minimize the Maximum of Two Arrays
      * Explanation: https://www.youtube.com/watch?v=7gyZXnU3KGw&list=PLEvw47Ps6OBC_kTW44HAFBBCiDOk9E4Rs&index=3
      * */
@@ -232,7 +236,8 @@ public class BinarySearchSolution2 {
     }
 
     // Leetcode problem: 2616
-    /*
+
+    /**
      * Minimize the Maximum Difference of Pairs.
      * Explanation: https://www.youtube.com/watch?v=lf1Pxg7IrzQ
      * */
@@ -257,7 +262,8 @@ public class BinarySearchSolution2 {
     }
 
     // Leetcode problem: 1539
-    /*
+
+    /**
      * Kth Missing Positive Number.
      * Explanation: https://www.youtube.com/watch?v=88k8xa-pSrM
      * */
@@ -276,7 +282,7 @@ public class BinarySearchSolution2 {
             }
         }
 
-        /*
+        /**
          * right = -1 => All the missing number lies behind arr[0].
          * otherwise, result = arr[right] + count of the rest of the missing numbers.
          * */
@@ -300,7 +306,8 @@ public class BinarySearchSolution2 {
     }
 
     // Leetcode problem: 852
-    /*
+
+    /**
      * Peak Index in a Mountain Array.
      * */
     public int peakIndexInMountainArray(int[] arr) {
@@ -325,7 +332,8 @@ public class BinarySearchSolution2 {
     }
 
     // Leetcode problem: 719
-    /*
+
+    /**
      * Find K-th Smallest Pair Distance.
      * Explanation: https://www.youtube.com/watch?v=veu_Q-da6ZY
      * */
@@ -367,7 +375,8 @@ public class BinarySearchSolution2 {
     }
 
     // Leetcode problem: 154
-    /*
+
+    /**
      * Find Minimum in Rotated Sorted Array II.
      * Explanation: https://www.youtube.com/watch?v=uTqU_CVNoWw
      * The conditions are important.
@@ -392,7 +401,8 @@ public class BinarySearchSolution2 {
     }
 
     // Leetcode problem: 1095
-    /*
+
+    /**
      * Find in Mountain Array.
      * First find the peak index.
      * Both side of the peak index the sub-array is sorted both asc and desc.

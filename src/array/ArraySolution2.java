@@ -17,7 +17,8 @@ public class ArraySolution2 {
     }
 
     // Leetcode problem: 45
-    /*
+
+    /**
      * Jump Game
      * BFS
      * */
@@ -61,7 +62,8 @@ public class ArraySolution2 {
     }
 
     // Leetcode problem: 55
-    /*
+
+    /**
      * This problem can be solved by similar way to Jump game II (Leetcode problem: 45)
      * Since the Jump game II use BFS, it is inefficient
      * This problem doesn't need BFS, because shortest path is not required
@@ -86,7 +88,8 @@ public class ArraySolution2 {
     }
 
     // Leetcode problem: 48
-    /*
+
+    /**
      * Rotate matrix 90 degree clockwise
      * Loop range are important. i => (0 ... n / 2), j => (i ... n-1-i)
      * */
@@ -105,7 +108,8 @@ public class ArraySolution2 {
     }
 
     // Leetcode problem: 41
-    /*
+
+    /**
      * First missing positive number
      * First reset the negative numbers to 0
      * For every number set that index to negative
@@ -141,7 +145,8 @@ public class ArraySolution2 {
     }
 
     // Leetcode problem: 54
-    /*
+
+    /**
      * Traverse left to right direction first and change direction and limit of traversed line
      * */
     public List<Integer> spiralOrder(int[][] matrix) {
@@ -199,7 +204,8 @@ public class ArraySolution2 {
     }
 
     // Leetcode problem: 56
-    /*
+
+    /**
      * Merge intervals
      * Sort the intervals according to start value
      * Take first interval as current value and add it to result
@@ -229,7 +235,8 @@ public class ArraySolution2 {
     }
 
     // Leetcode problem: 57
-    /*
+
+    /**
      * Compare new interval with each interval
      * If new interval's end value is less than interval then return new interval + rest of the intervals
      * If new interval's start value is greater than interval then add the current interval and compare with next
@@ -259,7 +266,8 @@ public class ArraySolution2 {
     }
 
     // Leetcode problem: 646
-    /*
+
+    /**
      * Maximum Length of Pair Chain.
      * Find the overlapped pair and delete them.
      * */
@@ -281,7 +289,8 @@ public class ArraySolution2 {
     }
 
     // Leetcode problem: 260
-    /*
+
+    /**
      * Find XOR of all numbers
      * Since exactly two numbers are unique, any set bit from XOR will come from either 1 unique number
      * So, we can differentiate all the number with respect to any of the set bit of XOR
@@ -310,7 +319,8 @@ public class ArraySolution2 {
 
 
     // Leetcode problem: 42
-    /*
+
+    /**
      * Trapping Rain water
      * Find the maximum value
      * Then find water in both left and right side

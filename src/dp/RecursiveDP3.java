@@ -10,7 +10,8 @@ import java.util.Map;
 public class RecursiveDP3 {
 
     // Leetcode problem: 87
-    /*
+
+    /**
      * Scramble String.
      * Explanation: https://www.youtube.com/watch?v=MDmZm_aVDF8
      * */
@@ -48,7 +49,8 @@ public class RecursiveDP3 {
     }
 
     // Leetcode problem: 1048
-    /*
+
+    /**
      * Longest String Chain.
      * Explanation: https://www.youtube.com/watch?v=7b0V1gT_TIk
      * */
@@ -84,7 +86,8 @@ public class RecursiveDP3 {
     }
 
     // Leetcode problem: 1130
-    /*
+
+    /**
      * Minimum Cost Tree From Leaf Values.
      * Explanation: https://www.youtube.com/watch?v=LDiD9fr28tc
      * TO-DO => Try to solve by bottom-up approach.
@@ -125,7 +128,8 @@ public class RecursiveDP3 {
     }
 
     // Leetcode problem: 1155
-    /*
+
+    /**
      * Number of Dice Rolls with Target Sum.
      * Explanation: https://www.youtube.com/watch?v=JfRxkDOP7-4
      * */
@@ -158,7 +162,8 @@ public class RecursiveDP3 {
     }
 
     // Leetcode problem: 1665
-    /*
+
+    /**
      * Cherry Pickup II.
      * Explanation: https://www.youtube.com/watch?v=c1stwk2TbNk
      * */

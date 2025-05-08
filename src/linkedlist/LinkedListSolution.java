@@ -13,7 +13,7 @@ public class LinkedListSolution {
 
         ListNode slow = head, fast = head.next;
 
-        /*
+        /**
          * For even number of nodes, this function will return the second node of the 2 middles.
          * For getting the first node of the 2 middles, loop will be fast != null && fast.next != null
          * and return slow instead of slow.next.
@@ -57,7 +57,7 @@ public class LinkedListSolution {
         return prev;
     }
 
-    /*
+    /**
      * Reverse linked list. Recursive solution
      * */
     public ListNode reverseListRec(ListNode head) {
@@ -76,7 +76,8 @@ public class LinkedListSolution {
     }
 
     // Leetcode problem: 23
-    /*
+
+    /**
      * Merge adjacent two lists until become a single list.
      * */
     public ListNode mergeKLists(ListNode[] lists) {
@@ -177,7 +178,8 @@ public class LinkedListSolution {
     }
 
     // Leetcode problem: 143
-    /*
+
+    /**
      * Divide the list into two parts. Reverse the right part. Then merge them.
      * */
     public void reorderList(ListNode head) {

@@ -30,7 +30,8 @@ public class TreeSolution3 {
     }
 
     // Leetcode problem: 1302
-    /*
+
+    /**
      * Solve the problem by level order traversal.
      * Go to each level. Reset the current sum & calculate sum for each level.
      * The last level sum will be the answer.
@@ -76,7 +77,8 @@ public class TreeSolution3 {
     }
 
     // Leetcode problem: 1028
-    /*
+
+    /**
      * Build up a stack and find out right parent
      * */
     public TreeNode recoverFromPreorder(String traversal) {
@@ -127,7 +129,8 @@ public class TreeSolution3 {
     }
 
     // Leetcode problem: 958
-    /*
+
+    /**
      * Solve the problem by level order traversal.
      * */
     public boolean isCompleteTree(TreeNode root) {
@@ -145,7 +148,7 @@ public class TreeSolution3 {
             while (qSize-- > 0) {
                 TreeNode node = queue.poll();
 
-                /*
+                /**
                  * Already null child found in the left but there are child in current node or
                  * - left child is null but right child is not null, then it is not complete.
                  * */
@@ -189,7 +192,8 @@ public class TreeSolution3 {
     }
 
     // Leetcode problem: 783
-    /*
+
+    /**
      * Solve the problem by inorder traversal.
      * */
     public int minDiffInBST(TreeNode root) {
@@ -284,7 +288,8 @@ public class TreeSolution3 {
     }
 
     // Leetcode problem: 113
-    /*
+
+    /**
      * Backtracking solution.
      * */
     public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
@@ -360,7 +365,8 @@ public class TreeSolution3 {
     }
 
     // Leetcode problem: 1325
-    /*
+
+    /**
      * Postorder traversal.
      * Go to the deepest level & delete the leaves with value = target.
      * */
@@ -381,7 +387,7 @@ public class TreeSolution3 {
 
     // Leetcode problem: 99
 
-    /*
+    /**
      * Inorder traversal.
      * Find in which node the increasing order violates.
      * */

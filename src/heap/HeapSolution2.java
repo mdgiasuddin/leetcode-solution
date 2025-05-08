@@ -14,7 +14,8 @@ import java.util.TreeMap;
 public class HeapSolution2 {
 
     // Leetcode problem: 502
-    /*
+
+    /**
      * IPO.
      * */
     public int findMaximizedCapital(int k, int w, int[] profits, int[] capital) {
@@ -53,7 +54,8 @@ public class HeapSolution2 {
     }
 
     // Leetcode problem: 1675
-    /*
+
+    /**
      * Minimize Deviation in Array.
      * Explanation: https://www.youtube.com/watch?v=boHNFptxo2A&t=3s
      * The maximum deviation is the difference between the highest & the lowest value.
@@ -91,7 +93,8 @@ public class HeapSolution2 {
     }
 
     // Leetcode problem: 1338
-    /*
+
+    /**
      * Reduce Array Size to The Half.
      * Count the occurrences of each element.
      * Remove the elements with greater count one by one to reduce the size into half.
@@ -122,7 +125,8 @@ public class HeapSolution2 {
     }
 
     // Leetcode problem: 373
-    /*
+
+    /**
      * Find K Pairs with Smallest Sum.
      * Explanation: https://www.youtube.com/watch?v=Youk8DDnLU8
      * */
@@ -159,7 +163,8 @@ public class HeapSolution2 {
     }
 
     // Leetcode problem: 630
-    /*
+
+    /**
      * Course Schedule III.
      * Explanation: https://www.youtube.com/watch?v=ey8FxYsFAMU
      * */
@@ -184,7 +189,8 @@ public class HeapSolution2 {
     }
 
     // Leetcode problem: 407
-    /*
+
+    /**
      * Trapping Rain Water II.
      * Explanation: https://www.youtube.com/watch?v=iOzm4ht8uMQ
      * BFS from boundary.
@@ -234,7 +240,8 @@ public class HeapSolution2 {
     }
 
     // Leetcode problem: 871
-    /*
+
+    /**
      * Minimum Number of Refueling Stops.
      * This problem is similar to IPO (Leetcode problem: 502).
      * Sort the stations based on the start position of the stations.
@@ -269,7 +276,8 @@ public class HeapSolution2 {
     }
 
     // Leetcode problem: 1642
-    /*
+
+    /**
      * Furthest Building You Can Reach.
      * Explanation: https://www.youtube.com/watch?v=zyTeznvXCtg
      * Use ladders for the maximum height found so far.

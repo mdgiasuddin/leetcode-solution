@@ -23,7 +23,7 @@ public class TwoPointerSolution {
         while (left <= right) {
 
             // If a boat can carry unlimited number of person then this is the logic
-            /*if (current + people[right] <= limit) {
+            /**if (current + people[right] <= limit) {
                 current += people[right];
                 right--;
             } else if (current + people[left] <= limit) {
@@ -186,7 +186,8 @@ public class TwoPointerSolution {
     }
 
     // Leetcode problem: 69
-    /*
+
+    /**
      * Binary search.
      * The ranges are tricky.
      * */

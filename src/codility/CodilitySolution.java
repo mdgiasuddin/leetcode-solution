@@ -4,7 +4,7 @@ import java.util.*;
 
 public class CodilitySolution {
 
-    /*
+    /**
      * Find minimum average of al slices of length >= 2.
      * Problem: https://app.codility.com/programmers/lessons/5-prefix_sums/min_avg_two_slice/
      * Proof: https://math.stackexchange.com/questions/2682379/will-the-length-of-a-minimum-average-slice-of-a-numeric-array-ever-be-greater-th
@@ -37,7 +37,7 @@ public class CodilitySolution {
         return minIdx;
     }
 
-    /*
+    /**
      * Minimum stones needed for a wall.
      * https://app.codility.com/programmers/lessons/7-stacks_and_queues/stone_wall/
      * */
@@ -62,7 +62,7 @@ public class CodilitySolution {
         return blocks;
     }
 
-    /*
+    /**
      * Max double slice sum.
      * https://app.codility.com/programmers/lessons/9-maximum_slice_problem/max_double_slice_sum/
      * */
@@ -89,7 +89,7 @@ public class CodilitySolution {
         return max;
     }
 
-    /*
+    /**
      * MaxCounters.
      * https://app.codility.com/programmers/lessons/4-counting_elements/max_counters/
      * */
@@ -118,7 +118,7 @@ public class CodilitySolution {
         return res;
     }
 
-    /*
+    /**
      * GenomicRangeQuery.
      * https://app.codility.com/programmers/lessons/5-prefix_sums/genomic_range_query/
      * */
@@ -170,7 +170,7 @@ public class CodilitySolution {
         return res;
     }
 
-    /*
+    /**
      * NumberOfDiscIntersections.
      * https://app.codility.com/programmers/lessons/6-sorting/number_of_disc_intersections/
      * */
@@ -208,7 +208,7 @@ public class CodilitySolution {
         return intersection > 10000000 ? -1 : intersection;
     }
 
-    /*
+    /**
      * MaxDoubleSliceSum.
      * https://app.codility.com/programmers/lessons/9-maximum_slice_problem/max_double_slice_sum/
      * */
@@ -234,7 +234,7 @@ public class CodilitySolution {
         return res;
     }
 
-    /*
+    /**
      * Flags.
      * https://app.codility.com/programmers/lessons/10-prime_and_composite_numbers/flags/
      * Binary Search.
@@ -294,7 +294,7 @@ public class CodilitySolution {
         return flag <= 0;
     }
 
-    /*
+    /**
      * NailingPlanks.
      * https://app.codility.com/programmers/lessons/14-binary_search_algorithm/nailing_planks/
      * */
@@ -354,7 +354,7 @@ public class CodilitySolution {
         return min + 1;
     }
 
-    /*
+    /**
      * CountDistinctSlices.
      * https://app.codility.com/programmers/lessons/15-caterpillar_method/count_distinct_slices/
      * */
@@ -377,7 +377,7 @@ public class CodilitySolution {
         return (int) Math.min(res, 1000000000);
     }
 
-    /*
+    /**
      * TieRopes.
      * https://app.codility.com/programmers/lessons/16-greedy_algorithms/tie_ropes/
      * */
@@ -398,7 +398,7 @@ public class CodilitySolution {
         return res;
     }
 
-    /*
+    /**
      * NumberSolitaire.
      * https://app.codility.com/programmers/lessons/17-dynamic_programming/number_solitaire/
      * */
@@ -417,7 +417,7 @@ public class CodilitySolution {
         return dp[n - 1];
     }
 
-    /*
+    /**
      * FibFrog.
      * https://app.codility.com/programmers/lessons/13-fibonacci_numbers/fib_frog/
      * */
@@ -454,7 +454,7 @@ public class CodilitySolution {
         return dp[n] == Integer.MAX_VALUE ? -1 : dp[n];
     }
 
-    /*
+    /**
      * Ladder.
      * https://app.codility.com/programmers/lessons/13-fibonacci_numbers/ladder/
      * Generate all Fibonacci numbers [1, 50,000] & return as required.
@@ -481,7 +481,7 @@ public class CodilitySolution {
         return res;
     }
 
-    /*
+    /**
      * CommonPrimeDivisors.
      * https://app.codility.com/programmers/lessons/12-euclidean_algorithm/common_prime_divisors/
      * Explanation: https://www.youtube.com/watch?v=F_th-1Rza_s&t=539s
@@ -510,7 +510,7 @@ public class CodilitySolution {
         return res;
     }
 
-    /*
+    /**
      * ChocolatesByNumbers.
      * https://app.codility.com/programmers/lessons/12-euclidean_algorithm/chocolates_by_numbers/
      * They will meet their LCM.

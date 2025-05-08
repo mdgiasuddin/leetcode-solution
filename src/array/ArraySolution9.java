@@ -16,7 +16,8 @@ import java.util.Set;
 public class ArraySolution9 {
 
     // Leetcode problem: 659
-    /*
+
+    /**
      * Split Array Into Consecutive Sequence.
      * Explanation: https://www.youtube.com/watch?v=Ty8EZlxVNC8
      * Create group of list. For a number always try to add this in an existing group.
@@ -57,7 +58,8 @@ public class ArraySolution9 {
     }
 
     // Leetcode problem: 1395
-    /*
+
+    /**
      * Count Number of Teams.
      * For each player, consider it as middle and count lower & higher rating in the left & right.
      * Sum up the combinations.
@@ -98,7 +100,8 @@ public class ArraySolution9 {
     }
 
     // Leetcode problem: 1027
-    /*
+
+    /**
      * Longest Arithmetic Subsequence.
      * Explanation: https://www.youtube.com/watch?v=sQznNULe2J0
      * */
@@ -125,7 +128,8 @@ public class ArraySolution9 {
     }
 
     // Leetcode problem: 950
-    /*
+
+    /**
      * Reveal Cards in Increasing Order.
      * Explanation: https://www.youtube.com/watch?v=COiE-PQqf28
      * */
@@ -155,7 +159,8 @@ public class ArraySolution9 {
     }
 
     // Leetcode problem: 2009
-    /*
+
+    /**
      * Minimum Number of Operations to Make Array Continuous.
      * Explanation: https://www.youtube.com/watch?v=Dd-yJylrcOY
      * [1 2 3 4 5 5 5 15]
@@ -188,7 +193,8 @@ public class ArraySolution9 {
     }
 
     // Leetcode problem: 2610
-    /*
+
+    /**
      * Convert an Array int a 2D Array with Conditions.
      * Count all the elements.
      * The maximum count will be the size of the result array.
@@ -218,7 +224,8 @@ public class ArraySolution9 {
     }
 
     // Leetcode problem: 1578
-    /*
+
+    /**
      * Minimum Time to Make Rope Colorful.
      * Need to remove the duplicate from the consecutive same color balloon keeping only 1.
      * Take the sum and keep the balloon with maximum time.
@@ -246,7 +253,8 @@ public class ArraySolution9 {
     }
 
     // Leetcode problem: 1481
-    /*
+
+    /**
      * Least Number of Unique Integers after K Removals.
      * */
     public int findLeastNumOfUniqueInts(int[] arr, int k) {
@@ -276,7 +284,8 @@ public class ArraySolution9 {
     }
 
     // Leetcode problem: 1014
-    /*
+
+    /**
      * Best Sightseeing Pair.
      * Explanation: https://www.youtube.com/watch?v=YAYnMfHbjz4
      * */
@@ -292,7 +301,8 @@ public class ArraySolution9 {
     }
 
     // Leetcode problem: 2948
-    /*
+
+    /**
      * Make Lexicographically Smallest Array by Swapping Elements.
      * Explanation: https://www.youtube.com/watch?v=-FGl6dzPexY
      * Sort the array.
@@ -340,7 +350,8 @@ public class ArraySolution9 {
     }
 
     // Leetcode problem: 1769
-    /*
+
+    /**
      * Minimum Number of Operations to Move All Balls to Each Box.
      * Maintain 2 variable leftBall & rightBall.
      * First calculate the move needed to place all the balls in the first index.
@@ -374,7 +385,8 @@ public class ArraySolution9 {
     }
 
     // Leetcode problem: 769
-    /*
+
+    /**
      * Max Chunks to Make Sorted.
      * Explanation: https://www.youtube.com/watch?v=wpHzXTkuVkY
      * */

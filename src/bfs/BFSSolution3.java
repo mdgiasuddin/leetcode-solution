@@ -15,7 +15,8 @@ import java.util.Set;
 public class BFSSolution3 {
 
     // Leetcode problem: 1345
-    /*
+
+    /**
      * Jump Game IV.
      * */
     public int minJumps(int[] arr) {
@@ -68,7 +69,8 @@ public class BFSSolution3 {
     }
 
     // Leetcode problem: 1514
-    /*
+
+    /**
      * Path with Maximum Probability.
      * Dijkstra's Algorithm.
      * Explanation: https://www.youtube.com/watch?v=kPsDTGcrzGM
@@ -109,7 +111,8 @@ public class BFSSolution3 {
     }
 
     // Leetcode problem: 1129
-    /*
+
+    /**
      * Shortest Path with Alternating Colors.
      * */
     public int[] shortestAlternatingPaths(int n, int[][] redEdges, int[][] blueEdges) {
@@ -169,7 +172,8 @@ public class BFSSolution3 {
     }
 
     // Leetcode problem: 399
-    /*
+
+    /**
      * Evaluate Division.
      * Explanation: https://www.youtube.com/watch?v=Uei1fwDoyKk&t=1s
      * */
@@ -225,7 +229,8 @@ public class BFSSolution3 {
     }
 
     // Leetcode problem: 1376
-    /*
+
+    /**
      * Time Needed to Inform All Employees
      * */
     public int numOfMinutes(int n, int headID, int[] manager, int[] informTime) {
@@ -259,7 +264,8 @@ public class BFSSolution3 {
     }
 
     // Leetcode problem: 815
-    /*
+
+    /**
      * Bus Routes.
      * Multi-source BFS.
      * Forming graph is challenging.
@@ -350,7 +356,8 @@ class NodeProbability {
     }
 
     // Leetcode problem: 1631
-    /*
+
+    /**
      * Path with Minimum Effort.
      * Dijkstra Algorithm.
      * Explanation: https://www.youtube.com/watch?v=XQlxCCx2vI4
@@ -386,7 +393,8 @@ class NodeProbability {
     }
 
     // Leetcode problem: 365
-    /*
+
+    /**
      * Water and Jug Problem.
      * Total value <=> targetCapacity.
      * Total value will not be changed unless a jug is filled or empty.

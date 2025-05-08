@@ -17,7 +17,8 @@ public class DFSSolution {
     }
 
     // Leetcode problem: 337
-    /*
+
+    /**
      * If a node value is taken then skip the child value
      * */
     public int rob(TreeNode root) {
@@ -42,7 +43,8 @@ public class DFSSolution {
     }
 
     // Leetcode problem: 1306
-    /*
+
+    /**
      * Jump Game III
      * */
     public boolean canReach(int[] arr, int start) {
@@ -64,7 +66,8 @@ public class DFSSolution {
     }
 
     // Leetcode problem 934
-    /*
+
+    /**
      * First run dfs to find first island
      * Then run bfs to find the shortest path to second island from first island
      * */
@@ -133,7 +136,8 @@ public class DFSSolution {
     }
 
     // Leetcode problem: 802
-    /*
+
+    /**
      * A node is a terminal node if there are no outgoing edges.
      * A node is a safe node if every possible path starting from that node leads to a terminal node.
      * */
@@ -316,7 +320,8 @@ public class DFSSolution {
     }
 
     // Leetcode problem: 463
-    /*
+
+    /**
      * First determine the island by DFS.
      * Then calculate the perimeter.
      * */
@@ -364,7 +369,8 @@ public class DFSSolution {
     }
 
     // Leetcode problem: 1905
-    /*
+
+    /**
      * DFS every island of grid2 & determine whether it is a sub island of grid1.
      * */
     public int countSubIslands(int[][] grid1, int[][] grid2) {

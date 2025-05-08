@@ -9,7 +9,8 @@ public class ArraySolution4 {
     }
 
     // Leetcode problem: 240
-    /*
+
+    /**
      * Start from top-right or bottom left index
      * Compare with target
      * Move according to the target value
@@ -29,7 +30,7 @@ public class ArraySolution4 {
         }
 
         // This can also be done starting from bottom-left index
-        /*int row = matrix.length - 1, col = 0;
+        /**int row = matrix.length - 1, col = 0;
 
         while (row >= 0 && col < matrix[0].length) {
             if (matrix[row][col] == target) {
@@ -46,7 +47,8 @@ public class ArraySolution4 {
     }
 
     // Leetcode problem: 289
-    /*
+
+    /**
      * Traverse each index and update it according to the living cell of the surrounding neighbours
      * Since we don't want to use extra memory use (0->0 = 0, 0->1 = 2, 1->0 = 1, 1->1 = 3)
      * In second time traversing we change the 1, 2, 3 value
@@ -109,7 +111,7 @@ public class ArraySolution4 {
     }
 
     // Leetcode problem: 304
-    /*
+    /**
     [
         [3, 0, 1, 4, 2],
         [5, 6, 3, 2, 1],
@@ -122,7 +124,8 @@ public class ArraySolution4 {
 
 
     // Leetcode problem: 322
-    /*
+
+    /**
      * Dynamic programming
      * */
     public int coinChange(int[] coins, int amount) {
@@ -144,7 +147,8 @@ public class ArraySolution4 {
     }
 
     // Leetcode problem: 300
-    /*
+
+    /**
      * Dynamic programming
      * */
     public int lengthOfLIS(int[] nums) {

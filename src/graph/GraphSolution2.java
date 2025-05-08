@@ -13,7 +13,8 @@ import java.util.Set;
 public class GraphSolution2 {
 
     // Leetcode problem: 721
-    /*
+
+    /**
      * Accounts Merge.
      * Union Find algorithm.
      * */
@@ -89,7 +90,8 @@ public class GraphSolution2 {
     }
 
     // Leetcode problem: 827
-    /*
+
+    /**
      * Making A Large Island.
      * Explanation: https://www.youtube.com/watch?v=JKRJUE74fm8&list=PLEvw47Ps6OBA3ysUO1XOho_6bFsqQ9NQ8
      * Union find algorithm.
@@ -162,7 +164,8 @@ public class GraphSolution2 {
     }
 
     // Leetcode problem: 1579
-    /*
+
+    /**
      * Remove Max Number of Edges to Keep Graph Fully Traversable.
      * Explanation: https://www.youtube.com/watch?v=booGwg5wYm4
      * */
@@ -195,7 +198,7 @@ public class GraphSolution2 {
     }
 
     // Leetcode problem: 1192
-    /*
+    /**
      * Critical Connections in a Network.
      * Explanation: https://www.youtube.com/watch?v=Rhxs4k6DyMM
      * Tarzan's Algorithm.
@@ -244,7 +247,8 @@ public class GraphSolution2 {
     }
 
     // Leetcode problem: 2290
-    /*
+
+    /**
      * Minimum Obstacle Removal to Reach Corner.
      * Run BFS.
      * For every node run DFS to find all the nodes in the same level.
@@ -292,7 +296,8 @@ public class GraphSolution2 {
     }
 
     // Leetcode problem: 1368
-    /*
+
+    /**
      * Minimum Cost to Make at Least One Valid Path in a Grid
      * BFS + DFS
      * Similar to: Minimum Obstacle Removal to Reach Corner (Leetcode problem: 2290).

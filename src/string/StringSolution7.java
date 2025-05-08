@@ -13,11 +13,12 @@ public class StringSolution7 {
     }
 
     // Leetcode problem: 2063
-    /*
+
+    /**
      * Count vowels of all substrings
      * */
     public long countVowels(String word) {
-        /*
+        /**
                         bcdefgh
                           ''
                           d
@@ -44,7 +45,8 @@ public class StringSolution7 {
     }
 
     // Leetcode problem: 1963
-    /*
+
+    /**
      * Problem is tricky.
      * Find out the maximum closing bracket with is unbalanced.
      * If closing brackets are balanced, opening brackets will be automatically balanced.
@@ -70,7 +72,8 @@ public class StringSolution7 {
     }
 
     // Leetcode problem: 2116
-    /*
+
+    /**
      * Check if the parenthesis can be balanced after flipping certain position
      * We have to traverse from both left to right and right to left
      * While traversing left to right, check whether there is enough opening bracket to balance closing bracket. Flip + Open >= Close must be satisfied.
@@ -125,7 +128,8 @@ public class StringSolution7 {
     }
 
     // Leetcode problem: 1985
-    /*
+
+    /**
      * Build up a priority queue.
      * Pop from the queue k times
      * */
@@ -166,7 +170,7 @@ public class StringSolution7 {
         for (String email : emails) {
 
             // This using string library function.
-            /*
+            /**
             String[] splitted = email.split("@");
             String local = splitted[0].split("\\+")[0];
             local = local.replace(".", "");
@@ -197,7 +201,8 @@ public class StringSolution7 {
     }
 
     // Leetcode problem: 290
-    /*
+
+    /**
      * This problem is similar to Isomorphic String (Leetcode problem: 205).
      * */
     public boolean wordPattern(String pattern, String s) {
@@ -352,7 +357,8 @@ public class StringSolution7 {
     }
 
     // Leetcode problem: 828
-    /*
+
+    /**
      * This problem is similar to count vowels of all substrings (Leetcode problem: 2063).
      * Just take all the substring from previous character position to next character position (exclusive).
      * */
@@ -385,7 +391,8 @@ public class StringSolution7 {
     }
 
     // Leetcode problem: 1980
-    /*
+
+    /**
      * Since the number of strings is n & the length of string is also n, we will generate a string that -
      * has only 1 character difference.
      * */

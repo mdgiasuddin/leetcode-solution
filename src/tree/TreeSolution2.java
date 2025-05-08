@@ -9,7 +9,8 @@ public class TreeSolution2 {
     }
 
     // Leetcode problem: 96
-    /*
+
+    /**
      * Dynamic Programming.
      * DP(4) => root(1) -> left = 0[], right = 3[2,3,4], root(2) -> left = 1[1], right = 2[3,4]
      * root(3) -> left = 2[1,2], right 1[4], root(4) -> left = 3[1,2,3] right = 0[]
@@ -79,7 +80,8 @@ public class TreeSolution2 {
     }
 
     // Leetcode problem: 103
-    /*
+
+    /**
      * The problem is same as level order traversal. Just reverse the row of even index.
      * */
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
@@ -139,7 +141,8 @@ public class TreeSolution2 {
     }
 
     // Leetcode problem: 538
-    /*
+
+    /**
      * Inorder traversal (right->mid->left).
      * */
     public TreeNode convertBST(TreeNode root) {
@@ -166,7 +169,8 @@ public class TreeSolution2 {
     }
 
     // Leetcode problem: 114
-    /*
+
+    /**
      * Preorder traversal.
      * */
     public void flatten(TreeNode root) {
@@ -192,7 +196,8 @@ public class TreeSolution2 {
     }
 
     // Leetcode problem: 124
-    /*
+
+    /**
      * This problem is similar to diameter of binary tree (Leetcode problem: 543)
      * */
     public int maxPathSum(TreeNode root) {
@@ -216,7 +221,8 @@ public class TreeSolution2 {
     }
 
     // Leetcode problem: 101
-    /*
+
+    /**
      * Solve by level order traversal (BFS).
      * */
     public boolean isSymmetric(TreeNode root) {
@@ -274,7 +280,8 @@ public class TreeSolution2 {
     }
 
     // Leetcode problem: 653
-    /*
+
+    /**
      * Two sum in binary tree.
      * */
     public boolean findTarget(TreeNode node, int k, Set<Integer> set) {
@@ -290,7 +297,8 @@ public class TreeSolution2 {
     }
 
     // Leetcode problem: 1609
-    /*
+
+    /**
      * Level order traversal. Check value of each level.
      * */
     public boolean isEvenOddTree(TreeNode root) {
@@ -329,7 +337,8 @@ public class TreeSolution2 {
     }
 
     // Leetcode problem: 872
-    /*
+
+    /**
      * Get all leaves of both trees and compare if they are equals.
      * */
     public boolean leafSimilar(TreeNode root1, TreeNode root2) {
@@ -355,7 +364,8 @@ public class TreeSolution2 {
     }
 
     // Leetcode problem: 94
-    /*
+
+    /**
      * Inorder traversal iterative solution.
      * Go to left child until face null.
      * Then go to right child.
@@ -381,7 +391,8 @@ public class TreeSolution2 {
     }
 
     // Leetcode problem: 144
-    /*
+
+    /**
      * Preorder traversal (Iterative approach).
      * */
     public List<Integer> preorderTraversal(TreeNode root) {
@@ -407,7 +418,8 @@ public class TreeSolution2 {
 
 
     // Leetcode problem: 145
-    /*
+
+    /**
      * Postorder traversal (Iterative approach).
      * */
     public List<Integer> postorderTraversal(TreeNode root) {

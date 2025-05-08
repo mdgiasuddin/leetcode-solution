@@ -16,7 +16,8 @@ public class StringSolution3 {
     }
 
     // Leetcode problem: 556
-    /*
+
+    /**
      * Traverse from right side and find first digit which is greater than left digit
      * Sort the right side
      * Find the appropriate place for the digit which is smaller
@@ -54,7 +55,8 @@ public class StringSolution3 {
     }
 
     // Leetcode problem: 678
-    /*
+
+    /**
      * Valid parenthesis
      * Maintain 2 stacks (1 for '(' and 1 for '*')
      * Balance ')' using '(' if failed then '*'
@@ -90,7 +92,8 @@ public class StringSolution3 {
     }
 
     // Leetcode problem: 696
-    /*
+
+    /**
      * Sliding window solution.
      * Previous and current store consecutive number of digits.
      * When a different digit found update result previous and current window.
@@ -113,7 +116,8 @@ public class StringSolution3 {
     }
 
     // Leetcode problem: 848
-    /*
+
+    /**
      * Shifting Letters
      * First calculate the shift count of each character, then shift
      * */
@@ -134,7 +138,8 @@ public class StringSolution3 {
     }
 
     // Leetcode problem: 784
-    /*
+
+    /**
      * Letter case combination
      * Go to every character and change its case then add to the next
      * */
@@ -162,7 +167,8 @@ public class StringSolution3 {
     }
 
     // Leetcode problem: 1400
-    /*
+
+    /**
      * If every character remains even number, palindrome can be formed
      * For odd count, each character can be placed only in middle position
      * So check if k >= odd count character
@@ -189,7 +195,8 @@ public class StringSolution3 {
     }
 
     // Leetcode problem: 1616
-    /*
+
+    /**
      * Check left of A with Right of until mismatch, Then check the middle part of A or B is palindrome
      * Done work for left of B with Right of A
      * */
@@ -210,7 +217,8 @@ public class StringSolution3 {
     }
 
     // Leetcode problem: 1573
-    /*
+
+    /**
      * Count total number of 1's. If
      * If number of 1's is not product of 3, then return 0;
      * If all digits are 0's then the result will be (n-1)C2
@@ -248,7 +256,8 @@ public class StringSolution3 {
     }
 
     // Leetcode problem: 1545
-    /*
+
+    /**
      * Recursive solution. O(n)
      * */
     public char findKthBit(int n, int k) {
@@ -272,7 +281,8 @@ public class StringSolution3 {
     }
 
     // Leetcode problem: 1540
-    /*
+
+    /**
      * Build up a list of available moves of available times
      * Build up a list of moves required to convert S to T for each character
      * Find each moves required in moves available list
@@ -308,7 +318,8 @@ public class StringSolution3 {
     }
 
     // Leetcode problem: 1513
-    /*
+
+    /**
      * Count number of consecutive 1's and add the substring possible
      * 11111 -> (1s) 5 + (2s) 4 + (3s) 3 + (4s) 2 + (5s) 1 -> n * (n + 1) / 2
      * */

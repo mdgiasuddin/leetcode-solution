@@ -10,7 +10,8 @@ public class PrefixSumSolution {
     }
 
     // Leetcode problem: 238
-    /*
+
+    /**
      * The problem can be solved by storing prefix and suffix multiplication.
      * To reduce the memory we will store only the prefix.
      * Then multiply with the suffix.
@@ -60,7 +61,8 @@ public class PrefixSumSolution {
     }
 
     // Leetcode problem: 523
-    /*
+
+    /**
      * This problem is similar to sub-array sum. (Leetcode problem: 560)
      * Instead of storing the current sum, store the reminder.
      * */

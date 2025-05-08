@@ -67,7 +67,8 @@ public class SlidingWindowSolution2 {
     }
 
     // Leetcode problem: 1423
-    /*
+
+    /**
      * Since card can be selected only from left end or right, decide how many cards from left & right end.
      * */
     public int maxScore(int[] cardPoints, int k) {
@@ -90,7 +91,8 @@ public class SlidingWindowSolution2 {
     }
 
     // Leetcode problem: 1888
-    /*
+
+    /**
      * Minimum Number of Flips to Make the Binary String Alternating.
      * Removing character from left actually rotates the string left.
      * So, concat the original string to get all the rotations.
@@ -143,7 +145,8 @@ public class SlidingWindowSolution2 {
     }
 
     // Leetcode problem: 2516
-    /*
+
+    /**
      * Take K of Each Character From Left and Right.
      * Explanation: https://www.youtube.com/watch?v=fbe3R7Bd-LE&t=777s
      * Calculate the maximum length of substring without which each character occurs k times.
@@ -178,7 +181,8 @@ public class SlidingWindowSolution2 {
     }
 
     // Leetcode problem: 1343
-    /*
+
+    /**
      * Number of Sub-arrays of Size K and Average Greater than or Equal to Threshold.
      * */
     public int numOfSubarrays(int[] arr, int k, int threshold) {
@@ -202,7 +206,8 @@ public class SlidingWindowSolution2 {
     }
 
     // Leetcode problem: 2090
-    /*
+
+    /**
      * K Radius Subarray Averages.
      * */
     public int[] getAverages(int[] nums, int k) {
@@ -231,7 +236,7 @@ public class SlidingWindowSolution2 {
         return res;
     }
 
-    /*
+    /**
      * Leetcode problem: 1456
      * Maximum Number of Vowels in a Substring of Given Length.
      * */
@@ -259,7 +264,8 @@ public class SlidingWindowSolution2 {
     }
 
     // Leetcode problem: 713
-    /*
+
+    /**
      * Subarray Product Less Than K.
      * Explanation: https://www.youtube.com/watch?v=7rGxOMEBWKE
      * */
@@ -285,7 +291,8 @@ public class SlidingWindowSolution2 {
     }
 
     // Leetcode problem: 992
-    /*
+
+    /**
      * Subarray with K Different Integers.
      * Explanation: https://www.youtube.com/watch?v=akwRFY2eyXs
      * First find the number of subarray with at most k distinct integers.
@@ -334,7 +341,8 @@ public class SlidingWindowSolution2 {
     }
 
     // Leetcode problem: 632
-    /*
+
+    /**
      * Smallest Range Covering Elements from K Lists.
      * Explanation: https://www.youtube.com/watch?v=VIbaPmsRzCs
      * Take all the nums in a single list.
@@ -382,7 +390,8 @@ public class SlidingWindowSolution2 {
     }
 
     // Leetcode problem: 1438
-    /*
+
+    /**
      * Longest Continuous Subarray with Absolute Diff Less Than or Equal to Limit.
      * Explanation: https://www.youtube.com/watch?v=LDFZm4iB7tA
      * Maintain 2 Deque to store the minimum and maximum.

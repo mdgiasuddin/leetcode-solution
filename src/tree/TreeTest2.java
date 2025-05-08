@@ -12,7 +12,8 @@ public class TreeTest2 {
     }
 
     // Leetcode challenge
-    /*
+
+    /**
      * Problem source: Tech Dose
      * */
     public void validSequenceRootToLeaf(TreeNode root, int[] sequence) {

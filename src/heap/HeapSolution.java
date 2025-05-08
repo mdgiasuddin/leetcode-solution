@@ -10,7 +10,8 @@ public class HeapSolution {
     }
 
     // Leetcode problem: 1094
-    /*
+
+    /**
      * Sort the trips base on the start point
      * After reaching each trip find all the trip before it whether any passenger can be dropped
      * Then add the passenger with current passenger and check whether it overflows
@@ -75,7 +76,8 @@ public class HeapSolution {
     }
 
     // Leetcode problem: 1882
-    /*
+
+    /**
     * Process Tasks Using Servers.
     * */
     public int[] assignTasks(int[] servers, int[] tasks) {
@@ -187,7 +189,8 @@ public class HeapSolution {
     }
 
     // Leetcode problem: 973
-    /*
+
+    /**
      * Sort the based on the distance from origin & take first k points.
      * Time complexity of sort is O(n*log(n)). To minimize time complexity build up a min heap.
      * Build min heap complexity is O(n). Then extract k points complexity is O(k*log(n)).
@@ -291,7 +294,7 @@ public class HeapSolution {
         return time;
     }
 
-    /*
+    /**
      * Nearly sorted.
      * Practice: https://practice.geeksforgeeks.org/problems/nearly-sorted-1587115620/1
      * Explanation: https://www.youtube.com/watch?v=tJK7vjNKdLY&list=PLEJXowNB4kPyP2PdMhOUlTY6GrRIITx28&index=12
@@ -320,7 +323,8 @@ public class HeapSolution {
     }
 
     // Leetcode problem: 2530
-    /*
+
+    /**
      * Maximal Score After Applying K Operations.
      * */
     public long maxKelements(int[] nums, int k) {
@@ -340,7 +344,8 @@ public class HeapSolution {
     }
 
     // Leetcode problem: 2542
-    /*
+
+    /**
      * Maximum Subsequence Score.
      * This problem is similar to: Maximum Performance of a Team (Leetcode problem: 1383).
      * Explanation: https://www.youtube.com/watch?v=N8oNUI6JM0I&list=PLy38cn8b_xMfO7CGsUDIsYGps37yKaQ9X&index=50
@@ -378,7 +383,8 @@ public class HeapSolution {
     }
 
     // Leetcode problem: 2454
-    /*
+
+    /**
      * Next Greater Element IV.
      * Explanation: https://www.youtube.com/watch?v=YZrQrQehM64&list=PLy38cn8b_xMeo28nZcPQTV-z3-DcaQOaY&index=2
      * First find the next greater, then find the second greater element.

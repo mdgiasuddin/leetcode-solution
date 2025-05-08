@@ -102,7 +102,8 @@ public class GraphSolution {
     }
 
     // Leetcode problem: 1584
-    /*
+
+    /**
      * Min Cost to Connect All Points.
      * Minimum spanning tree (Prim's Algorithm).
      * */
@@ -173,7 +174,8 @@ public class GraphSolution {
     }
 
     // Leetcode problem: 1061
-    /*
+
+    /**
      * Lexicographically Smallest Equivalent String.
      * Union find algorithm.
      * Explanation: https://www.youtube.com/watch?v=HhodaSC-SGc&list=PLy38cn8b_xMfO7CGsUDIsYGps37yKaQ9X&index=46

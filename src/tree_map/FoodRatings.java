@@ -5,7 +5,8 @@ import java.util.Map;
 import java.util.TreeSet;
 
 // Leetcode problem: 2353
-/*
+
+/**
  * Design a Food Rating System.
  * */
 public class FoodRatings {

@@ -16,7 +16,8 @@ public class ArraySolution {
     }
 
     // Leetcode problem: 1
-    /*
+
+    /**
      * Use map
      * */
     public int[] twoSum(int[] nums, int target) {
@@ -49,7 +50,8 @@ public class ArraySolution {
     }
 
     // Leetcode problem: 11
-    /*
+
+    /**
      * Container with most water
      * Traverse from both left and right to middle
      * Left height is smaller than right then increase left, otherwise decrease right
@@ -72,7 +74,8 @@ public class ArraySolution {
     }
 
     // Leetcode problem: 15
-    /*
+
+    /**
      * 3 sum
      * Sort the array.
      * Fix 1 number from the last and traverse from both left and right to middle to find sum match
@@ -112,7 +115,8 @@ public class ArraySolution {
     }
 
     // Leetcode problem: 16
-    /*
+
+    /**
      * The problem is similar to 3 sum. Just find the sum of minimum difference to the target
      * */
     public int threeSumClosest(int[] nums, int target) {
@@ -144,7 +148,8 @@ public class ArraySolution {
     }
 
     // Leetcode problem: 18
-    /*
+
+    /**
      * 4 Sum
      * This extended version of 3 Sum
      * Run an extra loop with 3 sum & similarly avoid duplicate
@@ -217,7 +222,8 @@ public class ArraySolution {
     }
 
     // Leetcode problem: 33
-    /*
+
+    /**
      * Search in rotated sorted array
      * Binary search
      * */
@@ -245,7 +251,8 @@ public class ArraySolution {
     }
 
     // Leetcode problem: 34
-    /*
+
+    /**
      * Find first & last position by binary search
      * */
     public int[] searchRange(int[] nums, int target) {

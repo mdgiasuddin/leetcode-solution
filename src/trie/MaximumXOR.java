@@ -6,7 +6,8 @@ import java.util.List;
 public class MaximumXOR {
 
     // Leetcode problem: 421
-    /*
+
+    /**
      * Maximum XOR of Two Numbers in an Array.
      * Explanation: https://www.youtube.com/watch?v=jCuZCbXnpLo
      * */

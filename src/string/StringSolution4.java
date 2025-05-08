@@ -9,7 +9,8 @@ public class StringSolution4 {
     }
 
     // Leetcode problem: 301
-    /*
+
+    /**
      * Remove invalid parenthesis
      * First calculate the number of opening and closing bracket must need to be removed
      * Traverse every character, remove it and check if it is valid recursively
@@ -100,7 +101,8 @@ public class StringSolution4 {
     }
 
     // Leetcode problem: 65
-    /*
+
+    /**
      * Is valid number
      * Check condition for each possible case exponential, decimal & integer
      * */
@@ -192,7 +194,8 @@ public class StringSolution4 {
     }
 
     // Leetcode problem: 115
-    /*
+
+    /**
      * If character match either take the character or not take the character
      * dp(i, j) = dp(i-1, j-1) + dp(i, j-1) if match
      * dp(i, j) = dp(i, j-1) if not match
@@ -215,12 +218,12 @@ public class StringSolution4 {
         return dp[t.length()][s.length()];
     }
 
-    // Leetcode problem:
-    // 424
-    /*
+    // Leetcode problem: 424
+
+    /***
      * Build up a counter of each character.
      * Update the maximum character count.
-     * In every window check if the replacement required is less than or equal to k.
+     * In every window, check if the replacement required is less than or equal to k.
      * If condition fulfilled update result value.
      * Otherwise, move left pointer and decrement the counter of left character.
      * During decrement maximum character need not update because only when counter of any character crosses current maximum.
@@ -246,7 +249,8 @@ public class StringSolution4 {
     }
 
     // Leetcode problem: 395
-    /*
+
+    /**
      * This problem is tricky.
      * Count the occurrences of all characters.
      * If there exists no character whose count is < k then return entire string.
@@ -282,7 +286,8 @@ public class StringSolution4 {
     }
 
     // Leetcode problem: 306
-    /*
+
+    /**
      * Build up first 2 numbers and check whether any third number exist so that fist + second = third
      * If exists then recursively call for next where second and third will be first and second respectively
      * */

@@ -6,7 +6,8 @@ import java.util.Map;
 public class MathSolution {
 
     // Leetcode problem: 279
-    /*
+
+    /**
      * This solution is based on Legendre's Algorithm.
      * Every number can be represented as sum of 4 squares.
      * Any number can be represented as sum of 3 squares if it is not in the form: 4^a(8b + 7).
@@ -73,7 +74,8 @@ public class MathSolution {
     }
 
     // Leetcode problem: 29
-    /*
+
+    /**
      * Divide Two Integers.
      * Explanation: https://www.youtube.com/watch?v=xefkgtd44hg&list=PLy38cn8b_xMfO7CGsUDIsYGps37yKaQ9X&index=11
      * Edge cases are very important.
@@ -118,7 +120,8 @@ public class MathSolution {
     }
 
     // Leetcode problem: 1359
-    /*
+
+    /**
      * Count All Valid Pickup and Delivery Options.
      * Explanation: https://www.youtube.com/watch?v=OpgslsirW8s
      * There are total 2 * n slots.

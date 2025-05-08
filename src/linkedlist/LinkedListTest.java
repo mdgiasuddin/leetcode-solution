@@ -58,7 +58,7 @@ public class LinkedListTest {
         }
     }
 
-    /*
+    /**
      * Merge 2 lists alternatively. 1->3->5->7 & 2->4->6 => 1->2->3->4->5->6->7
      * Amazon interview question.
      * */
@@ -83,7 +83,7 @@ public class LinkedListTest {
         printList(head1);
     }
 
-    /*
+    /**
      * Sort linked list which is already sorted by absolute value.
      * Amazon interview question.
      * For every negative value send it to the head position.

@@ -79,7 +79,8 @@ public class DynamicProgramming3 {
     }
 
     // Leetcode problem: 1092
-    /*
+
+    /**
      * This problem is the extended version of the Longest Common Subsequence (Leetcode problem: 1143).
      * Explanation: https://www.youtube.com/watch?v=pHXntFeu6f8&list=PLEJXowNB4kPxBwaXtRO1qFLpCzF75DYrS&index=20
      * */
@@ -148,7 +149,7 @@ public class DynamicProgramming3 {
         return scs.toString();
     }
 
-    /*
+    /**
      * Box Stacking.
      * Practice: https://practice.geeksforgeeks.org/problems/box-stacking/1
      * Explanation: https://www.youtube.com/watch?v=kLucR6-Q0GA&list=PLEJXowNB4kPxBwaXtRO1qFLpCzF75DYrS&index=25
@@ -196,7 +197,8 @@ public class DynamicProgramming3 {
     }
 
     // Leetcode problem: 354
-    /*
+
+    /**
      * Russian Doll Envelopes.
      * This is a variation of the Longest Increasing Subsequence.
      * */
@@ -221,7 +223,7 @@ public class DynamicProgramming3 {
         return ans;
     }
 
-    /*
+    /**
      * Maximum sum increasing subsequence.
      * Practice: https://practice.geeksforgeeks.org/problems/maximum-sum-increasing-subsequence4749/1
      * This is a variation of the Longest Increasing Subsequence.
@@ -246,7 +248,8 @@ public class DynamicProgramming3 {
     }
 
     // Leetcode problem: 2518
-    /*
+
+    /**
      * Explanation: https://www.youtube.com/watch?v=CQtLbU8x_vI
      * */
     public int countPartitions(int[] nums, int k) {
@@ -280,7 +283,8 @@ public class DynamicProgramming3 {
     }
 
     // Leetcode problem: 1626
-    /*
+
+    /**
      * Best Team With No Conflicts.
      * LIS
      * Explanation: https://www.youtube.com/watch?v=7kURH3btcV4
@@ -311,7 +315,8 @@ public class DynamicProgramming3 {
     }
 
     // Leetcode problem: 799
-    /*
+
+    /**
      * Champagne Tower.
      * Explanation: https://www.youtube.com/watch?v=tRzHC-nkJr4&list=PLy38cn8b_xMfO7CGsUDIsYGps37yKaQ9X&index=35
      * */
@@ -338,7 +343,8 @@ public class DynamicProgramming3 {
     }
 
     // Leetcode problem: 931
-    /*
+
+    /**
      * Minimum Falling Path Sum.
      * This problem is similar to paint house (Leetcode problem: 256).
      * */
@@ -368,7 +374,8 @@ public class DynamicProgramming3 {
     }
 
     // Leetcode problem: 2466
-    /*
+
+    /**
      * Count Ways To Build Good Strings.
      * Explanation: https://leetcode.com/problems/count-ways-to-build-good-strings/description/
      * */

@@ -39,7 +39,8 @@ public class BacktrackingSolution2 {
     }
 
     // Leetcode problem: 52
-    /*
+
+    /**
      * This problem is similar to N-Queens (Leetcode problem: 51).
      * */
     public int totalNQueens(int n) {
@@ -249,7 +250,8 @@ public class BacktrackingSolution2 {
     }
 
     // Leetcode problem: 473
-    /*
+
+    /**
      * This problem is completely similar to partition to k subsets.
      * Just use k = 4 here.
      * */

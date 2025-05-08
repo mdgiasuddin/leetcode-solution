@@ -21,7 +21,8 @@ public class StringSolution {
     }
 
     // Leetcode problem: 5
-    /*
+
+    /**
      * for every index traverse left and right simultaneously if palindrome found
      * palindrome can be odd length or even length
      * check both even and odd length
@@ -62,7 +63,8 @@ public class StringSolution {
     }
 
     // Leetcode problem: 6
-    /*
+
+    /**
      * Zigzag conversion to number of rows
      * Efficient solution without space
      * Find the next character every time to insert
@@ -89,7 +91,8 @@ public class StringSolution {
     }
 
     // Leetcode problem: 43
-    /*
+
+    /**
      * Multiply two number by string
      * */
     public String multiply(String num1, String num2) {
@@ -118,7 +121,8 @@ public class StringSolution {
     }
 
     // Leetcode problem: 44
-    /*
+
+    /**
      * Wildcard matching
      * Dynamic programming
      * M[i][j] = M[i-1][j-1] if s[i] = p[j] || p[j] = ?
@@ -152,7 +156,7 @@ public class StringSolution {
         return matrix[m][n];
     }
 
-    /*
+    /**
      * This is memory optimized version of wildcard matching
      * We need last 2 rows only. Continuously build up last rows by previous and copy it to previous
      * */
@@ -190,7 +194,8 @@ public class StringSolution {
     }
 
     // Leetcode problem: 10
-    /*
+
+    /**
      * Regular expression matching
      * Dynamic programming
      * M[i][j] = M[i-1][j-1] if s[i] = p[j] or p[j] = .
@@ -226,7 +231,8 @@ public class StringSolution {
     }
 
     // Leetcode problem: 132
-    /*
+
+    /**
      * Palindrome partitioning II
      * Build up a table of which substrings are palindrome O(n^2)
      * Then find the minimum cut
@@ -275,7 +281,8 @@ public class StringSolution {
     }
 
     // Leetcode problem: 139
-    /*
+
+    /**
      * Word break
      * */
     public boolean wordBreak(String s, List<String> wordDict) {
@@ -302,7 +309,8 @@ public class StringSolution {
     }
 
     // Leetcode problem: 257
-    /*
+
+    /**
      * Binary Tree Paths
      * Run dfs from root to leaf
      * */
@@ -326,7 +334,8 @@ public class StringSolution {
     }
 
     // Leetcode problem: 140
-    /*
+
+    /**
      * Word break II
      * Backtracking solution
      * */
@@ -353,7 +362,8 @@ public class StringSolution {
     }
 
     // Leetcode problem: 227
-    /*
+
+    /**
      * Basic calculator II
      * For every new operator calculate the previous operator
      * Operation of '*' and '/' are little bit tricky
@@ -398,7 +408,8 @@ public class StringSolution {
     }
 
     // Leetcode problem: 680
-    /*
+
+    /**
      * Check character from left and right until mismatch
      * If mismatch found then skip left and check if palindrome and skip right and check if palindrome
      * If anyone is palindrome then return true
@@ -435,7 +446,7 @@ public class StringSolution {
             if (s.charAt(i) == 'b') {
                 extraB++;
             } else {
-                /*
+                /**
                  * If 'a' appears after some 'b' then delete 'a'
                  * But if number of 'a' is more than 'b' then delete 'b' and extra 'b' count will be reset
                  * */

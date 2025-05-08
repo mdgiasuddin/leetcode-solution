@@ -221,7 +221,8 @@ public class FourthSolution {
     }
 
     // Leetcode problem: 554
-    /*
+
+    /**
      * For every gap position found the total gap in that position.
      * Then found maximum gap in any position.
      * Break the wall through that position.

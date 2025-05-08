@@ -6,7 +6,8 @@ import java.util.Stack;
 public class StackSolution3 {
 
     // Leetcode problem: 503
-    /*
+
+    /**
      * Next Greater Element II.
      * Traverse the array 2 times to get the next greater element.
      * */

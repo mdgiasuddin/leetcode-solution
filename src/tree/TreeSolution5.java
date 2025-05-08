@@ -13,7 +13,8 @@ import java.util.TreeMap;
 public class TreeSolution5 {
 
     // Leetcode problem: 427
-    /*
+
+    /**
      * Construct Quad Tree.
      * Explanation: https://www.youtube.com/watch?v=UQ-1sBMV0v4&t=44s
      * */
@@ -46,7 +47,8 @@ public class TreeSolution5 {
     }
 
     // Leetcode problem: 1339
-    /*
+
+    /**
      * Maximum Product of Splitted Binary Tree.
      * */
     public int maxProduct(TreeNode root) {
@@ -72,7 +74,8 @@ public class TreeSolution5 {
     }
 
     // Leetcode problem: 117
-    /*
+
+    /**
      * Populating Next Right Pointers II.
      * Explanation: https://www.youtube.com/watch?v=yl-fdkyQD8A
      * */
@@ -101,7 +104,8 @@ public class TreeSolution5 {
     }
 
     // Leetcode problem: 979
-    /*
+
+    /**
      * Distribute Coins in Binary Tree.
      * DFS.
      * Explanation: https://www.youtube.com/watch?v=yYcKQdGEdDY + (Description).
@@ -125,7 +129,8 @@ public class TreeSolution5 {
     }
 
     // Leetcode problem: 437
-    /*
+
+    /**
      * Path Sum III.
      * Explanation: https://www.youtube.com/watch?v=Vam9gldRapY
      * 2 Cases => Include the root, exclude the root.
@@ -153,7 +158,8 @@ public class TreeSolution5 {
 
 
     // Leetcode problem: 1110
-    /*
+
+    /**
      * Delete Nodes And Return Forest.
      * Explanation: https://www.youtube.com/watch?v=BmpXMtA0oF8
      * Post order traversal.
@@ -196,7 +202,8 @@ public class TreeSolution5 {
     }
 
     // Leetcode problem: 814
-    /*
+
+    /**
      * Binary Tree Pruning.
      * Postorder Traversal.
      * */
@@ -215,7 +222,8 @@ public class TreeSolution5 {
     }
 
     // Leetcode problem: 889
-    /*
+
+    /**
      * Construct Binary Tree from Preorder and Postorder Traversal.
      * Explanation: https://www.youtube.com/watch?v=3XYxGKeC_Ew
      * */
@@ -250,7 +258,8 @@ public class TreeSolution5 {
     }
 
     // Leetcode problem: 1235
-    /*
+
+    /**
      * Maximum Profit in Job Scheduling.
      * Explanation: https://www.youtube.com/watch?v=3kU7VYcmffU
      * */
@@ -283,7 +292,8 @@ public class TreeSolution5 {
     }
 
     // Leetcode problem: 968
-    /*
+
+    /**
      * Binary Tree Cameras.
      * Explanation: https://www.youtube.com/watch?v=1OZKcD-JxwQ
      * Postorder traversal.
@@ -316,7 +326,8 @@ public class TreeSolution5 {
     }
 
     // Leetcode problem: 1457
-    /*
+
+    /**
      * Pseudo-Palindromic Paths in a Binary Tree.
      * */
     public int pseudoPalindromicPaths(TreeNode root) {

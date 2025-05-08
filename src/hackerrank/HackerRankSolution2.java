@@ -7,7 +7,7 @@ public class HackerRankSolution2 {
     public static void main(String[] args) {
     }
 
-    /*
+    /**
      * https://www.hackerrank.com/challenges/equal-stacks/problem?isFullScreen=true
      * */
     public static int equalStacks(List<Integer> h1, List<Integer> h2, List<Integer> h3) {
@@ -53,7 +53,7 @@ public class HackerRankSolution2 {
         return 0;
     }
 
-    /*
+    /**
      * Hacker Rank: https://www.hackerrank.com/challenges/castle-on-the-grid/problem?h_r=internal-search
      * Explanation: https://www.youtube.com/watch?v=oL7Hpzoo1CA&list=PL_8jNcohs27XFAHGaWEf90O-cCcOfF8Kd&index=9
      * */
@@ -103,7 +103,7 @@ public class HackerRankSolution2 {
         return -1;
     }
 
-    /*
+    /**
      * Hacker Rank: https://www.hackerrank.com/challenges/poisonous-plants/problem?h_r=internal-search
      * Explanation: https://www.youtube.com/watch?v=QKkShXV-2cY&list=PL_8jNcohs27XFAHGaWEf90O-cCcOfF8Kd&index=11
      * */
@@ -135,7 +135,7 @@ public class HackerRankSolution2 {
 
     }
 
-    /*
+    /**
      * Hacker Rank: https://www.hackerrank.com/challenges/icecream-parlor/problem?h_r=internal-search
      * 2-sum problem.
      * */
@@ -155,7 +155,7 @@ public class HackerRankSolution2 {
 
     }
 
-    /*
+    /**
      * Hacker Rank: https://www.hackerrank.com/challenges/pairs/problem?h_r=internal-search
      * Variation of 2-sum problem.
      * */
@@ -185,7 +185,7 @@ public class HackerRankSolution2 {
         return newList;
     }
 
-    /*
+    /**
      * Hacker Rank: https://www.hackerrank.com/challenges/sherlock-and-cost/problem?h_r=internal-search
      * Explanation: https://www.youtube.com/watch?v=coH3k4DhLCM
      * */
@@ -210,7 +210,7 @@ public class HackerRankSolution2 {
 
     }
 
-    /*
+    /**
      * Hacker Rank: https://www.hackerrank.com/challenges/sam-and-substrings/problem?h_r=internal-search
      * Explanation: https://www.youtube.com/watch?v=1azkxwT_WZc
      * */
@@ -222,7 +222,7 @@ public class HackerRankSolution2 {
         for (int i = 0; i < n.length(); i++) {
             int digit = n.charAt(i) - '0';
 
-            /*
+            /**
              * "123"
              * prev = 0 * 10 + 1 * 1 = 1 total = 1 ("1")
              * prev = 1 * 10 + 2 * 2 = 14 (2 * 2 => 12 & 2) total = 15 ("12")
@@ -236,7 +236,7 @@ public class HackerRankSolution2 {
 
     }
 
-    /*
+    /**
      * https://www.hackerrank.com/challenges/abbr/problem?h_r=internal-search
      * Dynamic Programming.
      * */

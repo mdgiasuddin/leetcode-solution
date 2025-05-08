@@ -97,7 +97,8 @@ public class ArraySolution6 {
     }
 
     // Leetcode problem: 525
-    /*
+
+    /**
      * This problem is similar to: Subarray Sum Equals K (Leetcode problem: 560)
      * */
     public int findMaxLength(int[] nums) {
@@ -124,7 +125,8 @@ public class ArraySolution6 {
     }
 
     // Leetcode problem: 986
-    /*
+
+    /**
      * Interval List Intersections.
      * */
     public int[][] intervalIntersection(int[][] firstList, int[][] secondList) {
@@ -156,7 +158,8 @@ public class ArraySolution6 {
     }
 
     // Leetcode problem: 406
-    /*
+
+    /**
      * Queue Reconstruction by Height.
      * Code source: https://www.youtube.com/watch?v=khddrw6Bfyw&list=PLEJXowNB4kPxxaPCDVrZhSvW3NSD6ATaS&index=6
      * */
@@ -186,7 +189,8 @@ public class ArraySolution6 {
     }
 
     // Leetcode problem: 1010
-    /*
+
+    /**
      * Pairs of Songs With Total Durations Divisible by 60.
      * */
     public int numPairsDivisibleBy60(int[] time) {
@@ -238,7 +242,8 @@ public class ArraySolution6 {
     }
 
     // Leetcode problem: 1007
-    /*
+
+    /**
      * Minimum Domino Rotations For Equal Row.
      * */
     public int minDominoRotations(int[] tops, int[] bottoms) {
@@ -277,7 +282,8 @@ public class ArraySolution6 {
 
     // Leetcode problem: 163
     // Lintcode problem: 641
-    /*
+
+    /**
      * Missing Ranges.
      * */
     public List<String> findMissingRanges(int[] nums, int lower, int upper) {
@@ -328,7 +334,8 @@ public class ArraySolution6 {
     }
 
     // Leetcode problem: 1968
-    /*
+
+    /**
      * Array With Elements Not Equal to Average of Neighbors.
      * */
     public int[] rearrangeArray(int[] nums) {
@@ -351,7 +358,8 @@ public class ArraySolution6 {
     }
 
     // Leetcode problem: 454
-    /*
+
+    /**
      * 4Sum II.
      * */
     public int fourSumCount(int[] nums1, int[] nums2, int[] nums3, int[] nums4) {
@@ -374,7 +382,8 @@ public class ArraySolution6 {
     }
 
     // Leetcode problem: 350
-    /*
+
+    /**
      * Intersection of Two Arrays II.
      * */
     public int[] intersect(int[] nums1, int[] nums2) {
@@ -402,7 +411,8 @@ public class ArraySolution6 {
     }
 
     // Leetcode problem: 918
-    /*
+
+    /**
      * Maximum Sum Circular Subarray.
      * Explanation: https://www.youtube.com/watch?v=Q1TYVUEr-wY&list=PLEJXowNB4kPwR6C6yq3BzS-Jkyc6XE8kE&index=15
      * */

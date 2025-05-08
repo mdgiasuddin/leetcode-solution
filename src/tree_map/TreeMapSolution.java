@@ -13,7 +13,8 @@ public class TreeMapSolution {
     }
 
     // Leetcode problem: 218.
-    /*
+
+    /**
      * The Skyline Problem.
      * Explanation: https://www.youtube.com/watch?v=GSBLe8cKu0s
      * Insert into the queue at left position & remove from the queue at end position.
@@ -57,7 +58,8 @@ public class TreeMapSolution {
     }
 
     // Leetcode problem: 480
-    /*
+
+    /**
      * Sliding Window Median.
      * Explanation: https://www.youtube.com/watch?v=NT5Lp5vaMm0
      * This problem is similar to: Find Median in Data Stream (Leetcode problem: 295).
@@ -110,7 +112,7 @@ class Building implements Comparable<Building> {
         this.start = start;
     }
 
-    /*
+    /**
      * Sort based on x. If x is equal => If both are start then based on height(desc)
      * If both are end then height(asc).
      * If one is start and another is end then start first.
@@ -130,7 +132,8 @@ class Building implements Comparable<Building> {
     }
 
     // Leetcode problem: 363
-    /*
+
+    /**
      * Max Sum of Rectangle No Larger Than K.
      * Explanation: https://www.youtube.com/watch?v=VsBXWpBbuig
      * */

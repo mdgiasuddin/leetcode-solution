@@ -23,7 +23,8 @@ public class StringSolution8 {
 
     // Leetcode problem: 246
     // Lintcode problem: 644
-    /*
+
+    /**
      * Strobogrammatic Number.
      * */
     public boolean isStrobogrammatic(String num) {
@@ -46,7 +47,8 @@ public class StringSolution8 {
 
     // Leetcode problem: 247
     // Lintcode problem: 776
-    /*
+
+    /**
      * Strobogrammatic Number II.
      * Backtracking solution.
      * */
@@ -88,7 +90,8 @@ public class StringSolution8 {
     }
 
     // Leetcode problem: 1930
-    /*
+
+    /**
      * Unique Length-3 Palindromic Subsequences.
      * Explanation: https://www.youtube.com/watch?v=2JG5rLM3vz8
      * */
@@ -115,7 +118,8 @@ public class StringSolution8 {
     }
 
     // Leetcode problem: 38
-    /*
+
+    /**
      * Count and Say.
      * */
     public String countAndSay(int n) {
@@ -149,7 +153,8 @@ public class StringSolution8 {
     }
 
     // Leetcode problem: 468
-    /*
+
+    /**
      * Validate IP Address.
      * \\d => [0-9]
      * Explanation: https://www.youtube.com/watch?v=EB5FAwHqpm4&list=PLEJXowNB4kPxxaPCDVrZhSvW3NSD6ATaS&index=16
@@ -170,7 +175,8 @@ public class StringSolution8 {
     }
 
     // Leetcode problem: 2512
-    /*
+
+    /**
      * Reward Top K Students.
      * */
     public List<Integer> topStudents(String[] positive_feedback, String[] negative_feedback, String[] report,
@@ -209,7 +215,8 @@ public class StringSolution8 {
     }
 
     // Leetcode problem: 2446
-    /*
+
+    /**
      * Determine if Two Events Have Conflict.
      * */
     public boolean haveConflict(String[] event1, String[] event2) {
@@ -227,7 +234,8 @@ public class StringSolution8 {
 
 
     // Leetcode problem: 1071
-    /*
+
+    /**
      * Greatest Common Divisor of Strings.
      * */
     public String gcdOfStrings(String str1, String str2) {
@@ -253,7 +261,8 @@ public class StringSolution8 {
     }
 
     // Leetcode problem: 2306
-    /*
+
+    /**
      * Naming a Company.
      * Explanation: https://www.youtube.com/watch?v=NrHpgTScOcY.
      * */
@@ -293,7 +302,8 @@ public class StringSolution8 {
     }
 
     // Leetcode problem: 151
-    /*
+
+    /**
      * Reverse Words in a String
      * */
     public String reverseWords(String s) {
@@ -318,7 +328,8 @@ public class StringSolution8 {
     }
 
     // Leetcode problem: 1647
-    /*
+
+    /**
      * Minimum Deletion to Make Character Frequencies Unique
      * Explanation: https://www.youtube.com/watch?v=h8AZEN49gTc
      * */
@@ -346,7 +357,8 @@ public class StringSolution8 {
 
 
     // Leetcode problem: 792
-    /*
+
+    /**
      * Number of Matching Subsequences.
      * Explanation: https://www.youtube.com/watch?v=lcPamGx_8v8
      * */
@@ -406,7 +418,8 @@ public class StringSolution8 {
     }
 
     // Leetcode problem: 670
-    /*
+
+    /**
      * Maximum Swap.
      * */
     public int maximumSwap(int num) {

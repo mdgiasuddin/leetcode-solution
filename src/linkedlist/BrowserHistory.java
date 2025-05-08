@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 // Leetcode problem: 1472
-/*
+
+/**
  * Design Browser History.
  * */
 public class BrowserHistory {

@@ -12,7 +12,8 @@ public class DynamicProgramming {
     }
 
     // Leetcode problem: 62
-    /*
+
+    /**
      * dp[i][j] = dp[i-1][j] + dp[i][j-1]
      * Either from left or from up
      * */
@@ -87,7 +88,8 @@ public class DynamicProgramming {
     }
 
     // Leetcode problem: 70
-    /*
+
+    /**
      * This is same as fibonacci series
      * */
     public int climbStairs(int n) {
@@ -108,7 +110,8 @@ public class DynamicProgramming {
     }
 
     // Leetcode problem: 120
-    /*
+
+    /**
      *           [[2],[3,4],[6,5,7],[4,1,8,3]]
      *                       2
      *                     3   4
@@ -133,7 +136,8 @@ public class DynamicProgramming {
     }
 
     // Leetcode problem: 279
-    /*
+
+    /**
      * Build up a dp table
      * dp[i] = minimum of 1 + dp[i-j*j] for any i-j*j >= 0
      * 1 for 1 square j*j and others for dp[i-j*j]
@@ -171,7 +175,8 @@ public class DynamicProgramming {
 
 
     // Leetcode problem: 403
-    /*
+
+    /**
      * Build up a set for every stone how many jumps are possible
      * */
     public boolean canCross(int[] stones) {
@@ -210,7 +215,7 @@ public class DynamicProgramming {
 
     // Leetcode problem: 518
     public int change(int amount, int[] coins) {
-        /*int[][] dp = new int[coins.length][amount + 1];
+        /**int[][] dp = new int[coins.length][amount + 1];
 
         // For amount 0 the option is always 1 (Omit all the coins)
         for (int row = 0; row < coins.length; row++) {
@@ -266,14 +271,15 @@ public class DynamicProgramming {
     }
 
     // Leetcode problem: 413
-    /*
+
+    /**
      * [1, 2, 3, 4, 5, 7, 9, 11] => [1, 2, 3, 4, 5] & [5, 7, 9, 11] can be used to build slices
      * With [1, 2, 3, 4, 5] 1 + 2 + 3 slices can be build with 5, 4, 3 elements respectively
      * When an element's difference is matched with previous one then the slice number for this element
      * will be 1 more than the previous index
      * */
     public int numberOfArithmeticSlices(int[] nums) {
-        /*int[] dp = new int[nums.length];
+        /**int[] dp = new int[nums.length];
         int result = 0;
 
         for (int i = 2; i < nums.length; i++) {
@@ -302,7 +308,8 @@ public class DynamicProgramming {
     }
 
     // Leetcode problem: 673
-    /*
+
+    /**
      * Build up 2 array. 1 for length of LIS, another for the count of path to build the LIS
      * Sum up the count of path for maximum LIS
      * */
@@ -342,7 +349,8 @@ public class DynamicProgramming {
     }
 
     // Letcode problem: 397
-    /*
+
+    /**
      * DP with memoization
      * It can be done by greedy solution
      * For odd, if n = 4x + 1 or 3 then go to n-1 otherwise n + 1
@@ -379,7 +387,8 @@ public class DynamicProgramming {
     // Leetcode problem: 714
 
     // Leetcode problem: 935
-    /*
+
+    /**
      *          1    2   3
      *          4    5   6
      *          7    8   9
@@ -391,7 +400,7 @@ public class DynamicProgramming {
 
         int MOD = 1000000007;
 
-        /*int[][] dp = new int[n][10];
+        /**int[][] dp = new int[n][10];
         // dp[i][j] means the number of path after i step ending at j
         // After 1 step, ending at any position the path will be 1. Just place the night to that position
         Arrays.fill(dp[0], 1);

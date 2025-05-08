@@ -9,7 +9,7 @@ public class SlidingWindowSolution3 {
 
     }
 
-    /*
+    /**
      * TikTok interview question.
      * The question is asked to Khalid.
      * Number of 1 bit of a subarray, of which the logical or value lies within the given range.

@@ -8,7 +8,8 @@ public class SlidingWindowSolution {
     }
 
     // Leetcode problem: 3
-    /*
+
+    /**
      * Build a map to store the character in current window.
      * If a character repeats then remove the character until the repeating character found.
      * Else update the maximum length so far.
@@ -31,7 +32,8 @@ public class SlidingWindowSolution {
     }
 
     // Leetcode problem: 121
-    /*
+
+    /**
      * Maintain two value, left for buy and right for sell
      * */
     public int maxProfit(int[] prices) {
@@ -53,7 +55,8 @@ public class SlidingWindowSolution {
     }
 
     // Leetode problem: 187
-    /*
+
+    /**
      * Solve the problem by sliding window
      * Instead of storing string calculate hash value and store.
      * Keep track if the string has been taken in result or not
@@ -133,7 +136,8 @@ public class SlidingWindowSolution {
     }
 
     // Leetcode problem: 567
-    /*
+
+    /**
      * Compare with counter by sliding window
      * */
     public boolean checkInclusion(String s1, String s2) {
@@ -157,7 +161,7 @@ public class SlidingWindowSolution {
                 return true;
             }
 
-            /*
+            /**
              * If i traversed more than the pattern length then restore the counter of leftmost character of current window
              * */
             if (i >= s1.length() - 1) {
@@ -172,7 +176,8 @@ public class SlidingWindowSolution {
     }
 
     // Leetcode problem: 438
-    /*
+
+    /**
      * Solve the problem by sliding window
      * See Leetcode problem: 567
      * */
@@ -286,7 +291,8 @@ public class SlidingWindowSolution {
     }
 
     // Leetcode problem: 209
-    /*
+
+    /**
      * This problem is similar to max frequency (Leetcode problem: 1838)
      * */
     public int minSubArrayLen(int target, int[] nums) {
@@ -322,7 +328,8 @@ public class SlidingWindowSolution {
     }
 
     // Leetcode prolbem: 862
-    /*
+
+    /**
      * This problem is the extension of Leetcode problem: 209
      * This problem allows negative numbers.
      * Use Deque to track the window.

@@ -8,7 +8,8 @@ import java.util.Map;
 public class ArraySolution8 {
 
     // Leetcode problem: 764
-    /*
+
+    /**
      * Largest Plus Sign.
      * Explanation: https://www.youtube.com/watch?v=Sa5SUrf04g0&list=PLEvw47Ps6OBDcuLQ8FJZ7gc8rLOVXMjbL&index=7
      * Calculate prefix sum of four sides => left, right, up, down.
@@ -55,7 +56,8 @@ public class ArraySolution8 {
     }
 
     // Leetcode problem: 31
-    /*
+
+    /**
      * Next Permutation.
      * Explanation: https://www.youtube.com/watch?v=6qXO72FkqwM
      * */
@@ -77,7 +79,7 @@ public class ArraySolution8 {
             return;
         }
 
-        /*
+        /**
          * Smaller element is in the index (i - 1). Find the greater element than [i - 1] on the right side.
          * Swap with [i - 1]
          * Reverse the right side of i - 1 so that it will be ascending order.
@@ -105,7 +107,8 @@ public class ArraySolution8 {
     }
 
     // Leetcode problem: 2483
-    /*
+
+    /**
      * Minimum Penalty for a Shop.
      * */
     public int bestClosingTime(String customers) {
@@ -131,7 +134,8 @@ public class ArraySolution8 {
     }
 
     // Leetcode problem: 2366
-    /*
+
+    /**
      * Minimum Replacements to Sort the Array
      * Explanation: https://www.youtube.com/watch?v=UCgbJzoSaSQ&t=1s
      * */
@@ -155,7 +159,8 @@ public class ArraySolution8 {
     }
 
     // Leetcode problem: 1351
-    /*
+
+    /**
      * Count Negative Numbers in a Sorted Matrix.
      * This problem is similar to => Leetcode problem: 240
      * */
@@ -179,7 +184,8 @@ public class ArraySolution8 {
     }
 
     // Leetcode problem: 315
-    /*
+
+    /**
      * Count of Smaller Numbers After Self.
      * Merge sort algorithm (reverse order).
      * */
@@ -262,7 +268,8 @@ public class ArraySolution8 {
     }
 
     // Leetcode problem: 581
-    /*
+
+    /**
      * Shortest Unsorted Continuous Subarray.
      * Explanation: https://www.youtube.com/watch?v=YUt72nsLAIc
      * */
@@ -294,7 +301,8 @@ public class ArraySolution8 {
     }
 
     // Leetcode problem: 845
-    /*
+
+    /**
      * Longest Mountain in Array.
      * Explanation: https://www.youtube.com/watch?v=rh2Bkul2zzQ
      * */
@@ -332,7 +340,8 @@ public class ArraySolution8 {
     }
 
     // Leetcode problem: 697
-    /*
+
+    /**
      * Degree of an Array.
      * Explanation: https://www.youtube.com/watch?v=7wT5sFELf7Qo
      * */
@@ -362,7 +371,8 @@ public class ArraySolution8 {
     }
 
     // Leetcode problem: 493
-    /*
+
+    /**
      * Reverse Pairs.
      * Explanation: https://www.youtube.com/watch?v=Uf-27aFXhHY
      * Merge sort.

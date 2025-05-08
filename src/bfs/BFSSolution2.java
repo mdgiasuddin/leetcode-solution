@@ -8,7 +8,8 @@ public class BFSSolution2 {
     }
 
     // Leetcode problem: 854
-    /*
+
+    /**
      * K-Similar Strings
      * Go to every child after swapping a character
      * */
@@ -93,7 +94,8 @@ public class BFSSolution2 {
     }
 
     // Leetcode problem: 1162
-    /*
+
+    /**
      * Maximum distance from land.
      * BFS solution.
      * */
@@ -184,7 +186,8 @@ public class BFSSolution2 {
     }
 
     // Leetcode problem: 1293
-    /*
+
+    /**
      * Shortest Path in a Grid with Obstacles Elimination.
      * Track how many obstacles still can be removed.
      * Visited array will be 3 dimensional. Add extra layer of obstacles remove capacity.
@@ -276,7 +279,8 @@ public class BFSSolution2 {
     }
 
     // Leetcode problem: 838
-    /*
+
+    /**
      * Push Dominoes.
      * */
     public String pushDominoes(String dominoes) {
@@ -316,7 +320,8 @@ public class BFSSolution2 {
     }
 
     // Leetcode problem: 834
-    /*
+
+    /**
      * Sum of Distances in Tree.
      * Explanation: https://www.youtube.com/watch?v=T81Bpx2OmS4
      * */
@@ -356,7 +361,7 @@ public class BFSSolution2 {
 
     }
 
-    /*
+    /**
      * Calculate distance for the root node (0) & number of nodes rooted at all nodes.
      * */
     private int dfsNode(int node, int parent, List<List<Integer>> graph, int[] parents, int[] subtree, int[] res, int depth) {
@@ -374,7 +379,8 @@ public class BFSSolution2 {
     }
 
     // Leetcode problem: 1091
-    /*
+
+    /**
      * Shortest Path in Binary Matrix.
      * */
     public int shortestPathBinaryMatrix(int[][] grid) {

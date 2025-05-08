@@ -6,7 +6,8 @@ import java.util.stream.Collectors;
 public class DFSSolution4 {
 
     // Leetcode problem: 1443
-    /*
+
+    /**
      * Minimum Time to Collect All Apples in a Tree.
      * */
     public int minTime(int n, int[][] edges, List<Boolean> hasApple) {
@@ -42,7 +43,8 @@ public class DFSSolution4 {
     }
 
     // Leetcode problem: 472
-    /*
+
+    /**
      * Concatenated Words.
      * Explanation: https://www.youtube.com/watch?v=iHp7fjw1R28
      * */
@@ -80,7 +82,8 @@ public class DFSSolution4 {
     }
 
     // Leetcode problem: 1519
-    /*
+
+    /**
      * Number of Nodes in the Sub-Tree With the Same Label.
      * Explanation: https://www.youtube.com/watch?v=X8WZApluMEw&list=PLy38cn8b_xMfO7CGsUDIsYGps37yKaQ9X&index=42
      * */
@@ -119,7 +122,8 @@ public class DFSSolution4 {
     }
 
     // Leetcode problem: 2477
-    /*
+
+    /**
      * Minimum Fuel Cost to Report to the Capital.
      * Explanation: https://www.youtube.com/watch?v=O7Z0kiWVk5c&list=PLy38cn8b_xMfO7CGsUDIsYGps37yKaQ9X&index=44
      * */
@@ -154,7 +158,8 @@ public class DFSSolution4 {
     }
 
     // Leetcode problem: 2492
-    /*
+
+    /**
      * Minimum Score of a Path Between Two Cities.
      * Since 1 & n lies in the same connected component, visit all the path from 1 and find the minimum path.
      * */
@@ -187,7 +192,8 @@ public class DFSSolution4 {
     }
 
     // Leetcode problem: 2246
-    /*
+
+    /**
      * Longest Path With Different Adjacent Characters.
      * This problem is similar to:  Diameter of Binary Tree (Leetcode problem: 543),
      * Binary Tree Maximum Path Sum (Leetcode problem: 124).
@@ -221,7 +227,8 @@ public class DFSSolution4 {
     }
 
     // Leetcode problem: 2503
-    /*
+
+    /**
      * Maximum Number of Points From Grid Queries.
      * Explanation: https://www.youtube.com/watch?v=zZWSZM7fboI&list=PLy38cn8b_xMenERa6pKdmc2hfQHKBUfZP&index=8
      * */
@@ -274,7 +281,8 @@ public class DFSSolution4 {
     }
 
     // Leetcode problem: 1462
-    /*
+
+    /**
      * Course Schedule IV.
      * Explanation: https://www.youtube.com/watch?v=cEW05ofxhn0&t=29s
      * */
@@ -317,7 +325,8 @@ public class DFSSolution4 {
     }
 
     // Leetcode problem: 1857
-    /*
+
+    /**
      * Largest Color Value in a Directed Graph.
      * Explanation: https://www.youtube.com/watch?v=xLoDjKczUSk
      * */
@@ -385,7 +394,8 @@ public class DFSSolution4 {
     }
 
     // Leetcode problem: 785
-    /*
+
+    /**
      * Is Graph Bipartite?
      * */
     public boolean isBipartite(int[][] graph) {

@@ -13,7 +13,8 @@ public class BitOperation {
     }
 
     // Leetcode problem: 371
-    /*
+
+    /**
      * Get sum without '+' and '-'.
      * This solution is tricky.
      * */
@@ -29,7 +30,8 @@ public class BitOperation {
     }
 
     // Leetcode problem: 338
-    /*
+
+    /**
      * Dynamic programming.
      * */
     public int[] countBits(int n) {
@@ -57,7 +59,8 @@ public class BitOperation {
     }
 
     // Leetcode problem: 201
-    /*
+
+    /**
      * Bitwise AND of Numbers Range
      * Code source: https://www.youtube.com/watch?v=-qrpJykY2gE&list=PLEJXowNB4kPwCPVjDv6KsAsThtDOCQUok&index=23
      * */
@@ -74,7 +77,8 @@ public class BitOperation {
     }
 
     // Leetcode problem: 1680
-    /*
+
+    /**
      * Concatenation of Consecutive Binary Numbers.
      * Explanation: https://www.youtube.com/watch?v=ttlNQ6YrdGs&list=PLEJXowNB4kPwa5VPvdQ1U3B2yaogEGDjX&index=32
      * */
@@ -93,7 +97,8 @@ public class BitOperation {
     }
 
     // Leetcode problem: 2433
-    /*
+
+    /**
      * Find The Original Array of Prefix Xor.
      * pref[i] = original[0] ^ original[1] ^ ... ^ original[i]
      * To get back original[i] XOR pref[i] with original[0] ^ original[1] ^ ... ^ original[i - 1]
@@ -109,7 +114,8 @@ public class BitOperation {
     }
 
     // Leetcode problem: 2457
-    /*
+
+    /**
      * Minimum Addition to Make Integer Beautiful.
      * Explanation: https://www.youtube.com/watch?v=WnYxU-fDNe0&list=PLy38cn8b_xMfO7CGsUDIsYGps37yKaQ9X&index=13
      * */
@@ -135,7 +141,8 @@ public class BitOperation {
     }
 
     // Leetcode problem: 1470
-    /*
+
+    /**
      * Shuffle the Array.
      * Explanation:
      * This problem can easily be solved using extra space.

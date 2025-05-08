@@ -20,7 +20,8 @@ public class StringSolution2 {
     }
 
     // Leetcode problem: 224
-    /*
+
+    /**
      * Basic Calculator
      * DFS
      * Every time get a '(' DFS to the next level
@@ -59,7 +60,8 @@ public class StringSolution2 {
     }
 
     // Leetcode problem: 179
-    /*
+
+    /**
      * Compare two numbers by joining them
      * */
     public String largestNumber(int[] nums) {
@@ -76,7 +78,8 @@ public class StringSolution2 {
     }
 
     // Leetcode problem: 205
-    /*
+
+    /**
      * Isomorphic String
      * Use HashMap to store the mappings of character
      * */
@@ -100,7 +103,8 @@ public class StringSolution2 {
 
 
     // Leetcode problem: 214
-    /*
+
+    /**
      * Shortest palindrome
      * Build KMP table to find the longest suffix which is also a prefix
      * */
@@ -138,7 +142,8 @@ public class StringSolution2 {
 
     // Leetcode problem: 316
     // Leetcode problem: 1081
-    /*
+
+    /**
      * Build up a counter array of number of occurrences of character.
      * Compare every character with the last taken character.
      * Remove if the character is greater and there is another character later.
@@ -173,7 +178,8 @@ public class StringSolution2 {
     }
 
     // Leetcode problem: 451
-    /*
+
+    /**
      * Build up a list of vowel index of the string
      * Then reverse the vowels of that string
      * */
@@ -200,7 +206,8 @@ public class StringSolution2 {
     }
 
     // Leetcode problem: 336
-    /*
+
+    /**
      * Build up a counter map of characters
      * Sorts the map according to value
      * Then build up the result string
@@ -231,7 +238,8 @@ public class StringSolution2 {
     }
 
     // Leetcode problem: 387
-    /*
+
+    /**
      * Build up counter of character
      * Then traverse the string and find the first character of count 1
      * */
@@ -248,7 +256,8 @@ public class StringSolution2 {
     }
 
     // Leetcode problem: 459
-    /*
+
+    /**
      * Check every substring of length 1 to len/2 which are divisor of len
      * */
     public boolean repeatedSubstringPattern(String s) {
@@ -268,7 +277,8 @@ public class StringSolution2 {
     }
 
     // Leetcode problem: 541
-    /*
+
+    /**
      * Partition and process the substrings
      * */
     public String reverseStr(String s, int k) {
@@ -300,7 +310,8 @@ public class StringSolution2 {
     }
 
     // Leetcode problem 796
-    /*
+
+    /**
      * If two strings are rotation of each other doubling one string have the other string
      * */
     public boolean rotateString(String s, String goal) {
@@ -309,7 +320,8 @@ public class StringSolution2 {
 
 
     // Leetcode problem: 640
-    /*
+
+    /**
      * Calculate left x coefficient and constants
      * Subtract right x coefficient and constants from left side
      * Then find the final result
@@ -386,7 +398,8 @@ public class StringSolution2 {
     }
 
     // Leetcode problem: 647
-    /*
+
+    /**
      * Count odd length palindrome and even length palindrome centering from every index.
      * */
     public int countSubstrings(String s) {
@@ -412,7 +425,7 @@ public class StringSolution2 {
     }
 
     // Leetcode problem: 474
-    /*
+    /**
      * 0-1 Knapsack problem
      * */
 }

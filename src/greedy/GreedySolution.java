@@ -9,7 +9,8 @@ public class GreedySolution {
     }
 
     // Leetcode problem: 376
-    /*
+
+    /**
      * This solution is tricky
      * Count the ups and down of the array
      * If up or down come consecutively then consider it a single element
@@ -22,7 +23,7 @@ public class GreedySolution {
         int up, down;
         up = down = 1;
 
-        /*
+        /**
          * If up or down values comes consecutively then up values then nothing will happen
          * If they come alternatively then up and down will be increased
          * */
@@ -39,7 +40,8 @@ public class GreedySolution {
     }
 
     // Leetcode problem: 435
-    /*
+
+    /**
      * Sort the intervals based on start.
      * Compare adjacent intervals whether overlap with previous one.
      * If no overlap then only update the previous end.
@@ -64,7 +66,8 @@ public class GreedySolution {
     }
 
     // Leetcode problem: 1029
-    /*
+
+    /**
      * Sort the array based on the difference between ai and bi
      * From first half take ai and from second half take bi
      * */

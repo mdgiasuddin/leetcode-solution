@@ -29,7 +29,8 @@ public class DynamicProgramming2 {
     }
 
     // Leetcode problem: 152
-    /*
+
+    /**
      * This solution is tricky.
      * */
     public int maxProduct(int[] nums) {
@@ -77,7 +78,8 @@ public class DynamicProgramming2 {
     }
 
     // Leetcode problem: 740
-    /*
+
+    /**
      * This problem is similar to House Robber I (Leetcode problem: 198).
      * Sort the numbers and build up a counter of the elements and remove the duplicates.
      * */
@@ -121,13 +123,14 @@ public class DynamicProgramming2 {
     }
 
     // Leetcode problem: 1911
-    /*
+
+    /**
      * The solution is little tricky.
      * */
     public long maxAlternatingSum(int[] nums) {
         long sumEven = 0, sumOdd = 0;
 
-        /*
+        /**
          * Even sum can be made by previous even sum or previous odd sum + num
          * Odd sum can be made by previous odd sum or previous even sum - num
          * */
@@ -142,7 +145,8 @@ public class DynamicProgramming2 {
     }
 
     // Leetcode problem: 1866
-    /*
+
+    /**
      * If the largest stick is set to the last then 1 stick always visible.
      * If another stick smaller than the largest set to the last, the stick will always invisible.
      * So, DP[n][k] = dp[n - 1][k - 1] + (n - 1) * dp[n - 1][k].
@@ -199,7 +203,7 @@ public class DynamicProgramming2 {
 
         int[] dp = {0, 0, 0};
 
-        /*
+        /**
          * Two adjacent house cannot be painted with same color.
          * So, if costs[0] is taken for the current house, then take the minimum or dp[0], dp[1] of the previous house.
          * dp[0], dp[1], d[2] stores the cost of painting ith house with color 0, 1, 2 respectively.
@@ -242,7 +246,8 @@ public class DynamicProgramming2 {
     }
 
     // Leetcode problem: 1220
-    /*
+
+    /**
      * This problem is similar to knight dialer (Leetcode problem: 935).
      * a -> e, e - > (a, i), i -> (a, e, o, u), o -> (i, u), u -> a.
      * So, a <- (e, i, u), e <- (a, i), i <- (e, o), o <- i, u <- (i, o).
@@ -287,7 +292,7 @@ public class DynamicProgramming2 {
         for (int i = 2; i <= strLen; i++) {
             char ch = s.charAt(i - 1);
 
-            /*
+            /**
              * If the character is new then dp[i] will be doubled dp[i-1].
              * For example "abcbd" -> dp[2] = "", "a", "b", "ab" dp[3] = will be the previous all and 'b' appended with all previous.
              * So, extra string will be added. "c", "ac", "bc", "abc".
@@ -308,7 +313,8 @@ public class DynamicProgramming2 {
     }
 
     // Leetcode problem: 221
-    /*
+
+    /**
      * Dynamic programming
      * Dp[i][j] = if matrix[i][j] == 1 then 1 + min(dp[i-1][j-1], dp[i-1][j], dp[i][j-1]), otherwise 0
      * Memory can be optimized.
@@ -346,7 +352,8 @@ public class DynamicProgramming2 {
     }
 
     // Leetcode problem: 1277
-    /*
+
+    /**
      * Count Square Submatrices with All Ones.
      * This problem is similar to Maximal Square (Leetcode problem: 221).
      * */
@@ -384,7 +391,8 @@ public class DynamicProgramming2 {
     }
 
     // Leetcode problem: 1035
-    /*
+
+    /**
      * Uncrossed Lines.
      * Code source: https://www.youtube.com/watch?v=duCx_62nMOA&list=PLEJXowNB4kPwR6C6yq3BzS-Jkyc6XE8kE&index=25
      * */

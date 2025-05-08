@@ -39,13 +39,14 @@ public class RecursiveDP2 {
     }
 
     // Leetcode problem: 309
-    /*
+
+    /**
      * Code source: https://www.youtube.com/watch?v=4wNXkhAky3s
      * */
     public int maxProfit(int[] prices) {
 
         // This is the efficient solution.
-        /*
+        /**
         int n = prices.length;
         int [] noStock = new int[n];
         int [] bought = new int[n];
@@ -90,7 +91,8 @@ public class RecursiveDP2 {
     }
 
     // Leetcode problem: 714
-    /*
+
+    /**
      * This solution is similar to the efficient approach of buy, sell with cool down -
      * Leetcode problem: 309
      * */
@@ -109,7 +111,8 @@ public class RecursiveDP2 {
     }
 
     // Leetcode problem: 1658
-    /*
+
+    /**
      * Minimum Operations to Reduce X to Zero.
      * Recursive solution exceeds the time limit.
      * Optimize the code like Sub-array Sum Equals K (Leetcode problem: 560).
@@ -163,7 +166,8 @@ public class RecursiveDP2 {
     }
 
     // Leetcode problem: 1335
-    /*
+
+    /**
      * Minimum Difficulty of a Job Schedule.
      * Code source: https://www.youtube.com/watch?v=pmQAtRZ3CuE
      * */
@@ -207,7 +211,8 @@ public class RecursiveDP2 {
     }
 
     // Leetcode problem: 741
-    /*
+
+    /**
      * Cherry Pickup.
      * Explanation: https://www.youtube.com/watch?v=ZV0sUzfA7Eg
      * */
@@ -257,7 +262,8 @@ public class RecursiveDP2 {
     }
 
     // Leetcode problem: 474
-    /*
+
+    /**
      * Ones and Zeroes.
      * Explanation: https://www.youtube.com/watch?v=miZ3qV04b1g
      * */
@@ -293,7 +299,8 @@ public class RecursiveDP2 {
     }
 
     // Leetcode problem: 2218
-    /*
+
+    /**
      * Maximum Value of K Coins From Piles.
      * Explanation: https://www.youtube.com/watch?v=ZRdEd_eun8g
      * */
@@ -329,7 +336,8 @@ public class RecursiveDP2 {
     }
 
     // Leetcode problem: 879
-    /*
+
+    /**
      * Profitable Schemes.
      * Explanation: https://www.youtube.com/watch?v=CcLKQLKvOl8&t=514s
      * Recursive solution exceeds the time limit.
@@ -361,7 +369,8 @@ public class RecursiveDP2 {
     }
 
     // Leetcode problem: 1547
-    /*
+
+    /**
      * Minimum Cost to Cut a Stick.
      * Explanation: https://www.youtube.com/watch?v=EVxTO5I0d7w
      * */
@@ -396,7 +405,8 @@ public class RecursiveDP2 {
     }
 
     // Leetcode solution: 95
-    /*
+
+    /**
      * Unique Binary Search Trees II
      * Explanation: https://www.youtube.com/watch?v=m907FlQa2Yc
      * */

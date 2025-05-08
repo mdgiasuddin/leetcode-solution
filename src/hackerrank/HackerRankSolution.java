@@ -12,7 +12,7 @@ public class HackerRankSolution {
         decentNumber(11);
     }
 
-    /*
+    /**
      * Hacker Rank: https://www.hackerrank.com/challenges/non-divisible-subset/problem?isFullScreen=true
      * Explanation: https://www.geeksforgeeks.org/subset-no-pair-sum-divisible-k/
      * */
@@ -36,7 +36,7 @@ public class HackerRankSolution {
 
     }
 
-    /*
+    /**
      * Hacker Rank: https://www.hackerrank.com/challenges/queens-attack-2/problem?isFullScreen=true
      * */
     public static int queensAttack(int n, int k, int r_q, int c_q, List<List<Integer>> obstacles) {
@@ -62,7 +62,7 @@ public class HackerRankSolution {
 
     }
 
-    /*
+    /**
      * Hacker Rank: https://www.hackerrank.com/challenges/flatland-space-stations/problem?isFullScreen=true
      * Multi-source BFS
      * */
@@ -97,7 +97,7 @@ public class HackerRankSolution {
         return distance;
     }
 
-    /*
+    /**
      * Hacker Rank: https://www.hackerrank.com/challenges/3d-surface-area/problem?isFullScreen=true
      * Explanation: https://www.youtube.com/watch?v=tIG0GF2EqjE
      * */
@@ -142,7 +142,7 @@ public class HackerRankSolution {
     }
 
 
-    /*
+    /**
      * Hacker Rank: https://www.hackerrank.com/challenges/absolute-permutation/problem?isFullScreen=true
      * Explanation: https://www.youtube.com/watch?v=Z0bpJiVz0no
      * */
@@ -236,7 +236,7 @@ public class HackerRankSolution {
 
     }
 
-    /*
+    /**
      * Hacker Rank: https://www.hackerrank.com/challenges/two-characters/problem?isFullScreen=true
      * */
     public static int alternate(String s) {
@@ -298,7 +298,7 @@ public class HackerRankSolution {
         return true;
     }
 
-    /*
+    /**
      * Hacker Rank: https://www.hackerrank.com/challenges/weighted-uniform-string/problem?isFullScreen=true
      * */
     public static List<String> weightedUniformStrings(String s, List<Integer> queries) {
@@ -331,7 +331,7 @@ public class HackerRankSolution {
 
     }
 
-    /*
+    /**
      * Hacker Rank: https://www.hackerrank.com/challenges/beautiful-pairs/problem?isFullScreen=true
      * Explanation: https://www.youtube.com/watch?v=yKNhg5vWqKY
      * */
@@ -364,7 +364,7 @@ public class HackerRankSolution {
 
     }
 
-    /*
+    /**
      * Hacker Rank: https://www.hackerrank.com/challenges/the-power-sum/problem?isFullScreen=true
      * Explanation: https://www.youtube.com/watch?v=AIw5ljcTuyg
      * */
@@ -404,7 +404,7 @@ public class HackerRankSolution {
 
     }
 
-    /*
+    /**
      * Hacker Rank: https://www.hackerrank.com/challenges/down-to-zero-ii/problem?isFullScreen=true
      * BFS Solution.
      * Explanation: https://www.youtube.com/watch?v=uuyThZv2Vis

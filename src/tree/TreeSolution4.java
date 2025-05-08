@@ -11,7 +11,8 @@ import java.util.Queue;
 public class TreeSolution4 {
 
     // Leetcode problem: 1372
-    /*
+
+    /**
      * Amazon interview question.
      * */
     public int longestZigZag(TreeNode root) {
@@ -35,7 +36,8 @@ public class TreeSolution4 {
     }
 
     // Leetcode problem: 508
-    /*
+
+    /**
      * Most Frequent Subtree Sum.
      * Calculate sum for each subtree by postorder traversal & store the count of the sum.
      * Then find the sum which has the maximum count.
@@ -166,7 +168,8 @@ public class TreeSolution4 {
     }
 
     // Leetcode problem: 222
-    /*
+
+    /**
      * Code source: Tech Dose
      * */
     public int countNodes(TreeNode root) {
@@ -232,7 +235,8 @@ public class TreeSolution4 {
     }
 
     // Leetcode problem: 2471
-    /*
+
+    /**
      * Minimum Number of Operations to Sort a Binary Tree by Level.
      * Explanation: https://www.youtube.com/watch?v=6mONZ_54rZg
      * */
@@ -284,7 +288,8 @@ public class TreeSolution4 {
     }
 
     // Leetcode problem: 1026
-    /*
+
+    /**
      * Maximum Difference Between Node and Ancestor.
      * Explanation: https://www.youtube.com/watch?v=I7AbFkrBhdE&list=PLy38cn8b_xMfO7CGsUDIsYGps37yKaQ9X&index=32
      * Keep track & update maximum & minimum value along the path.
@@ -306,7 +311,8 @@ public class TreeSolution4 {
     }
 
     // Leetcode problem: 2509
-    /*
+
+    /**
      * Cycle Length Queries in a Tree.
      * Explanation: https://www.youtube.com/watch?v=VPRzdxjtuDc&list=PLy38cn8b_xMcndJK8oK6Wmk_JPvnIrGFT&index=7
      * Determine the path length from the nodes to the lowest common ancestor.
@@ -339,7 +345,8 @@ public class TreeSolution4 {
     }
 
     // Leetcode problem: 652
-    /*
+
+    /**
      * Find Duplicate Subtrees.
      * */
     public List<TreeNode> findDuplicateSubtrees(TreeNode root) {

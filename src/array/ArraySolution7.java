@@ -5,7 +5,8 @@ import java.util.*;
 public class ArraySolution7 {
 
     // Leetcode problem: 60
-    /*
+
+    /**
      * Permutation Sequence.
      * Explanation: https://www.youtube.com/watch?v=W9SIlE2jhBQ&list=PLEJXowNB4kPzC3OYy2LRovf_xb8JjAMEF&index=2
      * */
@@ -43,7 +44,8 @@ public class ArraySolution7 {
     }
 
     // Leetcode problem: 149
-    /*
+
+    /**
      * Max Points on a Line.
      * Calculate slope of every point with ith point and count the max.
      * */
@@ -77,7 +79,8 @@ public class ArraySolution7 {
     }
 
     // Leetcode problem: 2515
-    /*
+
+    /**
      * Shortest Distance to Target String in a Circular Array.
      * */
     public int closetTarget(String[] words, String target, int startIndex) {
@@ -96,7 +99,8 @@ public class ArraySolution7 {
     }
 
     // Leetcode problem: 498
-    /*
+
+    /**
      * Diagonal Traverse.
      * Explanation: https://www.youtube.com/watch?v=Njt7aZYq0wA&list=PLy38cn8b_xMfO7CGsUDIsYGps37yKaQ9X&index=18
      * For all the diagonal element (i + j) is the same.
@@ -137,7 +141,8 @@ public class ArraySolution7 {
     }
 
     // Leetcode problem: 974
-    /*
+
+    /**
      * Subarray Sums Divisible by K.
      * This is similar to: Subarray Sum Equals K (Leetcode problem: 560).
      * Challenging part is to avoid negative reminder.
@@ -159,7 +164,8 @@ public class ArraySolution7 {
     }
 
     // Leetcode problem: 896
-    /*
+
+    /**
      * Monotonic Array.
      * Explanation: https://www.youtube.com/watch?v=BYH6dreENEA&list=PLy38cn8b_xMfO7CGsUDIsYGps37yKaQ9X&index=21
      * */
@@ -183,7 +189,8 @@ public class ArraySolution7 {
     }
 
     // Leetcode problem: 462
-    /*
+
+    /**
      * Minimum Moves to Equal Array Elements II.
      * Distance from the median is always minimum.
      * */
@@ -201,7 +208,8 @@ public class ArraySolution7 {
     }
 
     // Leetcode problem: 2498
-    /*
+
+    /**
      * Frog Jump II.
      * Explanation: https://www.youtube.com/watch?v=7eqGntQ7-Fs&list=PLy38cn8b_xMfO7CGsUDIsYGps37yKaQ9X&index=48
      * To minimize the jump length, must cover the alternative stones in either forward or backward path.
@@ -221,7 +229,8 @@ public class ArraySolution7 {
     }
 
     // Leetcode problem: 2279
-    /*
+
+    /**
      * Maximum Bags With Full Capacity of Rocks.
      * */
     public int maximumBags(int[] capacity, int[] rocks, int additionalRocks) {
@@ -249,7 +258,8 @@ public class ArraySolution7 {
     }
 
     // Leetcode problem: 452
-    /*
+
+    /**
      * Minimum Number of Arrows to Burst Balloons.
      * */
     public int findMinArrowShots(int[][] points) {
@@ -273,7 +283,8 @@ public class ArraySolution7 {
     }
 
     // Leetcode problem: 2475
-    /*
+
+    /**
      * Number of Unequal Triplets in Array.
      * Explanation: https://www.youtube.com/watch?v=d_CHEvI9gQU&list=PLy38cn8b_xMfazoeC_WDCO80hr_pXU4MA&index=7
      * Result is the sum of the multiplication of the frequency of all distinct triplet.
@@ -298,7 +309,8 @@ public class ArraySolution7 {
     }
 
     // Leetcode problem: 2488
-    /*
+
+    /**
      * Count Subarrays With Median K.
      * Explanation: https://www.youtube.com/watch?v=oLEKpPXUgm4&list=PLy38cn8b_xMfazoeC_WDCO80hr_pXU4MA&index=9
      * */
@@ -337,7 +349,8 @@ public class ArraySolution7 {
     }
 
     // Leetcode problem: 2444
-    /*
+
+    /**
      * Count Subarrays With Fixed Bounds.
      * Explanation: https://www.youtube.com/watch?v=Rbu8pl4NnfQ&list=PLy38cn8b_xMcjNmLdBfY0D8mByFzbpX9Z&index=2
      * */
@@ -369,7 +382,8 @@ public class ArraySolution7 {
     }
 
     // Leetcode problem: 2348
-    /*
+
+    /**
      * Number of Zero-Filled Subarrays.
      * For a sub-array: [0, 0, 0], there are six options 1 + 2 + 3 =>
      * [0, 0, 0], {[0, 0], [0, 0]}, {[0], [0], [0]}
@@ -390,7 +404,8 @@ public class ArraySolution7 {
     }
 
     // Leetcode problem: 1074
-    /*
+
+    /**
      * Number of Submatrices That Sum to Target.
      * This problem is the extension of the target sum of 1D-array.
      * */
@@ -429,7 +444,8 @@ public class ArraySolution7 {
     }
 
     // Leetcode problem: 2439
-    /*
+
+    /**
      * Minimize Maximum of Array.
      * Explanation: https://www.youtube.com/watch?v=AeHMvcKuR0Y
      * */

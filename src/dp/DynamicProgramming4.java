@@ -8,7 +8,8 @@ import java.util.Map;
 public class DynamicProgramming4 {
 
     // Leetcode problem: 2140
-    /*
+
+    /**
      * Solving Questions With Brainpower
      * Explanation: https://www.youtube.com/watch?v=D7TD_ArkfkA
      * */
@@ -27,7 +28,8 @@ public class DynamicProgramming4 {
     }
 
     // Leetcode problem: 446
-    /*
+
+    /**
      * Arithmetic Slices II - Subsequence
      * Explanation: https://www.youtube.com/watch?v=YiQYhXorMAI
      * */
@@ -59,7 +61,8 @@ public class DynamicProgramming4 {
     }
 
     // Leetcode problem: 718
-    /*
+
+    /**
      * Maximum Length of Repeated Subarray.
      * */
     public int findLength(int[] nums1, int[] nums2) {
@@ -82,7 +85,8 @@ public class DynamicProgramming4 {
     }
 
     // Leetcode problem: 650
-    /*
+
+    /**
      * 2 Keys Keyboard.
      * */
     public int minSteps(int n) {
@@ -115,7 +119,8 @@ public class DynamicProgramming4 {
     }
 
     // Leetcode problem: 583
-    /*
+
+    /**
      * Delete Operation for Two Strings.
      * Find the LCS. Then return the sum of deletion from 2 strings.
      * */
@@ -138,7 +143,8 @@ public class DynamicProgramming4 {
     }
 
     // Leetcode problem: 887
-    /*
+
+    /**
      * Super Egg Drop.
      * Explanation: https://www.geeksforgeeks.org/egg-dropping-puzzle-dp-11/
      * TO-DO -> Optimize the solution as it exceeds the time limit.
@@ -169,7 +175,8 @@ public class DynamicProgramming4 {
     }
 
     // Leetcode problem: 688
-    /*
+
+    /**
      * Knight Probability in Chessboard.
      * Explanation: https://www.youtube.com/watch?v=54nJhM2AZv4
      * Maintain 2 state => current & next.
@@ -214,7 +221,8 @@ public class DynamicProgramming4 {
     }
 
     // Leetcode problem: 1043
-    /*
+
+    /**
      * Partition Array for Maximum Sum.
      * Explanation: https://www.youtube.com/watch?v=YtOzNodX_aw
      * This solution is tricky.
@@ -228,7 +236,7 @@ public class DynamicProgramming4 {
             int best = Integer.MIN_VALUE;
 
             for (int j = 1; j <= k && i - j >= 0; j++) {
-                /*
+                /**
                  * arr = [1,15,7,9,2,5,10], k = 3
                  * For element 9 => dp[0, 1, 30, 45, ...]
                  * j = 1 => keep 9 single => dp[i] = 9 + 45.
@@ -246,7 +254,8 @@ public class DynamicProgramming4 {
     }
 
     // Leetcode problem: 576
-    /*
+
+    /**
      * Out of Boundary Paths.
      * Explanation: https://www.youtube.com/watch?v=Bg5CLRqtNmk
      * */

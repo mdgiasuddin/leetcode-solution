@@ -10,7 +10,8 @@ public class StringSolution5 {
     }
 
     // Leetcode problem: 516
-    /*
+
+    /**
      * Dynamic programming
      * See Leetcode problem: 132 & 647
      * */
@@ -45,11 +46,12 @@ public class StringSolution5 {
     }
 
     // Leetcode problem: 91
-    /*
+
+    /**
      * Solve by dynamic programming
      * */
     public int numDecodingsI(String s) {
-        /*
+        /**
         int[] dp = new int[s.length() + 1];
         if (s.charAt(0) == '0')
             return 0;
@@ -105,7 +107,8 @@ public class StringSolution5 {
     }
 
     // Leetcode problem: 639
-    /*
+
+    /**
      * The problem is similar of problem: 91
      * There is '*' character extra
      * Solve by Dynamic programming
@@ -178,12 +181,13 @@ public class StringSolution5 {
     }
 
     // Leetcode problem: 686
-    /*
+    /**
      * Math.ceil(b.length() / a.length()) or Math.ceil(b.length() / a.length()) + 1
      * */
 
     // Leetcode problem: 467
-    /*
+
+    /**
      * Build up a table for every character with the maximum count which maintain serial with previous character
      * Sum up all the counts
      * */
@@ -212,7 +216,8 @@ public class StringSolution5 {
     }
 
     // Leetcode problem: 767
-    /*
+
+    /**
      * Build up a max-priority queue the count of characters
      * Every time append the character with maximum count then second maximum count
      * Update count and reorder the queue

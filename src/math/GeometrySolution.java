@@ -5,7 +5,8 @@ import java.util.*;
 public class GeometrySolution {
 
     // Leetcode problem: 1232
-    /*
+
+    /**
      * Check If It Is a Straight Line.
      * Calculate slope & check if all of them are equal.
      * */
@@ -33,7 +34,8 @@ public class GeometrySolution {
     }
 
     // Leetcode problem: 850
-    /*
+
+    /**
      * Rectangle Area II.
      * Explanation: https://www.youtube.com/watch?v=TIojOkG1E4U&list=PLEvw47Ps6OBA3ysUO1XOho_6bFsqQ9NQ8&index=19
      * */

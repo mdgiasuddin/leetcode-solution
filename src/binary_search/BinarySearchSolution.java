@@ -13,7 +13,8 @@ public class BinarySearchSolution {
     }
 
     // Leetcode problem: 4
-    /*
+
+    /**
      * Binary search
      * [1, 5, 10, 18, 20, 25] [3, 4, 6, 7, 9, 12] => [1, 3, 4, 5, 6 | 7 || 9 | 10, 12, 18, 20, 25]
         Left = 1, 3, 4, 5, 6, 7     Right = 9, 10, 12, 18, 20, 25
@@ -110,7 +111,8 @@ public class BinarySearchSolution {
     }
 
     // Leetcode problem: 410
-    /*
+
+    /**
      * For every value check whether the array can be splitted by m partition
      * */
     public int splitArray(int[] nums, int m) {
@@ -181,7 +183,8 @@ public class BinarySearchSolution {
     }
 
     // Leetcode problem: 658
-    /*
+
+    /**
      * The problem is tricky. Need careful attention.
      * Find the starting position.
      * */
@@ -214,7 +217,8 @@ public class BinarySearchSolution {
     }
 
     // Leetcode problem: 875
-    /*
+
+    /**
      * Try all value from 1 to the largest value by binary search
      * */
     public int minEatingSpeed(int[] piles, int h) {
@@ -297,7 +301,8 @@ public class BinarySearchSolution {
     }
 
     // Leetcode problem: 274
-    /*
+
+    /**
      * A scientist has an index h if h of their n papers have at least h citations each
      * */
     public int hIndex(int[] citations) {
@@ -351,7 +356,8 @@ public class BinarySearchSolution {
     }
 
     // Leetcode problem: 378
-    /*
+
+    /**
      * Kth Smallest Element in a Sorted Matrix.
      * */
     public int kthSmallest(int[][] matrix, int k) {
@@ -373,7 +379,7 @@ public class BinarySearchSolution {
         return low;
     }
 
-    /*
+    /**
      * Count how many numbers are <= to the target number.
      * */
     private int lessEqual(int[][] matrix, int target) {
@@ -397,7 +403,8 @@ public class BinarySearchSolution {
     }
 
     // Leetcode problem: 2517
-    /*
+
+    /**
      * Maximum Tastiness of Candy Basket.
      * Explanation: https://www.youtube.com/watch?v=uHGWEGMCKm4
      * */

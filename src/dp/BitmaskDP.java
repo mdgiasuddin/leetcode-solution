@@ -6,7 +6,8 @@ import java.util.Map;
 public class BitmaskDP {
 
     // Leetcode problem: 2002
-    /*
+
+    /**
      * Maximum Product of the Length of Two Palindromic Subsequences.
      * For all subsequences check whether they are palindrome or not.
      * Then calculate the maximum product of length.
@@ -56,7 +57,8 @@ public class BitmaskDP {
     }
 
     // Leetcode problem: 2151
-    /*
+
+    /**
      * Maximum Good People Based on Statements.
      * Explanation: https://www.youtube.com/watch?v=v7sr-1Zbh6k&list=PLy38cn8b_xMcjNmLdBfY0D8mByFzbpX9Z
      * */

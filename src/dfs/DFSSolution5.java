@@ -16,7 +16,8 @@ public class DFSSolution5 {
     }
 
     // Leetcode problem: 2101
-    /*
+
+    /**
      * Detonate the Maximum Bombs.
      * Explanation: https://www.youtube.com/watch?v=8NPbAvVXKR4
      * */
@@ -64,7 +65,8 @@ public class DFSSolution5 {
     }
 
     // Leetcode problem: 565
-    /*
+
+    /**
      * Array Nesting
      * https://www.youtube.com/watch?v=91rjaoOnt6Q&list=PLEvw47Ps6OBDcuLQ8FJZ7gc8rLOVXMjbL
      * 0 -> 2 -> 5 -> 1 -> 0 :=> All elements lies in the same cycle always returns same result.
@@ -93,7 +95,8 @@ public class DFSSolution5 {
     }
 
     // Leetcode problem: 797
-    /*
+
+    /**
      * All Paths From Source to Target
      * */
     public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
@@ -119,7 +122,8 @@ public class DFSSolution5 {
     }
 
     // Leetcode problem: 947
-    /*
+
+    /**
      * Most Stones Removed with Same Row or Column.
      * Find the number of connected component. For each connected component only 1 stone will be alive.
      * 2 Stones are neighbor if they are in same row or column.
@@ -163,7 +167,8 @@ public class DFSSolution5 {
     }
 
     // Leetcode problem: 2115
-    /*
+
+    /**
      * Find All Possible Recipes from Given Supplies
      * */
     public List<String> findAllRecipes(String[] recipes, List<List<String>> ingredients, String[] supplies) {

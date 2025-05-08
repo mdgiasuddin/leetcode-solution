@@ -8,7 +8,7 @@ import java.util.Map;
 public class FreqStack {
 
     // Leetcode problem: 895
-    /*
+    /**
      * Build up count map for each element and map for max count vs element list.
      * */
     Map<Integer, Integer> count;

@@ -27,7 +27,8 @@ public class BFSSolution {
     }
 
     // Leetcode problem: 752
-    /*
+
+    /**
      * Run BFS to reach target
      * */
     public int openLock(String[] deadends, String target) {
@@ -204,7 +205,8 @@ public class BFSSolution {
     }
 
     // Leetcode problem: 433
-    /*
+
+    /**
      * BFS Search
      * See Leetcode problem: 127
      * */
@@ -247,7 +249,8 @@ public class BFSSolution {
     }
 
     // Leetcode problem: 127
-    /*
+
+    /**
      * Word ladder
      * Breadth first search to find minimum distance
      * Find next node by changing one single character of each index of the word
@@ -302,7 +305,8 @@ public class BFSSolution {
     }
 
     // Leetcode problem: 126
-    /*
+
+    /**
      * This is extended version of Word Ladder (Leetcode problem: 127)
      * First run BFS to find word ladder then run DFS to get ladders.
      * */

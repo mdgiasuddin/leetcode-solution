@@ -48,7 +48,7 @@ public class LintCodeSolution {
         int j = 0, room = 0, maxRoom = 0;
         while (j < intervals.size()) {
 
-            /*
+            /**
              * If start time comes before end increase room count. Update max room needed.
              * Else decrement room count.
              * */

@@ -87,7 +87,8 @@ public class BacktrackingSolution {
     }
 
     // Leetcode problem: 40
-    /*
+
+    /**
      * Combination sum (Leetcode problem: 39)
      * */
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
@@ -117,7 +118,8 @@ public class BacktrackingSolution {
     }
 
     // Leetcode problem: 46
-    /*
+
+    /**
      * Permutation
      * Backtracking solution
      * */
@@ -150,7 +152,8 @@ public class BacktrackingSolution {
     }
 
     // Leetcode problem: 47
-    /*
+
+    /**
      * Backtracking solution
      * */
     public List<List<Integer>> permuteUnique(int[] nums) {
@@ -269,7 +272,8 @@ public class BacktrackingSolution {
     }
 
     // Leetcode problem: 131
-    /*
+
+    /**
      * Palindrome partitioning
      * Find all the combination by backtracking
      * */

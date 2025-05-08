@@ -30,7 +30,8 @@ public class LinkedListSolution2 {
     }
 
     // Leetcode problem: 143
-    /*
+
+    /**
      * This problem is tricky. Take special attention.
      * */
     public ListNode sortList(ListNode head) {
@@ -95,7 +96,8 @@ public class LinkedListSolution2 {
     }
 
     // Leetcode problem: 287
-    /*
+
+    /**
      * Cycle detection problem.
      * Consider array as linked list. Index as prev and value as next.
      * [1,3,4,2,2] => 0->1->3->2->4->2
@@ -204,7 +206,8 @@ public class LinkedListSolution2 {
     }
 
     // Leetcode problem: 445
-    /*
+
+    /**
      * Fill leading position of small list with 0.
      * This problem contains high level recursion.
      * Understand the step carefully.
@@ -304,7 +307,8 @@ public class LinkedListSolution2 {
     }
 
     // Lintcode problem: 904
-    /*
+
+    /**
      * Recursive call for this problem is similar to Leetcode problem: 445
      * */
     public ListNode plusOne(ListNode head) {
@@ -327,7 +331,7 @@ public class LinkedListSolution2 {
         return carryNode;
     }
 
-    /*
+    /**
      * First non-repeating character in a stream of characters
      * Amazon interview question.
      * https://www.interviewbit.com/problems/first-non-repeating-character-in-a-stream-of-characters/
@@ -375,7 +379,8 @@ public class LinkedListSolution2 {
     }
 
     // Leetcode problem: 2130
-    /*
+
+    /**
      * Maximum Twin Sum of a Linked List.
      * Code source: https://www.youtube.com/watch?v=doj95MelfSA
      * */

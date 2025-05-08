@@ -8,7 +8,8 @@ import java.util.Map;
 public class StringSolution9 {
 
     // Leetcode problem: 30
-    /*
+
+    /**
      * Substring with Concatenation of All Words.
      * Explanation: https://www.youtube.com/watch?v=EVHQ48RM5tw
      * Count the words. Starting from every index found if possible to get all the words.
@@ -48,7 +49,8 @@ public class StringSolution9 {
     }
 
     // Leetcode problem: 890
-    /*
+
+    /**
      * Find and Replace Pattern.
      * This problem is similar to : Isomorphic Strings (Leetcode problem: 205).
      * */
@@ -79,7 +81,8 @@ public class StringSolution9 {
     }
 
     // Leetcode problem: 2381
-    /*
+
+    /**
      * Shifting Letters II.
      * Explanation: https://www.youtube.com/watch?v=eEUjVY7wK3k
      * Create a difference array.

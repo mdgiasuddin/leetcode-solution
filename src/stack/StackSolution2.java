@@ -80,7 +80,7 @@ public class StackSolution2 {
                 while (stack.peek() != '(') {
                     char ch = stack.pop();
 
-                    /*
+                    /**
                      * 1 True value will return True for '|' operation
                      * 1 False value will return False for '&' operation]
                      * '!' will be opposite for True or False
@@ -114,7 +114,8 @@ public class StackSolution2 {
     }
 
     // Leetcode problem: 1047
-    /*
+
+    /**
      * Use stack.
      * */
     public String removeDuplicates(String s) {
@@ -140,7 +141,8 @@ public class StackSolution2 {
     }
 
     // Leetcode problem: 394
-    /*
+
+    /**
      * Maintain a stack
      * Push character until ']' appears
      * When ']' appears then pop all the characters after '[' and push after processing
@@ -181,7 +183,8 @@ public class StackSolution2 {
     }
 
     // Leetcode problem: 331
-    /*
+
+    /**
      * Use stack
      * When '#' comes then pop last two and push #
      * */
@@ -215,7 +218,8 @@ public class StackSolution2 {
     }
 
     // Leetcode problem: 856
-    /*
+
+    /**
      * Score the parenthesis
      * Use stack
      * Whenever '(' comes save the score calculated so far and reset the score
@@ -273,7 +277,8 @@ public class StackSolution2 {
     }
 
     // Leetcode problem: 1249
-    /*
+
+    /**
      * Minimum Remove to Make Valid Parentheses.
      * */
     public String minRemoveToMakeValid(String s) {
@@ -309,7 +314,8 @@ public class StackSolution2 {
     }
 
     // Leetcode problem: 907
-    /*
+
+    /**
      * Sum of Subarray Minimums.
      * Monotonically increasing stack.
      * Explanation: https://www.youtube.com/watch?v=BqrO3lMwfRM&list=PLy38cn8b_xMfO7CGsUDIsYGps37yKaQ9X&index=16
@@ -336,7 +342,8 @@ public class StackSolution2 {
     }
 
     // Leetcode problem: 2434
-    /*
+
+    /**
      * Using a Robot to Print the Lexicographically Smallest String.
      * Explanation: https://www.youtube.com/watch?v=StJfCW4vHVU
      * */
@@ -376,7 +383,8 @@ public class StackSolution2 {
     }
 
     // Leetcode problem: 904
-    /*
+
+    /**
      * Fruit Into Baskets.
      * Explanation: https://www.youtube.com/watch?v=yYtaV0G3mWQ
      * */
@@ -409,7 +417,8 @@ public class StackSolution2 {
     }
 
     // Leetcode problem 946
-    /*
+
+    /**
      * Validate Stack Sequences.
      * */
     public boolean validateStackSequences(int[] pushed, int[] popped) {

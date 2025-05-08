@@ -4,7 +4,8 @@ public class LinkedListSolution3 {
 
 
     // Leetcode problem: 725
-    /*
+
+    /**
      * Split Linked List in Parts
      * */
     public ListNode[] splitListToParts(ListNode head, int k) {
@@ -47,7 +48,8 @@ public class LinkedListSolution3 {
     }
 
     // Leetcode problem: 430
-    /*
+
+    /**
      * Flatten a Multilevel Linked List.
      * Explanation: https://www.youtube.com/watch?v=BVDbZzhJk2E
      * */

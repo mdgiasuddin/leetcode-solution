@@ -17,7 +17,8 @@ public class DFSSolution2 {
     }
 
     // Leetcode problem: 130
-    /*
+
+    /**
      * DFS through the boundary and mark all 'O' to any special character
      * Then traverse the whole array and reset the special character to 'O', other position to 'X'
      * */
@@ -184,7 +185,8 @@ public class DFSSolution2 {
     }
 
     // Leetcode problem: 323
-    /*
+
+    /**
      * Number of connected components in an undirected graph.
      * Run DFS and count the components.
      * */

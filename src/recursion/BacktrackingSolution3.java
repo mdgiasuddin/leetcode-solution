@@ -110,7 +110,8 @@ public class BacktrackingSolution3 {
     }
 
     // Leetcode problem: 1049
-    /*
+
+    /**
      * Last Stone Weight II.
      * Explanation: https://www.youtube.com/watch?v=gdXkkmzvR3c
      * */
@@ -140,7 +141,8 @@ public class BacktrackingSolution3 {
     }
 
     // Leetcode problem: 282
-    /*
+
+    /**
      * Expression Add Operators.
      * Explanation: https://www.youtube.com/watch?v=WcgjFrZceU8
      * */

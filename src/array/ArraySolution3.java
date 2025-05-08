@@ -18,7 +18,7 @@ public class ArraySolution3 {
     }
 
     // Leetcode problem: 106
-    /*
+    /**
      * Build tree from postorder and inorder traversal
      * */
     int index;
@@ -49,7 +49,8 @@ public class ArraySolution3 {
     }
 
     // Leetcode problem: 64
-    /*
+
+    /**
      * Since move directions are only right and down, sum distance of every index will be gid[i][j] + Min(left, up)
      * */
     public int minPathSum(int[][] grid) {
@@ -76,7 +77,8 @@ public class ArraySolution3 {
     }
 
     // Leetcode problem: 73
-    /*
+
+    /**
      * Set Matrix Zeroes
      * Take 2 arrays to save the rowZero and colZero
      * Then make the position to
@@ -138,7 +140,8 @@ public class ArraySolution3 {
 
 
     // Leetcode problem: 74
-    /*
+
+    /**
      * Search in 2D Matrix
      * First Binary search row wise to find the row in which target can be found
      * Then Binary search in that row
@@ -180,13 +183,14 @@ public class ArraySolution3 {
     }
 
     // Leetcode problem: 75
-    /*
+
+    /**
      * Count the number of 0, 1, 2
      * Then fill the array with the count of 0, 1, 2 respectively
      * There is an advanced solution called 3 pointer solution
      * */
     public void sortColors(int[] nums) {
-        /*int zeros = 0, ones = 0, twos = 0;
+        /**int zeros = 0, ones = 0, twos = 0;
 
         for (int num : nums) {
             if (num == 0) {
@@ -228,7 +232,8 @@ public class ArraySolution3 {
     }
 
     // Leetcode problem: 137
-    /*
+
+    /**
      * The problem is tricky.
      * Maintain 2 variables. one and two
      * one contain the number which occurs just once. and two contain the number which occurs just twice. The number which occurs thrice
@@ -262,7 +267,8 @@ public class ArraySolution3 {
     }
 
     // Leetcode problem: 189
-    /*
+
+    /**
      * [1, 2, 3, 4, 5, 6, 7] k = 2
      * Reverse full array => [7, 6 | 5, 4, 3, 2, 1]
      * Reverse first k and last n-k element => [6, 7 | 1, 2, 3, 4, 5]
@@ -287,7 +293,8 @@ public class ArraySolution3 {
     }
 
     // Leetcode problem: 200
-    /*
+
+    /**
      * Number of island
      * For every '1' position BFS to surroundings
      * */
@@ -341,7 +348,8 @@ public class ArraySolution3 {
     }
 
     // Leetcode problem: 198
-    /*
+
+    /**
      * Dynamic programming
      * dp[i] = Max(nums[i] + dp[i-2], dp[i-1]
      * */
@@ -363,7 +371,8 @@ public class ArraySolution3 {
     }
 
     // Leetcode problem: 213
-    /*
+
+    /**
      * This problem is similar to House Robber I (Leetcode problem: 198)
      * The only difference is, the houses are in circle. The first index and last index are adjacent
      * Calculate rob omitting the last and omitting the first.
@@ -398,7 +407,8 @@ public class ArraySolution3 {
     }
 
     // Leetcode problem: 215
-    /*
+
+    /**
      * Quick select algorithm
      * Find partition and check if the partition index is kth largest index
      * If kth largest lies left side then partition in left otherwise right

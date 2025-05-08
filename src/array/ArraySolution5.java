@@ -44,7 +44,8 @@ public class ArraySolution5 {
     }
 
     // Leetcode problem: 88
-    /*
+
+    /**
      * Merge from the last position.
      * */
     public void merge(int[] nums1, int m, int[] nums2, int n) {
@@ -67,7 +68,8 @@ public class ArraySolution5 {
     }
 
     // Leetocode problem: 1096
-    /*
+
+    /**
      * Build up a max priority queue to get maximum number every time.
      * */
     public int lastStoneWeight(int[] stones) {
@@ -109,7 +111,8 @@ public class ArraySolution5 {
     }
 
     // Leetcode problem: 448
-    /*
+
+    /**
      * For every number make its index element negative.
      * Then check in which index numbers are still positive.
      * */
@@ -155,7 +158,8 @@ public class ArraySolution5 {
     }
 
     // Leetcode problem: 2001
-    /*
+
+    /**
      * Build up count matrix for the ratio of width and height.
      * */
     public long interchangeableRectangles(int[][] rectangles) {
@@ -179,7 +183,8 @@ public class ArraySolution5 {
     }
 
     // Leetcode problem: 1985
-    /*
+
+    /**
      * Sort the number and find the minimum of all k-elements slides.
      * */
     public int minimumDifference(int[] nums, int k) {
@@ -194,12 +199,13 @@ public class ArraySolution5 {
     }
 
     // Leetcode problem: 135
-    /*
+
+    /**
      * Candy.
      * Memory optimized version is tricky.
      * */
     public int candy(int[] ratings) {
-        /*int[] result = new int[ratings.length];
+        /**int[] result = new int[ratings.length];
         Arrays.fill(result, 1);
 
         // First traverse left to right.
@@ -253,7 +259,7 @@ public class ArraySolution5 {
 
     // Leetcode problem: 334
     public boolean increasingTriplet(int[] nums) {
-        /*int n = nums.length;
+        /**int n = nums.length;
         if (n < 3)
             return false;
 
@@ -299,7 +305,8 @@ public class ArraySolution5 {
     }
 
     // Leetcode problem: 885
-    /*
+
+    /**
      * Go 1-step right, 1-step down, 2-step left, 2-step up, 3-step right, 3-step down & so on.
      * After every 2 iteration step size will be increased.
      * After each iteration, the index may be out of bounds. We will only add valid index.
@@ -364,7 +371,8 @@ public class ArraySolution5 {
     }
 
     // Leetcode problem: 1958
-    /*
+
+    /**
      * Go to each of 8 directions & try to find a good line.
      * */
     public boolean checkMove(char[][] board, int rMove, int cMove, char color) {

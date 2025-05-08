@@ -82,7 +82,8 @@ public class TreeSolution {
     }
 
     // Leetcode problem: 112
-    /*
+
+    /**
      * This problem is similar to sum of numbers (Leetcode problem: 129)
      * */
     public boolean hasPathSum(TreeNode root, int targetSum) {
@@ -104,7 +105,8 @@ public class TreeSolution {
     }
 
     // Leetcode problem: 199
-    /*
+
+    /**
      * This problem can be solved by level order traversal
      * */
     public List<Integer> rightSideView(TreeNode root) {
@@ -138,7 +140,8 @@ public class TreeSolution {
     }
 
     // Leetcode problem: 199
-    /*
+
+    /**
      * This is recursive version
      * */
     public List<Integer> rightSideViewRecursive(TreeNode root) {
@@ -175,7 +178,8 @@ public class TreeSolution {
     }
 
     // Leetcode problem: 230
-    /*
+
+    /**
      * Solve the problem by inorder traversal.
      * Keep track how many node have been visited already.
      * */
@@ -215,7 +219,8 @@ public class TreeSolution {
     }
 
     // Leetcode problem: 543
-    /*
+
+    /**
      * The solution is tricky.
      * */
     public int diameterOfBinaryTree(TreeNode root) {
@@ -243,7 +248,8 @@ public class TreeSolution {
     }
 
     // Leetcode problem: 105
-    /*
+
+    /**
      * Build tree from preorder and inorder traversal
      * */
     public TreeNode buildTree(int[] preorder, int[] inorder) {
@@ -272,7 +278,8 @@ public class TreeSolution {
     }
 
     // Leetcode problem: 513
-    /*
+
+    /**
      * This problem can be solved by level order traversal.
      * */
     public int findBottomLeftValue(TreeNode root) {
@@ -301,7 +308,7 @@ public class TreeSolution {
         return result;
     }
 
-    /*
+    /**
      * Recursive solution of Leetcode problem: 513
      * Similar to right side view.
      * */
@@ -328,7 +335,8 @@ public class TreeSolution {
     }
 
     // Leetcode problem: 116
-    /*
+
+    /**
      * Solve by level order traversal.
      * */
     public Node connect(Node root) {
@@ -362,7 +370,7 @@ public class TreeSolution {
         return root;
     }
 
-    /*
+    /**
      * This is O(1) memory version of Leetcode problem: 116
      * */
     public Node connectConstMemory(Node root) {

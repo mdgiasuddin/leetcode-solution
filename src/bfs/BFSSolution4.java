@@ -6,7 +6,8 @@ import java.util.Queue;
 public class BFSSolution4 {
 
     // Leetcode problem: 1765
-    /*
+
+    /**
      * Map of Highest Peak.
      * Multi-sources BFS.
      * */

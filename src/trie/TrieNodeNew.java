@@ -27,7 +27,7 @@ public class TrieNodeNew {
 
     }
 
-    /*
+    /**
      * Search word with wildcard matching.
      * Explanation: https://www.youtube.com/watch?v=h-F2jRUzpBo&list=PLEJXowNB4kPxbFzYz06LrPQpsMxYeKxiB&index=3
      * */

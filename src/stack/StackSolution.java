@@ -21,7 +21,8 @@ public class StackSolution {
     }
 
     // Leetcode problem: 20
-    /*
+
+    /**
      * Valid Parenthesis
      * */
     public boolean isValid(String s) {
@@ -76,7 +77,8 @@ public class StackSolution {
     }
 
     // Leetcode problem: 84
-    /*
+
+    /**
      * Use stack to maintain last height
      * If new height is in increasing order then simply push it to the stack
      * Else pop all the height greater than to new height & update the maximum area
@@ -108,7 +110,8 @@ public class StackSolution {
     }
 
     // Leetcode problem: 85
-    /*
+
+    /**
      * This problem is similar to the largest rectangle in histogram (Leetcode problem: 85)
      * Build up histogram for every row
      * Then use the rectangle in histogram
@@ -139,7 +142,8 @@ public class StackSolution {
     }
 
     // Leetcode problem: 150
-    /*
+
+    /**
      * This problem is similar to post operation equation in data structures course
      * */
     public int evalRPN(String[] tokens) {
@@ -168,7 +172,8 @@ public class StackSolution {
     }
 
     // Leetcode problem: 402
-    /*
+
+    /**
      * Maintain a stack
      * If digits comes in increasing order just push it
      * Whenever digit comes in decreasing order then remove all the bigger digits up to k
@@ -289,7 +294,8 @@ public class StackSolution {
     }
 
     // Leetcode problem: 1856
-    /*
+
+    /**
      * The problem is tricky
      * Build up a monotonic stack (Non-decreasing stack)
      * The process of this problem is similar to the largest rectangle in histogram (Leetcode problem: 85)
@@ -337,7 +343,7 @@ public class StackSolution {
             pairs[i] = new Pair(position[i], speed[i]);
         }
 
-        /*
+        /**
          * Sort the car revered way based on the position
          * Any car in behind cannot cross the front car
          * */
@@ -347,7 +353,7 @@ public class StackSolution {
         Stack<Double> timeStack = new Stack<>();
         for (Pair pair : pairs) {
             double time = (target - pair.first) * 1.0 / pair.second;
-            /*
+            /**
              * If any behind car need less time, then it will fleet with front car and reach the destination with the front car.
              * So don't add this in stack
              * */
@@ -362,7 +368,8 @@ public class StackSolution {
 
 
     // Leetcode problem: 496
-    /*
+
+    /**
      * This problem is similar to daily temperature (Leetcode problem: 739)
      * */
     public int[] nextGreaterElement(int[] nums1, int[] nums2) {

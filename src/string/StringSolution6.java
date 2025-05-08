@@ -11,7 +11,8 @@ public class StringSolution6 {
     }
 
     // Leetcode problem: 816
-    /*
+
+    /**
      * Divide the string with left & right at every position and try to put '.' at every position of left and right
      * */
     public List<String> ambiguousCoordinates(String s) {
@@ -44,7 +45,8 @@ public class StringSolution6 {
     }
 
     // Leetcode problem: 859
-    /*
+
+    /**
      * Buddy string
      * */
     public boolean buddyStrings(String s, String goal) {
@@ -90,7 +92,8 @@ public class StringSolution6 {
     }
 
     // Leetcode problem: 880
-    /*
+
+    /**
      * First find out the total length of decoded string by scanning from left to right
      * Then remove character from the last one by one from the right to left and match with k
      * */
@@ -124,7 +127,8 @@ public class StringSolution6 {
     }
 
     // Leetcode problem: 899
-    /*
+
+    /**
      * If k = 1, just find the minimum of all rotations
      * Else sort the characters
      * It will work in the logic of bubble sort
@@ -152,7 +156,8 @@ public class StringSolution6 {
     }
 
     // Leetcode problem: 916
-    /*
+
+    /**
      * Calculate maximum character count of each character of words2
      * Check which word of words1 contains all characters
      * */
@@ -193,11 +198,12 @@ public class StringSolution6 {
     }
 
     // Leetcode problem: 921
-    /*
+
+    /**
      * This problem is tricky & important.
      * */
     public int minAddToMakeValid(String s) {
-        /*Stack<Character> stack = new Stack<>();
+        /**Stack<Character> stack = new Stack<>();
 
         for (int i = 0; i < s.length(); i++) {
             char ch = s.charAt(i);
@@ -236,7 +242,8 @@ public class StringSolution6 {
     }
 
     // Leetcode problem: 926
-    /*
+
+    /**
      * See Leetcode problem: 1653
      * */
     public int minFlipsMonoIncr(String s) {
@@ -287,7 +294,8 @@ public class StringSolution6 {
     }
 
     // Leetcode problem: 763
-    /*
+
+    /**
      * Partition Labels.
      * */
     public List<Integer> partitionLabels(String s) {
@@ -318,7 +326,8 @@ public class StringSolution6 {
     }
 
     // Leetcode problem: 819
-    /*
+
+    /**
      *  Most Common Word.
      * */
     public String mostCommonWord(String paragraph, String[] banned) {
@@ -345,7 +354,8 @@ public class StringSolution6 {
     }
 
     // Leetcode problem:692
-    /*
+
+    /**
      *  Top K Frequent Words
      * */
     public List<String> topKFrequent(String[] words, int k) {

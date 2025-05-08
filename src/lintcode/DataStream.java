@@ -5,7 +5,8 @@ import java.util.LinkedList;
 import java.util.Map;
 
 // Lintcode problem: 960
-/*
+
+/**
  * First Unique Number in Data Stream
  * */
 
@@ -18,7 +19,7 @@ public class DataStream {
         map = new HashMap<>();
     }
 
-    /**
+    /***
      * @param num: next number in stream
      * @return: nothing
      */
@@ -31,7 +32,7 @@ public class DataStream {
         }
     }
 
-    /**
+    /***
      * @return: the first unique number in stream
      */
     public int firstUnique() {

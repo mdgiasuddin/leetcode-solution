@@ -4,7 +4,8 @@ import java.util.Arrays;
 import java.util.Random;
 
 // Leetcode problem: 384
-/*
+
+/**
  * Shuffle an Array.
  * */
 public class ShuffleArray {

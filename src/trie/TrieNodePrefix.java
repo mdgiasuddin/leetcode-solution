@@ -3,7 +3,7 @@ package trie;
 import java.util.HashMap;
 import java.util.Map;
 
-/*
+/**
  * Shortest Unique prefix for every word
  * Amazon interview question.
  * Code source: https://www.geeksforgeeks.org/find-all-shortest-unique-prefixes-to-represent-each-word-in-a-given-list/

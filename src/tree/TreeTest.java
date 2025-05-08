@@ -42,7 +42,7 @@ public class TreeTest {
         return root;
     }
 
-    /*
+    /**
      * Burn all the nodes starting from one node.
      * Amazon interview question.
      * Code source: https://www.youtube.com/watch?v=dj0q8D_hPdo
@@ -195,7 +195,7 @@ public class TreeTest {
         traverseLeafNodes(node.right, list);
     }
 
-    /*
+    /**
      * Traverse tree anti clock-wise boundary.
      * root to left boundary, leaf nodes then right boundary from bottom to top.
      * Amazon interview question.
@@ -213,7 +213,7 @@ public class TreeTest {
 
     }
 
-    /*
+    /**
      * Path from root to a target node.
      * Amazon interview question.
      * Code source: https://www.geeksforgeeks.org/print-path-root-given-node-binary-tree/
@@ -248,7 +248,7 @@ public class TreeTest {
         return false;
     }
 
-    /*
+    /**
      * Amazon interview question.
      * Code source: https://www.geeksforgeeks.org/check-if-a-given-binary-tree-is-sumtree/
      * */
@@ -307,7 +307,7 @@ public class TreeTest {
         return root;
     }
 
-    /*
+    /**
      * Print binary tree in vertical order.
      * Amazon interview question.
      * Use tree set & add the element in each vertical level.
@@ -360,7 +360,7 @@ public class TreeTest {
         current.remove(current.size() - 1);
     }
 
-    /*
+    /**
      * Convert to sum tree.
      * Amazon interview question.
      * */

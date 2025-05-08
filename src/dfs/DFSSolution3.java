@@ -58,7 +58,8 @@ public class DFSSolution3 {
     }
 
     // Leetcode problem: 1254
-    /*
+
+    /**
      * Number of closed island. 0 for land 1 for water.
      * First dfs from boundary land which are reachable from boundary land.
      * Then dfs from inside land. If a can reach to boundary land, it is not closed.
@@ -124,7 +125,8 @@ public class DFSSolution3 {
     }
 
     // Leetcode problem: 1020
-    /*
+
+    /**
      * Separate the lands reachable from boundary. Then count land from inside.
      * */
     public int numEnclaves(int[][] grid) {
@@ -165,7 +167,8 @@ public class DFSSolution3 {
     }
 
     // Leetcode problem: 787
-    /*
+
+    /**
      * This solution exceeds the time limit.
      * */
     public int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {
@@ -212,7 +215,8 @@ public class DFSSolution3 {
     }
 
     // Leetcode problem: 332
-    /*Note::
+
+    /**Note::
      *->The solution is tricky.
      *->The main idea is to traverse every edge at most once
      *->And we are starting from JFK airport
@@ -249,7 +253,8 @@ public class DFSSolution3 {
     }
 
     // Leetcode problem: 886
-    /*
+
+    /**
      * Possible Bipartition.
      * A graph is bi-partite if 2-color is possible.
      * */
@@ -302,7 +307,8 @@ public class DFSSolution3 {
     }
 
     // Leetcode problem: 419
-    /*
+
+    /**
      * Battleships in a Board.
      * The problem is completely same as: Number of Islands (Leetcode problem: 200)
      * */
@@ -334,7 +340,8 @@ public class DFSSolution3 {
     }
 
     // Leetcode problem: 1319
-    /*
+
+    /**
      * Number of Operations to Make Network Connected
      * */
     public int makeConnected(int n, int[][] connections) {
@@ -380,7 +387,8 @@ public class DFSSolution3 {
     }
 
     // Leetcode problem: 174
-    /*
+
+    /**
      * Dungeon Game.
      * Code source: https://www.youtube.com/watch?v=4uUGxZXoR5o&t=250s
      * Solve by bottom-up approach for bottom-right cell.
