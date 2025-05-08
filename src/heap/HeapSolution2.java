@@ -2,11 +2,14 @@ package heap;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Set;
+import java.util.TreeMap;
 
 public class HeapSolution2 {
 
@@ -294,5 +297,59 @@ public class HeapSolution2 {
         }
 
         return n - 1;
+    }
+
+    public long minimumTotalDistance(List<Integer> robot, int[][] factory) {
+        Collections.sort(robot);
+        Arrays.sort(factory, Comparator.comparingInt(a -> a[0]));
+        int rightLimit = 0;
+        int visited = Integer.MIN_VALUE;
+        int rbSize = robot.size();
+
+        TreeMap<Integer, Integer> map = new TreeMap<>();
+        for (int[] fc : factory) {
+            map.put(fc[0], fc[1]);
+            rightLimit += fc[1];
+        }
+
+        long distance = 0;
+        for (int i = 0; i < rbSize; i++) {
+            int rb = robot.get(i);
+
+            while (map.ceilingKey(visited) != null && map.ceilingKey(visited) < rb) {
+                rightLimit -= map.ceilingEntry(visited).getValue();
+                visited = map.ceilingKey(visited) + 1;
+            }
+
+            Map.Entry<Integer, Integer> leftEntry = map.floorEntry(rb - 1);
+            Map.Entry<Integer, Integer> rightEntry = map.ceilingEntry(rb);
+
+            if (rightEntry == null) {
+                distance += rb - leftEntry.getKey();
+                updateFactoryLimit(map, leftEntry);
+            } else if (leftEntry == null) {
+                distance += rightEntry.getKey() - rb;
+                rightLimit -= 1;
+                updateFactoryLimit(map, rightEntry);
+            } else if (rb - leftEntry.getKey() <= rightEntry.getKey() - rb || rightLimit < rbSize - i) {
+                distance += rb - leftEntry.getKey();
+                updateFactoryLimit(map, leftEntry);
+            } else {
+                distance += rightEntry.getKey() - rb;
+                rightLimit -= 1;
+                updateFactoryLimit(map, rightEntry);
+            }
+        }
+
+        return distance;
+    }
+
+    private void updateFactoryLimit(TreeMap<Integer, Integer> map, Map.Entry<Integer, Integer> entry) {
+        int val = entry.getValue() - 1;
+        if (val == 0) {
+            map.remove(entry.getKey());
+        } else {
+            map.put(entry.getKey(), val);
+        }
     }
 }
