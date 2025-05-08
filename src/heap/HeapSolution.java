@@ -1,6 +1,15 @@
 package heap;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.Stack;
 
 public class HeapSolution {
 
@@ -13,8 +22,8 @@ public class HeapSolution {
 
     /**
      * Sort the trips base on the start point
-     * After reaching each trip find all the trip before it whether any passenger can be dropped
-     * Then add the passenger with current passenger and check whether it overflows
+     * After reaching each trip find all the trip before it whether any passenger can be dropped,
+     * Then add the passenger with the current passenger and check whether it overflows
      * */
     public boolean carPooling(int[][] trips, int capacity) {
         Arrays.sort(trips, Comparator.comparingInt(a -> a[1]));
@@ -91,7 +100,8 @@ public class HeapSolution {
         }
 
         int[] res = new int[tasks.length];
-        int i = 0, t = 0;
+        int i = 0;
+        int t = 0;
         while (i < tasks.length) {
 
             while (!unavailable.isEmpty() && unavailable.peek()[2] == t) {
@@ -151,7 +161,7 @@ public class HeapSolution {
     public int[] getOrder(int[][] tasks) {
 
         // Store all the tasks sorted by initial enqueue time.
-        // So that after at a time all the task can be added to available task based on enqueue time.
+        // So that after at a time, all the tasks can be added to an available task based on enqueue time.
         PriorityQueue<int[]> allTasks = new PriorityQueue<>(Comparator.comparingInt(a -> a[1]));
 
         // Available task that is processed one by one based on processing time.
@@ -163,12 +173,12 @@ public class HeapSolution {
 
         int[] res = new int[tasks.length];
 
-        // First processing time will be the enqueue time of the first task.
+        // The First processing time will be the enqueue time of the first task.
         int t = allTasks.peek()[1];
         int i = 0;
         while (!allTasks.isEmpty() || !available.isEmpty()) {
 
-            // Move task to available if enqueue time crosses.
+            // Move a task to available if enqueue time crosses.
             while (!allTasks.isEmpty() && allTasks.peek()[1] <= t) {
                 available.add(allTasks.poll());
             }
@@ -191,9 +201,11 @@ public class HeapSolution {
     // Leetcode problem: 973
 
     /**
-     * Sort the based on the distance from origin & take first k points.
-     * Time complexity of sort is O(n*log(n)). To minimize time complexity build up a min heap.
-     * Build min heap complexity is O(n). Then extract k points complexity is O(k*log(n)).
+     * Sort the points based on the distance from origin and take the first k points.
+     * Time complexity of sort is O(n*log(n)).
+     * To minimize time complexity, build up a min heap.
+     * Build min heap complexity is O(n).
+     * Then extract k points complexity is O(k*log(n)).
      * */
     public int[][] kClosest(int[][] points, int k) {
 
@@ -242,7 +254,7 @@ public class HeapSolution {
                 count -= 1;
                 map.put(i, count);
 
-                // If this is not the minimum but count is 0.
+                // If this is not the minimum but the count is 0.
                 if (count == 0 && queue.peek() != i) {
                     return false;
                 }
@@ -279,11 +291,11 @@ public class HeapSolution {
                 maxQueue.add(queue.poll()[0]);
             }
 
-            // If there is available task do this.
+            // If there is an available task, do this.
             if (!maxQueue.isEmpty()) {
                 int task = maxQueue.poll();
 
-                // If there is same more task add it to the queue with next available time.
+                // If there is the same more task, add it to the queue with next available time.
                 if (task < -1) {
                     queue.add(new int[]{task + 1, time + n + 1});
                 }
@@ -299,7 +311,7 @@ public class HeapSolution {
      * Practice: https://practice.geeksforgeeks.org/problems/nearly-sorted-1587115620/1
      * Explanation: https://www.youtube.com/watch?v=tJK7vjNKdLY&list=PLEJXowNB4kPyP2PdMhOUlTY6GrRIITx28&index=12
      * */
-    ArrayList<Integer> nearlySorted(int arr[], int num, int k) {
+    ArrayList<Integer> nearlySorted(int[] arr, int num, int k) {
         // your code here
 
         PriorityQueue<Integer> queue = new PriorityQueue<>();
@@ -308,8 +320,6 @@ public class HeapSolution {
         }
 
         ArrayList<Integer> res = new ArrayList<>();
-        ;
-
         for (int i = k + 1; i < num; i++) {
             res.add(queue.poll());
             queue.add(arr[i]);

@@ -1,6 +1,10 @@
 package string;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.Stack;
 
 public class StringSolution4 {
 
@@ -220,14 +224,14 @@ public class StringSolution4 {
 
     // Leetcode problem: 424
 
-    /***
+    /**
      * Build up a counter of each character.
      * Update the maximum character count.
      * In every window, check if the replacement required is less than or equal to k.
-     * If condition fulfilled update result value.
-     * Otherwise, move left pointer and decrement the counter of left character.
-     * During decrement maximum character need not update because only when counter of any character crosses current maximum.
-     * - the result will be updated, otherwise it has no effect.
+     * If the condition is fulfilled, update the result value.
+     * Otherwise, move the left pointer and decrement the counter of the left character.
+     * During decrement, the maximum character needs not update because only when counter of any character crosses current maximum.
+     * - The result will be updated, otherwise it has no effect.
      * */
     public int characterReplacement(String s, int k) {
         int[] charCount = new int[26];
