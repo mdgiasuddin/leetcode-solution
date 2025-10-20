@@ -1,6 +1,13 @@
 package graph;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Set;
 
 public class GraphSolution {
 
@@ -18,7 +25,7 @@ public class GraphSolution {
         int[] parent = new int[n + 1];
         int[] rank = new int[n + 1];
 
-        // Initially every node is parent of itself. Rank is the number of connected nodes. Initially 1.
+        // Initially, every node is a parent of itself. Rank is the number of connected nodes. Initially 1.
         for (int i = 0; i <= n; i++) {
             parent[i] = i;
             rank[i] = 1;

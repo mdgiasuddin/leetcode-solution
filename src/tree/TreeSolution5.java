@@ -17,7 +17,8 @@ public class TreeSolution5 {
     /**
      * Construct Quad Tree.
      * Explanation: https://www.youtube.com/watch?v=UQ-1sBMV0v4&t=44s
-     * */
+     *
+     */
     public QuadNode construct(int[][] grid) {
         return construct(grid, grid.length, 0, 0);
     }
@@ -50,7 +51,8 @@ public class TreeSolution5 {
 
     /**
      * Maximum Product of Splitted Binary Tree.
-     * */
+     *
+     */
     public int maxProduct(TreeNode root) {
         long[] ans = {0};
 
@@ -78,7 +80,8 @@ public class TreeSolution5 {
     /**
      * Populating Next Right Pointers II.
      * Explanation: https://www.youtube.com/watch?v=yl-fdkyQD8A
-     * */
+     *
+     */
     public Node connect(Node root) {
         Node head = root;
 
@@ -109,7 +112,8 @@ public class TreeSolution5 {
      * Distribute Coins in Binary Tree.
      * DFS.
      * Explanation: https://www.youtube.com/watch?v=yYcKQdGEdDY + (Description).
-     * */
+     *
+     */
     public int distributeCoins(TreeNode root) {
         int[] res = {0};
         distributeCoins(root, res);
@@ -135,7 +139,8 @@ public class TreeSolution5 {
      * Explanation: https://www.youtube.com/watch?v=Vam9gldRapY
      * 2 Cases => Include the root, exclude the root.
      * => O(n * height)
-     * */
+     *
+     */
     public int pathSum(TreeNode root, long targetSum) {
         if (root == null) {
             return 0;
@@ -163,7 +168,8 @@ public class TreeSolution5 {
      * Delete Nodes And Return Forest.
      * Explanation: https://www.youtube.com/watch?v=BmpXMtA0oF8
      * Post order traversal.
-     * */
+     *
+     */
     public List<TreeNode> delNodes(TreeNode root, int[] to_delete) {
         Set<Integer> deleteSet = new HashSet<>();
         for (int e : to_delete) {
@@ -206,7 +212,8 @@ public class TreeSolution5 {
     /**
      * Binary Tree Pruning.
      * Postorder Traversal.
-     * */
+     *
+     */
     public TreeNode pruneTree(TreeNode root) {
         if (root == null) {
             return null;
@@ -226,7 +233,8 @@ public class TreeSolution5 {
     /**
      * Construct Binary Tree from Preorder and Postorder Traversal.
      * Explanation: https://www.youtube.com/watch?v=3XYxGKeC_Ew
-     * */
+     *
+     */
     public TreeNode constructFromPrePost(int[] preorder, int[] postorder) {
         int n = postorder.length;
         Map<Integer, Integer> postIndices = new HashMap<>();
@@ -262,7 +270,8 @@ public class TreeSolution5 {
     /**
      * Maximum Profit in Job Scheduling.
      * Explanation: https://www.youtube.com/watch?v=3kU7VYcmffU
-     * */
+     *
+     */
     public int jobScheduling(int[] startTime, int[] endTime, int[] profit) {
         int n = startTime.length;
         int[][] jobs = new int[n][3];
@@ -298,7 +307,8 @@ public class TreeSolution5 {
      * Explanation: https://www.youtube.com/watch?v=1OZKcD-JxwQ
      * Postorder traversal.
      * Maintain 3 states => COVERED = 1, PLEASE_COVER = 2, HAS_CAMERA = 3.
-     * */
+     *
+     */
     public int minCameraCover(TreeNode root) {
         int[] count = {0};
 
@@ -329,7 +339,8 @@ public class TreeSolution5 {
 
     /**
      * Pseudo-Palindromic Paths in a Binary Tree.
-     * */
+     *
+     */
     public int pseudoPalindromicPaths(TreeNode root) {
         return pseudoPalindromicPaths(root, new int[9], 0);
     }
@@ -353,15 +364,44 @@ public class TreeSolution5 {
         count[node.val - 1] -= 1;
         return res;
     }
+
+    // Leetcode problem: 1123
+
+    /**
+     * Lowest Common Ancestor of Deepest Leaves.
+     * Explanation: https://www.youtube.com/watch?v=bMXHK-ASQV0
+     */
+    public TreeNode lcaDeepestLeaves(TreeNode root) {
+        return dfsLcaDeepestLeaves(root).node;
+    }
+
+    private LCANode dfsLcaDeepestLeaves(TreeNode node) {
+        if (node == null) {
+            return new LCANode(node, 0);
+        }
+
+        LCANode leftLca = dfsLcaDeepestLeaves(node.left);
+        LCANode rightLca = dfsLcaDeepestLeaves(node.right);
+
+        if (leftLca.height == rightLca.height) {
+            return new LCANode(node, 1 + leftLca.height);
+        }
+
+        if (leftLca.height > rightLca.height) {
+            return new LCANode(leftLca.node, 1 + leftLca.height);
+        }
+
+        return new LCANode(rightLca.node, 1 + rightLca.height);
+    }
 }
 
 class QuadNode {
-    public boolean val;
-    public boolean isLeaf;
-    public QuadNode topLeft;
-    public QuadNode topRight;
-    public QuadNode bottomLeft;
-    public QuadNode bottomRight;
+    public final boolean val;
+    public final boolean isLeaf;
+    public final QuadNode topLeft;
+    public final QuadNode topRight;
+    public final QuadNode bottomLeft;
+    public final QuadNode bottomRight;
 
 
     public QuadNode() {
@@ -389,5 +429,15 @@ class QuadNode {
         this.topRight = topRight;
         this.bottomLeft = bottomLeft;
         this.bottomRight = bottomRight;
+    }
+}
+
+class LCANode {
+    public final TreeNode node;
+    public final int height;
+
+    public LCANode(TreeNode node, int height) {
+        this.node = node;
+        this.height = height;
     }
 }

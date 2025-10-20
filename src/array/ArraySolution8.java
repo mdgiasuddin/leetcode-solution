@@ -232,7 +232,8 @@ public class ArraySolution8 {
 
         while (i <= m - l && j <= r - l) {
 
-            // Firs half contains greater number. So all the numbers in the right half >= jth index are smaller than the ith number.
+            // First half contains greater number.
+            // So all the numbers in the right half >= jth index are smaller than the ith number.
             // So increase the count of ith number.
             if (tmp[i][0] > tmp[j][0]) {
                 count[tmp[i][1]] += (r - l) - j + 1;

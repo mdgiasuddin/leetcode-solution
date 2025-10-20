@@ -279,7 +279,7 @@ public class HeapSolution {
             map.put(task, count - 1);
         }
 
-        // Since we added the counts negative values, it'll work as a max priority queue.
+        // Since we added the count negative values, it'll work as a max priority queue.
         PriorityQueue<Integer> maxQueue = new PriorityQueue<>(map.values());
 
         int time = 0;

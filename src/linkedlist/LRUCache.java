@@ -3,9 +3,16 @@ package linkedlist;
 import java.util.HashMap;
 import java.util.Map;
 
+// Leetcode problem: 146
+
+/**
+ * LRU Cache
+ */
 class Node {
-    public int key, val;
-    public Node prev, next;
+    public final int key;
+    public final int val;
+    public Node prev;
+    public Node next;
 
     public Node(int key, int val) {
         this.key = key;
@@ -16,7 +23,6 @@ class Node {
 
 public class LRUCache {
 
-    // Leetcode problem: 146
     private final int CAPACITY;
     private final Node LEFT, RIGHT;
     private Map<Integer, Node> cache;
@@ -43,7 +49,8 @@ public class LRUCache {
     }
 
     private void remove(Node node) {
-        Node prev = node.prev, next = node.next;
+        Node prev = node.prev;
+        Node next = node.next;
 
         prev.next = next;
         next.prev = prev;
@@ -73,7 +80,7 @@ public class LRUCache {
 
         insert(node);
 
-        // If size exceeds the capacity remove the LRU (leftmost) from both the cache and the list.
+        // If size exceeds the capacity, remove the LRU (leftmost) from both the cache and the list.
         if (cache.size() > CAPACITY) {
             Node lru = LEFT.next;
             remove(lru);

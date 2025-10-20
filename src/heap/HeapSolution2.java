@@ -64,7 +64,7 @@ public class HeapSolution2 {
         PriorityQueue<int[]> queue = new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));
         int maxVal = 0;
 
-        // First insert the lowest possible value & track the highest value it can be.
+        // First insert the lowest possible value and track the highest value it can be.
         for (int num : nums) {
             int tmp = num;
             while (tmp % 2 == 0) {
@@ -174,7 +174,7 @@ public class HeapSolution2 {
         PriorityQueue<int[]> queue = new PriorityQueue<>(Comparator.comparingInt(a -> -a[0]));
         int time = 0;
         for (int[] course : courses) {
-            if (time + course[0] > course[1]) { // Time limit exceeded. Try to replace with longer-duration course.
+            if (time + course[0] > course[1]) { // Time limit exceeded. Try to replace it with a longer-duration course.
                 if (!queue.isEmpty() && queue.peek()[0] > course[0]) {
                     time += course[0] - queue.poll()[0];
                     queue.add(course);
@@ -245,7 +245,7 @@ public class HeapSolution2 {
      * Minimum Number of Refueling Stops.
      * This problem is similar to IPO (Leetcode problem: 502).
      * Sort the stations based on the start position of the stations.
-     * Add the stations those are reachable in descending. Take fuel from the stations with the highest fuel.
+     * Add the stations that are reachable in descending. Take fuel from the stations with the highest fuel.
      * */
     public int minRefuelStops(int target, int startFuel, int[][] stations) {
         Arrays.sort(stations, Comparator.comparingInt(a -> a[0]));
@@ -295,12 +295,12 @@ public class HeapSolution2 {
 
             queue.add(diff);
             bricks -= diff;
-            if (bricks < 0) { // Bricks are not enough. Use ladder.
+            if (bricks < 0) { // Bricks are not enough. Use a ladder.
                 if (ladders == 0) {
                     return i - 1;
                 }
                 ladders -= 1;
-                bricks += queue.poll(); // Use ladder for the highest height.
+                bricks += queue.poll(); // Use a ladder for the highest height.
             }
         }
 

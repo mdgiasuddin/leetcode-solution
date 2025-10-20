@@ -11,121 +11,119 @@ import java.util.Map;
  * This problem is the extension of LRU Cache (Leetcode problem: 146).
  * Maintain minFreq that contains the minimum frequency of access of all the present keys.
  * For each frequency, maintain a Doubly link list (LRU Cache).
- * For put or get update the node. Increase the frequency & move the node to the next frequency list.
- * When capacity is full, delete the last node from minFreq list.
- * */
-class DLNode {
-    public int key;
-    public int value;
-    public int freq;
-    public DLNode prev;
-    public DLNode next;
+ * For put or get update the node. Increase the frequency and move the node to the next frequency list.
+ * When capacity is full, delete the last node from the minFreq list.
+ */
+class LFUNode {
+    int key;
+    int value;
+    int freq;
+    LFUNode prev;
+    LFUNode next;
 
-    public DLNode(int key, int value) {
+    public LFUNode(int key, int value) {
         this.key = key;
         this.value = value;
         this.freq = 1;
-        this.prev = null;
-        this.next = null;
+        this.prev = this.next = null;
     }
 }
 
-class DLList {
-    DLNode head;
-    DLNode tail;
+class LFUList {
+    LFUNode head;
+    LFUNode tail;
 
-    public DLList() {
-        head = new DLNode(0, 0);
-        tail = new DLNode(0, 0);
+    public LFUList() {
+        head = new LFUNode(0, 0);
+        tail = new LFUNode(0, 0);
         head.next = tail;
         tail.prev = head;
     }
 
-    public void insertNode(DLNode node) {
-        node.next = head.next;
-        node.prev = head;
-        head.next = node;
-        node.next.prev = node;
+    public void insert(LFUNode node) {
+        node.next = tail;
+        node.prev = tail.prev;
+        tail.prev = node;
+        node.prev.next = node;
     }
 
-    public void deleteNode(DLNode node) {
-        node.prev.next = node.next;
-        node.next.prev = node.prev;
+    public void remove(LFUNode node) {
+        LFUNode prev = node.prev;
+        prev.next = node.next;
+        node.next.prev = prev;
     }
 
-    public DLNode deleteLast() {
-        DLNode node = tail.prev;
-        deleteNode(node);
+    public LFUNode removeFirst() {
+        LFUNode node = head.next;
+        head.next = node.next;
+        head.next.prev = head;
         return node;
     }
 }
 
-public class LFUCache {
-    int curSize;
+class LFUCache {
+
     int capacity;
+    int currentSize;
     int minFreq;
-    Map<Integer, DLNode> map;
-    Map<Integer, DLList> freqMap;
+    Map<Integer, LFUNode> map;
+    Map<Integer, LFUList> freqMap;
 
     public LFUCache(int capacity) {
-        this.curSize = 0;
         this.capacity = capacity;
+        this.currentSize = 0;
         this.minFreq = 0;
-        map = new HashMap<>();
-        freqMap = new HashMap<>();
+        this.map = new HashMap<>();
+        this.freqMap = new HashMap<>();
     }
 
     public int get(int key) {
-        DLNode node = map.get(key);
+        LFUNode node = map.get(key);
         if (node == null) {
             return -1;
         }
 
         updateNode(node);
-
         return node.value;
     }
 
     public void put(int key, int value) {
-        DLNode node = map.get(key);
+        LFUNode node = map.get(key);
+
         if (node == null) {
-            if (curSize == capacity) {
-                DLList list = freqMap.get(minFreq);
-                DLNode delNode = list.deleteLast();
+            if (currentSize == capacity) {
+                LFUList list = freqMap.get(minFreq);
+                LFUNode delNode = list.removeFirst();
                 map.remove(delNode.key);
-                curSize -= 1;
+                currentSize -= 1;
             }
 
-            node = new DLNode(key, value);
-            map.put(key, node);
+            node = new LFUNode(key, value);
             minFreq = 1;
-            curSize += 1;
-            DLList list = freqMap.getOrDefault(1, new DLList());
-            list.insertNode(node);
-            freqMap.put(1, list);
+            currentSize += 1;
+            LFUList list = freqMap.getOrDefault(minFreq, new LFUList());
+            list.insert(node);
+            freqMap.put(minFreq, list);
+            map.put(key, node);
+
             return;
         }
 
         node.value = value;
         updateNode(node);
-
     }
 
-    private void updateNode(DLNode node) {
-        int freq = node.freq;
-        DLList list = freqMap.get(freq);
-
-        list.deleteNode(node);
-        node.freq += 1;
-        DLList newList = freqMap.getOrDefault(node.freq, new DLList());
-        newList.insertNode(node);
-        freqMap.put(node.freq, newList);
-        DLList prevList = freqMap.get(freq);
-
-        // After moving the node to next freq, it may become empty.
-        // If it was minFreq previously, update the minFreq.
-        if (freq == minFreq && prevList.head.next == prevList.tail) {
+    private void updateNode(LFUNode node) {
+        LFUList list = freqMap.get(node.freq);
+        list.remove(node);
+        if (node.freq == minFreq && list.head.next == list.tail) {
             minFreq += 1;
         }
+
+        node.freq += 1;
+        list = freqMap.getOrDefault(node.freq, new LFUList());
+        list.insert(node);
+        freqMap.put(node.freq, list);
     }
 }
+

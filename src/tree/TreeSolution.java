@@ -1,6 +1,11 @@
 package tree;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Queue;
 
 public class TreeSolution {
 
@@ -84,7 +89,7 @@ public class TreeSolution {
     // Leetcode problem: 112
 
     /**
-     * This problem is similar to sum of numbers (Leetcode problem: 129)
+     * This problem is similar to the sum of numbers (Leetcode problem: 129)
      * */
     public boolean hasPathSum(TreeNode root, int targetSum) {
         return hasPathSum(root, 0, targetSum);
@@ -142,7 +147,7 @@ public class TreeSolution {
     // Leetcode problem: 199
 
     /**
-     * This is recursive version
+     * This is a recursive version
      * */
     public List<Integer> rightSideViewRecursive(TreeNode root) {
         List<Integer> result = new ArrayList<>();
@@ -181,7 +186,7 @@ public class TreeSolution {
 
     /**
      * Solve the problem by inorder traversal.
-     * Keep track how many node have been visited already.
+     * Keep track how many nodes have been visited already.
      * */
     public int kthSmallest(TreeNode root, int k) {
         int[] arr = {0, 0};
@@ -337,7 +342,7 @@ public class TreeSolution {
     // Leetcode problem: 116
 
     /**
-     * Solve by level order traversal.
+     * Solve it by level order traversal.
      * */
     public Node connect(Node root) {
         Queue<Node> queue = new LinkedList<>();
@@ -358,7 +363,7 @@ public class TreeSolution {
                     node.next = queue.peek();
                 }
 
-                // Since tree is balanced, If there is left child then also right child.
+                // Since the tree is balanced, If there is left child then also right child.
                 if (node.left != null) {
                     queue.add(node.left);
                     queue.add(node.right);
@@ -371,12 +376,12 @@ public class TreeSolution {
     }
 
     /**
-     * This is O(1) memory version of Leetcode problem: 116
+     * This is O(1) a memory version of Leetcode problem: 116
      * */
     public Node connectConstMemory(Node root) {
         Node current = root;
 
-        // next start node is the left most node of each level.
+        // the next start node is the left most node of each level.
         Node nextStart = current == null ? null : current.left;
 
         while (current != null && nextStart != null) {
