@@ -22,7 +22,8 @@ public class ArraySolution9 {
      * Explanation: https://www.youtube.com/watch?v=Ty8EZlxVNC8
      * Create group of list. For a number always try to add this in an existing group.
      * If it is not possible then create a new group.
-     * */
+     *
+     */
     public boolean isPossible(int[] nums) {
         Map<Integer, Integer> available = new HashMap<>();
         Map<Integer, Integer> vacancy = new HashMap<>();
@@ -63,7 +64,8 @@ public class ArraySolution9 {
      * Count Number of Teams.
      * For each player, consider it as middle and count lower & higher rating in the left & right.
      * Sum up the combinations.
-     * */
+     *
+     */
     public int numTeams(int[] rating) {
         int teams = 0;
         int n = rating.length;
@@ -104,7 +106,8 @@ public class ArraySolution9 {
     /**
      * Longest Arithmetic Subsequence.
      * Explanation: https://www.youtube.com/watch?v=sQznNULe2J0
-     * */
+     *
+     */
     public int longestArithSeqLength(int[] nums) {
         Map<Pair, Integer> map = new HashMap<>();
         int n = nums.length;
@@ -132,7 +135,8 @@ public class ArraySolution9 {
     /**
      * Reveal Cards in Increasing Order.
      * Explanation: https://www.youtube.com/watch?v=COiE-PQqf28
-     * */
+     *
+     */
     public int[] deckRevealedIncreasing(int[] deck) {
         int n = deck.length;
         Arrays.sort(deck);
@@ -168,7 +172,8 @@ public class ArraySolution9 {
      * Starting from every smallest value, find out how many numbers lies inside the range => nums[l] + length - 1.
      * The other number must be replaced with the missing number.
      * Find the smallest number of replacement.
-     * */
+     *
+     */
     public int minOperations(int[] nums) {
         int len = nums.length;
         Set<Integer> numSet = new HashSet<>();
@@ -199,7 +204,8 @@ public class ArraySolution9 {
      * Count all the elements.
      * The maximum count will be the size of the result array.
      * Fill each num from the first row up to the count-th row.
-     * */
+     *
+     */
     public List<List<Integer>> findMatrix(int[] nums) {
         Map<Integer, Integer> countMap = new HashMap<>();
         int maxCount = 0;
@@ -229,7 +235,8 @@ public class ArraySolution9 {
      * Minimum Time to Make Rope Colorful.
      * Need to remove the duplicate from the consecutive same color balloon keeping only 1.
      * Take the sum and keep the balloon with maximum time.
-     * */
+     *
+     */
     public int minCost(String colors, int[] neededTime) {
         int prevIdx = 0;
         int sum = neededTime[0];
@@ -256,7 +263,8 @@ public class ArraySolution9 {
 
     /**
      * Least Number of Unique Integers after K Removals.
-     * */
+     *
+     */
     public int findLeastNumOfUniqueInts(int[] arr, int k) {
         Map<Integer, Integer> countMap = new HashMap<>();
         for (int num : arr) {
@@ -288,7 +296,8 @@ public class ArraySolution9 {
     /**
      * Best Sightseeing Pair.
      * Explanation: https://www.youtube.com/watch?v=YAYnMfHbjz4
-     * */
+     *
+     */
     public int maxScoreSightseeingPair(int[] values) {
         int currentMax = values[0] - 1;
         int maxScore = 0;
@@ -308,7 +317,8 @@ public class ArraySolution9 {
      * Sort the array.
      * Group the adjacent element of which the consecutive difference is <= limit.
      * For each index of the array, insert the first element of the specific group.
-     * */
+     *
+     */
     public int[] lexicographicallySmallestArray(int[] nums, int limit) {
         int n = nums.length;
         int[][] sorted = new int[n][2];
@@ -356,7 +366,8 @@ public class ArraySolution9 {
      * Maintain 2 variable leftBall & rightBall.
      * First calculate the move needed to place all the balls in the first index.
      * Moving left to right move will be increased for the leftBall & decreased for the rightBall.
-     * */
+     *
+     */
     public int[] minOperations(String boxes) {
         int n = boxes.length();
         int move = 0;
@@ -389,7 +400,8 @@ public class ArraySolution9 {
     /**
      * Max Chunks to Make Sorted.
      * Explanation: https://www.youtube.com/watch?v=wpHzXTkuVkY
-     * */
+     *
+     */
     public int maxChunksToSorted(int[] arr) {
         int res = 0;
         int currentMax = -1;
@@ -401,6 +413,36 @@ public class ArraySolution9 {
             if (currentMax == i) {
                 res += 1;
             }
+        }
+
+        return res;
+    }
+
+    // Leetcode problem: 2874
+
+    /**
+     * Maximum Value of an Ordered Triplet II
+     * Explanation: https://www.youtube.com/watch?v=yWlxzvpU6WY
+     */
+    public long maximumTripletValue(int[] nums) {
+        int n = nums.length;
+        long[] prefixMax = new long[n];
+        prefixMax[n - 1] = nums[n - 1];
+        for (int i = n - 2; i >= 0; i--) {
+            prefixMax[i] = Math.max(nums[i], prefixMax[i + 1]);
+        }
+
+        long res = 0;
+        int numsI = nums[0];
+        int j = 1;
+        while (j < n - 1) {
+            if (nums[j] > numsI) {
+                numsI = nums[j];
+            } else {
+                res = Math.max(res, prefixMax[j + 1] * (numsI - nums[j]));
+            }
+
+            j += 1;
         }
 
         return res;
