@@ -7,12 +7,14 @@ import java.util.PriorityQueue;
 
 public class GraphSolution3 {
     public static void main(String[] args) {
-        GraphSolution3 solution3 = new GraphSolution3();
-        int[][] roads = {{0, 6, 7}, {0, 1, 2}, {1, 2, 3}, {1, 3, 3}, {6, 3, 3}, {3, 5, 1}, {6, 5, 1}, {2, 5, 1}, {0, 4, 5}, {4, 6, 2}};
+        GraphSolution3 graph = new GraphSolution3();
+        int[][] edges = {{0, 5, 0}, {3, 7, 2}, {7, 6, 0}, {2, 4, 1}, {0, 4, 1}, {7, 1, 0}};
+        int[][] query = {{7, 1}, {1, 5}, {6, 1}, {1, 3}, {2, 0}, {4, 7}, {3, 2}, {3, 2}, {5, 2}};
+
+        graph.minimumCost(8, edges, query);
     }
 
     // Leetcode problem: 1976
-
     /**
      * Number of Ways to Arrive at Destination.
      */
@@ -59,5 +61,65 @@ public class GraphSolution3 {
         }
 
         return (int) pathCount[n - 1][1];
+    }
+
+    public int[] minimumCost(int n, int[][] edges, int[][] query) {
+        int[] parent = new int[n];
+        int[] rank = new int[n];
+        int[] cost = new int[n];
+        int allOne = ~0;
+
+        for (int i = 0; i < n; i++) {
+            parent[i] = i;
+            rank[i] = 1;
+            cost[i] = allOne;
+        }
+
+        for (int[] edge : edges) {
+            union(edge, parent, rank, cost);
+        }
+
+//        System.out.println(Arrays.toString(parent));
+//        System.out.println(Arrays.toString(rank));
+//        System.out.println(Arrays.toString(cost));
+
+        int[] res = new int[query.length];
+        int i = 0;
+        for (int q[] : query) {
+            int p1 = findParent(q[0], parent);
+            int p2 = findParent(q[1], parent);
+
+            if (p1 != p2) {
+                res[i] = -1;
+            } else {
+                res[i] = cost[p1];
+            }
+            i += 1;
+        }
+
+        return res;
+    }
+
+    private void union(int[] edge, int[] parent, int[] rank, int[] cost) {
+        int p1 = findParent(edge[0], parent);
+        int p2 = findParent(edge[1], parent);
+
+        if (rank[p1] > rank[p2]) {
+            parent[p2] = p1;
+            rank[p1] += rank[p2];
+            cost[p1] &= (cost[p2] & edge[2]);
+        } else {
+            parent[p1] = p2;
+            rank[p2] += rank[p1];
+            cost[p2] &= edge[2];
+        }
+    }
+
+    private int findParent(int u, int[] parent) {
+        while (parent[u] != u) {
+            u = parent[u];
+        }
+
+        return u;
     }
 }
