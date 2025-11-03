@@ -4,16 +4,14 @@ public class SlidingWindowSolution3 {
 
     public static void main(String[] args) {
         SlidingWindowSolution3 solution = new SlidingWindowSolution3();
-        int[] nums = {50, 20, 25, 30, 70, 90, 65, 72};
-        System.out.println(solution.getLargestOnesGivenRange(nums, 50, 80));
-
     }
 
     /**
      * TikTok interview question.
      * The question is asked to Khalid.
      * Number of 1 bit of a subarray, of which the logical or value lies within the given range.
-     * */
+     *
+     */
     public int getLargestOnesGivenRange(int[] nums, int low, int high) {
         int[] countBits = new int[32];
         int[] bitsOrValue;
@@ -54,5 +52,57 @@ public class SlidingWindowSolution3 {
         }
 
         return new int[]{bits, orValue};
+    }
+
+    // Leetcode problem: 1358
+
+    /**
+     * Number of Substrings Containing All Three Characters.
+     * abcabc => when 'abc' appears, we can concatenate '' 'a', 'ab', 'abc' => n - i
+     * Then try by removing characters from left.
+     */
+    public int numberOfSubstrings(String s) {
+        int[] count = new int[3];
+        int n = s.length();
+        int l = 0;
+        int res = 0;
+
+        for (int r = 0; r < n; r++) {
+            char ch = s.charAt(r);
+            count[ch - 'a'] += 1;
+            while (count[0] > 0 && count[1] > 0 && count[2] > 0) {
+                res += n - r;
+                count[s.charAt(l) - 'a'] -= 1;
+                l += 1;
+            }
+        }
+
+        return res;
+    }
+
+    // Leetcode problem: 3208
+
+    /**
+     * Alternating Groups II.
+     */
+    public int numberOfAlternatingGroups(int[] colors, int k) {
+        int l = 0;
+        int n = colors.length;
+        int[] copy = new int[n + k - 1];
+        System.arraycopy(colors, 0, copy, 0, n);
+        // Since this a circular ring, to support circle,
+        // add the first k - 1 colors to make group with the last color.
+        System.arraycopy(colors, 0, copy, n, k - 1);
+
+        int res = 0;
+        for (int r = 1; r < n + k - 1; r++) {
+            if (copy[r] == copy[r - 1]) {
+                l = r;
+            } else if (r - l + 1 == k) {
+                res += 1;
+                l += 1;
+            }
+        }
+        return res;
     }
 }

@@ -78,4 +78,40 @@ public class BinarySearchSolution3 {
 
         return count >= k;
     }
+
+    // Leetcode problem: 2226
+
+    /**
+     * Maximum Candies Allocated to K Children.
+     */
+    public int maximumCandies(int[] candies, long k) {
+        int l = 1;
+        int r = 0;
+        for (int candy : candies) {
+            r = Math.max(r, candy);
+        }
+
+        int res = 0;
+        while (l <= r) {
+            int m = l + (r - l) / 2;
+            if (canGetCandy(candies, m, k)) {
+                res = m;
+                l = m + 1;
+            } else {
+                r = m - 1;
+            }
+        }
+
+        return res;
+    }
+
+    private boolean canGetCandy(int[] candies, int number, long k) {
+        long persons = 0;
+
+        for (int candy : candies) {
+            persons += candy / number;
+        }
+
+        return persons >= k;
+    }
 }
