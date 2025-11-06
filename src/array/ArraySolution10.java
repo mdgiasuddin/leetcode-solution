@@ -144,4 +144,44 @@ public class ArraySolution10 {
 
         return res;
     }
+
+    // Leetcode problem: 2523
+
+    /**
+     * Closest Prime Numbers in Range.
+     * Find out all the prime numbers [1, right] using Sieve Algorithm.
+     * Then check the pair with minimum difference in the range [left, right].
+     */
+    public int[] closestPrimes(int left, int right) {
+        boolean[] composites = new boolean[right + 1];
+        composites[1] = true;
+
+        for (int i = 2; i * i <= right; i++) {
+            if (!composites[i]) {
+                for (int j = 2; i * j <= right; j++) {
+                    composites[i * j] = true;
+                }
+            }
+        }
+
+        int num1 = -1;
+        int num2 = -1;
+        int prev = -1;
+        for (int i = left; i <= right; i++) {
+            if (!composites[i]) {
+                if (num1 == -1) {
+                    num1 = i;
+                } else if (num2 == -1) {
+                    num2 = i;
+                } else if (i - prev < num2 - num1) {
+                    num1 = prev;
+                    num2 = i;
+                }
+
+                prev = i;
+            }
+        }
+
+        return (num1 == -1 || num2 == -1) ? new int[]{-1, -1} : new int[]{num1, num2};
+    }
 }
