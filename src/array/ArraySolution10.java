@@ -8,8 +8,8 @@ import java.util.List;
 public class ArraySolution10 {
     public static void main(String[] args) {
         ArraySolution10 sol = new ArraySolution10();
-        int[][] grid = {{1, 5}, {2, 3}};
-        System.out.println(sol.minOperations(grid, 1));
+        int[] nums = {1, -3, 2, 3, -4};
+        System.out.println(sol.maxAbsoluteSum(nums));
     }
 
     // Leetcode problem: 2033
@@ -183,5 +183,25 @@ public class ArraySolution10 {
         }
 
         return (num1 == -1 || num2 == -1) ? new int[]{-1, -1} : new int[]{num1, num2};
+    }
+
+    // Leetcode problem: 1749
+
+    /**
+     * Maximum Absolute Sum of Any Subarray.
+     */
+    public int maxAbsoluteSum(int[] nums) {
+        int res = Math.abs(nums[0]);
+        int maxSum = nums[0];
+        int minSum = nums[0];
+
+        for (int i = 1; i < nums.length; i++) {
+            maxSum = Math.max(nums[i], maxSum + nums[i]);
+            minSum = Math.min(nums[i], minSum + nums[i]);
+
+            res = Math.max(res, Math.max(Math.abs(maxSum), Math.abs(minSum)));
+        }
+
+        return res;
     }
 }

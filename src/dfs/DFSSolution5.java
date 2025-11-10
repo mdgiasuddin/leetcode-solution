@@ -129,9 +129,9 @@ public class DFSSolution5 {
 
     /**
      * Most Stones Removed with Same Row or Column.
-     * Find the number of connected component. For each connected component only 1 stone will be alive.
-     * 2 Stones are neighbor if they are in same row or column.
-     *
+     * Find the number of connected components.
+     * For each connected component only 1 stone will be alive.
+     * 2 Stones are neighbor if they are in the same row or column.
      */
     public int removeStones(int[][] stones) {
         int n = stones.length;

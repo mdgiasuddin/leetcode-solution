@@ -34,4 +34,32 @@ public class StackSolution3 {
 
         return result;
     }
+
+    // Leetcode problem:
+
+    /**
+     * Minimum Operations to Convert All Elements to Zero.
+     * Explanation: https://www.youtube.com/watch?v=s9-gPx1Nvho
+     * Monotonic Stack.
+     * [1 3 2 1 0 4 5 1 3]
+     */
+    public int minOperations(int[] nums) {
+        Stack<Integer> stack = new Stack<>();
+        int res = 0;
+
+        for (int num : nums) {
+            while (!stack.isEmpty() && stack.peek() > num) {
+                stack.pop();
+            }
+            if (num == 0) {
+                continue;
+            }
+            if (stack.isEmpty() || num != stack.peek()) {
+                res += 1;
+                stack.push(num);
+            }
+        }
+
+        return res;
+    }
 }
