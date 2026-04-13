@@ -298,4 +298,47 @@ public class DFSSolution5 {
             }
         }
     }
+
+    // Leetcode problem: 2872
+
+    /**
+     * Maximum Number of K-Divisible Components.
+     * Reference: https://www.youtube.com/watch?v=sL2wc9zSqPM
+     */
+    public int maxKDivisibleComponents(int n, int[][] edges, int[] values, int k) {
+        List<List<Integer>> graph = new ArrayList<>(n);
+        for (int i = 0; i < n; i++) {
+            graph.add(new ArrayList<>());
+        }
+
+        for (int[] edge : edges) {
+            graph.get(edge[0]).add(edge[1]);
+            graph.get(edge[1]).add(edge[0]);
+        }
+        boolean[] visited = new boolean[n];
+
+        long[] res = dfsGraph(0, graph, values, visited, k);
+        return (int) res[1];
+    }
+
+    private long[] dfsGraph(int u, List<List<Integer>> graph, int[] values, boolean[] visited, int k) {
+        visited[u] = true;
+        long[] resU = new long[2];
+        for (int v : graph.get(u)) {
+            if (!visited[v]) {
+                long[] resV = dfsGraph(v, graph, values, visited, k);
+                // Collect the sum of values modulo k and the count of valid components.
+                resU[0] = (resU[0] + resV[0]) % k;
+                resU[1] += resV[1];
+            }
+        }
+
+        resU[0] = (resU[0] + values[u]) % k;
+        if (resU[0] == 0) {
+            // Check if the node U can form a valid component.
+            resU[1] += 1;
+        }
+
+        return resU;
+    }
 }
