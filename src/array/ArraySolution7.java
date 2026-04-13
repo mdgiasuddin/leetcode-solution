@@ -1,6 +1,11 @@
 package array;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ArraySolution7 {
 
@@ -135,29 +140,6 @@ public class ArraySolution7 {
                     res[k++] = list.get(j);
                 }
             }
-        }
-
-        return res;
-    }
-
-    // Leetcode problem: 974
-
-    /**
-     * Subarray Sums Divisible by K.
-     * This is similar to: Subarray Sum Equals K (Leetcode problem: 560).
-     * Challenging part is to avoid negative reminder.
-     * */
-    public int subarraysDivByK(int[] nums, int k) {
-        Map<Integer, Integer> map = new HashMap<>();
-        int res = 0;
-        map.put(0, 1);
-        int currentSum = 0;
-
-        for (int num : nums) {
-            currentSum = ((currentSum + num % k) % k + k) % k;
-            int count = map.getOrDefault(currentSum, 0);
-            res += count;
-            map.put(currentSum, count + 1);
         }
 
         return res;

@@ -15,7 +15,8 @@ public class PrefixSumSolution {
      * The problem can be solved by storing prefix and suffix multiplication.
      * To reduce the memory we will store only the prefix.
      * Then multiply with the suffix.
-     * */
+     *
+     */
     public int[] productExceptSelf(int[] nums) {
         int n = nums.length;
         int[] result = new int[n];
@@ -39,6 +40,10 @@ public class PrefixSumSolution {
     }
 
     // Leetcode problem: 560
+
+    /**
+     * This problem is similar to: Subarray Sums Divisible by K (Leetcode problem: 974)
+     */
     public int subarraySum(int[] nums, int k) {
 
         // Prefix sum stores how many times current sum is present from the start position.
@@ -60,12 +65,37 @@ public class PrefixSumSolution {
         return res;
     }
 
+    // Leetcode problem: 974
+
+    /**
+     * Subarray Sums Divisible by K.
+     * This is similar to: Subarray Sum Equals K (Leetcode problem: 560).
+     * Challenging part is to avoid negative reminder.
+     *
+     */
+    public int subarraysDivByK(int[] nums, int k) {
+        Map<Integer, Integer> map = new HashMap<>();
+        int res = 0;
+        map.put(0, 1);
+        int currentSum = 0;
+
+        for (int num : nums) {
+            currentSum = ((currentSum + num % k) % k + k) % k;
+            int count = map.getOrDefault(currentSum, 0);
+            res += count;
+            map.put(currentSum, count + 1);
+        }
+
+        return res;
+    }
+
     // Leetcode problem: 523
 
     /**
-     * This problem is similar to sub-array sum. (Leetcode problem: 560)
+     * This problem is similar to: Subarray Sum Equals K. (Leetcode problem: 560)
      * Instead of storing the current sum, store the reminder.
-     * */
+     *
+     */
     public boolean checkSubarraySum(int[] nums, int k) {
         Map<Integer, Integer> prefixMap = new HashMap<>();
 
@@ -85,5 +115,41 @@ public class PrefixSumSolution {
         }
 
         return false;
+    }
+
+    // Leetcode problem: 1590
+
+    /**
+     * Make Sum Divisible by P.
+     * This problem is similar to: Leetcode problem: 523, 560, 974
+     * Reference: https://www.youtube.com/watch?v=7FJrMTpadRI
+     */
+    public int minSubarray(int[] nums, int p) {
+        long sum = 0;
+        int n = nums.length;
+        for (int num : nums) {
+            sum += num;
+        }
+
+        long rem = sum % p;
+        if (rem == 0) {
+            return 0;
+        }
+
+        Map<Long, Integer> map = new HashMap<>();
+        int rLen = n;
+        long cur = 0;
+
+        map.put(cur, -1);
+        for (int i = 0; i < n; i++) {
+            cur = (cur + nums[i]) % p;
+            long prev = (cur - rem + p) % p;
+            if (map.containsKey(prev)) {
+                rLen = Math.min(rLen, i - map.get(prev));
+            }
+            map.put(cur, i);
+        }
+
+        return rLen == n ? -1 : rLen;
     }
 }
