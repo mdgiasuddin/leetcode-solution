@@ -12,7 +12,8 @@ public class DynamicProgramming4 {
     /**
      * Solving Questions With Brainpower
      * Explanation: https://www.youtube.com/watch?v=D7TD_ArkfkA
-     * */
+     *
+     */
     public long mostPoints(int[][] questions) {
         int n = questions.length;
         long[] dp = new long[n + 1];
@@ -32,7 +33,8 @@ public class DynamicProgramming4 {
     /**
      * Arithmetic Slices II - Subsequence
      * Explanation: https://www.youtube.com/watch?v=YiQYhXorMAI
-     * */
+     *
+     */
     public int numberOfArithmeticSlices(int[] nums) {
         int n = nums.length;
         List<Map<Integer, Integer>> dp = new ArrayList<>();
@@ -64,7 +66,8 @@ public class DynamicProgramming4 {
 
     /**
      * Maximum Length of Repeated Subarray.
-     * */
+     *
+     */
     public int findLength(int[] nums1, int[] nums2) {
         int n1 = nums1.length;
         int n2 = nums2.length;
@@ -88,7 +91,8 @@ public class DynamicProgramming4 {
 
     /**
      * 2 Keys Keyboard.
-     * */
+     *
+     */
     public int minSteps(int n) {
         if (n == 1) {
             return 0;
@@ -123,7 +127,8 @@ public class DynamicProgramming4 {
     /**
      * Delete Operation for Two Strings.
      * Find the LCS. Then return the sum of deletion from 2 strings.
-     * */
+     *
+     */
     public int minDistance(String word1, String word2) {
         int m = word1.length();
         int n = word2.length();
@@ -148,7 +153,8 @@ public class DynamicProgramming4 {
      * Super Egg Drop.
      * Explanation: https://www.geeksforgeeks.org/egg-dropping-puzzle-dp-11/
      * TO-DO -> Optimize the solution as it exceeds the time limit.
-     * */
+     *
+     */
     public int superEggDrop(int k, int n) {
         int[][] dp = new int[k + 1][n + 1];
         for (int i = 1; i <= k; i++) {
@@ -180,7 +186,8 @@ public class DynamicProgramming4 {
      * Knight Probability in Chessboard.
      * Explanation: https://www.youtube.com/watch?v=54nJhM2AZv4
      * Maintain 2 state => current & next.
-     * */
+     *
+     */
     public double knightProbability(int n, int k, int row, int column) {
         double[][] current = new double[n][n];
         double[][] next = new double[n][n];
@@ -226,7 +233,8 @@ public class DynamicProgramming4 {
      * Partition Array for Maximum Sum.
      * Explanation: https://www.youtube.com/watch?v=YtOzNodX_aw
      * This solution is tricky.
-     * */
+     *
+     */
     public int maxSumAfterPartitioning(int[] arr, int k) {
         int n = arr.length;
         int[] dp = new int[n + 1];
@@ -258,7 +266,8 @@ public class DynamicProgramming4 {
     /**
      * Out of Boundary Paths.
      * Explanation: https://www.youtube.com/watch?v=Bg5CLRqtNmk
-     * */
+     *
+     */
     public int findPaths(int m, int n, int maxMove, int startRow, int startColumn) {
         int[][] dp0 = new int[m][n];
         int[][] dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
@@ -283,5 +292,45 @@ public class DynamicProgramming4 {
         }
 
         return dp0[startRow][startColumn];
+    }
+
+    // Leetcode problem: 2435
+
+    /**
+     * Paths in Matrix Whose Sum Is Divisible by K.
+     * This problem is an extended version of: Unique Paths (Leetcode problem: 62)
+     */
+    public int numberOfPaths(int[][] grid, int k) {
+        int mod = 1000000007;
+        int m = grid.length;
+        int n = grid[0].length;
+        long[][][] dp = new long[m][n][k];
+        dp[0][0][grid[0][0] % k] = 1;
+
+        for (int r = 1; r < m; r++) {
+            for (int i = 0; i < k; i++) {
+                dp[r][0][i] = dp[r - 1][0][(i + k - grid[r][0] % k) % k];
+            }
+        }
+
+        for (int c = 1; c < n; c++) {
+            for (int i = 0; i < k; i++) {
+                dp[0][c][i] = dp[0][c - 1][(i + k - grid[0][c] % k) % k];
+            }
+        }
+
+        for (int r = 1; r < m; r++) {
+            for (int c = 1; c < n; c++) {
+
+                // For every remainder i, calculate the number of paths to reach (r, c) with the remainder i.
+                for (int i = 0; i < k; i++) {
+                    dp[r][c][i] = dp[r][c - 1][(i + k - grid[r][c] % k) % k];
+                    dp[r][c][i] += dp[r - 1][c][(i + k - grid[r][c] % k) % k];
+                    dp[r][c][i] %= mod;
+                }
+            }
+        }
+
+        return (int) dp[m - 1][n - 1][0];
     }
 }

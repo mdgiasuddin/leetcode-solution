@@ -152,4 +152,30 @@ public class PrefixSumSolution {
 
         return rLen == n ? -1 : rLen;
     }
+
+    // Leetcode problem: 3381
+
+    /**
+     * Maximum Subarray Sum With Length Divisible by K.
+     * Continuously update the prefix minimum sum for the remainder length: 0 to k-1.
+     */
+    public long maxSubarraySum(int[] nums, int k) {
+        long current = 0;
+        Map<Integer, Long> map = new HashMap<>();
+        map.put(0, 0L);
+        for (int i = 0; i < k; i++) {
+            current += nums[i];
+            int len = (i + 1) % k;
+            map.put(len, Math.min(current, map.getOrDefault(len, current)));
+        }
+        long res = current;
+        for (int i = k; i < nums.length; i++) {
+            current += nums[i];
+            int len = (i + 1) % k;
+            res = Math.max(res, current - map.get(len));
+            map.put(len, Math.min(current, map.get(len)));
+        }
+
+        return res;
+    }
 }
