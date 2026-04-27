@@ -11,7 +11,9 @@ public class AmazonCode {
 
         int[] nums = {1, 2, 3, 3, 4, 2, 3, 2, 3};
         int[] res = amazonCode.countDistinctElement(nums, 4);
-        System.out.println(Arrays.toString(res));
+//        System.out.println(Arrays.toString(res));
+
+        System.out.println(amazonCode.fibonacci(15));
     }
 
     public void sortArrayZeroOne() {
@@ -60,6 +62,49 @@ public class AmazonCode {
 
             r += 1;
         }
+
+        return res;
+    }
+
+    /**
+     * Calculate fibonacci(n) in O(logn) time.
+     * Explanation: https://codeforces.com/blog/entry/90559
+     * [fib(n+1)     fib(n)]    =      [1 1][fib(n)    fib(n-1)]
+     * [fib(n)     fib(n-1)]           [1 0][fib(n-1)  fib(n-2)]
+     * Where M = [fib(2)  fib(1)]   = [1 1]
+     *           [fib(1)  fib(0)]     [1 0]
+     * Finally: M^n = [fib(n+1)     fib(n)]
+     *                [fib(n)     fib(n-1)]
+     */
+    public int fibonacci(int n) {
+        if (n <= 1) {
+            return n;
+        }
+
+        int[][] m = {{1, 1}, {1, 0}};
+        int[][] mPowerN = power(m, n - 1);
+        return mPowerN[0][0];
+    }
+
+    private int[][] power(int[][] m, int n) {
+        if (n == 1) {
+            return m;
+        }
+
+        int[][] p = power(m, n / 2);
+        int[][] mul = multiply(p, p);
+        if (n % 2 == 1) {
+            return multiply(mul, m);
+        }
+        return mul;
+    }
+
+    private int[][] multiply(int[][] a, int[][] b) {
+        int[][] res = new int[2][2];
+        res[0][0] = a[0][0] * b[0][0] + a[0][1] * b[1][0];
+        res[0][1] = a[0][0] * b[0][1] + a[0][1] * b[1][1];
+        res[1][0] = a[1][0] * b[0][0] + a[1][1] * b[1][0];
+        res[1][1] = a[1][0] * b[0][1] + a[1][1] * b[1][1];
 
         return res;
     }

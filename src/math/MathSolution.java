@@ -1,7 +1,9 @@
 package math;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class MathSolution {
 
@@ -11,7 +13,7 @@ public class MathSolution {
      * This solution is based on Legendre's Algorithm.
      * Every number can be represented as sum of 4 squares.
      * Any number can be represented as sum of 3 squares if it is not in the form: 4^a(8b + 7).
-     * */
+     */
     public int numSquares(int n) {
         double sq = Math.sqrt(n);
         if (Math.ceil(sq) == Math.floor(sq)) {
@@ -79,7 +81,8 @@ public class MathSolution {
      * Divide Two Integers.
      * Explanation: https://www.youtube.com/watch?v=xefkgtd44hg&list=PLy38cn8b_xMfO7CGsUDIsYGps37yKaQ9X&index=11
      * Edge cases are very important.
-     * */
+     *
+     */
     public int divide(int dividend, int divisor) {
         if ((dividend == 2147483647 && divisor == 1) || (dividend == -2147483648 && divisor == -1)) {
             return 2147483647;
@@ -128,7 +131,8 @@ public class MathSolution {
      * For the first order, all slots are empty. Place 2 (P1, D1) to slots => slots * (slots - 1).
      * It will place P1 & D1 randomly. for any (P1, D1) position, there will be 2 permutations. => (P1, D1), (D1, P1).
      * One of them is valid. So, divide by 2.
-     * */
+     *
+     */
     public int countOrders(int n) {
         long mod = 1000000007;
         long result = 1;
@@ -140,5 +144,30 @@ public class MathSolution {
         }
 
         return (int) result;
+    }
+
+    // Leetcode problem: 1015
+
+    /**
+     * Smallest Integer Divisible by K.
+     */
+    public int smallestRepunitDivByK(int k) {
+        int len = 1;
+        int n = 1;
+        Set<Integer> visited = new HashSet<>();
+
+        while (n != 0) {
+            while (n < k) {
+                n = n * 10 + 1;
+                len += 1;
+            }
+            n %= k;
+            if (visited.contains(n)) {
+                return -1;
+            }
+            visited.add(n);
+        }
+
+        return len;
     }
 }

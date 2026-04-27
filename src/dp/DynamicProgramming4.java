@@ -324,9 +324,8 @@ public class DynamicProgramming4 {
 
                 // For every remainder i, calculate the number of paths to reach (r, c) with the remainder i.
                 for (int i = 0; i < k; i++) {
-                    dp[r][c][i] = dp[r][c - 1][(i + k - grid[r][c] % k) % k];
-                    dp[r][c][i] += dp[r - 1][c][(i + k - grid[r][c] % k) % k];
-                    dp[r][c][i] %= mod;
+                    dp[r][c][i] = (dp[r][c - 1][(i + k - grid[r][c] % k) % k] +
+                            dp[r - 1][c][(i + k - grid[r][c] % k) % k]) % mod;
                 }
             }
         }

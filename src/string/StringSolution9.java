@@ -13,7 +13,7 @@ public class StringSolution9 {
      * Substring with Concatenation of All Words.
      * Explanation: https://www.youtube.com/watch?v=EVHQ48RM5tw
      * Count the words. Starting from every index found if possible to get all the words.
-     * */
+     */
     public List<Integer> findSubstring(String s, String[] words) {
         Map<String, Integer> countMap = new HashMap<>();
         int n = words.length;
@@ -53,7 +53,8 @@ public class StringSolution9 {
     /**
      * Find and Replace Pattern.
      * This problem is similar to : Isomorphic Strings (Leetcode problem: 205).
-     * */
+     *
+     */
     public List<String> findAndReplacePattern(String[] words, String pattern) {
         int n = pattern.length();
         List<String> result = new ArrayList<>();
@@ -88,7 +89,8 @@ public class StringSolution9 {
      * Create a difference array.
      * For the left index store the difference & right index + 1 the reversed difference.
      * Sequentially add the difference & apply the shift.
-     * */
+     *
+     */
     public String shiftingLetters(String s, int[][] shifts) {
         int n = s.length();
         int[] diffs = new int[n + 1];
@@ -108,5 +110,33 @@ public class StringSolution9 {
         }
 
         return res.toString();
+    }
+
+    // Leetcode problem: 3228
+
+    /**
+     * Maximum Number of Operations to Move Ones to the End.
+     * Count the number of 0's blocks on the right side for each 1.
+     */
+    public int maxOperations(String s) {
+        int res = 0;
+        int zeroBlock = 0;
+        int zeroCount = 0;
+        int i = s.length() - 1;
+
+        while (i >= 0) {
+            if (s.charAt(i) == '1') {
+                if (zeroCount > 0) {
+                    zeroBlock += 1;
+                }
+                res += zeroBlock;
+                zeroCount = 0;
+            } else {
+                zeroCount += 1;
+            }
+            i -= 1;
+        }
+
+        return res;
     }
 }
